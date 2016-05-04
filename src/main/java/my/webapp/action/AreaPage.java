@@ -27,7 +27,6 @@ import my.service.UserManager;
 import my.service.WaveManager;
 import my.service.WishManager;
 import my.webapp.util.WebUtil;
-import org.primefaces.component.tree.Tree;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DashboardColumn;
@@ -47,10 +46,8 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by yinghao_niu on 2016/4/2 for Project.
@@ -61,15 +58,13 @@ import java.util.Map;
 @Scope("session")
 @Lazy
 public class AreaPage extends BasePage implements Serializable {
-    public TreeNode moundTargetTreeRoot;
     // members
     Wave wave = new Wave();
     Flower flower = new Flower();
     Mound mound = new Mound();
     Stone stone = new Stone();
     Wish wish = new Wish();
-    TreeNode[] selectedMoundTargetNodes;
-    Tree moundSelectTargetTreeUI;
+
     @Autowired
     private WaveManager waveManager;
     @Autowired
@@ -97,8 +92,7 @@ public class AreaPage extends BasePage implements Serializable {
     @Autowired
     private StoneManager stoneManager;
     private DashboardModel plainBoard;
-    @Autowired
-    private MoundTarget moundTarget;
+
     List<BaseLog> selectedMoundTarget;
     @Autowired
     private CommonContext areaContext;
@@ -106,7 +100,7 @@ public class AreaPage extends BasePage implements Serializable {
     String mostRecentHistory = "";
     @Autowired
     private AreaManager areaManager;
-    public static final String SEPARATOR = "_";
+
 
     public List<Pray> delegatePrays(Wish wish) {
         List<Pray> prays = wish.getPrays();
@@ -120,63 +114,14 @@ public class AreaPage extends BasePage implements Serializable {
         wishManager.save(wish);
     }
 
-    protected TreeNode findTreeNode(TreeNode searchRoot, String rowKey) {
-        if (rowKey == null || searchRoot == null) {
-            return null;
-        }
-
-        if (rowKey.equals("root")) {
-            return searchRoot;
-        }
-
-        String[] paths = rowKey.split(SEPARATOR);
-
-        if (paths.length == 0)
-            return null;
-
-        int childIndex = Integer.parseInt(paths[0]);
-        if (childIndex >= searchRoot.getChildren().size())
-            return null;
-
-        searchRoot = searchRoot.getChildren().get(childIndex);
-
-        if (paths.length == 1) {
-            return searchRoot;
-        }
-        else {
-            String relativeRowKey = rowKey.substring(rowKey.indexOf(SEPARATOR) + 1);
-
-            return findTreeNode(searchRoot, relativeRowKey);
-        }
-    }
-
-    public void onMoundSelectTreeExpand() {
-        Tree tree = moundSelectTargetTreeUI;
-        TreeNode _this = null;
-        FacesContext context = FacesContext.getCurrentInstance();
-        TreeNode root = tree.getValue();
-        if (tree.isNodeExpandRequest(context)) {
-            String clientId = tree.getClientId(context);
-            Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-            String rowKey = params.get(clientId + "_expandNode");
-
-//			tree.setRowKey(rowKey);
-//			_this = tree.getRowNode();
-//			_this.setExpanded(false);
-//			tree.setRowKey(null);
-
-            _this = findTreeNode(root, rowKey);
-        }
-
-
-        setChildrenNode(_this);
-
-        tree.setValue(root);
-    }
 
     public String genMoundContent(Mound mound) {
         StringBuffer sb = new StringBuffer();
-        for (BaseLog baseLog : mound.getTargets()) {
+        List<BaseLog> targets = mound.getTargets();
+        if (targets == null) {
+            return "";
+        }
+        for (BaseLog baseLog : targets) {
             sb.append(baseLog.getId());
             sb.append("|");
             String content = baseLog.getContent();
@@ -351,33 +296,6 @@ public class AreaPage extends BasePage implements Serializable {
         return "/main/starry/bless.xhtml?faces-redirect=true";
     }
 
-    public Tree getMoundSelectTargetTree() {
-        return moundSelectTargetTreeUI;
-    }
-
-    public void setMoundSelectTargetTree(Tree moundSelectTargetTree) {
-        this.moundSelectTargetTreeUI = moundSelectTargetTree;
-    }
-
-    public TreeNode[] getSelectedMoundTargetNodes() {
-        return selectedMoundTargetNodes;
-    }
-
-    public void setSelectedMoundTargetNodes(TreeNode[] selectedMoundTargetNodes) {
-        this.selectedMoundTargetNodes = selectedMoundTargetNodes;
-    }
-
-    public TreeNode getMoundTargetTreeRoot() {
-        if (moundTargetTreeRoot == null) {
-            moundTargetTreeRoot = new DefaultTreeNode(null);
-        }
-
-        return moundTargetTreeRoot;
-    }
-
-    public void setMoundTargetTreeRoot(TreeNode moundTargetTreeRoot) {
-        this.moundTargetTreeRoot = moundTargetTreeRoot;
-    }
 
     //getter and setter
     public List<BaseLog> getSelectedMoundTarget() {
@@ -388,13 +306,6 @@ public class AreaPage extends BasePage implements Serializable {
         this.selectedMoundTarget = selectedMoundTarget;
     }
 
-    public MoundTarget getMoundTarget() {
-        return moundTarget;
-    }
-
-    public void setMoundTarget(MoundTarget moundTarget) {
-        this.moundTarget = moundTarget;
-    }
 
     public CommonContext getAreaContext() {
         return areaContext;
@@ -504,35 +415,6 @@ public class AreaPage extends BasePage implements Serializable {
         this.sea = sea;
     }
 
-    private void setChildrenNode(TreeNode _this) {
-        List<TreeNode> children = _this.getChildren();
 
-        if (children == null) {
-            children = new ArrayList();
-        }
-        else {
-            children.clear();
-        }
-        Object data = _this.getData();
-
-        if (data instanceof Wish) {
-            for (Stone stone : ((Wish) data).getStoneList()) {
-                DefaultTreeNode node = new DefaultTreeNode(stone, _this);
-                children.add(node);
-            }
-        }
-        else if (data instanceof Wave) {
-            for (Wish wish : ((Wave) data).getWishes()) {
-                DefaultTreeNode node = new DefaultTreeNode(wish, _this);
-                children.add(node);
-            }
-        }
-        else if (data instanceof Flower) {
-            for (Wish wish : ((Flower) data).getWishes()) {
-                DefaultTreeNode node = new DefaultTreeNode(wish, _this);
-                children.add(node);
-            }
-        }
-    }
 }
 

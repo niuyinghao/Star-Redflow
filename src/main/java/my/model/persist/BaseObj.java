@@ -25,6 +25,7 @@ public class BaseObj {
     User creator;
     int buryDepth;
 
+    @Column(columnDefinition = " number(2,0) default 0")
     public int getBuryDepth() {
         return buryDepth;
     }

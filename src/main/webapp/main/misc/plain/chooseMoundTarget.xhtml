@@ -10,15 +10,18 @@
         <ui:define name="head"></ui:define>
         <ui:define name="body">
             <h:form>
-                <p:tree value="#{areaPage.moundTargetTreeRoot}"
-                        binding="#{areaPage.moundSelectTargetTree}"
-                        selection="#{areaPage.selectedMoundTargetNodes}"
+                <p:tree value="#{areaViewScopeContainer.moundTargetTreeRoot}"
+                        binding="#{areaViewScopeContainer.moundSelectTargetTree}"
+                        selection="#{areaViewScopeContainer.selectedMoundTargetNodes}"
                         selectionMode="checkbox"
                         var="node"
+                        id="tree"
+                        dynamic="true"
                 >
-                    <p:ajax event="expand" listener="#{areaPage.onMoundSelectTreeExpand}" update="@this" />
-                    <!--<p:ajax event="select" />-->
-                    #{node.id}
+                    <p:ajax id='expandEvent' event="expand" listener="#{areaViewScopeContainer.onMoundSelectTreeExpand}" update="@this" />
+                    <p:treeNode id="treeNode">
+                        <h:outputText value="#{node.id}"/>
+                    </p:treeNode>
                 </p:tree>
                 <p:commandButton value="ok" action="#{areaPage.doDialogChooseMoundTargetClose()}"></p:commandButton>
             </h:form>

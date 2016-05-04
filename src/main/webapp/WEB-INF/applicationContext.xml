@@ -13,6 +13,13 @@
      <!--Activates scanning of @Repository -->
     <!--<context:component-scan base-package="my.dao"/>-->
 
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="view" value="my.util.ViewScope" />
+            </map>
+        </property>
+    </bean>
 
     <!-- Add new Managers here -->
 </beans>

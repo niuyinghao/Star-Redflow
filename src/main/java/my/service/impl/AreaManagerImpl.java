@@ -83,4 +83,9 @@ public class AreaManagerImpl implements AreaManager {
         }
         miscDao.update(baseObj);
     }
+
+    @Override
+    public List getAllWaveOrFlower() {
+        return miscDao.getAllWaveOrFlower();
+    }
 }

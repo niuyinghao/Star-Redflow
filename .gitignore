@@ -7,3 +7,9 @@
 .hgsubstate
 .hgtags
 
+/project.ipr
+/project.ids
+/project.iml
+/star.iml
+/project.iws
+/pom.xml

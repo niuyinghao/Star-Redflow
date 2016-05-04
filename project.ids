@@ -711,17 +711,9 @@ role_id</columns>
     <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
     <schema name="PUBLIC" catalog="DB"/>
     <table name="ACHIEVEMENT" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQTUyREY2REFfMzBBMF80RjUzX0EwOEFfODc3OTZFRDhDQTRGKQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_E" columns="ID"/>
-      <foreign-key name="FK_Q7876RGSDT8SR18M3HGQ794SW" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_TBN7LO5LMGH2BGG59S81VQCH6" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_Q7876RGSDT8SR18M3HGQ794SW_INDEX_E" unique="false" columns="CREATOR"/>
     </table>
     <table name="APP_USER" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQ0M2QTE3QzlfRTM1Ml80Mjk1X0EzN0VfNkE4MjM0QkMxOEQ1KQ==" autoIncrement="true"/>
@@ -739,91 +731,50 @@ role_id</columns>
       <index name="UK_3K4CPLVH82SRUEUTTFKWNYLQ0_INDEX_7" unique="true" columns="USERNAME"/>
     </table>
     <table name="ARTICLE" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNkRFRjc0NURfMDg1RF80QTg0XzkwNjRfRDcxQjlBNzEzNTg5KQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_F" columns="ID"/>
-      <foreign-key name="FK_GOIPP91N7W1F7H2FXO0S605IV" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_3MLCRJV9CLNVARG3O8FYSVNKX" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_GOIPP91N7W1F7H2FXO0S605IV_INDEX_F" unique="false" columns="CREATOR"/>
     </table>
     <table name="BASE_LOG" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQTc1RUJERTNfMkZEQV80NzUyX0EzMEFfREU3OUNBN0U1OTIyKQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="DISCRIMINATOR_COLUMN" sqlType="VARCHAR" precision="31" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNDEwQTdFNzRfQzE3NF80OEQ0X0JCMUFfN0RDOTk0NkREQkFGKQ==" autoIncrement="true"/>
+      <column name="BURY_DEPTH" sqlType="DECIMAL" precision="2" scale="0" nullable="true" jdbcType="3" def="MA=="/>
       <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
       <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
       <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
       <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="DISCRIMINATOR_COLUMN" sqlType="VARCHAR" precision="31" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="CONSTRAINT_C" columns="ID"/>
       <foreign-key name="FK_3UFQ7SEU4BVLBH2I1YTJBS21V" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_TBN7LO5LMGH2BGG59S81VQCH6_INDEX_A" unique="true" columns="ID"/>
-      <index name="FK_3UFQ7SEU4BVLBH2I1YTJBS21V_INDEX_A" unique="false" columns="CREATOR"/>
+      <index name="FK_3UFQ7SEU4BVLBH2I1YTJBS21V_INDEX_C" unique="false" columns="CREATOR"/>
     </table>
     <table name="DISLIKE" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQkU4MkI2NkZfQUQzRl80RkY1X0IwRkJfRjY0NDgwMTE2OTExKQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_8" columns="ID"/>
-      <foreign-key name="FK_M9WBNQEXDN20N4CAOL8N9G37D" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_PV4BHYBYDOMBU1ICXXYWAWTPA" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_M9WBNQEXDN20N4CAOL8N9G37D_INDEX_8" unique="false" columns="CREATOR"/>
     </table>
     <table name="FAVOUR" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNjU5QjJEMzJfOUQ1Rl80QzcyX0I3MjhfNTBBNjIwQTdDOTBGKQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_7B" columns="ID"/>
-      <foreign-key name="FK_TFQIQPQH31X4QIMXIVAQSCBLH" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_9V4EN3K3EJA9A8ON7WHSEDN0R" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_TFQIQPQH31X4QIMXIVAQSCBLH_INDEX_7" unique="false" columns="CREATOR"/>
     </table>
     <table name="FEEDBACK" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDNGQzlENEJfRjJDOF80NDc3XzhCRUNfNjAxNkYwMjMwNjgyKQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_2" columns="ID"/>
-      <foreign-key name="FK_2VCH1411GE3AG9B16RG0HGINS" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_917DV6NFN0RV4A7MXDYULYPTO" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_2VCH1411GE3AG9B16RG0HGINS_INDEX_2" unique="false" columns="CREATOR"/>
     </table>
     <table name="FLOWER" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNzk4NEVBOUVfM0E1MF80OEU0X0IyNjRfQTJBMEIxRDQ3OEQ2KQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="MOUND_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="MOUND" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_7BC" columns="ID"/>
-      <foreign-key name="FK_CR41GS0ORP6894JA32NVE01U" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_QSXF8TK27TGTJ45JTYJAT4MSV" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_Q8VHCTBCSPTE8RL9G3NUPHLFR" columns="MOUND" ref-table="MOUND" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_CR41GS0ORP6894JA32NVE01U_INDEX_7" unique="false" columns="CREATOR"/>
       <index name="FK_Q8VHCTBCSPTE8RL9G3NUPHLFR_INDEX_7" unique="false" columns="MOUND"/>
     </table>
     <table name="MOUND" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOTdCMzU2NUFfNzdGNV80RTY5Xzk5NjZfN0M3ODJEM0QyRjI3KQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNTQ2RkM4MEVfMzM2OV80NzdEXzk3OTdfQkQyQkRERTlDQzE3KQ==" autoIncrement="true"/>
+      <column name="BURY_DEPTH" sqlType="DECIMAL" precision="2" scale="0" nullable="true" jdbcType="3" def="MA=="/>
       <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
       <column name="TOOL_INDEX" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
@@ -844,22 +795,17 @@ role_id</columns>
       <primary-key name="CONSTRAINT_46" columns="ID"/>
     </table>
     <table name="PRAY" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRkJBMDU0QzBfNjVENl80QkVCXzg1ODhfQjU1NkU0RkRDQ0JGKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNEI3OTRDQkFfNzAxMV80MEYyX0E3NzNfMzU4RjlFMzlFMDc0KQ==" autoIncrement="true"/>
       <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
+      <column name="WISH" sqlType="VARBINARY" precision="255" scale="0" nullable="true" jdbcType="-3"/>
       <primary-key name="CONSTRAINT_25" columns="ID"/>
+      <foreign-key name="FK_OJVFFEVP8D545WNPHJNJQ0S7B" columns="WISH" ref-table="WISH" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="FK_OJVFFEVP8D545WNPHJNJQ0S7B_INDEX_2" unique="false" columns="WISH"/>
     </table>
     <table name="PUNISHMENT" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOUZBQURDNDFfOTEyOV80QzQ2Xzg3QURfRkU3MUY0QTRFMzE2KQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_D" columns="ID"/>
-      <foreign-key name="FK_71T6H34LEEI5SG66V1HXWRX3H" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_LW89GV61N99IHU7SLUWNHB2J6" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_71T6H34LEEI5SG66V1HXWRX3H_INDEX_D" unique="false" columns="CREATOR"/>
     </table>
     <table name="ROLE" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRkUwMzcxMjBfNjc4MV80MjczX0FDODFfNTE2RjNEMjIxMjg1KQ==" autoIncrement="true"/>
@@ -868,24 +814,16 @@ role_id</columns>
       <primary-key name="CONSTRAINT_26" columns="ID"/>
     </table>
     <table name="SETTING" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMDNEMThFMkVfODE0RF80NzkwX0FBNzdfM0FDQzNEMDY2RkNEKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMjRBQUZDNjJfOTY2N180NDgzX0FBRDlfQ0FFNzc5QUE3MjQ0KQ==" autoIncrement="true"/>
       <column name="USER" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_A" columns="ID"/>
       <foreign-key name="FK_FQ6EMIL609ALJUKRI6M86XTD9" columns="USER" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <index name="FK_FQ6EMIL609ALJUKRI6M86XTD9_INDEX_A" unique="false" columns="USER"/>
     </table>
     <table name="STONE" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMERBQzcwQURfQjNERF80NDMzX0ExQ0VfN0ZEQUM5MThBMTk3KQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_4B" columns="ID"/>
-      <foreign-key name="FK_H5MF9QWUA8K5YBNP69E0387TS" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_H5N5LNFLS3BX2NHFLRVIJB29E" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_H5MF9QWUA8K5YBNP69E0387TS_INDEX_4" unique="false" columns="CREATOR"/>
     </table>
     <table name="USER_ROLE" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -896,36 +834,18 @@ role_id</columns>
       <index name="FK_IT77EQ964JHFQTU54081EBTIO_INDEX_B" unique="false" columns="ROLE_ID"/>
     </table>
     <table name="WAVE" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMzk2N0ZDRkJfQzJCRl80NEY4Xzk2OUZfMUJBNjI2OTI0RjJDKQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="MOUND_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="BURY" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="MOUND" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_28" columns="ID"/>
-      <foreign-key name="FK_QVV71VTD07V4AAYM6TL1UWL7P" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <foreign-key name="FK_CPE4PH12YR2T35RUVI7FAS5Y1" columns="BURY" ref-table="MOUND" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK_8DR2IX29CXQL5M8LOFDG3FUB4" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_MAXUJT5QX6K1GHIJBG9TG47L3" columns="MOUND" ref-table="MOUND" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_CPE4PH12YR2T35RUVI7FAS5Y1_INDEX_F" unique="false" columns="BURY"/>
       <index name="FK_MAXUJT5QX6K1GHIJBG9TG47L3_INDEX_2" unique="false" columns="MOUND"/>
-      <index name="FK_QVV71VTD07V4AAYM6TL1UWL7P_INDEX_F" unique="false" columns="CREATOR"/>
     </table>
     <table name="WISH" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfN0VBRUI1MTVfQkNCRF80MDMxXzkwN0NfQTZEOTEyMEFEMzFCKQ==" autoIncrement="true"/>
-      <column name="BURY_DEPTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
-      <column name="CONTENT" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="SIGN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CREATOR" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_28A" columns="ID"/>
-      <foreign-key name="FK_KGE0XXW9BYY9M7QUX37KJGGNR" columns="CREATOR" ref-table="APP_USER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_H0DAEH4U4PLBVUSH1L516R3EA" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_KGE0XXW9BYY9M7QUX37KJGGNR_INDEX_2" unique="false" columns="CREATOR"/>
     </table>
     <table name="WISH_FLOWER" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="BELONG_FLOWER" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
@@ -934,6 +854,14 @@ role_id</columns>
       <foreign-key name="FK_NCYDH9BD71YLQRCO0R3I1FJET" columns="BELONG_FLOWER" ref-table="FLOWER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_LVPH47VOJ00T354B5NQWD66FH" columns="ID" ref-table="WISH" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <index name="FK_NCYDH9BD71YLQRCO0R3I1FJET_INDEX_A" unique="false" columns="BELONG_FLOWER"/>
+    </table>
+    <table name="WISH_STONE_LIST" schema="PUBLIC" catalog="DB" type="TABLE">
+      <column name="WISH" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="STONE_LIST" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <foreign-key name="FK_Q2T1YXL6XI3GY1MX0FAMW1NLX" columns="STONE_LIST" ref-table="STONE" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK_L4OO9PQ2ENGTF11BFYWKT0772" columns="WISH" ref-table="WISH" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="UK_Q2T1YXL6XI3GY1MX0FAMW1NLX_INDEX_3" unique="true" columns="STONE_LIST"/>
+      <index name="FK_L4OO9PQ2ENGTF11BFYWKT0772_INDEX_3" unique="false" columns="WISH"/>
     </table>
     <table name="WISH_WAVE" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="BELONG_WAVE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>

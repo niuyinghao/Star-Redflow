@@ -14,6 +14,8 @@ public interface MiscDao  {
 
     void update(Object baseLog);
 
+    List getAllWaveOrFlower();
+
     List getMoundTarget();
 }
 

@@ -41,6 +41,13 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
         getSession().update(baseLog);
     }
 
+    @Override
+    public List getAllWaveOrFlower() {
+//        getSession().createSQLQuery(" SELECT   from ")
+        //// TODO: 2016/5/4  
+        return null;
+    }
+
     //methods
 	public List x_getMoundTarget() {
 		String columns = "create_time as createTime,id as id , sign as sign";
