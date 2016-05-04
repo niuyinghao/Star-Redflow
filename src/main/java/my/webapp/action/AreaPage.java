@@ -4,28 +4,10 @@ import my.Constants;
 import my.model.persist.BaseLog;
 import my.model.persist.Setting;
 import my.model.persist.User;
-import my.model.persist.place.Flower;
-import my.model.persist.place.Mound;
-import my.model.persist.place.Stone;
-import my.model.persist.place.Wave;
-import my.model.persist.place.Wish;
+import my.model.persist.place.*;
 import my.model.persist.project.Pray;
-import my.model.wrapper.CommonContext;
-import my.model.wrapper.Context;
-import my.model.wrapper.Grail;
-import my.model.wrapper.Hillock;
-import my.model.wrapper.MoundTarget;
-import my.model.wrapper.Plain;
-import my.model.wrapper.Sea;
-import my.model.wrapper.Swamp;
-import my.service.AreaManager;
-import my.service.FlowerManager;
-import my.service.GenericManager;
-import my.service.MoundManager;
-import my.service.StoneManager;
-import my.service.UserManager;
-import my.service.WaveManager;
-import my.service.WishManager;
+import my.model.wrapper.*;
+import my.service.*;
 import my.webapp.util.WebUtil;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -33,8 +15,6 @@ import org.primefaces.model.DashboardColumn;
 import org.primefaces.model.DashboardModel;
 import org.primefaces.model.DefaultDashboardColumn;
 import org.primefaces.model.DefaultDashboardModel;
-import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
@@ -203,6 +183,7 @@ public class AreaPage extends BasePage implements Serializable {
         else {
             mound.setToolIndex(Constants.TOOL_INDEX_MOUND_CHOOSE_TARGET);
             RequestContext.getCurrentInstance().openDialog("/main/misc/plain/chooseMoundTarget.xhtml");
+			return;
         }
         ;
         if (needPersist) {
