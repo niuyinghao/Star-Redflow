@@ -1,0 +1,16 @@
+{
+  "Hostname" : "dbServer",
+  "AttachStdin" : false,
+  "Volumes" : { },
+  "ExposedPorts" : { },
+  "HostConfig" : {
+    "Binds" : [ "/home/vagrant/deploy/data/mysql:/var/lib/mysql/data:rw" ],
+    "PortBindings" : {
+      "3306/tcp" : [ {
+        "HostIp" : "",
+        "HostPort" : "3306"
+      } ]
+    },
+    "ExtraHosts" : [ "willbe-lxc:192.168.33.10" ]
+  }
+}

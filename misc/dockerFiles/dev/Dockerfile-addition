@@ -1,0 +1,5 @@
+FROM dev
+ADD "settings.xml" "/opt/maven/conf/settings.xml"
+ADD "run_mvn.sh" "/opt/maven/bin/run_mvn.sh"
+WORKDIR "/my/"
+CMD "/opt/maven/bin/run_mvn.sh"

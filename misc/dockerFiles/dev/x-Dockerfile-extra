@@ -1,0 +1,2 @@
+FROM maven
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]

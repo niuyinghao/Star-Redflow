@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+    <title>ground</title>
+    <ui:include src="/common/assets.xhtml"/>
+    <ui:insert name="head"/>
+</h:head>
+<style type="text/css">
+    .ui-tabmenuitem {
+        color: black;;
+        font-size: 26px;
+    }
+
+    .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-default {
+        padding: 0em 0em 0em 0em !important;
+    }
+
+    .ui-button-icon-only .ui-button-text {
+        padding: 0;
+    }
+
+    a:focus {
+        outline: none;
+    }
+
+    .ui-button {
+        border-radius: 0 !important;
+    }
+
+    .ui-button{
+        border-radius: 0;
+        margin-right: 1em;
+    }
+    .ui-button-icon-only .ui-icon.fa, .ui-button-text-icon-left .ui-icon.fa, .ui-button-text-icon-right .ui-icon.fa {
+        width: auto;
+        height: auto !important;
+        margin-top: -9px;
+    }
+
+</style>
+
+
+<h:body>
+    <div style="height: 10px;background-color: whitesmoke;"></div>
+    <div id="simbol" class="col-sm-12 center-block" style="background-color:black;margin:auto">
+
+    </div>
+    <div class="clearfix"/>
+
+    <div id='main'>
+    <div class="col-sm-12" style="margin-top: 20px">
+
+        <div class="col-sm-2">
+            <i class="glyphicon glyphicon-star" style="border: 1px solid black;padding: 2px"> <span>xx</span></i>
+
+        </div>
+        <div class="col-sm-5"></div>
+
+    </div>
+
+    <div class="clearfix"/>
+    <hr/>
+<p:toolbar style="height:2.1em;border-radius: 0" id="toolbar">
+        <ui:insert name="toolbar"></ui:insert>
+        </p:toolbar>
+    <div id="content" class="col-sm-12">
+        <ui:insert name="body"/>
+    </div>
+    </div>
+</h:body>
+<ui:insert name="script"/>
+</html>

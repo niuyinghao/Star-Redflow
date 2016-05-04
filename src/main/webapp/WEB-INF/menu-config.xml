@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConfig>
+    <Displayers>
+        <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
+        <Displayer name="CoolMenu" type="net.sf.navigator.displayer.CoolMenuDisplayer"/>
+        <Displayer name="ListMenu" type="net.sf.navigator.displayer.ListMenuDisplayer"/>
+        <Displayer name="DropDown" type="net.sf.navigator.displayer.DropDownMenuDisplayer"/>
+        <Displayer name="Simple" type="net.sf.navigator.displayer.SimpleMenuDisplayer"/>
+        <Displayer name="CoolMenu4" type="net.sf.navigator.displayer.CoolMenuDisplayer4"/>
+        <Displayer name="MenuForm" type="net.sf.navigator.example.PermissionsFormMenuDisplayer"/>
+        <Displayer name="TabbedMenu" type="net.sf.navigator.displayer.TabbedMenuDisplayer"/>
+    </Displayers>
+    <Menus>
+        <Menu name="Home" title="home.title" page="/home" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="UserMenu" title="menu.user" description="User Menu" page="/changeInfo"
+              roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" page="/admin/users">
+            <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"></Item>
+            <!--<Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"></Item>-->
+            <!--<Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"  ></Item>-->
+            <!--<Item name="FileUpload" title="menu.selectFile" page="/fileupload"></Item>-->
+        </Menu>
+
+        <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"></Menu>
+
+        <Menu name="CD" title="CD">
+            <Item name="CDnew" title="NEW" page="#">
+                <Item name="CDnewcase" title="CASE" image="images/case-new.png"
+                      location="index.jsp"/>
+                <Item name="CDLnewitem" title="ITEM" image="images/item-new.png"
+                      location="index.jsp"/>
+                <Item name="CDnewparty" title="PARTY" image="images/party-new.png"
+                      location="index.jsp"/>
+            </Item>
+        </Menu>
+
+        <!--User-START-->
+        <Menu name="UserMenu" title="userList.title" page="/users"/>
+        <!--User-END-->
+
+    </Menus>
+
+
+</MenuConfig>

@@ -1,0 +1,3 @@
+FROM dev
+ADD "jrebel.jar" "jrebel.jar"
+ADD "jrebel.lic" "jrebel.lic"

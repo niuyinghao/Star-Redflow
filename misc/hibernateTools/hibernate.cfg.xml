@@ -1,0 +1,31 @@
+<!-- The following doctype doesn't work when offline, so default to old one, which does work.
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">-->
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration >
+    <session-factory>
+
+            <property name="hibernate.connection.driver_class"></property>
+            <property name="hibernate.connection.url"></property>
+            <property name="hibernate.connection.username"></property>
+            <property name="hibernate.connection.password"></property>
+            <property name="hibernate.connection.pool_size">10</property>
+            <property name="show_sql">true</property>
+            <property name="dialect"></property>
+            <property name="hibernate.hbm2ddl.auto">update</property>
+            <!-- Mapping files -->
+            <!--<mapping resource="password.hbm.xml"/>-->
+            <!--<mapping resource="resource.hbm.xml"/>-->
+
+        <!--<mapping package="my.model"/>-->
+        <!--<mapping file="mapping.xml"></mapping>-->
+        <mapping class="my.model.User"/>
+        <mapping class="my.model.Role"/>
+    </session-factory>
+
+
+</hibernate-configuration>
+
+

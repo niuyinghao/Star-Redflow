@@ -1,0 +1,8 @@
+FROM mysql
+ENV MAVEN_VERSION 3.3.9
+
+# install maven
+RUN wget  --no-cookies http://www.trieuvan.com/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz  -O /tmp/maven.tgz && \
+tar xzvf /tmp/maven.tgz -C /opt && \
+mv /opt/apache-maven-${MAVEN_VERSION} /opt/maven && \
+rm /tmp/maven.tgz

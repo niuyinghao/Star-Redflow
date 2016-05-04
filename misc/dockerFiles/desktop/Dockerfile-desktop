@@ -1,0 +1,14 @@
+FROM env
+
+RUN \
+apt-get install -y e17; \
+apt-get install -y xinit; 
+
+
+RUN \
+apt-get install -y  vnc4server xterm mplayer
+
+run apt-get install -y pulseaudio
+
+CMD ["vnc4server",":1"]
+

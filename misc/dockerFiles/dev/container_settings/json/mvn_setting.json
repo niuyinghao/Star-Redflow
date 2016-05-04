@@ -1,0 +1,21 @@
+{
+  "AttachStdin" : false,
+  "Env" : [ "MAVEN_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005    -javaagent:/opt/tomcat/jrebel.jar -Xbootclasspath/p:/my/rebelboot.jar -Djava.rmi.server.hostname=192.168.1.199 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Xms512m -Xmx2048m -XX:PermSize=256M -XX:MaxPermSize=512M" ],
+  "Volumes" : { },
+  "ExposedPorts" : { },
+  "WorkingDir" : "/my/my/StarRedflow",
+  "HostConfig" : {
+    "Binds" : [ "/host/d:/my:rw" ],
+    "PortBindings" : {
+      "5005/tcp" : [ {
+        "HostIp" : "",
+        "HostPort" : "5005"
+      } ],
+      "8080/tcp" : [ {
+        "HostIp" : "",
+        "HostPort" : "8080"
+      } ]
+    },
+    "ExtraHosts" : [ "willbe-lxc:192.168.33.10" ]
+  }
+}

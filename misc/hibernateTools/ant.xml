@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="">
+
+    <property name="build.dir" value=""/>
+    <property name="maven.dir" value="C:\Users\yinghao_niu\.m2\repository"/>
+    <property name="target.dir" value="target/gen"></property>
+    <path id="toolslib">
+        <path location="${maven.dir}\org\hibernate\hibernate-tools\4.3.1.Final\hibernate-tools-4.3.1.Final.jar"/>
+        <path location="${maven.dir}\org\hibernate\hibernate-core\4.3.6.Final\hibernate-core-4.3.6.Final.jar"/>
+        <path location="${maven.dir}\freemarker\freemarker\2.3.8\freemarker-2.3.8.jar"/>
+        <path location="${maven.dir}\mysql\mysql-connector-java\5.1.27\mysql-connector-java-5.1.27.jar"/>
+        <path location="${maven.dir}\org\slf4j\slf4j-api\1.7.11\slf4j-api-1.7.11.jar"/>
+        <path location="${maven.dir}\org\apache\logging\log4j\log4j-slf4j-impl\2.1\log4j-slf4j-impl-2.1.jar"/>
+        <path location="${maven.dir}\org\apache\logging\log4j\log4j-api\2.1\log4j-api-2.1.jar"/>
+        <path location="${maven.dir}\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar"/>
+        <path location="${maven.dir}\org\hibernate\common\hibernate-commons-annotations\4.0.5.Final\hibernate-commons-annotations-4.0.5.Final.jar"/>
+        <path location="${maven.dir}\org\jboss\logging\jboss-logging\3.2.0.Beta1\jboss-logging-3.2.0.Beta1.jar"/>
+        <path location="${maven.dir}\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.0.0.Final\jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
+        <path location="${maven.dir}\org\hibernate\hibernate-entitymanager\4.3.6.Final\hibernate-entitymanager-4.3.6.Final.jar"/>
+        <path location="${maven.dir}\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.0.Final\hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+        <path location="${maven.dir}\commons-logging\commons-logging\1.2\commons-logging-1.2.jar"/>
+        <path location="${maven.dir}\org\apache\logging\log4j\log4j-core\2.1\log4j-core-2.1.jar"/>
+        <path location="${maven.dir}\org\springframework\security\spring-security-core\3.2.7.RELEASE\spring-security-core-3.2.7.RELEASE.jar"/>
+        <path location="${maven.dir}\org\javassist\javassist\3.18.1-GA\javassist-3.18.1-GA.jar"/>
+        <path location="${maven.dir}\antlr\antlr\2.7.7\antlr-2.7.7.jar"/>
+        <path location="${maven.dir}\org\hibernate\jtidy\r8-20060801\jtidy-r8-20060801.jar"/>
+        <path location="${maven.dir}\com\jcraft\jsch\0.1.52\jsch-0.1.52.jar"/>
+        <path location="${build.dir}"/>
+        <path location="./"/>
+    </path>
+
+    <taskdef name="hibernatetool"
+             classname="org.hibernate.tool.ant.HibernateToolTask"
+             classpathref="toolslib"/>
+
+    <target name="blank">
+
+    </target>
+    <target name="hbm2it">
+        <hibernatetool destdir="${target.dir}">
+            <classpath>
+                <path location="${build.dir}"/>
+                <path location="src/main/resources"/>
+                <path location="src/main/java"/>
+            </classpath>
+
+            <configuration configurationfile="hibernate.cfg.xml"/>
+            <hbm2java destdir="${target.dir}/model"/>
+            <hbm2dao destdir="${target.dir}/dao"/>
+            <hbm2doc  destdir="${target.dir}/doc"/>
+            <hbm2ddl destdir="${target.dir}"
+                     export="false" outputfilename="ddl"  delimiter=";"
+                     format="true"  haltonerror="true"
+                     />
+            <query
+                    destfile="hql">
+                <hql>from User</hql>
+            </query>
+
+        </hibernatetool>
+    </target>
+
+    <target name="hbm2xml">
+        <hibernatetool destdir="${target.dir}/xml">
+            <!--<jdbcconfiguration configurationfile="src/main/resources/jdbc.properties"></jdbcconfiguration>-->
+            <configuration configurationfile="hibernate.cfg.xml"/>
+            <hbm2cfgxml  ejb3="true" destdir="${target.dir}" />
+            <hbm2hbmxml destdir="${target.dir}/hbmxml"/>
+        </hibernatetool>
+    </target>
+
+    <target name="hbm2tpl">
+        <hibernatetool destdir="${target.dir}/tpl">
+            <classpath>
+                <path location="${build.dir}/classes"/>
+            </classpath>
+
+            <configuration configurationfile="hibernate.cfg.xml"/>
+            <hbmtemplate
+                    templateprefix="./"
+                    template="template.ftl"
+                    filepattern="{package-name}/{class-name}.java">
+                <property key="jdk5" value="true" />
+                <property key="ejb3" value="true" />
+            </hbmtemplate>
+        </hibernatetool>
+    </target>
+
+    <target name="run remote">
+        <sshexec host="123.56.168.63"
+                 username="root"
+                 password="ksjIooq76c"
+                 command="ls"
+        />
+    </target>
+
+    <target name="runH2">
+
+                <exec executable="cmd"
+                      dir="z:\_dev\h2" spawn="true" >
+                    <arg value="/c"/>
+                    <arg value="h2.bat"/>
+                </exec>
+
+    </target>
+
+</project>

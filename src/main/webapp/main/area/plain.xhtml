@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:my="http://myTag" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+>
+
+<ui:composition template="/layouts/area.xhtml">
+    <ui:define name="title">star</ui:define>
+    <ui:define name="head">
+        <style>
+            .mound{
+                width:100px;
+                padding:0;
+                margin:0;
+                /*border:none;*/
+            }
+
+            .mound .ui-panel-titlebar{
+                padding: .4em 2px .1em 0 !important;
+            }
+
+            .mound table{
+                width:100%;
+            }
+            .mound table button{
+                width: 100% ;
+            }
+            .mound .ui-panel-content{
+                padding: 0;
+            }
+
+
+            button{
+                cursor: pointer;
+            }
+
+        </style>
+    </ui:define>
+    <!-- <ui:param name="" value=""/> -->
+
+    <pe:importConstants className="my.Constants" var="cons"></pe:importConstants>
+    <ui:define name="toolbar">
+        <c:set var="cid" value="#moundList"></c:set>
+        <f:facet name="left">
+            <h:panelGroup>
+                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
+                                 onclick="PF('#{cid}').getPaginator().next()"/>
+                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
+                                 onclick="PF('#{cid}').getPaginator().prev()"/>
+            </h:panelGroup>
+        </f:facet>
+    </ui:define>
+
+    <ui:define name="body">
+        <script>
+            function alterCursor(target,url){
+                var cursor = "url(" + url + "),default";
+                if(url==null) {
+//                    target.css('cursor', 'default');
+                    target.find('.outer_container').css('cursor', 'default');
+                }
+//                target.css('cursor',cursor);
+                target.find('.outer_container').css('cursor', cursor);
+            }
+        </script>
+        <h:form>
+                <!--<input type="button" class="shovelLeft"  ></input>-->
+
+            <p:dataGrid value="#{areaPage.plain}" lazy="true" var="m" emptyMessage="" rows="3" columns="3" layout="grid">
+                <p:panel styleClass="mound" header="" id="bornMound">
+
+                    <h:panelGroup class="outer_container" >
+                        <h:panelGroup id="container">
+                            <div class='buryArea' style="height:80px;background-color: #{areaPage.getBuryColor(m.buryDepth)}"
+                                 onclick="divClick()"
+                            >
+                                #{areaPage.genMoundContent(m)}
+                            </div>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    <p:remoteCommand   name="divClick" immediate="true"
+                                       action="#{areaPage.addMinusBuryCountOrChooseTarget(m)}"
+                                       update="container">
+                    </p:remoteCommand>
+                    <f:facet name="actions">
+                        <!--bury 1 unbury 2-->
+                        <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
+                                        actionListener="#{areaPage.addMinusBuryCountOrChooseTarget(m)}"
+                                       onsuccess="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq)"
+                        >
+                            <h:outputText style="font-size: 1.5em" styleClass="fa fa-list-alt" />
+                        </p:commandLink>
+                        <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
+                                        actionListener="#{areaPage.alterMoundToolIndex(m,2)}"
+                                         onsuccess="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq,'/styles/cursor/sholveRight.ico')"
+                        >
+                            <h:outputText  style="font-size: 1.5em" styleClass="fa icon-bi11-01"/>
+                        </p:commandLink>
+                        <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
+                                        actionListener="#{areaPage.alterMoundToolIndex(m,1)}"
+                                        onsuccess="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq,'/styles/cursor/sholveLeft.ico')"
+                        >
+                            <h:outputText style="font-size: 1.5em" styleClass="fa icon-bi11-012" />
+                        </p:commandLink>
+                    </f:facet>
+                </p:panel>
+        </p:dataGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

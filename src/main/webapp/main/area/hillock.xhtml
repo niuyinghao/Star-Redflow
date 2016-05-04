@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<ui:composition template="/layouts/area.xhtml">
+    <ui:define name="title">star</ui:define>
+    <!-- <ui:param name="" value=""/> -->
+    <ui:define name="toolbar">
+        <c:set var="cid" value="stoneList"></c:set>
+        <f:facet name="left">
+            <h:panelGroup rendered="#{!areaPage.hillock.editMode}">
+                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
+                                 onclick="PF('#{cid}').getPaginator().next()"/>
+                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
+                                 onclick="PF('#{cid}').getPaginator().prev()"/>
+
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{areaPage.hillock.editMode}" >
+                <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
+                                 action="#{areaPage.addStone(areaPage.stone)}" update="toolbar,viewEditContent"/>
+                <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
+                                 actionListener="#{areaPage.backToViewMode(areaPage.hillock)}" update="toolbar,viewEditContent"/>
+
+            </h:panelGroup>
+
+        </f:facet>
+    </ui:define>
+
+    <ui:define name="body">
+        <c:set var="value" value="#{areaPage.hillock}"></c:set>
+        <c:set var="cid" value="stoneList"></c:set>
+        <p:dataList widgetVar="#{cid}"   rendered="#{!areaPage.hillock.editMode}"
+                    paginator="true" paginatorPosition="bottom" paginatorTemplate="" rows="1"
+                    first="#{areaPage.hillock.currentIndex}"
+                    lazy="true" id='#{cid}' value="#{value}" var="s" style="list-style:none" type="none"
+                    xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+            <p:column>
+                STONE#{'#'}#{s.id}
+                <br/>
+                <h:outputText escape="false" value="#{s.content}"> </h:outputText>
+                <br/>
+            </p:column>
+            <br/>
+        </p:dataList>
+        <h:form rendered="#{areaPage.hillock.editMode}">
+            <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.stone.content}"></p:editor>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>

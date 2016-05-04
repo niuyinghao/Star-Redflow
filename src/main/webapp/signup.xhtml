@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/layouts/default.xhtml">
+    <ui:define name="title">#{text['signup.title']}</ui:define>
+    <body id="signup">
+        <ui:define name="body">
+            <div class="col-sm-2">
+                <h2>#{text['signup.heading']}</h2>
+                #{text['signup.message']}
+            </div>
+            <div class="col-sm-7">
+                <h:form id="signupForm" styleClass="well" autocomplete="off">
+                    <div class="form-group">
+                        <h:outputLabel styleClass="control-label" for="username" value="#{text['user.username']}"/>
+                        <h:inputText styleClass="form-control" value="#{signupForm.user.username}" id="username"
+                                     required="true" autofocus="true"/>
+                        <p:message for="username"/>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <h:outputLabel styleClass="control-label" for="password" value="#{text['user.password']}"/>
+                            <h:inputSecret styleClass="form-control" value="#{signupForm.user.password}" id="password"
+                                           redisplay="true" required="true"/>
+                            <p:message for="password"/>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <h:outputLabel styleClass="control-label" for="confirmPassword"
+                                           value="#{text['user.confirmPassword']}"/>
+                            <h:inputSecret styleClass="form-control" value="#{signupForm.user.confirmPassword}" id="confirmPassword"
+                                           redisplay="true" required="true">
+                            <!--p:validateEqual for="password"/-->
+                            </h:inputSecret>
+                            <p:message for="confirmPassword"/>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <h:outputLabel styleClass="control-label" for="email" value="#{text['user.email']}"/>
+                            <h:inputText styleClass="form-control" value="#{signupForm.user.email}" id="email" required="true"/>
+                            <p:message for="email"/>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="form-group form-actions">
+                        <h:commandButton value="#{text['button.register']}" action="#{signupForm.save}" id="save"
+                                         styleClass="btn btn-primary"/>
+                        <h:commandButton value="#{text['button.cancel']}" action="cancel" immediate="true" id="cancel"
+                                         styleClass="btn btn-default"/>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </body>
+</ui:composition>
+</html>

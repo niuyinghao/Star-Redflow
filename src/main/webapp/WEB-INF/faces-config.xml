@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+              version="2.0">
+
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <!--<supported-locale>de</supported-locale>-->
+            <!--<supported-locale>el</supported-locale>-->
+            <!--<supported-locale>en</supported-locale>-->
+            <!--<supported-locale>es</supported-locale>-->
+            <!--<supported-locale>fr</supported-locale>-->
+            <!--<supported-locale>it</supported-locale>-->
+            <!--<supported-locale>ko</supported-locale>-->
+            <!--<supported-locale>nl</supported-locale>-->
+            <!--<supported-locale>no</supported-locale>-->
+            <!--<supported-locale>pt</supported-locale>-->
+            <!--<supported-locale>pt_BR</supported-locale>-->
+            <!--<supported-locale>tr</supported-locale>-->
+            <!--<supported-locale>zh</supported-locale>-->
+            <supported-locale>zh_CN</supported-locale>
+            <!--<supported-locale>zh_TW</supported-locale>-->
+        </locale-config>
+        <message-bundle>ApplicationResources</message-bundle>
+        <resource-bundle>
+            <base-name>ApplicationResources</base-name>
+            <var>text</var>
+        </resource-bundle>
+
+        <action-listener>
+            org.primefaces.application.DialogActionListener
+        </action-listener>
+        <navigation-handler>
+            org.primefaces.application.DialogNavigationHandler
+        </navigation-handler>
+        <view-handler>
+            org.primefaces.application.DialogViewHandler
+        </view-handler>
+
+    </application>
+    <component>
+        <component-type>my.webapp.ui.Mound</component-type>
+        <component-class>my.webapp.ui.Mound</component-class>
+    </component>
+    <render-kit>
+        <renderer>
+            <component-family>my.Mound</component-family>
+            <renderer-type>my.MoundRender</renderer-type>
+            <renderer-class>my.webapp.ui.MoundRender</renderer-class>
+        </renderer>
+    </render-kit>
+
+
+    <navigation-rule>
+        <from-view-id>/home.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selectFile</from-outcome>
+            <to-view-id>/selectFile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>editProfile</from-outcome>
+            <to-view-id>/userForm.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/userForm.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>cancel</from-outcome>
+            <to-view-id>/admin/users.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/admin/users.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/selectFile.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/showFile.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/signup.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>cancel</from-outcome>
+            <to-view-id>/login</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/passwordHint.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/login</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/reload.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/users.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/users.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <!--User-nav-START-->
+    <navigation-rule>
+        <from-view-id>/users.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/userForm.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/userForm.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/users.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/userForm.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>cancel</from-outcome>
+            <to-view-id>/users.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/userForm.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>list</from-outcome>
+            <to-view-id>/users.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <!--User-nav-END-->
+
+
+    <!-- Add additional rules here -->
+
+    <managed-bean>
+        <managed-bean-name>basePage</managed-bean-name>
+        <managed-bean-class>my.webapp.action.BasePage</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>fileUpload</managed-bean-name>
+        <managed-bean-class>my.webapp.action.FileUpload</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>reload</managed-bean-name>
+        <managed-bean-class>my.webapp.action.Reload</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>activeUserList</managed-bean-name>
+        <managed-bean-class>my.webapp.action.ActiveUserList</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+    <!--<managed-bean>-->
+    <!--<managed-bean-name>webUtil</managed-bean-name>-->
+    <!--<managed-bean-class>my.webapp.util.WebUtil</managed-bean-class>-->
+    <!--<managed-bean-scope>application</managed-bean-scope>-->
+    <!--</managed-bean>-->
+    <!-- Add additional beans here -->
+
+</faces-config>

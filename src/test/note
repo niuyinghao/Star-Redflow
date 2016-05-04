@@ -1,0 +1,14 @@
+ [todo]
+ todo make sign more short , like star#001 star#002 flower#001
+
+
+ [design]
+ * state continence: recoverable
+ * religion design: fly bulk , fat whale , micro religion system
+
+
+ [widget]
+ <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up" onclick="PF('#{cid}').getPaginator().next()"/>
+
+
+

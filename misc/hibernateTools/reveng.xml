@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering
+        SYSTEM "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+
+    <!--<type-mapping>
+        &lt;!&ndash; jdbc-type is name for java.sql.Types &ndash;&gt;
+        <sql-type jdbc-type="VARCHAR" length='20' hibernate-type="SomeUserType" />
+        <sql-type jdbc-type="VARCHAR" length='1' hibernate-type="yes_no" />
+        &lt;!&ndash; length, scale and precision can be used to specify the mapping precisely &ndash;&gt;
+        <sql-type jdbc-type="NUMERIC"  precision='1' hibernate-type="boolean" />
+        &lt;!&ndash; the type-mappings are ordered. This mapping will be consulted last,
+         thus overridden by the previous one if precision=1 for the column &ndash;&gt;
+        <sql-type jdbc-type="NUMERIC"  hibernate-type="long" />
+    </type-mapping>
+
+    &lt;!&ndash; BIN$ is recycle bin tables in Oracle &ndash;&gt;
+    <table-filter match-name="BIN$.*" exclude="true" />
+
+    &lt;!&ndash; Exclude DoNotWantIt from all catalogs/schemas &ndash;&gt;
+    <table-filter match-name="DoNotWantIt" exclude="true" />
+
+    &lt;!&ndash; exclude all tables from the schema SCHEMA in catalog BAD. &ndash;&gt;
+    <table-filter match-catalog="BAD" match-schema="SCHEMA" match-name=".*" exclude="true" />
+
+    &lt;!&ndash; table allows you to override/define how reverse engineering
+         is done for a specific table &ndash;&gt;
+    <table name="ORDERS">
+        <primary-key>
+            &lt;!&ndash; setting up a specific id generator for a table &ndash;&gt;
+            <generator class="sequence">
+                <param name="table">seq_table</param>
+            </generator>
+            <key-column name="CUSTID"/>
+        </primary-key>
+        <column name="NAME" property="orderName" type="string" />
+        &lt;!&ndash; control many-to-one and set names for a specific named foreign key constraint &ndash;&gt;
+        <foreign-key constraint-name="ORDER_CUST">
+            <many-to-one property="customer"/>
+            <set property="orders"/>
+        </foreign-key>
+        &lt;!&ndash; can also control a pure (shared pk) one-to-one  &ndash;&gt;
+        <foreign-key constraint-name="ADDRESS_PERSON">
+            <one-to-one exclude="false"/>
+            <inverse-one-to-one exclude="true"/>
+        </foreign-key>
+    </table>-->
+
+</hibernate-reverse-engineering>

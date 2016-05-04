@@ -1,0 +1,64 @@
+package my.model.persist;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.Date;
+
+/**
+ * Created by niuyinghao on 2016/4/25 for project.
+ */
+@MappedSuperclass
+public class BaseObj {
+    private Long id;
+    /**
+     * 内容
+     */
+    String content;
+    /**
+     * 创建时间
+     */
+    Date createTime;
+    /**
+     * 创建人
+     */
+    User creator;
+    int buryDepth;
+
+    public int getBuryDepth() {
+        return buryDepth;
+    }
+
+    public void setBuryDepth(int buryDepth) {
+        this.buryDepth = buryDepth;
+    }
+
+    @ManyToOne
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    @Id
+    @GeneratedValue(generator = "g")
+    @GenericGenerator(name = "g", strategy = "identity")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Basic
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+}

@@ -1,0 +1,20 @@
+mvn:
+#  build: ../
+#    context: ../
+#  dockerfile: Dockerfile-mysql
+  image: dev
+  ports:
+    - "8080:8080"
+    - "5005:5005"
+  hostname: "mvnServer"
+  volumes:
+    - "/host/d:/my:rw"
+  extra_hosts:
+    - "willbe-lxc:192.168.33.10"
+  environment:
+    - MAVEN_OPTS = -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005  -javaagent:/opt/tomcat/jrebel.jar -Xbootclasspath/p:/my/rebelboot.jar -Djava.rmi.server.hostname=192.168.1.199 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Xms512m -Xmx2048m -XX:PermSize=256M -XX:MaxPermSize=512M
+  command: "sh /opt/maven/bin/run.sh"
+  working_dir: "/my/my/StarRedflow"
+#  log_driver: syslog
+#  log_opt:
+#    syslog-address: "tcp://192.168.33.10:1234"

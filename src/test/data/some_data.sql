@@ -1,0 +1,7 @@
+INSERT INTO role VALUES (-2,'注册用户','ROLE_USER');
+INSERT INTO role VALUES (-1,'管理员','ROLE_ADMIN');
+INSERT INTO app_user VALUES (22,false,false,NULL,false,'e99dd770a-53f9-4360-82bd-17668e4c1d73',TRUE ,'$2a$10$knmqL8qkFOFHgrXIyW4chOwlDfsW4PxIdpLD4QN2lBw7E6DZhaQw.','STAR-85bfc7c8-4305-4928-a7d9-79d3325ba8be',2);
+
+INSERT INTO user_role VALUES (22,-2);
+INSERT INTO user_role VALUES (22,-1);
+

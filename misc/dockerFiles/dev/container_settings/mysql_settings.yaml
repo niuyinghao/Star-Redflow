@@ -1,0 +1,16 @@
+mysql:
+#  build: ../
+#    context: ../
+#  dockerfile: Dockerfile-mysql
+  image: mysql
+  ports:
+    - "3306:3306"
+  hostname: "dbServer"
+  volumes:
+    - "/home/vagrant/deploy/data/mysql:/var/lib/mysql/data:rw"
+  extra_hosts:
+    - "willbe-lxc:192.168.33.10"
+
+#  log_driver: syslog
+#  log_opt:
+#    syslog-address: "tcp://192.168.33.10:1234"

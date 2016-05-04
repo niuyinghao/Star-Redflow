@@ -1,0 +1,24 @@
+<p:dataList widgetVar="#{cid}"
+            paginator="true" paginatorPosition="bottom" paginatorTemplate="" rows="1" first="1"
+            lazy="true" id='#{cid}' value="#{value}" var="w" style="list-style:none" type="none"
+            xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <p:column>
+        #{w.id}
+    </p:column>
+
+    <p:column rowHeader="true" id="sign">
+
+        #{w.sign} &#160; x #{w.content}
+
+        <p:dataList value="#{w.wishes}" var="wish">
+            <p:column>
+            * #{wish.sign}  | #{wish.content}
+            </p:column>
+
+        </p:dataList>
+
+        <h:form><h:commandButton value="fire wish" action="#{areaPage.fireWish(w)}"/></h:form>
+
+    </p:column>
+    <br/>
+</p:dataList>

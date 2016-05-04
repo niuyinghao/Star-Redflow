@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Mercurial template
+.hg/
+.hgignore
+.hgsigs
+.hgsub
+.hgsubstate
+.hgtags
+
