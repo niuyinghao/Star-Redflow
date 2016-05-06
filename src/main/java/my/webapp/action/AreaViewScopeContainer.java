@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.faces.context.FacesContext;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ import java.util.Map;
 
 @Component
 @Scope("view")
-public class AreaViewScopeContainer {
+public class AreaViewScopeContainer implements Serializable {
     public static final String SEPARATOR = "_";
     Tree moundSelectTargetTreeUI;
     public TreeNode moundTargetTreeRoot;
