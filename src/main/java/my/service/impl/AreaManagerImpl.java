@@ -85,7 +85,7 @@ public class AreaManagerImpl implements AreaManager {
     }
 
     @Override
-    public List getAllWaveOrFlower() {
-        return miscDao.getAllWaveOrFlower();
+    public List getAllWaveOrFlowerNotMound() {
+        return miscDao.getAllWaveOrFlowerNotMound();
     }
 }

@@ -42,10 +42,17 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
     }
 
     @Override
-    public List getAllWaveOrFlower() {
-//        getSession().createSQLQuery(" SELECT   from ")
-        //// TODO: 2016/5/4  
-        return null;
+    public List getAllWaveOrFlowerNotMound() {
+        SQLQuery sqlQuery = getSession().createSQLQuery(" SELECT   targets from MOUND_TARGETS ");
+        List list = sqlQuery.list();
+        if (list == null || list.size()==0) {
+            return getSession().createQuery(" from BaseLog  ")
+                    .list();
+        }
+        return getSession().createQuery(" from BaseLog  where id not in (:list)")
+                .setParameter("list",list)
+                .list()
+                ;
     }
 
     //methods

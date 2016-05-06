@@ -106,8 +106,11 @@ public class AreaViewScopeContainer {
         if (moundTargetTreeRoot == null) {
             moundTargetTreeRoot = new DefaultTreeNode(null);
         }
-        //// TODO: 2016/5/4  
-        moundTarget.getAllWaveOrFlower();
+        List allWaveOrFlowerNotMound = moundTarget.getAllWaveOrFlowerNotMound();
+        for (Object o : allWaveOrFlowerNotMound) {
+            DefaultTreeNode node = new DefaultTreeNode(o,moundTargetTreeRoot);
+            moundTargetTreeRoot.getChildren().add(node);
+        }
         return moundTargetTreeRoot;
     }
 

@@ -67,7 +67,7 @@
         <h:form>
                 <!--<input type="button" class="shovelLeft"  ></input>-->
 
-            <p:dataGrid value="#{areaPage.plain}" lazy="true" var="m" emptyMessage="" rows="3" columns="3" layout="grid">
+            <p:dataGrid value="#{areaPage.plain}" lazy="true" var="m" emptyMessage="" rows="3" columns="3" layout="grid" binding="#{areaPage.dataGrid}">
                 <p:panel styleClass="mound" header="" id="bornMound">
 
                     <h:panelGroup class="outer_container" >

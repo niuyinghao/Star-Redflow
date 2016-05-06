@@ -45,7 +45,7 @@ public class MoundTarget extends AreaLazyModel implements SelectableDataModel {
         return super.load(first, pageSize, multiSortMeta, filters);
     }
 
-    public List getAllWaveOrFlower() {
-        return areaManager. getAllWaveOrFlower();
+    public List getAllWaveOrFlowerNotMound() {
+        return areaManager.getAllWaveOrFlowerNotMound();
     }
 }

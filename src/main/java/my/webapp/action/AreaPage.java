@@ -27,6 +27,7 @@ import my.service.UserManager;
 import my.service.WaveManager;
 import my.service.WishManager;
 import my.webapp.util.WebUtil;
+import org.primefaces.component.datagrid.DataGrid;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DashboardColumn;
@@ -64,7 +65,7 @@ public class AreaPage extends BasePage implements Serializable {
     Mound mound = new Mound();
     Stone stone = new Stone();
     Wish wish = new Wish();
-
+    DataGrid dataGrid;
     @Autowired
     private WaveManager waveManager;
     @Autowired
@@ -92,7 +93,6 @@ public class AreaPage extends BasePage implements Serializable {
     @Autowired
     private StoneManager stoneManager;
     private DashboardModel plainBoard;
-
     List<BaseLog> selectedMoundTarget;
     @Autowired
     private CommonContext areaContext;
@@ -100,7 +100,6 @@ public class AreaPage extends BasePage implements Serializable {
     String mostRecentHistory = "";
     @Autowired
     private AreaManager areaManager;
-
 
     public List<Pray> delegatePrays(Wish wish) {
         List<Pray> prays = wish.getPrays();
@@ -113,7 +112,6 @@ public class AreaPage extends BasePage implements Serializable {
         prays.add(new Pray());
         wishManager.save(wish);
     }
-
 
     public String genMoundContent(Mound mound) {
         StringBuffer sb = new StringBuffer();
@@ -296,6 +294,13 @@ public class AreaPage extends BasePage implements Serializable {
         return "/main/starry/bless.xhtml?faces-redirect=true";
     }
 
+    public DataGrid getDataGrid() {
+        return dataGrid;
+    }
+
+    public void setDataGrid(DataGrid dataGrid) {
+        this.dataGrid = dataGrid;
+    }
 
     //getter and setter
     public List<BaseLog> getSelectedMoundTarget() {

@@ -17,7 +17,7 @@ public interface AreaManager {
 
     void updateBaseObj(BaseObj baseLog);
 
-    List getAllWaveOrFlower();
+    List getAllWaveOrFlowerNotMound();
 
     List getMoundTarget();
 }
