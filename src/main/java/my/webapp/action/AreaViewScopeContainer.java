@@ -5,6 +5,7 @@ import my.model.persist.place.Stone;
 import my.model.persist.place.Wave;
 import my.model.persist.place.Wish;
 import my.model.wrapper.MoundTarget;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.tree.Tree;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
@@ -32,8 +33,16 @@ public class AreaViewScopeContainer implements Serializable {
     TreeNode[] selectedMoundTargetNodes;
     @Autowired
     private MoundTarget moundTarget;
+	DataTable waveDataTable;
+	public DataTable getWaveDataTable() {
+		return waveDataTable;
+	}
 
-    public void onMoundSelectTreeExpand() {
+	public void setWaveDataTable(DataTable waveDataTable) {
+		this.waveDataTable = waveDataTable;
+	}
+
+	public void onMoundSelectTreeExpand() {
         Tree tree = moundSelectTargetTreeUI;
         TreeNode _this = null;
         FacesContext context = FacesContext.getCurrentInstance();

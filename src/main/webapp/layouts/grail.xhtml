@@ -15,66 +15,52 @@
     <ui:insert name="head"/>
 </h:head>
 <style type="text/css">
-    .ui-tabmenuitem {
-        color: black;;
-        font-size: 26px;
+    .ui-button-icon-only .ui-button-text{
+        padding:0;
     }
-
-    .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-default {
-        padding: 0em 0em 0em 0em !important;
-    }
-
-    .ui-button-icon-only .ui-button-text {
-        padding: 0;
-    }
-
     a:focus {
         outline: none;
     }
-
-    .ui-button {
-        border-radius: 0 !important;
-    }
-
     .ui-button{
-        border-radius: 0;
         margin-right: 1em;
     }
-    .ui-button-icon-only .ui-icon.fa, .ui-button-text-icon-left .ui-icon.fa, .ui-button-text-icon-right .ui-icon.fa {
-        width: auto;
-        height: auto !important;
-        margin-top: -9px;
+    span:focus{
+        outline: none;
     }
-
+    button:focus{
+        outline: none;
+    }
 </style>
 
 
 <h:body>
     <div style="height: 10px;background-color: whitesmoke;"></div>
-    <div id="simbol" class="col-sm-12 center-block" style="background-color:black;margin:auto">
-
-    </div>
-    <div class="clearfix"/>
-
-    <div id='main'>
-    <div class="col-sm-12" style="margin-top: 20px">
-
-        <div class="col-sm-2">
-            <i class="glyphicon glyphicon-star" style="border: 1px solid black;padding: 2px"> <span>xx</span></i>
-
+    <div id="simbol" class="col-sm-12 center-block" style="background-color:lightyellow;margin:auto">
+        <img class="center-block" style="height:100px" src="/images/flybullStar.png"   alt="SYMBOL"/>
+        <div class="col-sm-12" style="margin-top: 0;text-align: center">
+            <h1 style="font-family:'DejaVu Sans Mono' ">
+                Bless spiritual peace  pleasure
+            </h1>
         </div>
-        <div class="col-sm-5"></div>
-
     </div>
-
     <div class="clearfix"/>
-    <hr/>
-<p:toolbar style="height:2.1em;border-radius: 0" id="toolbar">
-        <ui:insert name="toolbar"></ui:insert>
+    <div id='main'>
+        <div class="col-sm-12">
+            <div class="col-sm-5 btn-group"> </div>
+            <div class="col-sm-2">
+                <span class="fa fa-star-o" style="border: 1px solid black;padding: 2px; font-style: italic;">
+                <p:link value="PLACE" onclick="history.back()"></p:link>
+                </span>
+            </div>
+            <div class="col-sm-5 "> </div>
+        </div>
+        <hr/>
+        <div id="content" class="col-sm-12">
+        <p:toolbar style="height:2.1em;border-radius: 0" id="toolbar">
+            <ui:insert name="toolbar"></ui:insert>
         </p:toolbar>
-    <div id="content" class="col-sm-12">
-        <ui:insert name="body"/>
-    </div>
+            <ui:insert name="body"/>
+        </div>
     </div>
 </h:body>
 <ui:insert name="script"/>
