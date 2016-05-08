@@ -705,7 +705,7 @@ role_id</columns>
     </database-model>
   </data-source>
   <data-source name="H2 - jdbc:h2:tcp://127.0.0.1:8043/./src/test/data/db" uuid="b614168a-b9e1-4abe-98a5-6bcc1ee6880f">
-    <database-info product="H2" version="1.4.191 (2016-01-21)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.4.191 (2016-01-21)">
+    <database-info product="H2" version="1.4.184 (2014-12-19)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.4.184 (2014-12-19)">
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
@@ -795,7 +795,7 @@ role_id</columns>
       <primary-key name="CONSTRAINT_46" columns="ID"/>
     </table>
     <table name="PRAY" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNEI3OTRDQkFfNzAxMV80MEYyX0E3NzNfMzU4RjlFMzlFMDc0KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNjlEQjNDN0JfQUI2RF80MkFGX0FFNzRfQTIyRjlDOUM1NUUxKQ==" autoIncrement="true"/>
       <column name="CREATE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
       <column name="WISH" sqlType="VARBINARY" precision="255" scale="0" nullable="true" jdbcType="-3"/>
       <primary-key name="CONSTRAINT_25" columns="ID"/>
@@ -854,6 +854,14 @@ role_id</columns>
       <foreign-key name="FK_NCYDH9BD71YLQRCO0R3I1FJET" columns="BELONG_FLOWER" ref-table="FLOWER" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_LVPH47VOJ00T354B5NQWD66FH" columns="ID" ref-table="WISH" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <index name="FK_NCYDH9BD71YLQRCO0R3I1FJET_INDEX_A" unique="false" columns="BELONG_FLOWER"/>
+    </table>
+    <table name="WISH_PRAYS" schema="PUBLIC" catalog="DB" type="TABLE">
+      <column name="WISH" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="PRAYS" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <foreign-key name="FK_LD16XTM7Y4M3WI77BGNQN5GVD" columns="PRAYS" ref-table="PRAY" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK_NUBFEGVTE8Q43Q26AI8VR3DIO" columns="WISH" ref-table="WISH" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="UK_LD16XTM7Y4M3WI77BGNQN5GVD_INDEX_8" unique="true" columns="PRAYS"/>
+      <index name="FK_NUBFEGVTE8Q43Q26AI8VR3DIO_INDEX_8" unique="false" columns="WISH"/>
     </table>
     <table name="WISH_STONE_LIST" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="WISH" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>

@@ -6,8 +6,6 @@ import my.service.FlowerManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
-
 /**
  * Created by niuyinghao on 2016/4/16 for project.
  */
@@ -20,7 +18,7 @@ public class FlowerManagerImpl extends GenericManagerImpl<Flower,Long> implement
     }
 
     @Override
-    public Serializable addFlower(Flower flower) {
-        return dao.save(flower);
+    public void addFlower(Flower flower) {
+        dao.save(flower);
     }
 }

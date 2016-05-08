@@ -11,53 +11,57 @@ import java.util.Map;
  * Created by yinghao_niu on 2016/3/27 for Project.
  */
 public abstract class GenericManagerImpl<T, PK extends Serializable> implements my.service.GenericManager<T, PK> {
-    GenericDao dao;
+// members
+	GenericDao dao;
 
-    GenericManagerImpl(GenericDao dao) {
-        this.dao = dao;
-    }
+//constructs
+	GenericManagerImpl(GenericDao dao) {
+		this.dao = dao;
+	}
 
-    @Override
-    public Serializable save(T o) {
-        return dao.save(o);
-    }
-    @Override
-    public List<T> getAll() {
-        return null;
-    }
+//methods
+	@Override
+	public Serializable save(T o) {
+		return dao.save(o);
+	}
 
-    @Override
-    public T get(PK id) {
-        return null;
-    }
+	@Override
+	public List<T> getAll() {
+		return null;
+	}
 
-    @Override
-    public boolean exists(PK id) {
-        return false;
-    }
+	@Override
+	public T get(PK id) {
+		return null;
+	}
 
-    @Override
-    public void saveOrUpdate(T object) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-         dao.saveOrUpdate(object);
-    }
+	@Override
+	public boolean exists(PK id) {
+		return false;
+	}
 
-    @Override
-    public void remove(T object) {
+	@Override
+	public void saveOrUpdate(T object) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		dao.saveOrUpdate(object);
+	}
 
-    }
+	@Override
+	public void remove(T object) {
 
-    @Override
-    public void remove(PK id) {
+	}
 
-    }
+	@Override
+	public void remove(PK id) {
 
-    @Override
-    public List<T> getPagedList(int start, int pagesize, Map order, String searchTerm) {
-        return null;
-    }
+	}
 
-    @Override
-    public int count() {
-        return 0;
-    }
+	@Override
+	public List<T> getPagedList(int start, int pagesize, Map order, String searchTerm) {
+		return null;
+	}
+
+	@Override
+	public int count() {
+		return 0;
+	}
 }

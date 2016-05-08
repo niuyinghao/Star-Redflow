@@ -2,7 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:pe="http://primefaces.org/ui/extensions" xmlns:ccc="http://java.sun.com/jsf/composite/ccc"
 >
 
 <ui:composition template="/layouts/area.xhtml">
@@ -40,7 +40,6 @@
                                   actionListener="#{areaPage.backToViewMode(areaPage.sea)}" update="toolbar,viewEditContent"/>
 
             </h:panelGroup>
-
         </f:facet>
     </ui:define>
 
@@ -48,29 +47,29 @@
         <c:set var="cid" value="waveList"></c:set>
         <c:set var="value" value="#{areaPage.sea}"></c:set>
         <h:panelGroup id="viewEditContent">
-            <p:dataTable widgetVar="#{cid}"   rendered="#{!areaPage.sea.editMode}"
-                        paginator="true" paginatorPosition="bottom"  rows="1"
-                        first="#{areaPage.sea.currentIndex}" paginatorTemplate=""
-                        binding="#{areaViewScopeContainer.waveDataTable}"
-                        lazy="true" id='#{cid}' value="#{value}" var="w" style="list-style:none" type="none"
-                        xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
-                <p:ajax event="page" update="navTools"/>
+            <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.sea.editMode}"
+                         paginator="true" paginatorPosition="bottom" rows="1"
+                         first="#{areaPage.sea.currentIndex}" paginatorTemplate=""
+                         binding="#{areaViewScopeContainer.waveDataTable}"
+                         lazy="true" id='#{cid}' value="#{value}" var="wish" style="list-style:none" type="none"
+                         xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                 <p:column>
-                    WAVE#{'#'}#{w.id}
+                    WAVE#{'#'}#{wish.id}
                     <br/>
-                    <h:outputText escape="false" value="#{w.content}"> </h:outputText>
-                    <br/>
+                    <h:outputText escape="false" value="#{wish.content}"> </h:outputText>
+                    <hr/>
                     <h:form>
-                           <h:commandLink   action="#{areaPage.fireWish(w)}" value="wish">
-                           <i class="fa fa-heart-o"></i>
-                           </h:commandLink>
-                    </h:form>
-                    <p:dataList value="#{w.wishes}" var="wish"  emptyMessage="">
-                        <p:column>
-                            * #{wish.sign}  | #{wish.content}
-                        </p:column>
+                        <p:commandButton icon="fa fa-heart-o" action="#{areaPage.fireWish(wish)}" value="wish">
+                        </p:commandButton>
+                        <p:dataList value="#{wish.wishes}" style="border: none;display: inline-block" var="wish" emptyMessage="">
+                            <p:column>
+                                * #{wish.sign}  | #{wish.content}
+                                <ccc:prayList wish="wish" />
+                            </p:column>
 
-                    </p:dataList>
+                        </p:dataList>
+                    </h:form>
+
                 </p:column>
             </p:dataTable>
 

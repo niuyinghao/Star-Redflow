@@ -4,10 +4,7 @@ package my.model.persist.place;
 import my.model.persist.BaseLog;
 import my.model.persist.project.Pray;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -21,7 +18,7 @@ public class Wish extends BaseLog {
     public List<Stone> stoneList;
     List<Pray> prays;
 
-    @OneToMany(mappedBy = "wish")
+    @OneToMany  (cascade = CascadeType.ALL)
     public List<Pray> getPrays() {
         return prays;
     }

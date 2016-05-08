@@ -2,6 +2,7 @@ package my.service;
 
 import my.model.persist.BaseLog;
 import my.model.persist.BaseObj;
+import org.hibernate.Session;
 
 import java.util.List;
 
@@ -17,7 +18,9 @@ public interface AreaManager {
 
     void updateBaseObj(BaseObj baseLog);
 
-    List getAllWaveOrFlowerNotMound();
+	Session _getSession();
+
+	List getAllWaveOrFlowerNotMound();
 
     List getMoundTarget();
 }

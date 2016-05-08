@@ -112,15 +112,19 @@ public class AreaViewScopeContainer implements Serializable {
         this.moundTarget = moundTarget;
     }
 
-    public TreeNode getMoundTargetTreeRoot() {
-        if (moundTargetTreeRoot == null) {
-            moundTargetTreeRoot = new DefaultTreeNode(null);
-        }
-        List allWaveOrFlowerNotMound = moundTarget.getAllWaveOrFlowerNotMound();
-        for (Object o : allWaveOrFlowerNotMound) {
-            DefaultTreeNode node = new DefaultTreeNode(o,moundTargetTreeRoot);
-            moundTargetTreeRoot.getChildren().add(node);
-        }
+	public void _setTreeRoot() {
+		if (moundTargetTreeRoot == null) {
+			moundTargetTreeRoot = new DefaultTreeNode(null);
+		}
+		moundTargetTreeRoot.setExpanded(false);
+		List allWaveOrFlowerNotMound = moundTarget.getAllWaveOrFlowerNotMound();
+		for (Object o : allWaveOrFlowerNotMound) {
+			DefaultTreeNode node = new DefaultTreeNode(o);
+			moundTargetTreeRoot.getChildren().add(node);
+		}
+	}
+
+	public TreeNode getMoundTargetTreeRoot() {
         return moundTargetTreeRoot;
     }
 

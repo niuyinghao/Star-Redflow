@@ -1,6 +1,7 @@
 package my.dao;
 
 import my.model.persist.BaseLog;
+import org.hibernate.Session;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,7 +15,9 @@ public interface MiscDao  {
 
     void update(Object baseLog);
 
-    List getAllWaveOrFlowerNotMound();
+	Session getSession();
+
+	List getAllWaveOrFlowerNotMound();
 
     List getMoundTarget();
 }

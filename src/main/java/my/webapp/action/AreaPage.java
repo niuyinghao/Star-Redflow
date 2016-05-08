@@ -89,16 +89,13 @@ public class AreaPage extends BasePage implements Serializable {
 	private AreaManager areaManager;
 
 
-	public List<Pray> delegatePrays(Wish wish) {
-		List<Pray> prays = wish.getPrays();
-		prays.add(new Pray());
-		return prays;
-	}
 
-	public void firePray(Wish wish) {
+	public void firePray(Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 		List<Pray> prays = wish.getPrays();
-		prays.add(new Pray());
-		wishManager.save(wish);
+		Pray pray = new Pray();
+		prays.add(pray);
+		areaManager._getSession().save(pray);
+		wishManager.saveOrUpdate(wish);
 	}
 
 

@@ -1,0 +1,25 @@
+<ui:component xmlns=""
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui"
+              xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <composite:interface>
+        <composite:attribute name="wish"></composite:attribute>
+    </composite:interface>
+
+
+    <c:set var="wish" value="#{cc.attrs.wish}"/>
+    <composite:implementation>
+      <p:fragment id="prayList">
+                            <ui:repeat value="#{wish.prays}" var="pray">
+                                <ui:fragment rendered="#{!(pray.id==null)}">
+                                    <i class="fa fa-star"></i>
+                                </ui:fragment>
+                            </ui:repeat>
+                            <p:commandButton rendered="#{pray.id==null}" style="font-size: 1.3em;width:1.5em"
+                                             icon="fa fa-heart"
+                                             action="#{areaPage.firePray(wish)}" update="prayList"/>
+                        </p:fragment>
+    </composite:implementation>
+
+</ui:component>

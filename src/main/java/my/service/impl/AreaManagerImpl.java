@@ -5,6 +5,7 @@ import my.model.persist.BaseLog;
 import my.model.persist.BaseObj;
 import my.model.persist.place.*;
 import my.service.AreaManager;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -84,7 +85,12 @@ public class AreaManagerImpl implements AreaManager {
         miscDao.update(baseObj);
     }
 
-    @Override
+	@Override
+	public Session _getSession() {
+		return miscDao.getSession();
+	}
+
+	@Override
     public List getAllWaveOrFlowerNotMound() {
         return miscDao.getAllWaveOrFlowerNotMound();
     }
