@@ -1,0 +1,20 @@
+package bdd;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+
+/**
+ * Created by niuyinghao on 2016/5/12 for project.
+ */
+@ContextConfiguration("classpath:**/applicationContext.xml")
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        features = {"D:\\vagrant\\pj\\p1628\\src\\test\\java\\bdd\\feature"},
+        glue = {"com.cdi.igs.adapter.cucumber", "cucumber.api.spring", "bdd.steps"},
+        tags = {"@smoke"},
+        format = {"json:target/integration_cucumber.json"}
+)
+public class Runner {
+}
