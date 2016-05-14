@@ -61,13 +61,18 @@
                     <h:form>
                         <p:commandButton icon="fa fa-heart-o" action="#{areaPage.fireWish(wish)}" value="wish">
                         </p:commandButton>
-                        <p:dataList value="#{wish.wishes}" style="border: none;display: inline-block" var="wish" emptyMessage="">
+
+                        <ccc:activeWish value="#{areaPage.grail}" index="#{areaPage.grail.currentIndex}"
+                                        rendered="#{!areaPage.grail.editMode}" cid="currentWish"></ccc:activeWish>
+                        <ui:remove>
+                           <p:dataList value="#{wish.wishes}" style="border: none;display: inline-block" var="wish" emptyMessage="">
                             <p:column>
                                 * #{wish.sign}  | #{wish.content}
                                 <ccc:prayList wish="wish" />
                             </p:column>
-
                         </p:dataList>
+                        </ui:remove>
+
                     </h:form>
 
                 </p:column>

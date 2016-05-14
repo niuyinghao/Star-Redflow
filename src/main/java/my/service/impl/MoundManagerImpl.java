@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by niuyinghao on 2016/4/16 for project.
@@ -23,4 +24,9 @@ public class MoundManagerImpl extends GenericManagerImpl<Mound,Long> implements 
     public Serializable addMound(Mound mound) {
         return dao.save(mound);
     }
+
+	@Override
+	public List getTargets(Mound mound) {
+		return ((MoundDao) dao).getTargets(mound);
+	}
 }

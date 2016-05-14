@@ -352,7 +352,11 @@
             <artifactId>cucumber-junit</artifactId>
             <version>1.2.3</version>
         </dependency>
-
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>1.0.0.RC15</version>
+        </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>

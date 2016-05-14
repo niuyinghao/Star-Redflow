@@ -12,10 +12,7 @@ import my.webapp.util.WebUtil;
 import org.primefaces.component.api.UIData;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
-import org.primefaces.model.DashboardColumn;
-import org.primefaces.model.DashboardModel;
-import org.primefaces.model.DefaultDashboardColumn;
-import org.primefaces.model.DefaultDashboardModel;
+import org.primefaces.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
@@ -27,6 +24,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,13 +43,7 @@ public class AreaPage extends BasePage implements Serializable {
 	Mound mound = new Mound();
 	Stone stone = new Stone();
 	Wish wish = new Wish();
-
-	public String getToolHighlightStyle(Mound mound, int toolIndex) {
-		if (toolIndex == mound.getToolIndex()) {
-			return "background-color:yellow";
-		}
-		return "";
-	}
+	Mound currentMound = null;
 	@Autowired
 	private WaveManager waveManager;
 	@Autowired
@@ -79,8 +71,6 @@ public class AreaPage extends BasePage implements Serializable {
 	@Autowired
 	private StoneManager stoneManager;
 	private DashboardModel plainBoard;
-
-	List<BaseLog> selectedMoundTarget;
 	@Autowired
 	private CommonContext areaContext;
 	boolean needBackToHistory = false;
@@ -88,7 +78,12 @@ public class AreaPage extends BasePage implements Serializable {
 	@Autowired
 	private AreaManager areaManager;
 
-
+	public String getToolHighlightStyle(Mound mound, int toolIndex) {
+		if (toolIndex == mound.getToolIndex()) {
+			return "background-color:yellow";
+		}
+		return "";
+	}
 
 	public void firePray(Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 		List<Pray> prays = wish.getPrays();
@@ -98,7 +93,6 @@ public class AreaPage extends BasePage implements Serializable {
 		wishManager.saveOrUpdate(wish);
 	}
 
-
 	public String genMoundContent(Mound mound) {
 		StringBuffer sb = new StringBuffer();
 		List<BaseLog> targets = mound.getTargets();
@@ -106,6 +100,9 @@ public class AreaPage extends BasePage implements Serializable {
 			return "";
 		}
 		for (BaseLog baseLog : targets) {
+			if (baseLog == null) {
+				continue;
+			}
 			sb.append(baseLog.getId());
 			sb.append("|");
 			String content = baseLog.getContent();
@@ -148,16 +145,24 @@ public class AreaPage extends BasePage implements Serializable {
 	public void onDialogChooseMoundTargetReturn(SelectEvent event) {
 	}
 
-	public void doDialogChooseMoundTargetClose() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		mound.setTargets(selectedMoundTarget);
-		mound.setCreator(areaContext.getCreator());
-		mound.setCreateTime(new Date());
-		addMound(mound);
-		RequestContext.getCurrentInstance().closeDialog(selectedMoundTarget);
+	public void doDialogChooseMoundTargetClose(TreeNode[] selectedMoundTargetNodes) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		ArrayList<BaseLog> targets = new ArrayList<>();
+		if (selectedMoundTargetNodes == null) {
+			targets = null;
+		} else {
+			for (TreeNode selectedMoundTargetNode : selectedMoundTargetNodes) {
+				targets.add((BaseLog) selectedMoundTargetNode.getData());
+			}
+		}
+		currentMound.setTargets(targets);
+		currentMound.setCreator(areaContext.getCreator());
+		currentMound.setCreateTime(new Date());
+		saveOrupdate(currentMound);
+		RequestContext.getCurrentInstance().closeDialog(currentMound.getTargets());
 	}
 
-	public void addMound(Mound mound) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		moundManager.save(mound);
+	public void saveOrupdate(Mound mound) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		moundManager.saveOrUpdate(mound);
 	}
 
 	public void alterToChooseTargetThenInvoke(Mound mound) {
@@ -187,6 +192,7 @@ public class AreaPage extends BasePage implements Serializable {
 			mound.setBuryDepth(mound.getBuryDepth() - 1);
 			needPersist = true;
 		} else {
+			currentMound = mound;
 			RequestContext.getCurrentInstance().openDialog("/main/misc/plain/chooseMoundTarget.xhtml");
 			return;
 		}
@@ -197,9 +203,9 @@ public class AreaPage extends BasePage implements Serializable {
 	}
 
 	private void persistMoundBury(Mound mound) {
-		List<BaseLog> targets = mound.getTargets();
+		List<BaseLog> targets = moundManager.getTargets(mound);
 		if (targets == null) {
-		}   else{
+		} else {
 			for (BaseLog baseLog : targets) {
 				baseLog.setBuryDepth(mound.getBuryDepth());
 				areaManager.updateBaseObj(baseLog);
@@ -207,8 +213,6 @@ public class AreaPage extends BasePage implements Serializable {
 		}
 		areaManager.updateBaseObj(mound);
 	}
-
-
 
 	public boolean hasNoNextPage(UIData uidata) {
 		int currentPage = uidata.getPage();
@@ -300,16 +304,14 @@ public class AreaPage extends BasePage implements Serializable {
 		return "/main/starry/bless.xhtml?faces-redirect=true";
 	}
 
-
-	//getter and setter
-	public List<BaseLog> getSelectedMoundTarget() {
-		return selectedMoundTarget;
+//getter and setter
+	public Mound getCurrentMound() {
+		return currentMound;
 	}
 
-	public void setSelectedMoundTarget(List<BaseLog> selectedMoundTarget) {
-		this.selectedMoundTarget = selectedMoundTarget;
+	public void setCurrentMound(Mound currentMound) {
+		this.currentMound = currentMound;
 	}
-
 
 	public CommonContext getAreaContext() {
 		return areaContext;

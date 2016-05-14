@@ -5,8 +5,11 @@ import my.model.persist.place.Stone;
 import my.model.persist.place.Wave;
 import my.model.persist.place.Wish;
 import my.model.wrapper.MoundTarget;
+import my.service.WishManager;
+import my.service.impl.WishManagerImpl;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.tree.Tree;
+import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,9 @@ public class AreaViewScopeContainer implements Serializable {
     @Autowired
     private MoundTarget moundTarget;
 	DataTable waveDataTable;
+	@Autowired
+	private WishManager wishManager;
+
 	public DataTable getWaveDataTable() {
 		return waveDataTable;
 	}
@@ -114,12 +120,17 @@ public class AreaViewScopeContainer implements Serializable {
 
 	public void _setTreeRoot() {
 		if (moundTargetTreeRoot == null) {
-			moundTargetTreeRoot = new DefaultTreeNode(null);
+			moundTargetTreeRoot = new CheckboxTreeNode(null);
 		}
 		moundTargetTreeRoot.setExpanded(false);
 		List allWaveOrFlowerNotMound = moundTarget.getAllWaveOrFlowerNotMound();
 		for (Object o : allWaveOrFlowerNotMound) {
-			DefaultTreeNode node = new DefaultTreeNode(o);
+			CheckboxTreeNode node = new CheckboxTreeNode(o);
+			if(o instanceof Wish)
+			{
+				node.setExpanded(false);
+				node.getChildren().add(new CheckboxTreeNode(null));
+			}
 			moundTargetTreeRoot.getChildren().add(node);
 		}
 	}
@@ -152,12 +163,15 @@ public class AreaViewScopeContainer implements Serializable {
         Object data = _this.getData();
 
         if (data instanceof Wish) {
-            for (Stone stone : ((Wish) data).getStoneList()) {
-                DefaultTreeNode node = new DefaultTreeNode(stone, _this);
+			List<Stone> stoneList = wishManager.getStones((Wish) data);
+			for (Stone stone : stoneList) {
+                CheckboxTreeNode node = new CheckboxTreeNode(stone, _this);
                 children.add(node);
             }
         }
-        else if (data instanceof Wave) {
+
+/*
+      else if (data instanceof Wave) {
             for (Wish wish : ((Wave) data).getWishes()) {
                 DefaultTreeNode node = new DefaultTreeNode(wish, _this);
                 children.add(node);
@@ -169,6 +183,7 @@ public class AreaViewScopeContainer implements Serializable {
                 children.add(node);
             }
         }
+        */
     }
 }
 

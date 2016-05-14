@@ -24,7 +24,8 @@ public abstract class Context<T> extends AreaLazyModel {
 		this.setCriterion(Restrictions.eq("creator", ctx.getCreator()));
 		sortField = "createTime";
 		sortOrder = SortOrder.DESCENDING;
-		return super.load(first, pageSize, sortField, sortOrder, filters);
+		List loaded = super.load(first, pageSize, sortField, sortOrder, filters);
+		return loaded;
 	}
 
 	@Override

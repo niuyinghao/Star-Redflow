@@ -34,7 +34,9 @@
         <datasource-map>
           <unit-entry name="sessionFactory" value="b614168a-b9e1-4abe-98a5-6bcc1ee6880f" />
         </datasource-map>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="sessionFactory" />
+        </naming-strategy-map>
       </configuration>
     </facet>
   </component>
@@ -224,6 +226,7 @@
     <orderEntry type="library" name="Maven: info.cukes:cucumber-jvm-deps:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: info.cukes:gherkin:2.12.2" level="project" />
     <orderEntry type="library" name="Maven: info.cukes:cucumber-junit:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-spring:1.0.0.RC15" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.extensions:primefaces-extensions:3.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.extensions:resources-ckeditor:4.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.191" level="project" />

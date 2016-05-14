@@ -9,6 +9,8 @@ import org.hibernate.type.StandardBasicTypes;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,13 +46,19 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
     @Override
     public List getAllWaveOrFlowerNotMound() {
         SQLQuery sqlQuery = getSession().createSQLQuery(" SELECT   targets from MOUND_TARGETS ");
-        List list = sqlQuery.list();
+        List<BigInteger> list = sqlQuery.list();
         if (list == null || list.size()==0) {
-            return getSession().createQuery(" from BaseLog  ")
+			// todo restrict
+            return getSession().createQuery(" from  BaseLog  ")
                     .list();
         }
-        return getSession().createQuery(" from BaseLog  where id not in (:list)")
-                .setParameter("list",list)
+		List l_idList = new ArrayList();
+		for (BigInteger bigInteger:list){
+		 l_idList.add(Long.valueOf(bigInteger.longValue()));
+		}
+		return getSession().createQuery(" from BaseLog b where id not in (:list)" +
+				"  ")
+                .setParameterList("list",l_idList)
                 .list()
                 ;
     }

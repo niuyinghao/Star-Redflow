@@ -18,13 +18,14 @@
                         var="node"
                         id="tree"
                         dynamic="true"
+
                 >
                     <p:ajax id='expandEvent' event="expand" listener="#{areaViewScopeContainer.onMoundSelectTreeExpand}" update="@this" />
-                    <p:treeNode id="treeNode">
+                    <p:treeNode id="treeNode" expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
                         <h:outputText value="#{node.id}"/>
                     </p:treeNode>
                 </p:tree>
-                <p:commandButton value="ok" action="#{areaPage.doDialogChooseMoundTargetClose()}"></p:commandButton>
+                <p:commandButton value="ok" action="#{areaPage.doDialogChooseMoundTargetClose(areaViewScopeContainer.selectedMoundTargetNodes)}"></p:commandButton>
             </h:form>
         </ui:define>
     </ui:composition>
