@@ -113,6 +113,9 @@ public class AreaPage extends BasePage implements Serializable {
 	}
 
 	private String beautify(String content) {
+		if (content == null) {
+			return "";
+		}
 		if (content.length() > Constants.STRING_BEAUTIFY_LENGTH) {
 			return content.substring(0, Constants.STRING_BEAUTIFY_LENGTH) + "...";
 		} else {

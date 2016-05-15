@@ -6,7 +6,6 @@ import my.model.wrapper.MoundTarget;
 import my.service.WishManager;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.tree.Tree;
-import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,6 @@ import java.util.Map;
 @Component
 @Scope("view")
 public class AreaViewScopeContainer implements Serializable {
-	public TreeNode getSelectedNode() {
-		return selectedNode;
-	}
 
 	// members
 	public static final String SEPARATOR = "_";
@@ -67,12 +63,11 @@ public class AreaViewScopeContainer implements Serializable {
 	}
 
 	public void onMoundSelectTreeExpand() {
-		Tree tree = moundSelectTargetTreeUI;
 		TreeNode _this = null;
 		FacesContext context = FacesContext.getCurrentInstance();
-		TreeNode root = tree.getValue();
-		if (tree.isNodeExpandRequest(context)) {
-			String clientId = tree.getClientId(context);
+		TreeNode root = moundSelectTargetTreeUI.getValue();
+		if (moundSelectTargetTreeUI.isNodeExpandRequest(context)) {
+			String clientId = moundSelectTargetTreeUI.getClientId(context);
 			Map<String, String> params = context.getExternalContext().getRequestParameterMap();
 			String rowKey = params.get(clientId + "_expandNode");
 
@@ -83,11 +78,8 @@ public class AreaViewScopeContainer implements Serializable {
 
 			_this = findTreeNode(root, rowKey);
 		}
-
-
 		setChildrenNode(_this);
-
-		tree.setValue(root);
+//		moundSelectTargetTreeUI.setValue(root);
 	}
 
 	protected TreeNode findTreeNode(TreeNode searchRoot, String rowKey) {
