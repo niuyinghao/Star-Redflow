@@ -10,7 +10,7 @@
     <ui:define name="head">
         <style>
             .mound {
-                width: 100px;
+                width: 200px;
                 padding: 0;
                 margin: 0;
                 /*border:none;*/
@@ -53,7 +53,7 @@
         </f:facet>
     </ui:define>
 
-    <ui:define name="body">
+    <ui:define name="body" >
         <script>
             function alterCursor(target, url) {
                 var cursor = "url(" + url + "),default";
@@ -67,58 +67,70 @@
                 return false;
             }
         </script>
-        <h:form>
+<style>
+    .plain .ui-grid-row{
+        padding-top: 1em;
+        padding-bottom: .5em;
+    }
+    .mound {
+        display: block;
+        margin:auto;
+    }
+</style>
+        <h:panelGroup class="plain">
+            <h:form>
                 <!--<input type="button" class="shovelLeft"  ></input>-->
-            <p:dataGrid value="#{areaPage.plain}" lazy="true" var="m" emptyMessage="" rows="3" columns="3"
-                        layout="grid">
-                <p:panel styleClass="mound" header="" id="bornMound">
+                <p:dataGrid value="#{areaPage.plain}" lazy="true" var="m" emptyMessage="" rows="2" columns="4"
+                            layout="grid">
+                    <p:panel styleClass="mound" header="" id="bornMound">
 
-                    <h:panelGroup class="outer_container">
-                        <h:panelGroup id="container">
-                            <c:set value="#{p:component('divClick')}" var="clientId"></c:set>
-                            <div class='buryArea'
-                                 style="height:80px;background-color: #{areaPage.getBuryColor(m.buryDepth)}"
-                                 onclick=";var targetId='#'+'#{clientId}'.replace(/:/g,'\\:');$(targetId).trigger('click')"
-                            >
-                                #{areaPage.genMoundContent(m)}
-                            </div>
+                        <h:panelGroup class="outer_container">
+                            <h:panelGroup id="container">
+                                <c:set value="#{p:component('divClick')}" var="clientId"></c:set>
+                                <div class='buryArea'
+                                     style="height:100px;background-color: #{areaPage.getBuryColor(m.buryDepth)}"
+                                     onclick=";var targetId='#'+'#{clientId}'.replace(/:/g,'\\:');$(targetId).trigger('click')"
+                                >
+                                    <h:outputText value="#{areaPage.genMoundContent(m)}" escape="false"></h:outputText>
+                                </div>
+                            </h:panelGroup>
                         </h:panelGroup>
-                    </h:panelGroup>
-                    <p:commandLink name="divClick" id='divClick' immediate="true" value=""
-                                   style="display: none;"
-                                   action="#{areaPage.addMinusBuryCountOrChooseTarget(m)}"
-                                   update="container">
-                    </p:commandLink>
-                    <f:facet name="actions" >
-                        <!--bury 1 unbury 2-->
-                        <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
-                                       actionListener="#{areaPage.alterToChooseTargetThenInvoke(m)}"
-                                       style=" #{areaPage.getToolHighlightStyle(m,3)}"
-                                       update="bornMound"
-                                       oncomplete=";alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq)"
-                        >
-                            <h:outputText style="font-size: 1.5em" styleClass="fa fa-list-alt"/>
+                        <p:commandLink name="divClick" id='divClick' immediate="true" value=""
+                                       style="display: none;"
+                                       action="#{areaPage.addMinusBuryCountOrChooseTarget(m)}"
+                                       update="container">
                         </p:commandLink>
-                        <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
-                                       style=" #{areaPage.getToolHighlightStyle(m,2)}"
-                                       update="bornMound"
-                                       actionListener="#{areaPage.alterMoundToolIndex(m,2)}"
-                                       oncomplete="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq,'/styles/cursor/sholveRight.ico')"
-                        >
-                            <h:outputText style="font-size: 1.5em" styleClass="fa icon-bi11-01"/>
-                        </p:commandLink>
-                        <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
-                                       style=" #{areaPage.getToolHighlightStyle(m,1)}"
-                                       update="bornMound"
-                                       actionListener="#{areaPage.alterMoundToolIndex(m,1)}"
-                                       oncomplete="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq,'/styles/cursor/sholveLeft.ico')"
-                        >
-                            <h:outputText style="font-size: 1.5em" styleClass="fa icon-bi11-012"/>
-                        </p:commandLink>
-                    </f:facet>
-                </p:panel>
-        </p:dataGrid>
-        </h:form>
+                        <f:facet name="actions" >
+                            <!--bury 1 unbury 2-->
+                            <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
+                                           actionListener="#{areaPage.alterToChooseTargetThenInvoke(m)}"
+                                           style=" #{areaPage.getToolHighlightStyle(m,3)}"
+                                           update="bornMound"
+                                           oncomplete=";alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq)"
+                            >
+                                <h:outputText style="font-size: 1.5em" styleClass="fa fa-list-alt"/>
+                            </p:commandLink>
+                            <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
+                                           style=" #{areaPage.getToolHighlightStyle(m,2)}"
+                                           update="bornMound"
+                                           actionListener="#{areaPage.alterMoundToolIndex(m,2)}"
+                                           oncomplete="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq,'/styles/cursor/sholveRight.ico')"
+                            >
+                                <h:outputText style="font-size: 1.5em" styleClass="fa icon-bi11-01"/>
+                            </p:commandLink>
+                            <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
+                                           style=" #{areaPage.getToolHighlightStyle(m,1)}"
+                                           update="bornMound"
+                                           actionListener="#{areaPage.alterMoundToolIndex(m,1)}"
+                                           oncomplete="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq,'/styles/cursor/sholveLeft.ico')"
+                            >
+                                <h:outputText style="font-size: 1.5em" styleClass="fa icon-bi11-012"/>
+                            </p:commandLink>
+                        </f:facet>
+                    </p:panel>
+                </p:dataGrid>
+            </h:form>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>
 </html>

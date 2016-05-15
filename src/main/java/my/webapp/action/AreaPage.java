@@ -107,7 +107,7 @@ public class AreaPage extends BasePage implements Serializable {
 			sb.append("|");
 			String content = baseLog.getContent();
 			sb.append(beautify(content));
-			sb.append("\n");
+			sb.append("<br/>");
 		}
 		return sb.toString();
 	}
