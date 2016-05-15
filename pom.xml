@@ -390,7 +390,7 @@
         <db.name></db.name>
         <web.framework>jsf</web.framework>
 
-        <primefaces.version>5.3</primefaces.version>
+        <primefaces.version>5.2</primefaces.version>
         <!-- Framework/Plugin versions -->
         <appfuse.version>3.5.1-SNAPSHOT</appfuse.version>
         <java.version>1.7</java.version>
