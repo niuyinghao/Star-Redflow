@@ -210,7 +210,7 @@
             <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
             <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.10" />
             <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.10" />
-            <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.2" />
+            <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.3" />
             <element id="library" level="project" name="Maven: org.primefaces.themes:bootstrap:1.0.10" />
             <element id="library" level="project" name="Maven: com.ocpsoft:prettyfaces-jsf2:3.3.3" />
             <element id="library" level="project" name="Maven: org.omnifaces:omnifaces:1.8.1" />
@@ -592,7 +592,7 @@
       <module fileurl="file://$PROJECT_DIR$/project.iml" filepath="$PROJECT_DIR$/project.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="PublishConfigData" autoUpload="Always" promptOnRemoteOverwrite="CHECK_TIMESTAMP" serverName="192.168.223.143" traceLevel="DETAILS" autoUploadExternalChanges="true" notifyRemoteChanges="true">
@@ -2168,15 +2168,15 @@
         <root url="jar://D:/_dev_tools/.m2/repository/org/primefaces/themes/bootstrap/1.0.10/bootstrap-1.0.10-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.primefaces:primefaces:5.2">
+    <library name="Maven: org.primefaces:primefaces:5.3">
       <CLASSES>
-        <root url="jar://D:/_dev_tools/.m2/repository/org/primefaces/primefaces/5.2/primefaces-5.2.jar!/" />
+        <root url="jar://D:/_dev_tools/.m2/repository/org/primefaces/primefaces/5.3/primefaces-5.3.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://D:/_dev_tools/.m2/repository/org/primefaces/primefaces/5.2/primefaces-5.2-javadoc.jar!/" />
+        <root url="jar://D:/_dev_tools/.m2/repository/org/primefaces/primefaces/5.3/primefaces-5.3-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://D:/_dev_tools/.m2/repository/org/primefaces/primefaces/5.2/primefaces-5.2-sources.jar!/" />
+        <root url="jar://D:/_dev_tools/.m2/repository/org/primefaces/primefaces/5.3/primefaces-5.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.seleniumhq.selenium:selenium-api:2.48.2">
@@ -2789,7 +2789,7 @@
         <entry key="property.minPriorityToReport" value="Medium" />
         <entry key="property.runAnalysisInBackground" value="false" />
         <entry key="property.showHiddenDetectors" value="false" />
-        <entry key="property.toolWindowEditorPreview" value="true" />
+        <entry key="property.toolWindowEditorPreview" value="false" />
         <entry key="property.toolWindowToFront" value="true" />
       </map>
     </option>

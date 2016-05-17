@@ -66,24 +66,47 @@
                 target.find('.outer_container').css('cursor', cursor);
                 return false;
             }
-        </script>
-<style>
-    .plain .ui-grid-row{
-        padding-top: 1em;
-        padding-bottom: .5em;
-    }
-    .mound {
-        display: block;
-        margin:auto;
-    }
-</style>
-        <h:panelGroup class="plain">
-            <h:form>
-                <!--<input type="button" class="shovelLeft"  ></input>-->
-                <p:dataGrid value="#{areaPage.plain}" lazy="true" var="m" emptyMessage="" rows="2" columns="4"
-                            layout="grid">
-                    <p:panel styleClass="mound" header="" id="bornMound">
 
+
+            $(function() {
+                $(".mound").each(function () {
+                    var toolIndex=$(this).find(".loadedToolIndex");
+                    debugger;
+                    if(toolIndex==null) {
+                        alterCursor($(this));
+                    }   else{
+                        var value = toolIndex.val();
+                        if(value==2) {
+                            alterCursor($(this),'/styles/cursor/sholveRight.ico')
+                        }else if(value==1) {
+                            alterCursor($(this),'/styles/cursor/sholveLeft.ico')
+                        }
+                        else{
+                            alterCursor($(this));
+                        }
+                    }
+                })
+            });
+        </script>
+        <style>
+            .plain .ui-grid-row{
+                padding-top: 1em;
+                padding-bottom: .5em;
+            }
+            .mound {
+                display: block;
+                margin:auto;
+            }
+        </style>
+        <h:panelGroup class="plain">
+            <!--<input type="button" class="shovelLeft"  ></input>-->
+            <p:dataGrid value="#{areaPage.plain}"
+                        binding="#{areaViewScopeContainer.dataGridUI}"
+                        lazy="true" var="m" emptyMessage="" rows="3" columns="3"
+                        layout="grid">
+                <h:form>
+                    <p:panel styleClass="mound" header="" id="bornMound">
+                        <input type="hidden" class="loadedToolIndex" value="#{m.toolIndex}"/>
                         <h:panelGroup class="outer_container">
                             <h:panelGroup id="container">
                                 <c:set value="#{p:component('divClick')}" var="clientId"></c:set>
@@ -99,6 +122,7 @@
                                        style="display: none;"
                                        action="#{areaPage.addMinusBuryCountOrChooseTarget(m)}"
                                        update="container">
+                            <p:ajax event="dialogReturn" update="bornMound"></p:ajax>
                         </p:commandLink>
                         <f:facet name="actions" >
                             <!--bury 1 unbury 2-->
@@ -109,6 +133,7 @@
                                            oncomplete=";alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq)"
                             >
                                 <h:outputText style="font-size: 1.5em" styleClass="fa fa-list-alt"/>
+                               <p:ajax event="dialogReturn" update="bornMound"></p:ajax>
                             </p:commandLink>
                             <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
                                            style=" #{areaPage.getToolHighlightStyle(m,2)}"
@@ -128,8 +153,8 @@
                             </p:commandLink>
                         </f:facet>
                     </p:panel>
-                </p:dataGrid>
             </h:form>
+                </p:dataGrid>
         </h:panelGroup>
     </ui:define>
 </ui:composition>

@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +29,10 @@ import java.util.Map;
 @Scope("view")
 public class AreaViewScopeContainer implements Serializable {
 
+	public UIComponent getDataGridUI() {
+		return dataGridUI;
+	}
+
 	// members
 	public static final String SEPARATOR = "_";
 	Tree moundSelectTargetTreeUI;
@@ -39,6 +44,7 @@ public class AreaViewScopeContainer implements Serializable {
 	@Autowired
 	private WishManager wishManager;
 	private TreeNode selectedNode;
+	private UIComponent dataGridUI;
 
 
 	@PostConstruct
@@ -188,6 +194,10 @@ public class AreaViewScopeContainer implements Serializable {
 
 	public void setSelectedNode(TreeNode selectedNode) {
 		this.selectedNode = selectedNode;
+	}
+
+	public void setDataGridUI(UIComponent dataGridUI) {
+		this.dataGridUI = dataGridUI;
 	}
 }
 
