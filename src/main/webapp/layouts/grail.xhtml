@@ -8,13 +8,15 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
-
 <h:head>
     <title>ground</title>
     <ui:include src="/common/assets.xhtml"/>
     <ui:insert name="head"/>
 </h:head>
 <style type="text/css">
+    html,body{
+        height:100% ;
+    }
     .ui-button-icon-only .ui-button-text{
         padding:0;
     }
@@ -30,12 +32,48 @@
     button:focus{
         outline: none;
     }
+
+
+    #content .ui-widget-header{
+             background: none;
+             background-color: rgba(0,0,0,0.37);
+    }
+
+    #content table {
+        background-color: inherit;
+        border: none;
+    }
+
+    #content tr{
+        background-color: inherit;
+        border: none;
+    }
+
+    #content td{
+        background-color: inherit;
+        border: none;
+    }
+
+    #content tbody{
+        /*background-color: inherit ;*/
+        border: none;
+    }
+
+    #content div{
+        /*background-color: inherit ;*/
+        border: none;
+    }
+    .mound .ui-panel-titlebar{
+       border-bottom: white solid 1px !important;
+        background-color: black !important;
+    }
 </style>
 
 
 <h:body>
-    <div style="height: 10px;background-color: whitesmoke;"></div>
-    <div id="simbol" class="col-sm-12 center-block" style="background-color:lightyellow;margin:auto">
+    <div style="height: 1%;background-color: whitesmoke;"></div>
+    <!--@elvariable id="bg" type=""-->
+    <div id="simbol" class="col-sm-12 center-block" style="padding-top:2em;;height:20%;background-color:#{bg};margin:auto">
         <img class="center-block" style="height:100px" src="/images/flybullStar.png"   alt="SYMBOL"/>
         <div class="col-sm-12" style="margin-top: 0;text-align: center">
             <h1 style="font-family:'DejaVu Sans Mono' ">
@@ -44,7 +82,7 @@
         </div>
     </div>
     <div class="clearfix"/>
-    <div id='main'>
+    <div id='main' style="padding-top: 6em;height:79%;background-color: #{bg}">
         <div class="col-sm-12">
             <div class="col-sm-5 btn-group"> </div>
             <div class="col-sm-2">
@@ -54,7 +92,6 @@
             </div>
             <div class="col-sm-5 "> </div>
         </div>
-        <hr/>
         <div id="content" class="col-sm-12">
         <p:toolbar style="height:2.1em;border-radius: 0" id="toolbar">
             <ui:insert name="toolbar"></ui:insert>

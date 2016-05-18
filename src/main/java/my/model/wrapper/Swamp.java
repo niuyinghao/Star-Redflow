@@ -10,7 +10,7 @@ import java.util.List;
  * Created by yinghao_niu on 2016/4/2 for Project.
  */
 @Component
-public class Swamp extends Context{
+public class Swamp extends Place {
 	List<Flower> flowers;
 
 	public List<Flower> getFlowers() {

@@ -2,7 +2,7 @@ package my.webapp.action;
 
 import my.Constants;
 import my.model.persist.BaseLog;
-import my.model.persist.Setting;
+import my.model.persist.Context;
 import my.model.persist.User;
 import my.model.persist.place.*;
 import my.model.persist.project.Pray;
@@ -58,12 +58,11 @@ public class AreaPage extends BasePage implements Serializable {
 	private Hillock hillock;
 	@Autowired
 	private Grail grail;
-	String backgroundColor = "red";
 	@Autowired
 	private WishManager wishManager;
 	BaseLog wishBelong;
 	@Autowired
-	Setting setting;
+	Context context;
 	@Autowired
 	private FlowerManager flowerManager;
 	@Autowired
@@ -123,7 +122,7 @@ public class AreaPage extends BasePage implements Serializable {
 		}
 	}
 
-	public void backToViewMode(Context wrapper) throws IOException {
+	public void backToViewMode(Place wrapper) throws IOException {
 		wrapper.setEditMode(false);
 		handleRedirHistory();
 	}
@@ -141,7 +140,7 @@ public class AreaPage extends BasePage implements Serializable {
 		return "#" + hex + hex + hex;
 	}
 
-	public void enterEditMode(Context wrapper) {
+	public void enterEditMode(Place wrapper) {
 		wrapper.setEditMode(true);
 	}
 
@@ -160,11 +159,11 @@ public class AreaPage extends BasePage implements Serializable {
 		currentMound.setTargets(targets);
 		currentMound.setCreator(areaContext.getCreator());
 		currentMound.setCreateTime(new Date());
-		saveOrupdate(currentMound);
+		saveOrUpdate(currentMound);
 		RequestContext.getCurrentInstance().closeDialog(currentMound.getTargets());
 	}
 
-	public void saveOrupdate(Mound mound) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+	public void saveOrUpdate(Mound mound) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 		moundManager.saveOrUpdate(mound);
 	}
 
@@ -257,12 +256,12 @@ public class AreaPage extends BasePage implements Serializable {
 		genericSave(wave, waveManager, sea);
 	}
 
-	private void genericSave(BaseLog base, GenericManager manager, Context wrapper) {
+	private void genericSave(BaseLog base, GenericManager manager, Place place) {
 		base.setCreator(areaContext.getCreator());
 		base.setCreateTime(new Date());
 		Serializable id = manager.save(base);
-		wrapper.setCurrentIndex(0);
-		wrapper.setEditMode(false);
+		place.setCurrentIndex(0);
+		place.setEditMode(false);
 		try {
 			handleRedirHistory();
 		} catch (IOException e) {
@@ -406,14 +405,6 @@ public class AreaPage extends BasePage implements Serializable {
 
 	public void setWave(Wave wave) {
 		this.wave = wave;
-	}
-
-	public String getBackgroundColor() {
-		return backgroundColor;
-	}
-
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
 	}
 
 	public Sea getSea() {

@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by yinghao_niu on 2016/4/2 for Project.
  */
 @Component
-public class Sea  extends Context{
+public class Sea  extends Place {
 
 	@Override
 	public List load(int first, int pageSize, String sortField, SortOrder sortOrder, Map filters) {

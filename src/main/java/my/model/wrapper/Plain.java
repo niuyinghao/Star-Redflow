@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by yinghao_niu on 2016/4/2 for Project.
  */
 @Component
-public class Plain extends Context{
+public class Plain extends Place {
 	List<Mound> mounds;
 
 	public List<Mound> getMounds() {

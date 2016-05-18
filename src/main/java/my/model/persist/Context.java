@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Entity
 @Repository
 @Scope("session")
-public class Setting implements Serializable {
+public class Context implements Serializable {
     // members
     @Id
     @GeneratedValue

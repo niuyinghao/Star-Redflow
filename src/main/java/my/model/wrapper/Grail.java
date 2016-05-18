@@ -9,7 +9,7 @@ import java.util.List;
  * Created by yinghao_niu on 2016/4/2 for Project.
  */
 @Component
-public class Grail extends Context {
+public class Grail extends Place {
 	List<Pray> prays;
 
 	public List<Pray> getPrays() {

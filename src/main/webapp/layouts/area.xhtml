@@ -38,31 +38,36 @@
 
     #content .ui-widget-header{
              background: none;
+             background-color: rgba(0,0,0,0.37);
     }
 
     #content table {
-        background-color: inherit!important;
+        background-color: inherit;
         border: none;
     }
 
     #content tr{
-        background-color: inherit!important;
+        background-color: inherit;
         border: none;
     }
 
     #content td{
-        background-color: inherit!important;
+        background-color: inherit;
         border: none;
     }
 
     #content tbody{
-        background-color: inherit !important;
+        /*background-color: inherit ;*/
         border: none;
     }
 
     #content div{
-        background-color: inherit !important;
+        /*background-color: inherit ;*/
         border: none;
+    }
+    .mound .ui-panel-titlebar{
+       border-bottom: white solid 1px !important;
+        background-color: black !important;
     }
 </style>
 
@@ -73,7 +78,8 @@
     </div>
     <div class="clearfix"/>
 
-    <div id='main' style="height:74%;background-color: #{areaPage.backgroundColor}">
+    <!--@elvariable id="bg" -->
+    <div id='main' style="height:74%;background-color: #{bg}">
         <div class="col-sm-12" style="padding-top: 1em">
             <div class="col-sm-5 btn-group">
                 <p:tabMenu activeIndex="#{param.i}">

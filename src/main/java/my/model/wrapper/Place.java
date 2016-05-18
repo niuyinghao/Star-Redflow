@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by yinghao_niu on 2016/4/2 for Project.
  */
-public abstract class Context<T> extends AreaLazyModel {
+public abstract class Place<T> extends AreaLazyModel {
 	// members
 	protected boolean editMode = false;
 	int currentIndex;

@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 @Component
-public class Hillock extends Context{
+public class Hillock extends Place {
 	List<Stone> stones;
 
 	public List<Stone> getStones() {
