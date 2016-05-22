@@ -29,15 +29,15 @@ public class BaseLog extends BaseObj implements Serializable {
      * 标识符
      * 0 系统创建
      */
-    int flag;
+    String flag;
 
     //getter and setter
     @Column(columnDefinition = " INT DEFAULT 0 ")
-    public int getFlag() {
+    public String getFlag() {
         return flag;
     }
 
-    public void setFlag(int flag) {
+    public void setFlag(String flag) {
         this.flag = flag;
     }
 

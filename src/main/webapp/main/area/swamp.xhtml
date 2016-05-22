@@ -13,15 +13,15 @@
     </ui:define>
 
     <ui:define name="toolbar">
-        <c:set var="cid" value="waveList"></c:set>
+        <c:set var="cid" value="flowerList"></c:set>
         <f:facet name="left">
             <h:form><p:remoteCommand update="navTools" name="updateNav"/></h:form>
             <h:panelGroup id="navTools" rendered="#{!areaPage.swamp.editMode}">
                 <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
-                                 disabled="#{areaPage.hasNoPrevPage(areaViewScopeContainer.waveDataTable)}"
+                                 disabled="#{areaPage.hasNoPrevPage(areaViewScopeContainer.flowDataTable)}"
                                  onclick="PF('#{cid}').getPaginator().prev();updateNav()"/>
                 <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
-                                 disabled="#{areaPage.hasNoNextPage(areaViewScopeContainer.waveDataTable)}"
+                                 disabled="#{areaPage.hasNoNextPage(areaViewScopeContainer.flowDataTable)}"
                                  onclick="PF('#{cid}').getPaginator().next();updateNav()"
 
                 />
@@ -35,7 +35,7 @@
 
             <h:panelGroup rendered="#{areaPage.swamp.editMode}" >
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                 action="#{areaPage.addWave(areaPage.wave)}" update="toolbar,viewEditContent"/>
+                                 action="#{areaPage.addFlower(areaPage.flower)}" update="toolbar,viewEditContent"/>
                  <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                   actionListener="#{areaPage.backToViewMode(areaPage.swamp)}" update="toolbar,viewEditContent"/>
 
@@ -44,13 +44,13 @@
     </ui:define>
 
     <ui:define name="body">
-        <c:set var="cid" value="waveList"></c:set>
+        <c:set var="cid" value="flowerList"></c:set>
         <c:set var="value" value="#{areaPage.swamp}"></c:set>
         <h:panelGroup id="viewEditContent">
             <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.swamp.editMode}"
                          paginator="true" paginatorPosition="bottom" rows="1"
                          first="#{areaPage.swamp.currentIndex}" paginatorTemplate=""
-                         binding="#{areaViewScopeContainer.waveDataTable}"
+                         binding="#{areaViewScopeContainer.flowDataTable}"
                          lazy="true" id='#{cid}' value="#{value}" var="f" style="list-style:none" type="none"
                          xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                 <p:column>
@@ -70,7 +70,7 @@
             </p:dataTable>
 
             <h:form rendered="#{areaPage.swamp.editMode}">
-                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.wave.content}"></p:editor>
+                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.flower.content}"></p:editor>
             </h:form>
         </h:panelGroup>
 

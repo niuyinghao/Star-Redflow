@@ -597,17 +597,24 @@
   </component>
   <component name="PublishConfigData" autoUpload="Always" promptOnRemoteOverwrite="CHECK_TIMESTAMP" serverName="192.168.223.143" traceLevel="DETAILS" autoUploadExternalChanges="true" notifyRemoteChanges="true">
     <serverData>
+      <paths name="192.168.223.141">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="192.168.223.143">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="hostx-vm">
         <serverdata>
           <mappings>
             <mapping deploy="/home/vagrant/deploy/star" local="$PROJECT_DIR$/target/red" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="vm-willbe-star">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

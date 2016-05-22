@@ -1,6 +1,7 @@
 package my.dao.hibernate;
 
 import my.dao.WishDao;
+import my.model.persist.User;
 import my.model.persist.place.Stone;
 import my.model.persist.place.Wish;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,13 @@ public class WishDaoHibernate extends GenericDaoHibernate<Wish,Long> implements 
 	public List<Stone> getStones(Wish wish) {
 		return getSession().createQuery(" select w.stoneList from Wish w where w=:w")
 				.setParameter("w", wish)
+				.list();
+	}
+
+	@Override
+	public List getMenuedWishes(User currentUser) {
+		return getSession().createQuery(" from Wish w where w.creator=:user")
+				.setParameter("user", currentUser)
 				.list();
 	}
 }

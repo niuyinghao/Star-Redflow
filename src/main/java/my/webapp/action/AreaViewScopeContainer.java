@@ -29,155 +29,179 @@ import java.util.Map;
 @Scope("view")
 public class AreaViewScopeContainer implements Serializable {
 
-	public UIComponent getDataGridUI() {
-		return dataGridUI;
-	}
-
-	// members
-	public static final String SEPARATOR = "_";
-	Tree moundSelectTargetTreeUI;
-	public TreeNode moundTargetTreeRoot;
-	TreeNode[] selectedMoundTargetNodes;
-	@Autowired
-	private MoundTarget moundTarget;
-	DataTable waveDataTable;
-	@Autowired
-	private WishManager wishManager;
-	private TreeNode selectedNode;
-	private UIComponent dataGridUI;
+    // members
+    public static final String SEPARATOR = "_";
+    Tree moundSelectTargetTreeUI;
+    public TreeNode moundTargetTreeRoot;
+    TreeNode[] selectedMoundTargetNodes;
+    @Autowired
+    private MoundTarget moundTarget;
+    DataTable waveDataTable;
+    DataTable flowDataTable;
+    DataTable stoneDataTable;
+    @Autowired
+    private WishManager wishManager;
+    private TreeNode selectedNode;
+    private UIComponent dataGridUI;
 
 
-	@PostConstruct
-	public void init() {
-		_setTreeRoot();
-	}
+    @PostConstruct
+    public void init() {
+        _setTreeRoot();
+    }
 
-	public void _setTreeRoot() {
-		if (moundTargetTreeRoot == null) {
-			moundTargetTreeRoot = new DefaultTreeNode(null);
-		}
-		moundTargetTreeRoot.setExpanded(false);
-		List allWaveOrFlowerNotMound = moundTarget.getAllWaveOrFlowerNotMound();
-		for (Object o : allWaveOrFlowerNotMound) {
-			DefaultTreeNode node = new DefaultTreeNode(o);
-			if (o instanceof Wish) {
-				node.setExpanded(false);
-				node.getChildren().add(new DefaultTreeNode(null));
-			}
-			moundTargetTreeRoot.getChildren().add(node);
-		}
-	}
+    public void _setTreeRoot() {
+        if (moundTargetTreeRoot == null) {
+            moundTargetTreeRoot = new DefaultTreeNode(null);
+        }
+        moundTargetTreeRoot.setExpanded(false);
+        List allWaveOrFlowerNotMound = moundTarget.getAllWaveOrFlowerNotMound();
+        for (Object o : allWaveOrFlowerNotMound) {
+            DefaultTreeNode node = new DefaultTreeNode(o);
+            if (o instanceof Wish) {
+                node.setExpanded(false);
+                node.getChildren().add(new DefaultTreeNode(null));
+            }
+            moundTargetTreeRoot.getChildren().add(node);
+        }
+    }
 
-	public void onMoundSelectTreeExpand() {
-		TreeNode _this = null;
-		FacesContext context = FacesContext.getCurrentInstance();
-		TreeNode root = moundSelectTargetTreeUI.getValue();
-		if (moundSelectTargetTreeUI.isNodeExpandRequest(context)) {
-			String clientId = moundSelectTargetTreeUI.getClientId(context);
-			Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-			String rowKey = params.get(clientId + "_expandNode");
+    public void onMoundSelectTreeExpand() {
+        TreeNode _this = null;
+        FacesContext context = FacesContext.getCurrentInstance();
+        TreeNode root = moundSelectTargetTreeUI.getValue();
+        if (moundSelectTargetTreeUI.isNodeExpandRequest(context)) {
+            String clientId = moundSelectTargetTreeUI.getClientId(context);
+            Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+            String rowKey = params.get(clientId + "_expandNode");
 
 //			tree.setRowKey(rowKey);
 //			_this = tree.getRowNode();
 //			_this.setExpanded(false);
 //			tree.setRowKey(null);
 
-			_this = findTreeNode(root, rowKey);
-		}
-		setChildrenNode(_this);
+            _this = findTreeNode(root, rowKey);
+        }
+        setChildrenNode(_this);
 //		moundSelectTargetTreeUI.setValue(root);
-	}
+    }
 
-	protected TreeNode findTreeNode(TreeNode searchRoot, String rowKey) {
-		if (rowKey == null || searchRoot == null) {
-			return null;
-		}
+    protected TreeNode findTreeNode(TreeNode searchRoot, String rowKey) {
+        if (rowKey == null || searchRoot == null) {
+            return null;
+        }
 
-		if (rowKey.equals("root")) {
-			return searchRoot;
-		}
+        if (rowKey.equals("root")) {
+            return searchRoot;
+        }
 
-		String[] paths = rowKey.split(SEPARATOR);
+        String[] paths = rowKey.split(SEPARATOR);
 
-		if (paths.length == 0)
-			return null;
+        if (paths.length == 0)
+            return null;
 
-		int childIndex = Integer.parseInt(paths[0]);
-		if (childIndex >= searchRoot.getChildren().size())
-			return null;
+        int childIndex = Integer.parseInt(paths[0]);
+        if (childIndex >= searchRoot.getChildren().size())
+            return null;
 
-		searchRoot = searchRoot.getChildren().get(childIndex);
+        searchRoot = searchRoot.getChildren().get(childIndex);
 
-		if (paths.length == 1) {
-			return searchRoot;
-		} else {
-			String relativeRowKey = rowKey.substring(rowKey.indexOf(SEPARATOR) + 1);
+        if (paths.length == 1) {
+            return searchRoot;
+        }
+        else {
+            String relativeRowKey = rowKey.substring(rowKey.indexOf(SEPARATOR) + 1);
 
-			return findTreeNode(searchRoot, relativeRowKey);
-		}
-	}
+            return findTreeNode(searchRoot, relativeRowKey);
+        }
+    }
 
-	//getter and setter
-	public DataTable getWaveDataTable() {
-		return waveDataTable;
-	}
+    //getter and setter
+    public UIComponent getDataGridUI() {
+        return dataGridUI;
+    }
 
-	public void setWaveDataTable(DataTable waveDataTable) {
-		this.waveDataTable = waveDataTable;
-	}
+    public void setDataGridUI(UIComponent dataGridUI) {
+        this.dataGridUI = dataGridUI;
+    }
 
-	public TreeNode[] getSelectedMoundTargetNodes() {
-		return selectedMoundTargetNodes;
-	}
+    public DataTable getFlowDataTable() {
+        return flowDataTable;
+    }
 
-	public void setSelectedMoundTargetNodes(TreeNode[] selectedMoundTargetNodes) {
-		this.selectedMoundTargetNodes = selectedMoundTargetNodes;
-	}
+    public void setFlowDataTable(DataTable flowDataTable) {
+        this.flowDataTable = flowDataTable;
+    }
 
-	public MoundTarget getMoundTarget() {
-		return moundTarget;
-	}
+    public DataTable getStoneDataTable() {
+        return stoneDataTable;
+    }
 
-	public void setMoundTarget(MoundTarget moundTarget) {
-		this.moundTarget = moundTarget;
-	}
+    public void setStoneDataTable(DataTable stoneDataTable) {
+        this.stoneDataTable = stoneDataTable;
+    }
 
-	public TreeNode getMoundTargetTreeRoot() {
-		return moundTargetTreeRoot;
-	}
+    public DataTable getWaveDataTable() {
+        return waveDataTable;
+    }
 
-	public void setMoundTargetTreeRoot(TreeNode moundTargetTreeRoot) {
-		this.moundTargetTreeRoot = moundTargetTreeRoot;
-	}
+    public void setWaveDataTable(DataTable waveDataTable) {
+        this.waveDataTable = waveDataTable;
+    }
 
-	public Tree getMoundSelectTargetTree() {
-		return moundSelectTargetTreeUI;
-	}
+    public TreeNode[] getSelectedMoundTargetNodes() {
+        return selectedMoundTargetNodes;
+    }
 
-	public void setMoundSelectTargetTree(Tree moundSelectTargetTree) {
-		this.moundSelectTargetTreeUI = moundSelectTargetTree;
-	}
+    public void setSelectedMoundTargetNodes(TreeNode[] selectedMoundTargetNodes) {
+        this.selectedMoundTargetNodes = selectedMoundTargetNodes;
+    }
 
-	private void setChildrenNode(TreeNode _this) {
-		List<TreeNode> children = _this.getChildren();
+    public MoundTarget getMoundTarget() {
+        return moundTarget;
+    }
 
-		if (children == null) {
-			children = new ArrayList();
-		} else {
-			children.clear();
-		}
-		Object data = _this.getData();
+    public void setMoundTarget(MoundTarget moundTarget) {
+        this.moundTarget = moundTarget;
+    }
 
-		if (data instanceof Wish) {
-			List<Stone> stoneList = wishManager.getStones((Wish) data);
-			for (Stone stone : stoneList) {
-				DefaultTreeNode node = new DefaultTreeNode(stone, _this);
-				children.add(node);
-			}
-		}
+    public TreeNode getMoundTargetTreeRoot() {
+        return moundTargetTreeRoot;
+    }
+
+    public void setMoundTargetTreeRoot(TreeNode moundTargetTreeRoot) {
+        this.moundTargetTreeRoot = moundTargetTreeRoot;
+    }
+
+    public Tree getMoundSelectTargetTree() {
+        return moundSelectTargetTreeUI;
+    }
+
+    public void setMoundSelectTargetTree(Tree moundSelectTargetTree) {
+        this.moundSelectTargetTreeUI = moundSelectTargetTree;
+    }
+
+    private void setChildrenNode(TreeNode _this) {
+        List<TreeNode> children = _this.getChildren();
+
+        if (children == null) {
+            children = new ArrayList();
+        }
+        else {
+            children.clear();
+        }
+        Object data = _this.getData();
+
+        if (data instanceof Wish) {
+            List<Stone> stoneList = wishManager.getStones((Wish) data);
+            for (Stone stone : stoneList) {
+                DefaultTreeNode node = new DefaultTreeNode(stone, _this);
+                children.add(node);
+            }
+        }
 
 /*
-	  else if (data instanceof Wave) {
+      else if (data instanceof Wave) {
             for (Wish wish : ((Wave) data).getWishes()) {
                 DefaultTreeNode node = new DefaultTreeNode(wish, _this);
                 children.add(node);
@@ -190,14 +214,10 @@ public class AreaViewScopeContainer implements Serializable {
             }
         }
         */
-	}
+    }
 
-	public void setSelectedNode(TreeNode selectedNode) {
-		this.selectedNode = selectedNode;
-	}
-
-	public void setDataGridUI(UIComponent dataGridUI) {
-		this.dataGridUI = dataGridUI;
-	}
+    public void setSelectedNode(TreeNode selectedNode) {
+        this.selectedNode = selectedNode;
+    }
 }
 

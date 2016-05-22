@@ -36,7 +36,7 @@ public interface GenericManager<T, PK extends Serializable> {
      * @return a populated object
      * @see org.springframework.orm.ObjectRetrievalFailureException
      */
-    T get(PK id);
+    T get(PK id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException;
 
     /**
      * Checks for existence of an object of type T using the id arg.

@@ -1,6 +1,7 @@
 package my.service.impl;
 
 import my.dao.WishDao;
+import my.model.persist.User;
 import my.model.persist.place.Stone;
 import my.model.persist.place.Wish;
 import my.service.WishManager;
@@ -25,5 +26,13 @@ public class WishManagerImpl extends GenericManagerImpl<Wish, Long> implements W
 	@Override
 	public List<Stone> getStones(Wish wish) {
 		return ((WishDao) dao).getStones(wish);
+	}
+
+	@Override
+	public List getMenuedWishes(User currentUser) {
+		if (currentUser == null) {
+			return null;
+		}
+		return ((WishDao) dao).getMenuedWishes(currentUser);
 	}
 }

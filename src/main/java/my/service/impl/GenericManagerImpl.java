@@ -31,8 +31,8 @@ public abstract class GenericManagerImpl<T, PK extends Serializable> implements 
 	}
 
 	@Override
-	public T get(PK id) {
-		return null;
+	public T get(PK id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		return (T) dao.get(id);
 	}
 
 	@Override

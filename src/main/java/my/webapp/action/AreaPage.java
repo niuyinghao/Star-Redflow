@@ -2,7 +2,6 @@ package my.webapp.action;
 
 import my.Constants;
 import my.model.persist.BaseLog;
-import my.model.persist.Context;
 import my.model.persist.User;
 import my.model.persist.place.*;
 import my.model.persist.project.Pray;
@@ -20,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.Serializable;
@@ -37,6 +37,11 @@ import java.util.List;
 @Scope("session")
 @Lazy
 public class AreaPage extends BasePage implements Serializable {
+
+	public void selectCurrentWish(SelectEvent event) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		Wish wish = wishManager.get(Long.valueOf(((String) event.getObject())));
+		currentWish = wish ;
+	}
 	// members
 	Wave wave = new Wave();
 	Flower flower = new Flower();
@@ -62,8 +67,6 @@ public class AreaPage extends BasePage implements Serializable {
 	private WishManager wishManager;
 	BaseLog wishBelong;
 	@Autowired
-	Context context;
-	@Autowired
 	private FlowerManager flowerManager;
 	@Autowired
 	private MoundManager moundManager;
@@ -76,6 +79,7 @@ public class AreaPage extends BasePage implements Serializable {
 	String mostRecentHistory = "";
 	@Autowired
 	private AreaManager areaManager;
+	private Wish currentWish;
 
 	public String getToolHighlightStyle(Mound mound, int toolIndex) {
 		if (toolIndex == mound.getToolIndex()) {
@@ -274,6 +278,7 @@ public class AreaPage extends BasePage implements Serializable {
 	}
 
 	public void addStone(Stone stone) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        stone.setFlag("1");
 		genericSave(stone, stoneManager, hillock);
 	}
 
@@ -306,7 +311,44 @@ public class AreaPage extends BasePage implements Serializable {
 		return "/main/starry/bless.xhtml?faces-redirect=true";
 	}
 
-//getter and setter
+	//getter and setter
+	public Wish getCurrentWish() {
+		return currentWish;
+	}
+
+	public void setCurrentWish(Wish currentWish) {
+		this.currentWish = currentWish;
+	}
+
+	public List<SelectItem> getHillockMenuWishes() {
+		return hillockMenuWishes;
+	}
+
+	public void setHillockMenuWishes(List hillockMenuWishes) {
+		this.hillockMenuWishes = hillockMenuWishes;
+	}
+
+	List hillockMenuWishes;
+	public void setMenuedWishes() {
+
+		List<Wish> menuedWishes = wishManager.getMenuedWishes(areaContext.getCreator());
+		hillockMenuWishes = menuedWishes;
+
+//		if (menuedWishes == null) {
+//			return;
+//		}
+
+//		ArrayList arrayList = new ArrayList();
+//		for ( Wish w : menuedWishes) {
+//			SelectItem selectItem = new SelectItem();
+//			selectItem.setLabel(String.valueOf(w.getId()));
+//			selectItem.setValue(w.getId());
+//			arrayList.add(selectItem);
+//		}
+//		hillockMenuWishes=arrayList ;
+
+	}
+
 	public Mound getCurrentMound() {
 		return currentMound;
 	}
@@ -414,7 +456,5 @@ public class AreaPage extends BasePage implements Serializable {
 	public void setSea(Sea sea) {
 		this.sea = sea;
 	}
-
-
 }
 

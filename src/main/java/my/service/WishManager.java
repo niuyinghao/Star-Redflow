@@ -1,5 +1,6 @@
 package my.service;
 
+import my.model.persist.User;
 import my.model.persist.place.Stone;
 import my.model.persist.place.Wish;
 
@@ -10,4 +11,6 @@ import java.util.List;
  */
 public interface WishManager extends GenericManager<Wish,Long> {
 	List<Stone> getStones(Wish wish);
+
+	List getMenuedWishes(User currentUser);
 }
