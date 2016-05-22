@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.html5.Location;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,12 +20,23 @@ public class Login {
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
+    /**
+     *  firefox 46.0.1
+     *
+     * @throws Exception
+     */
   @Before
   public void setUp() throws Exception {
           System.setProperty(
               "webdriver.chrome.driver",
               "D:\\_dev_tools\\chromedriver_win32\\chromedriver.exe");
     driver = new FirefoxDriver();
+
+/*//      DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//      capabilities.setCapability("chrome.binary", "C:\\Users\\yinghao_niu\\AppData\\Local\\360Chrome\\Chrome\\Application\\360chrome.exe");
+//    driver = new ChromeDriver(capabilities);*/
+
+//    driver = new ChromeDriver();
     baseUrl = "http://127.0.0.1:1234/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
@@ -40,7 +53,7 @@ public class Login {
 
   @After
   public void tearDown() throws Exception {
-    driver.quit();
+//    driver.quit();
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {
       fail(verificationErrorString);
