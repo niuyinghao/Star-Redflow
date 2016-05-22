@@ -70,7 +70,12 @@ public class GenericDaoMybatisImpl<T, PK extends Serializable> implements Generi
 		return mapper.selectByExample();
 	}
 
-	@Override
+    @Override
+    public void remove(T object) {
+        //todo_need
+    }
+
+    @Override
 	public int getCount() {
 		return 0;
 	}

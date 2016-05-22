@@ -29,7 +29,9 @@ public interface GenericDao <T, PK extends Serializable> {
 
 	List<T> getPagedList(Object context) throws NoSuchFieldException;
 
-	int getCount();
+    void remove(T object);
+
+    int getCount();
 
 	org.hibernate.Session getSession();
 }

@@ -37,302 +37,311 @@ import java.util.List;
 @Scope("session")
 @Lazy
 public class AreaPage extends BasePage implements Serializable {
+    // members
+    Wave wave = new Wave();
+    Flower flower = new Flower();
+    Mound mound = new Mound();
+    Stone stone = new Stone();
+    Wish wish = new Wish();
+    Mound currentMound = null;
+    @Autowired
+    private WaveManager waveManager;
+    @Autowired
+    private UserManager userManager;
+    @Autowired
+    private Sea sea;
+    @Autowired
+    private Swamp swamp;
+    @Autowired
+    private Plain plain;
+    @Autowired
+    private Hillock hillock;
+    @Autowired
+    private Grail grail;
+    @Autowired
+    private WishManager wishManager;
+    BaseLog wishBelong;
+    @Autowired
+    private FlowerManager flowerManager;
+    @Autowired
+    private MoundManager moundManager;
+    @Autowired
+    private StoneManager stoneManager;
+    private DashboardModel plainBoard;
+    @Autowired
+    private CommonContext areaContext;
+    boolean needBackToHistory = false;
+    String mostRecentHistory = "";
+    @Autowired
+    private AreaManager areaManager;
+    private Wish currentWish;
+    List hillockMenuWishes;
 
-	public void selectCurrentWish(SelectEvent event) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		Wish wish = wishManager.get(Long.valueOf(((String) event.getObject())));
-		currentWish = wish ;
-	}
-	// members
-	Wave wave = new Wave();
-	Flower flower = new Flower();
-	Mound mound = new Mound();
-	Stone stone = new Stone();
-	Wish wish = new Wish();
-	Mound currentMound = null;
-	@Autowired
-	private WaveManager waveManager;
-	@Autowired
-	private UserManager userManager;
-	@Autowired
-	private Sea sea;
-	@Autowired
-	private Swamp swamp;
-	@Autowired
-	private Plain plain;
-	@Autowired
-	private Hillock hillock;
-	@Autowired
-	private Grail grail;
-	@Autowired
-	private WishManager wishManager;
-	BaseLog wishBelong;
-	@Autowired
-	private FlowerManager flowerManager;
-	@Autowired
-	private MoundManager moundManager;
-	@Autowired
-	private StoneManager stoneManager;
-	private DashboardModel plainBoard;
-	@Autowired
-	private CommonContext areaContext;
-	boolean needBackToHistory = false;
-	String mostRecentHistory = "";
-	@Autowired
-	private AreaManager areaManager;
-	private Wish currentWish;
+    public void editStone(Stone stone) {
+        this.stone = stone;
+        enterEditMode(hillock);
+    }
 
-	public String getToolHighlightStyle(Mound mound, int toolIndex) {
-		if (toolIndex == mound.getToolIndex()) {
-			return "background-color:yellow";
-		}
-		return "";
-	}
+    public void enterEditMode(Place wrapper) {
+        wrapper.setEditMode(true);
+    }
 
-	public void firePray(Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		List<Pray> prays = wish.getPrays();
-		Pray pray = new Pray();
-		prays.add(pray);
-		areaManager._getSession().save(pray);
-		wishManager.saveOrUpdate(wish);
-	}
+    public void deleteStone(Stone stone) {
+        stoneManager.remove(stone);
+    }
 
-	public String genMoundContent(Mound mound) {
-		StringBuffer sb = new StringBuffer();
-		List<BaseLog> targets = mound.getTargets();
-		if (targets == null) {
-			return "";
-		}
-		for (BaseLog baseLog : targets) {
-			if (baseLog == null) {
-				continue;
-			}
-			sb.append(baseLog.getId());
-			sb.append("|");
-			String content = baseLog.getContent();
-			sb.append(beautify(content));
-			sb.append("<br/>");
-		}
-		return sb.toString();
-	}
+    public void selectCurrentWish(SelectEvent event) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Wish wish = wishManager.get(Long.valueOf(((String) event.getObject())));
+        currentWish = wish;
+    }
 
-	private String beautify(String content) {
-		if (content == null) {
-			return "";
-		}
-		if (content.length() > Constants.STRING_BEAUTIFY_LENGTH) {
-			return content.substring(0, Constants.STRING_BEAUTIFY_LENGTH) + "...";
-		} else {
-			return content;
-		}
-	}
+    public String getToolHighlightStyle(Mound mound, int toolIndex) {
+        if (toolIndex == mound.getToolIndex()) {
+            return "background-color:yellow";
+        }
+        return "";
+    }
 
-	public void backToViewMode(Place wrapper) throws IOException {
-		wrapper.setEditMode(false);
-		handleRedirHistory();
-	}
+    public void firePray(Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        List<Pray> prays = wish.getPrays();
+        Pray pray = new Pray();
+        prays.add(pray);
+        areaManager._getSession().save(pray);
+        wishManager.saveOrUpdate(wish);
+    }
 
-	private void handleRedirHistory() throws IOException {
-		if (needBackToHistory) {
-			needBackToHistory = !needBackToHistory;
-			FacesContext.getCurrentInstance().getExternalContext().redirect(mostRecentHistory);
-		}
-	}
+    public String genMoundContent(Mound mound) {
+        StringBuffer sb = new StringBuffer();
+        List<BaseLog> targets = mound.getTargets();
+        if (targets == null) {
+            return "";
+        }
+        for (BaseLog baseLog : targets) {
+            if (baseLog == null) {
+                continue;
+            }
+            sb.append(baseLog.getId());
+            sb.append("|");
+            String content = baseLog.getContent();
+            sb.append(beautify(content));
+            sb.append("<br/>");
+        }
+        return sb.toString();
+    }
 
-	public String getBuryColor(int depth) {
-		int value = (int) (((float) depth / Constants.MOUND_BURIED_BOUND) * 255);
-		String hex = Integer.toHexString(255 - value).toUpperCase();
-		return "#" + hex + hex + hex;
-	}
+    private String beautify(String content) {
+        if (content == null) {
+            return "";
+        }
+        if (content.length() > Constants.STRING_BEAUTIFY_LENGTH) {
+            return content.substring(0, Constants.STRING_BEAUTIFY_LENGTH) + "...";
+        }
+        else {
+            return content;
+        }
+    }
 
-	public void enterEditMode(Place wrapper) {
-		wrapper.setEditMode(true);
-	}
+    public void backToViewMode(Place wrapper) throws IOException {
+        wrapper.setEditMode(false);
+        handleRedirHistory();
+    }
 
-	public void onDialogChooseMoundTargetReturn(SelectEvent event) {
-	}
+    private void handleRedirHistory() throws IOException {
+        if (needBackToHistory) {
+            needBackToHistory = !needBackToHistory;
+            FacesContext.getCurrentInstance().getExternalContext().redirect(mostRecentHistory);
+        }
+    }
 
-	public void doDialogChooseMoundTargetClose(TreeNode[] selectedMoundTargetNodes) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		ArrayList<BaseLog> targets = new ArrayList<>();
-		if (selectedMoundTargetNodes == null) {
-			targets = null;
-		} else {
-			for (TreeNode selectedMoundTargetNode : selectedMoundTargetNodes) {
-				targets.add((BaseLog) selectedMoundTargetNode.getData());
-			}
-		}
-		currentMound.setTargets(targets);
-		currentMound.setCreator(areaContext.getCreator());
-		currentMound.setCreateTime(new Date());
-		saveOrUpdate(currentMound);
-		RequestContext.getCurrentInstance().closeDialog(currentMound.getTargets());
-	}
+    public String getBuryColor(int depth) {
+        int value = (int) (((float) depth / Constants.MOUND_BURIED_BOUND) * 255);
+        String hex = Integer.toHexString(255 - value).toUpperCase();
+        return "#" + hex + hex + hex;
+    }
 
-	public void saveOrUpdate(Mound mound) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		moundManager.saveOrUpdate(mound);
-	}
+    public void onDialogChooseMoundTargetReturn(SelectEvent event) {
+    }
 
-	public void alterToChooseTargetThenInvoke(Mound mound) {
-		alterMoundToolIndex(mound, Constants.TOOL_INDEX_MOUND_CHOOSE_TARGET);
-		addMinusBuryCountOrChooseTarget(mound);
-	}
+    public void doDialogChooseMoundTargetClose(TreeNode[] selectedMoundTargetNodes) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        ArrayList<BaseLog> targets = new ArrayList<>();
+        if (selectedMoundTargetNodes == null) {
+            targets = null;
+        }
+        else {
+            for (TreeNode selectedMoundTargetNode : selectedMoundTargetNodes) {
+                targets.add((BaseLog) selectedMoundTargetNode.getData());
+            }
+        }
+        currentMound.setTargets(targets);
+        currentMound.setCreator(areaContext.getCreator());
+        currentMound.setCreateTime(new Date());
+        saveOrUpdate(currentMound);
+        RequestContext.getCurrentInstance().closeDialog(currentMound.getTargets());
+    }
 
-	public void alterMoundToolIndex(Mound mound, int toolIndex) {
-		mound.setToolIndex(toolIndex);
-	}
+    public void saveOrUpdate(Mound mound) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        moundManager.saveOrUpdate(mound);
+    }
 
-	public void addMinusBuryCountOrChooseTarget(Mound mound) {
-		int toolIndex = mound.getToolIndex();
-		boolean needPersist = false;
-		if (toolIndex == Constants.TOOL_INDEX_MOUND_BURY) {
-			if (mound.getBuryDepth() >= Constants.MOUND_BURIED_BOUND) {
-				mound.setBuryDepth(Constants.MOUND_BURIED_BOUND);
-				return;
-			}
-			mound.setBuryDepth(mound.getBuryDepth() + 1);
-			needPersist = true;
-		} else if (toolIndex == Constants.TOOL_INDEX_MOUND_UN_BURY) {
-			if (mound.getBuryDepth() <= Constants.MOUND_BURIED_UN_BOUND) {
-				mound.setBuryDepth(Constants.MOUND_BURIED_UN_BOUND);
-				return;
-			}
-			mound.setBuryDepth(mound.getBuryDepth() - 1);
-			needPersist = true;
-		} else {
-			currentMound = mound;
-			RequestContext.getCurrentInstance().openDialog("/main/misc/plain/chooseMoundTarget.xhtml");
-			return;
-		}
-		;
-		if (needPersist) {
-			persistMoundBury(mound);
-		}
-	}
+    public void alterToChooseTargetThenInvoke(Mound mound) {
+        alterMoundToolIndex(mound, Constants.TOOL_INDEX_MOUND_CHOOSE_TARGET);
+        addMinusBuryCountOrChooseTarget(mound);
+    }
 
-	private void persistMoundBury(Mound mound) {
-		List<BaseLog> targets = moundManager.getTargets(mound);
-		if (targets == null) {
-		} else {
-			for (BaseLog baseLog : targets) {
-				baseLog.setBuryDepth(mound.getBuryDepth());
-				areaManager.updateBaseObj(baseLog);
-			}
-		}
-		areaManager.updateBaseObj(mound);
-	}
+    public void alterMoundToolIndex(Mound mound, int toolIndex) {
+        mound.setToolIndex(toolIndex);
+    }
 
-	public boolean hasNoNextPage(UIData uidata) {
-		int currentPage = uidata.getPage();
-		int pageCount = uidata.getPageCount();
-		boolean disabled = currentPage == pageCount - 1 || currentPage == 0 && pageCount == 0;
-		return disabled;
-	}
+    public void addMinusBuryCountOrChooseTarget(Mound mound) {
+        int toolIndex = mound.getToolIndex();
+        boolean needPersist = false;
+        if (toolIndex == Constants.TOOL_INDEX_MOUND_BURY) {
+            if (mound.getBuryDepth() >= Constants.MOUND_BURIED_BOUND) {
+                mound.setBuryDepth(Constants.MOUND_BURIED_BOUND);
+                return;
+            }
+            mound.setBuryDepth(mound.getBuryDepth() + 1);
+            needPersist = true;
+        }
+        else if (toolIndex == Constants.TOOL_INDEX_MOUND_UN_BURY) {
+            if (mound.getBuryDepth() <= Constants.MOUND_BURIED_UN_BOUND) {
+                mound.setBuryDepth(Constants.MOUND_BURIED_UN_BOUND);
+                return;
+            }
+            mound.setBuryDepth(mound.getBuryDepth() - 1);
+            needPersist = true;
+        }
+        else {
+            currentMound = mound;
+            RequestContext.getCurrentInstance().openDialog("/main/misc/plain/chooseMoundTarget.xhtml");
+            return;
+        }
+        ;
+        if (needPersist) {
+            persistMoundBury(mound);
+        }
+    }
 
-	public boolean hasNoPrevPage(UIData uidata) {
-		boolean disabled = uidata.getPage() == 0;
-		return disabled;
-	}
+    private void persistMoundBury(Mound mound) {
+        List<BaseLog> targets = moundManager.getTargets(mound);
+        if (targets == null) {
+        }
+        else {
+            for (BaseLog baseLog : targets) {
+                baseLog.setBuryDepth(mound.getBuryDepth());
+                areaManager.updateBaseObj(baseLog);
+            }
+        }
+        areaManager.updateBaseObj(mound);
+    }
 
-	//method
-	@PostConstruct
-	public void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, ServletException, IOException {
+    public boolean hasNoNextPage(UIData uidata) {
+        int currentPage = uidata.getPage();
+        int pageCount = uidata.getPageCount();
+        boolean disabled = currentPage == pageCount - 1 || currentPage == 0 && pageCount == 0;
+        return disabled;
+    }
+
+    public boolean hasNoPrevPage(UIData uidata) {
+        boolean disabled = uidata.getPage() == 0;
+        return disabled;
+    }
+
+    //method
+    @PostConstruct
+    public void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, ServletException, IOException {
 //        String remoteUser = getRequest().getRemoteUser();
-		User user = WebUtil.getCurrentUser(getRequest());
-		if (user == null) {
-			return;
-		}
+        User user = WebUtil.getCurrentUser(getRequest());
+        if (user == null) {
+            return;
+        }
 
-		plainBoard = new DefaultDashboardModel();
-		DashboardColumn column = new DefaultDashboardColumn();
-		column.addWidget("mound");
-		plainBoard.addColumn(column);
+        plainBoard = new DefaultDashboardModel();
+        DashboardColumn column = new DefaultDashboardColumn();
+        column.addWidget("mound");
+        plainBoard.addColumn(column);
 
 
-		// context
-		sea.setTargetClass(Wave.class);
-		swamp.setTargetClass(Flower.class);
-		plain.setTargetClass(Mound.class);
-		hillock.setTargetClass(Stone.class);
-		grail.setTargetClass(Wish.class);
-		areaContext.setCreator(user);
-	}
+        // context
+        sea.setTargetClass(Wave.class);
+        swamp.setTargetClass(Flower.class);
+        plain.setTargetClass(Mound.class);
+        hillock.setTargetClass(Stone.class);
+        grail.setTargetClass(Wish.class);
+        areaContext.setCreator(user);
+    }
 
-	public void addWave(Wave wave) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		genericSave(wave, waveManager, sea);
-	}
+    public void addWave(Wave wave) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        genericSave(wave, waveManager, sea);
+    }
 
-	private void genericSave(BaseLog base, GenericManager manager, Place place) {
-		base.setCreator(areaContext.getCreator());
-		base.setCreateTime(new Date());
-		Serializable id = manager.save(base);
-		place.setCurrentIndex(0);
-		place.setEditMode(false);
-		try {
-			handleRedirHistory();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    private void genericSaveOrUpdate(BaseLog base, GenericManager manager, Place place) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        base.setCreator(areaContext.getCreator());
+        base.setCreateTime(new Date());
+        manager.saveOrUpdate(base);
+        place.setCurrentIndex(0);
+        place.setEditMode(false);
+        try {
+            handleRedirHistory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public void addFlower(Flower flower) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		genericSave(flower, flowerManager, swamp);
-	}
+    private void genericSave(BaseLog base, GenericManager manager, Place place) {
+        base.setCreator(areaContext.getCreator());
+        base.setCreateTime(new Date());
+        Serializable id = manager.save(base);
+        place.setCurrentIndex(0);
+        place.setEditMode(false);
+        try {
+            handleRedirHistory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public void addStone(Stone stone) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        stone.setFlag("1");
-		genericSave(stone, stoneManager, hillock);
-	}
+    public void addFlower(Flower flower) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        genericSave(flower, flowerManager, swamp);
+    }
 
-	public void addWish(Wave belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		wish.setBelongWave(belong);
-		saveWish(wish);
-	}
+    public void addStone(Stone stone) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        genericSaveOrUpdate(stone, stoneManager, hillock);
+    }
 
-	private void saveWish(Wish wish) {
-		if (wish.getBelongWave() != null && wish.getBelongWave().getId() == null) {
-			wish.setBelongWave(null);
-		}
-		if (wish.getBelongFlower() != null && wish.getBelongFlower().getId() == null) {
-			wish.setBelongFlower(null);
-		}
-		genericSave(wish, wishManager, grail);
-		this.wish = new Wish();
-	}
+    public void addWish(Wave belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        wish.setBelongWave(belong);
+        saveWish(wish);
+    }
 
-	public void addWish(Flower belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		wish.setBelongFlower(belong);
-		saveWish(wish);
-	}
+    private void saveWish(Wish wish) {
+        if (wish.getBelongWave() != null && wish.getBelongWave().getId() == null) {
+            wish.setBelongWave(null);
+        }
+        if (wish.getBelongFlower() != null && wish.getBelongFlower().getId() == null) {
+            wish.setBelongFlower(null);
+        }
+        genericSave(wish, wishManager, grail);
+        this.wish = new Wish();
+    }
 
-	public String fireWish(BaseLog belong) {
-		this.wishBelong = belong;
-		grail.setEditMode(true);
-		needBackToHistory = true;
-		mostRecentHistory = FacesContext.getCurrentInstance().getViewRoot().getViewId();
-		return "/main/starry/bless.xhtml?faces-redirect=true";
-	}
+    public void addWish(Flower belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        wish.setBelongFlower(belong);
+        saveWish(wish);
+    }
 
-	//getter and setter
-	public Wish getCurrentWish() {
-		return currentWish;
-	}
+    public String fireWish(BaseLog belong) {
+        this.wishBelong = belong;
+        grail.setEditMode(true);
+        needBackToHistory = true;
+        mostRecentHistory = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return "/main/starry/bless.xhtml?faces-redirect=true";
+    }
 
-	public void setCurrentWish(Wish currentWish) {
-		this.currentWish = currentWish;
-	}
+    public void setMenuedWishes() {
 
-	public List<SelectItem> getHillockMenuWishes() {
-		return hillockMenuWishes;
-	}
-
-	public void setHillockMenuWishes(List hillockMenuWishes) {
-		this.hillockMenuWishes = hillockMenuWishes;
-	}
-
-	List hillockMenuWishes;
-	public void setMenuedWishes() {
-
-		List<Wish> menuedWishes = wishManager.getMenuedWishes(areaContext.getCreator());
-		hillockMenuWishes = menuedWishes;
+        List<Wish> menuedWishes = wishManager.getMenuedWishes(areaContext.getCreator());
+        hillockMenuWishes = menuedWishes;
 
 //		if (menuedWishes == null) {
 //			return;
@@ -347,114 +356,131 @@ public class AreaPage extends BasePage implements Serializable {
 //		}
 //		hillockMenuWishes=arrayList ;
 
-	}
+    }
 
-	public Mound getCurrentMound() {
-		return currentMound;
-	}
+    //getter and setter
+    public Wish getCurrentWish() {
+        return currentWish;
+    }
 
-	public void setCurrentMound(Mound currentMound) {
-		this.currentMound = currentMound;
-	}
+    public void setCurrentWish(Wish currentWish) {
+        this.currentWish = currentWish;
+    }
 
-	public CommonContext getAreaContext() {
-		return areaContext;
-	}
+    public List<SelectItem> getHillockMenuWishes() {
+        return hillockMenuWishes;
+    }
 
-	public void setAreaContext(CommonContext areaContext) {
-		this.areaContext = areaContext;
-	}
+    public void setHillockMenuWishes(List hillockMenuWishes) {
+        this.hillockMenuWishes = hillockMenuWishes;
+    }
 
-	public DashboardModel getPlainBoard() {
-		return plainBoard;
-	}
+    public Mound getCurrentMound() {
+        return currentMound;
+    }
 
-	public Wish getWish() {
-		return wish;
-	}
+    public void setCurrentMound(Mound currentMound) {
+        this.currentMound = currentMound;
+    }
 
-	public void setWish(Wish wish) {
-		this.wish = wish;
-	}
+    public CommonContext getAreaContext() {
+        return areaContext;
+    }
 
-	public Swamp getSwamp() {
-		return swamp;
-	}
+    public void setAreaContext(CommonContext areaContext) {
+        this.areaContext = areaContext;
+    }
 
-	public void setSwamp(Swamp swamp) {
-		this.swamp = swamp;
-	}
+    public DashboardModel getPlainBoard() {
+        return plainBoard;
+    }
 
-	public Plain getPlain() {
-		return plain;
-	}
+    public Wish getWish() {
+        return wish;
+    }
 
-	public void setPlain(Plain plain) {
-		this.plain = plain;
-	}
+    public void setWish(Wish wish) {
+        this.wish = wish;
+    }
 
-	public Hillock getHillock() {
-		return hillock;
-	}
+    public Swamp getSwamp() {
+        return swamp;
+    }
 
-	public void setHillock(Hillock hillock) {
-		this.hillock = hillock;
-	}
+    public void setSwamp(Swamp swamp) {
+        this.swamp = swamp;
+    }
 
-	public Grail getGrail() {
-		return grail;
-	}
+    public Plain getPlain() {
+        return plain;
+    }
 
-	public void setGrail(Grail grail) {
-		this.grail = grail;
-	}
+    public void setPlain(Plain plain) {
+        this.plain = plain;
+    }
 
-	public Flower getFlower() {
-		return flower;
-	}
+    public Hillock getHillock() {
+        return hillock;
+    }
 
-	public void setFlower(Flower flower) {
-		this.flower = flower;
-	}
+    public void setHillock(Hillock hillock) {
+        this.hillock = hillock;
+    }
 
-	public Mound getMound() {
-		return mound;
-	}
+    public Grail getGrail() {
+        return grail;
+    }
 
-	public void setMound(Mound mound) {
-		this.mound = mound;
-	}
+    public void setGrail(Grail grail) {
+        this.grail = grail;
+    }
 
-	public Stone getStone() {
-		return stone;
-	}
+    public Flower getFlower() {
+        return flower;
+    }
 
-	public void setStone(Stone stone) {
-		this.stone = stone;
-	}
+    public void setFlower(Flower flower) {
+        this.flower = flower;
+    }
 
-	public BaseLog getWishBelong() {
-		return wishBelong;
-	}
+    public Mound getMound() {
+        return mound;
+    }
 
-	public void setWishBelong(BaseLog wishBelong) {
-		this.wishBelong = wishBelong;
-	}
+    public void setMound(Mound mound) {
+        this.mound = mound;
+    }
 
-	public Wave getWave() {
-		return wave;
-	}
+    public Stone getStone() {
+        return stone;
+    }
 
-	public void setWave(Wave wave) {
-		this.wave = wave;
-	}
+    public void setStone(Stone stone) {
+        this.stone = stone;
+    }
 
-	public Sea getSea() {
-		return sea;
-	}
+    public BaseLog getWishBelong() {
+        return wishBelong;
+    }
 
-	public void setSea(Sea sea) {
-		this.sea = sea;
-	}
+    public void setWishBelong(BaseLog wishBelong) {
+        this.wishBelong = wishBelong;
+    }
+
+    public Wave getWave() {
+        return wave;
+    }
+
+    public void setWave(Wave wave) {
+        this.wave = wave;
+    }
+
+    public Sea getSea() {
+        return sea;
+    }
+
+    public void setSea(Sea sea) {
+        this.sea = sea;
+    }
 }
 

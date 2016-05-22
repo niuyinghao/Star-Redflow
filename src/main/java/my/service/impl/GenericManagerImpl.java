@@ -47,8 +47,8 @@ public abstract class GenericManagerImpl<T, PK extends Serializable> implements 
 
 	@Override
 	public void remove(T object) {
-
-	}
+        dao.remove(object);
+    }
 
 	@Override
 	public void remove(PK id) {

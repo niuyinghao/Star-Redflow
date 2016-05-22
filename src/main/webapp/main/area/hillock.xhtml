@@ -45,9 +45,9 @@
 
             <h:panelGroup rendered="#{areaPage.hillock.editMode}" >
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                 action="#{areaPage.addStone(areaPage.stone)}" update="toolbar,viewEditContent"/>
+                                 action="#{areaPage.addStone(areaPage.stone)}" update="viewEditContent,toolbar"/>
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
-                                 actionListener="#{areaPage.backToViewMode(areaPage.hillock)}" update="toolbar,viewEditContent"/>
+                                 actionListener="#{areaPage.backToViewMode(areaPage.hillock)}" update="viewEditContent,toolbar"/>
 
             </h:panelGroup>
 
@@ -55,24 +55,27 @@
     </ui:define>
 
     <ui:define name="body">
-        <c:set var="cid" value="waveList"></c:set>
+        <c:set var="cid" value="stoneList"></c:set>
         <c:set var="value" value="#{areaPage.hillock}"></c:set>
         <h:panelGroup id="viewEditContent">
-            <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.hillock.editMode}"
-                         paginator="true" paginatorPosition="bottom" rows="1"
-                         first="#{areaPage.hillock.currentIndex}" paginatorTemplate=""
-                         binding="#{areaViewScopeContainer.stoneDataTable}"
-                         lazy="true" id='#{cid}' value="#{value}" var="s" style="list-style:none" type="none"
-                    xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
-            <p:column>
-                    STONE#{'#'}#{s.id}
-                <br/>
-                    <h:outputText escape="false" value="#{s.content}"> </h:outputText>
-                </p:column>
-            </p:dataTable>
-
+            <h:form>
+                <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.hillock.editMode}"
+                             paginator="true" paginatorPosition="bottom" rows="3"
+                             first="#{areaPage.hillock.currentIndex}" paginatorTemplate=""
+                             binding="#{areaViewScopeContainer.stoneDataTable}"
+                             lazy="true" id='#{cid}' value="#{value}" var="s" style="list-style:none" type="none"
+                             xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+                    <p:column>
+                        STONE#{'#'}#{s.id}   &#160;
+                        <p:commandLink value="edit" action="#{areaPage.editStone(s)}" update="viewEditContent,toolbar"></p:commandLink> &#160;
+                        <p:commandLink value="delete" action="#{areaPage.deleteStone(s)}" update="#{cid},toolbar"></p:commandLink>
+                        <hr/>
+                        <h:outputText escape="false" value="#{s.content}"> </h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
             <h:form rendered="#{areaPage.hillock.editMode}">
-                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.wave.content}"></p:editor>
+                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.stone.content}"></p:editor>
             </h:form>
         </h:panelGroup>
 

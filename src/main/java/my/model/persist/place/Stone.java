@@ -10,15 +10,5 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Stone extends BaseLog {
-    String flag;
 
-    @Override
-    public String getFlag() {
-        return flag;
-    }
-
-    @Override
-    public void setFlag(String flag) {
-        this.flag = flag;
-    }
 }

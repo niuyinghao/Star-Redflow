@@ -362,7 +362,7 @@
     </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="" />
-  <component name="DataSourceManagerImpl" format="xml" hash="3059638212">
+  <component name="DataSourceManagerImpl" format="xml" hash="1392137270">
     <data-source source="LOCAL" name="PostgreSQL - star@localhost" uuid="541b1c0e-098b-4a54-95be-f6fa7c207360">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -402,7 +402,6 @@
       <inspection_tool class="AbstractBeanReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="BadExpressionStatementJS" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="CheckValidXmlInScriptTagBody" enabled="false" level="ERROR" enabled_by_default="false" />
-      <inspection_tool class="ELValidationInJSP" enabled="true" level="ERROR" enabled_by_default="true" />
       <inspection_tool class="HtmlExtraClosingTag" enabled="false" level="ERROR" enabled_by_default="false" />
       <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="myValues">

@@ -705,7 +705,7 @@ role_id</columns>
     </database-model>
   </data-source>
   <data-source name="H2 - jdbc:h2:tcp://127.0.0.1:8043/./src/test/data/db" uuid="b614168a-b9e1-4abe-98a5-6bcc1ee6880f">
-    <database-info product="H2" version="1.4.184 (2014-12-19)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.4.184 (2014-12-19)">
+    <database-info product="H2" version="1.4.191 (2016-01-21)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.4.191 (2016-01-21)">
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
@@ -822,8 +822,9 @@ role_id</columns>
     </table>
     <table name="STONE" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="CONSTRAINT_4B" columns="ID"/>
-      <foreign-key name="FK_H5N5LNFLS3BX2NHFLRVIJB29E" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="STONE_BASE_LOG_ID_FK" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
     </table>
     <table name="USER_ROLE" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
