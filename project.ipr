@@ -362,7 +362,7 @@
     </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="" />
-  <component name="DataSourceManagerImpl" format="xml" hash="1392137270">
+  <component name="DataSourceManagerImpl" format="xml" hash="3428706330">
     <data-source source="LOCAL" name="PostgreSQL - star@localhost" uuid="541b1c0e-098b-4a54-95be-f6fa7c207360">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -2619,7 +2619,7 @@
         <entry key="property.minPriorityToReport" value="Medium" />
         <entry key="property.runAnalysisInBackground" value="false" />
         <entry key="property.showHiddenDetectors" value="false" />
-        <entry key="property.toolWindowEditorPreview" value="false" />
+        <entry key="property.toolWindowEditorPreview" value="true" />
         <entry key="property.toolWindowToFront" value="true" />
       </map>
     </option>

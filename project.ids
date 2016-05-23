@@ -822,9 +822,9 @@ role_id</columns>
     </table>
     <table name="STONE" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="FLAG" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="CONSTRAINT_4B" columns="ID"/>
       <foreign-key name="STONE_BASE_LOG_ID_FK" columns="ID" ref-table="BASE_LOG" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="STONE_BASE_LOG_ID_FK_INDEX_2" unique="false" columns="ID"/>
     </table>
     <table name="USER_ROLE" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>

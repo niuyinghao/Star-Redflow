@@ -7,16 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ee9ea9-c2df-43e2-8e95-f5879a36b5b1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/bdd/Login.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/bdd/SeaCase.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/layouts/areaWithForm.xhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.ids" afterPath="$PROJECT_DIR$/project.ids" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/data/db.mv.db" afterPath="$PROJECT_DIR$/src/test/data/db.mv.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.ipr" afterPath="$PROJECT_DIR$/project.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.iws" afterPath="$PROJECT_DIR$/project.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/my/dao/GenericDao.java" afterPath="$PROJECT_DIR$/src/main/java/my/dao/GenericDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/my/dao/mybatis/GenericDaoMybatisImpl.java" afterPath="$PROJECT_DIR$/src/main/java/my/dao/mybatis/GenericDaoMybatisImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/my/model/persist/place/Stone.java" afterPath="$PROJECT_DIR$/src/main/java/my/model/persist/place/Stone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/my/service/impl/GenericManagerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/my/service/impl/GenericManagerImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java" afterPath="$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/main/area/hillock.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/main/area/hillock.xhtml" />
     </list>
@@ -217,7 +212,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
+              <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -236,8 +231,8 @@
       <file leaf-file-name="hillock.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/main/area/hillock.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="69" column="117" selection-start-line="69" selection-start-column="117" selection-end-line="69" selection-end-column="117" />
+            <state relative-caret-position="227">
+              <caret line="47" column="108" selection-start-line="47" selection-start-column="108" selection-end-line="47" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -293,6 +288,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="areaWithForm.xhtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/layouts/areaWithForm.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="115" column="50" selection-start-line="115" selection-start-column="50" selection-end-line="115" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -324,7 +329,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/my/service/impl/ArticleManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/my/service/impl/FeedbackManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/bdd/feature/article.feature" />
         <option value="$PROJECT_DIR$/src/test/java/bdd/steps/StepArticle.java" />
@@ -372,9 +376,10 @@
         <option value="$PROJECT_DIR$/src/main/java/my/service/impl/GenericManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/my/dao/GenericDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/my/dao/mybatis/GenericDaoMybatisImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/main/area/hillock.xhtml" />
         <option value="$PROJECT_DIR$/src/main/java/my/model/persist/place/Stone.java" />
         <option value="$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/layouts/areaWithForm.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/main/area/hillock.xhtml" />
       </list>
     </option>
   </component>
@@ -1074,11 +1079,11 @@
       <recent name="my" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\my\p1628\src\main\webapp\layouts" />
       <recent name="D:\my\p1628\src\main\webapp\main\area" />
       <recent name="D:\my\p1628\src\main\webapp\resources\ccc" />
       <recent name="D:\vagrant\pj\star\src\main\webapp\main\misc\plain" />
       <recent name="D:\vagrant\pj\star\lib" />
-      <recent name="D:\vagrant\pj\star\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="my.dao" />
@@ -1969,7 +1974,7 @@
       <workItem from="1463799488619" duration="22430000" />
       <workItem from="1463915122453" duration="633000" />
       <workItem from="1463916096648" duration="119000" />
-      <workItem from="1463933827937" duration="7792000" />
+      <workItem from="1463933827937" duration="11280000" />
     </task>
     <task id="LOCAL-00001" summary="[code]">
       <created>1460778988836</created>
@@ -2184,7 +2189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1463938572222</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="[f]&#10;stone edit&#10;&#10;">
+      <created>1463943100025</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1463943100026</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <option name="searchClosedTasks" value="true" />
     <servers />
   </component>
@@ -2221,7 +2233,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225962000" />
+    <option name="totallyTimeSpent" value="229450000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2234,7 +2246,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="23" width="1382" height="753" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="RMI Explorer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="29" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2249,12 +2261,12 @@
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22395833" sideWeight="0.43371758" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4965157" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55518395" sideWeight="0.550706" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5052265" sideWeight="0.5104167" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5278746" sideWeight="0.22023809" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JSF" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30472103" sideWeight="0.5903846" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47560975" sideWeight="0.16666667" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4912892" sideWeight="0.77380955" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35714287" sideWeight="0.7797619" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20849176" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35365853" sideWeight="0.5" order="21" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2305,7 +2317,7 @@
       <window_info id="Struts Assistant" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45272207" sideWeight="0.60952383" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22395833" sideWeight="0.43371758" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4965157" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5052265" sideWeight="0.5104167" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5278746" sideWeight="0.22023809" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JSF" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30472103" sideWeight="0.5903846" order="8" side_tool="false" content_ui="tabs" />
@@ -2343,7 +2355,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47560975" sideWeight="0.16666667" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4912892" sideWeight="0.77380955" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35714287" sideWeight="0.7797619" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Armory" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20849176" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3051576" sideWeight="0.48951685" order="24" side_tool="false" content_ui="tabs" />
@@ -2393,7 +2405,8 @@
     <MESSAGE value="[code]&#10;some style, mainly color&#10;" />
     <MESSAGE value="[c]&#10;&#10;" />
     <MESSAGE value="[f]&#10;selenium firefox&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="[f]&#10;selenium firefox&#10;&#10;" />
+    <MESSAGE value="[f]&#10;stone edit&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="[f]&#10;stone edit&#10;&#10;" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -2452,13 +2465,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java</url>
-          <line>140</line>
+          <line>141</line>
           <properties />
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java</url>
-          <line>339</line>
+          <line>340</line>
           <properties />
           <option name="timeStamp" value="49" />
         </line-breakpoint>
@@ -2510,18 +2523,6 @@
           <properties />
           <option name="timeStamp" value="75" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java</url>
-          <line>89</line>
-          <properties />
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java</url>
-          <line>80</line>
-          <properties />
-          <option name="timeStamp" value="101" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog>
@@ -2530,7 +2531,7 @@
           </selected-grouping-rules>
         </breakpoints-dialog>
       </breakpoints-dialog>
-      <option name="time" value="102" />
+      <option name="time" value="108" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="MavenRunConfiguration">
@@ -2553,14 +2554,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/my/service/impl/WishManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/my/dao/WishDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -2922,14 +2915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/layouts/area.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="115" column="71" selection-start-line="115" selection-start-column="71" selection-end-line="115" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/my/dao/mybatis/GenericDaoMybatisImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
@@ -2946,14 +2931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/main/area/hillock.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="69" column="117" selection-start-line="69" selection-start-column="117" selection-end-line="69" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/my/model/persist/place/Stone.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -2962,10 +2939,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/layouts/area.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="115" column="71" selection-start-line="115" selection-start-column="71" selection-end-line="115" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/layouts/areaWithForm.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="115" column="50" selection-start-line="115" selection-start-column="50" selection-end-line="115" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/main/area/hillock.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="47" column="108" selection-start-line="47" selection-start-column="108" selection-end-line="47" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/my/webapp/action/AreaPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
+          <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
           <folding />
         </state>
       </provider>

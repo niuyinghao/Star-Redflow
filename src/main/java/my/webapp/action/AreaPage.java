@@ -41,7 +41,7 @@ public class AreaPage extends BasePage implements Serializable {
     Wave wave = new Wave();
     Flower flower = new Flower();
     Mound mound = new Mound();
-    Stone stone = new Stone();
+    Stone stone ;
     Wish wish = new Wish();
     Mound currentMound = null;
     @Autowired
@@ -83,6 +83,7 @@ public class AreaPage extends BasePage implements Serializable {
     }
 
     public void enterEditMode(Place wrapper) {
+        this.stone = new Stone();
         wrapper.setEditMode(true);
     }
 
@@ -305,7 +306,7 @@ public class AreaPage extends BasePage implements Serializable {
         genericSave(flower, flowerManager, swamp);
     }
 
-    public void addStone(Stone stone) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void addOrUpdateStone(Stone stone) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         genericSaveOrUpdate(stone, stoneManager, hillock);
     }
 
