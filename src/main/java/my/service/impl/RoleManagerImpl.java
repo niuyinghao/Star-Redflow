@@ -28,7 +28,7 @@ public class RoleManagerImpl  extends GenericManagerImpl<Role,Long> implements R
 
     @Override
     public Role getRole(String rolename) {
-        return null;
+        return ((RoleDao) dao).getRoleByName(rolename);
     }
 
     @Override

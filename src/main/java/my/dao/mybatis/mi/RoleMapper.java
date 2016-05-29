@@ -98,4 +98,6 @@ public interface RoleMapper extends Mapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Role record);
+
+    Role getRoleByName(String rolename);
 }

@@ -25,7 +25,7 @@ public class RoleDaoMybatisImpl extends GenericDaoMybatisImpl<Role, Long> implem
 	//overridden
 	@Override
 	public Role getRoleByName(String rolename) {
-		return null;   //todo_need
+        return ((RoleMapper) mapper).getRoleByName(rolename);
 	}
 
 	@Override

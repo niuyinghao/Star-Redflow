@@ -27,7 +27,7 @@ import java.util.Map;
 
 @Component
 @Scope("view")
-public class AreaViewScopeContainer implements Serializable {
+public class AreaViewScopePlain implements Serializable {
 
     // members
     public static final String SEPARATOR = "_";
@@ -36,9 +36,6 @@ public class AreaViewScopeContainer implements Serializable {
     TreeNode[] selectedMoundTargetNodes;
     @Autowired
     private MoundTarget moundTarget;
-    DataTable waveDataTable;
-    DataTable flowDataTable;
-    DataTable stoneDataTable;
     @Autowired
     private WishManager wishManager;
     private TreeNode selectedNode;
@@ -123,30 +120,6 @@ public class AreaViewScopeContainer implements Serializable {
 
     public void setDataGridUI(UIComponent dataGridUI) {
         this.dataGridUI = dataGridUI;
-    }
-
-    public DataTable getFlowDataTable() {
-        return flowDataTable;
-    }
-
-    public void setFlowDataTable(DataTable flowDataTable) {
-        this.flowDataTable = flowDataTable;
-    }
-
-    public DataTable getStoneDataTable() {
-        return stoneDataTable;
-    }
-
-    public void setStoneDataTable(DataTable stoneDataTable) {
-        this.stoneDataTable = stoneDataTable;
-    }
-
-    public DataTable getWaveDataTable() {
-        return waveDataTable;
-    }
-
-    public void setWaveDataTable(DataTable waveDataTable) {
-        this.waveDataTable = waveDataTable;
     }
 
     public TreeNode[] getSelectedMoundTargetNodes() {

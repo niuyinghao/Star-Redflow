@@ -2,6 +2,7 @@ package my.webapp.action;
 
 import my.model.persist.User;
 import my.model.persist.project.Role;
+import my.service.RoleManager;
 import my.service.UserExistsException;
 import my.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,12 @@ public class SignupForm extends BasePage implements Serializable {
     private UserManager userManager;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+    @Autowired
+    private RoleManager roleManager;
+    public static final String ROLE_USER = "ROLE_USER";
 
 
-	@PostConstruct
+    @PostConstruct
     public void init() {
         user = new User();
         user.setUsername("STAR-" +   UUID.randomUUID());
@@ -40,11 +44,14 @@ public class SignupForm extends BasePage implements Serializable {
         user.setCredentialsExpired(false);
         user.setEmail("e" +   UUID.randomUUID());
         user.setPassword(passwordEncoder.encode("p"));
-		Role role = new Role();
-		role.setDescription("normal");
-		role.setName("ROLE_USER");
+		Role role = roleManager.getRole(ROLE_USER);
 		Set roles = new HashSet<>();
-		roles.add(role);
+        if (role == null) {
+
+        }
+        else{
+            roles.add(role);
+        }
 
 		user.setRoles(roles);
 	}

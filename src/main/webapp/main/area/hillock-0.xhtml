@@ -24,6 +24,33 @@
         <ui:define name="toolbar">
             <c:set var="cid" value="stoneList"></c:set>
             <f:facet name="left">
+                <p:remoteCommand update="navTools" name="updateNav"/>
+                <h:panelGroup id="navTools" rendered="#{!areaPage.hillock.editMode}">
+                    <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
+                                     disabled="#{areaPage.hasNoPrevPage(areaViewScopeHillock.stoneDataTable)}"
+                                     onclick="PF('#{cid}').getPaginator().prev();updateNav()"/>
+                    <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
+                                     disabled="#{areaPage.hasNoNextPage(areaViewScopeHillock.stoneDataTable)}"
+                                     onclick="PF('#{cid}').getPaginator().next();updateNav()"
+
+                    />
+
+                    <p:commandButton style="font-size: 1.3em;width:1.5em"
+                                     action="#{areaPage.enterEditMode(areaPage.hillock)}"
+                                     icon="fa fa-plus"
+                                     update="toolbar,viewEditContent"
+                    ></p:commandButton>
+
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{areaPage.hillock.editMode}" >
+                    <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
+                                     action="#{areaPage.addOrUpdateStone(areaPage.stone)}" update="outerForm"/>
+                    <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
+                                     actionListener="#{areaPage.backToViewMode(areaPage.hillock)}" update="viewEditContent,toolbar"/>
+
+                </h:panelGroup>
+
             </f:facet>
         </ui:define>
 
@@ -32,21 +59,17 @@
             <c:set var="value" value="#{areaPage.hillock}"></c:set>
             <h:panelGroup id="viewEditContent">
                 <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.hillock.editMode}"
-                             paginator="true" paginatorPosition="bottom" rows="1"
+                             paginator="true" paginatorPosition="bottom" rows="3"
                              first="#{areaPage.hillock.currentIndex}" paginatorTemplate=""
                              binding="#{areaViewScopeHillock.stoneDataTable}"
                              lazy="true" id='#{cid}' value="#{value}" var="s" style="list-style:none" type="none"
                              xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                     <p:column>
                         STONE#{'#'}#{s.id}   &#160;
-                        <p:commandLink value="edit" action="#{areaPage.editStone(s)}" update="viewEditContent"></p:commandLink> &#160;
+                        <p:commandLink value="edit" action="#{areaPage.editStone(s)}" update="viewEditContent,toolbar"></p:commandLink> &#160;
                         <p:commandLink value="delete" action="#{areaPage.deleteStone(s)}" update="outerForm"></p:commandLink>
                         <hr/>
                         <h:outputText escape="false" value="#{s.content}"> </h:outputText>
-
-                        <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-right"
-                                         onclick="PF('#{cid}').getPaginator().next();"
-                        />
                     </p:column>
                 </p:dataTable>
                 <h:panelGroup rendered="#{areaPage.hillock.editMode}">

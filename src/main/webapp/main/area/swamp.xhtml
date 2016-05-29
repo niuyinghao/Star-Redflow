@@ -18,10 +18,10 @@
             <h:form><p:remoteCommand update="navTools" name="updateNav"/></h:form>
             <h:panelGroup id="navTools" rendered="#{!areaPage.swamp.editMode}">
                 <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
-                                 disabled="#{areaPage.hasNoPrevPage(areaViewScopeContainer.flowDataTable)}"
+                                 disabled="#{areaPage.hasNoPrevPage(areaViewScopeSea.flowDataTable)}"
                                  onclick="PF('#{cid}').getPaginator().prev();updateNav()"/>
                 <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
-                                 disabled="#{areaPage.hasNoNextPage(areaViewScopeContainer.flowDataTable)}"
+                                 disabled="#{areaPage.hasNoNextPage(areaViewScopeSea.flowDataTable)}"
                                  onclick="PF('#{cid}').getPaginator().next();updateNav()"
 
                 />
@@ -50,7 +50,7 @@
             <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.swamp.editMode}"
                          paginator="true" paginatorPosition="bottom" rows="1"
                          first="#{areaPage.swamp.currentIndex}" paginatorTemplate=""
-                         binding="#{areaViewScopeContainer.flowDataTable}"
+                         binding="#{areaViewScopeSea.flowDataTable}"
                          lazy="true" id='#{cid}' value="#{value}" var="f" style="list-style:none" type="none"
                          xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                 <p:column>

@@ -53,9 +53,9 @@ public class HibernateDDLGenerator {
 
 	private Configuration getConfiguration(Dialect dialect, Class<?>[] classes) {
 		Configuration configuration = new Configuration();
-		configuration.setProperty("hibernate.connection.url", "jdbc:mysql://willbe-lxc:3306/star");
-		configuration.setProperty("hibernate.connection.username", "star");
-		configuration.setProperty("hibernate.connection.password", "star");
+		configuration.setProperty("hibernate.connection.url", "jdbc:h2:tcp://127.0.0.1:8043/./src/test/data/db");
+		configuration.setProperty("hibernate.connection.username", "sa");
+		configuration.setProperty("hibernate.connection.password", "");
 		configuration.setProperty(Environment.DIALECT, dialect.getClassName());
 		configuration.setNamingStrategy(new ImprovedNamingStrategy());
 		for (Class<?> entityClass : classes) {
