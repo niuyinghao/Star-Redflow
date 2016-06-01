@@ -5,6 +5,7 @@ import my.model.persist.BaseLog;
 import my.model.persist.project.HeartSymbol;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -13,7 +14,7 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Stone extends BaseLog {
-    boolean isPlaceHolder;
+//    boolean isPlaceHolder;
     HeartSymbol heartSymbol;
 
     @OneToOne
@@ -25,12 +26,13 @@ public class Stone extends BaseLog {
         this.heartSymbol = heartSymbol;
     }
 
-    @Basic
-    public boolean isPlaceHolder() {
-        return isPlaceHolder;
-    }
-
-    public void setPlaceHolder(boolean placeHolder) {
-        isPlaceHolder = placeHolder;
-    }
+//    @Basic
+//    @Column(columnDefinition = " number(1) default 0 ")
+//    public boolean isPlaceHolder() {
+//        return isPlaceHolder;
+//    }
+//
+//    public void setPlaceHolder(boolean placeHolder) {
+//        isPlaceHolder = placeHolder;
+//    }
 }

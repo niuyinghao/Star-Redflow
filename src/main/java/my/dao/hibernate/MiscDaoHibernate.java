@@ -56,7 +56,7 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
 		for (BigInteger bigInteger:list){
 		 l_idList.add(Long.valueOf(bigInteger.longValue()));
 		}
-		return getSession().createQuery(" from BaseLog b where id not in (:list)" +
+		return getSession().createQuery(" from BaseLog b where b.id not in (:list)" +
 				"  ")
                 .setParameterList("list",l_idList)
                 .list()

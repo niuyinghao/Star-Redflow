@@ -23,7 +23,7 @@ public class Hillock extends Place {
         if (load == null || load.size() == 0) {
             ArrayList arrayList = new ArrayList();
             Stone e = new Stone();
-            e.setPlaceHolder(true);
+//            e.setPlaceHolder(true);
             arrayList.add(e);
             setRowCount(1);
             return arrayList;
