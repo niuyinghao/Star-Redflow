@@ -3,10 +3,12 @@ package my.webapp.action;
 import my.Constants;
 import my.model.persist.BaseLog;
 import my.model.persist.User;
+import my.model.persist.project.HeartSymbol;
 import my.model.persist.spirit.*;
 import my.model.persist.project.Pray;
 import my.model.wrapper.*;
 import my.service.*;
+import my.util.HeartSymbolResolver;
 import my.webapp.util.WebUtil;
 import org.primefaces.component.api.UIData;
 import org.primefaces.context.RequestContext;
@@ -38,11 +40,11 @@ import java.util.List;
 @Lazy
 public class AreaPage extends BasePage implements Serializable {
     // members
-    Wave wave = new Wave();
-    Flower flower = new Flower();
-    Mound mound = new Mound();
-    Stone stone ;
-    Wish wish = new Wish();
+    Wave wave;
+    Flower flower;
+    Mound mound;
+    Stone stone;
+    Wish wish;
     Mound currentMound = null;
     @Autowired
     private WaveManager waveManager;
@@ -76,6 +78,23 @@ public class AreaPage extends BasePage implements Serializable {
     private AreaManager areaManager;
     private Wish currentWish;
     List hillockMenuWishes;
+
+    public void addSymbolAge(HeartSymbol symbol) {
+        if (symbol == null) {
+            return;
+        }
+        int age = symbol.getAge();
+        symbol.setAge(age + 1);
+        persistHeartSymbol(symbol);
+    }
+
+    private void persistHeartSymbol(HeartSymbol symbol) {
+        areaManager._getSession().saveOrUpdate(symbol);
+    }
+
+    public String getHeartSymbolStyle(HeartSymbol symbol) throws Exception {
+        return HeartSymbolResolver.resolveStyle(symbol);
+    }
 
     public void editStone(Stone stone) {
         this.stone = stone;
@@ -262,6 +281,35 @@ public class AreaPage extends BasePage implements Serializable {
         column.addWidget("mound");
         plainBoard.addColumn(column);
 
+// value
+        if (wave == null) {
+            wave = new Wave();
+        }
+
+        if (flower == null) {
+            flower = new Flower();
+        }
+
+        if (stone == null) {
+            stone = new Stone();
+        }
+        if (mound == null) {
+            mound = new Mound();
+        }
+
+        if (wave.getHeartSymbol() == null) {
+            HeartSymbol heartSymbol = new HeartSymbol();
+            wave.setHeartSymbol(heartSymbol);
+        }
+
+        if (flower.getHeartSymbol() == null) {
+            HeartSymbol heartSymbol = new HeartSymbol();
+            flower.setHeartSymbol(heartSymbol);
+        }
+        if (stone.getHeartSymbol() == null) {
+            HeartSymbol heartSymbol = new HeartSymbol();
+            stone.setHeartSymbol(heartSymbol);
+        }
 
         // context
         sea.setTargetClass(Wave.class);
@@ -274,19 +322,6 @@ public class AreaPage extends BasePage implements Serializable {
 
     public void addWave(Wave wave) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         genericSave(wave, waveManager, sea);
-    }
-
-    private void genericSaveOrUpdate(BaseLog base, GenericManager manager, Place place) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        base.setCreator(areaContext.getCreator());
-        base.setCreateTime(new Date());
-        manager.saveOrUpdate(base);
-        place.setCurrentIndex(0);
-        place.setEditMode(false);
-        try {
-            handleRedirHistory();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void genericSave(BaseLog base, GenericManager manager, Place place) {
@@ -308,6 +343,19 @@ public class AreaPage extends BasePage implements Serializable {
 
     public void addOrUpdateStone(Stone stone) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         genericSaveOrUpdate(stone, stoneManager, hillock);
+    }
+
+    private void genericSaveOrUpdate(BaseLog base, GenericManager manager, Place place) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        base.setCreator(areaContext.getCreator());
+        base.setCreateTime(new Date());
+        manager.saveOrUpdate(base);
+        place.setCurrentIndex(0);
+        place.setEditMode(false);
+        try {
+            handleRedirHistory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addWish(Wave belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {

@@ -5,17 +5,26 @@ import my.dao.mybatis.generic.MybatisTable;
 import my.model.LabelValue;
 import my.model.persist.project.Role;
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * This class represents the basic "user" object in AppFuse that allows for authentication
@@ -116,13 +125,14 @@ public class User extends BaseObject implements Serializable, UserDetails {
 	}
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    /*@ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinTable(
             name = "user_role",
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    )*/
+    @Transient
     public Set<Role> getRoles() {
         return roles;
     }

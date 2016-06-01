@@ -185,19 +185,19 @@
     </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="" />
-  <component name="DataSourceManagerImpl" format="xml" hash="3059638212">
+  <component name="DataSourceManagerImpl" format="xml" hash="2372287515">
     <data-source source="LOCAL" name="PostgreSQL - star@localhost" uuid="541b1c0e-098b-4a54-95be-f6fa7c207360">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/star</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="H2 - jdbc:h2:tcp://127.0.0.1:8043/./src/test/data/db" uuid="b614168a-b9e1-4abe-98a5-6bcc1ee6880f">
+    <data-source source="LOCAL" name="H2 - jdbc:h2:tcp://192.168.223.143:8043/./src/test/data/db" uuid="b614168a-b9e1-4abe-98a5-6bcc1ee6880f">
       <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:tcp://127.0.0.1:8043/./src/test/data/db</jdbc-url>
+      <jdbc-url>jdbc:h2:tcp://192.168.223.143:8043/./src/test/data/db</jdbc-url>
     </data-source>
   </component>
   <component name="Encoding">
@@ -472,7 +472,7 @@
       <schema-pattern>star.public</schema-pattern>
       <default-schemas>star.public</default-schemas>
     </data-source>
-    <data-source name="H2 - jdbc:h2:tcp://127.0.0.1:8043/./src/test/data/db" uuid="b614168a-b9e1-4abe-98a5-6bcc1ee6880f">
+    <data-source name="H2 - jdbc:h2:tcp://192.168.223.143:8043/./src/test/data/db" uuid="b614168a-b9e1-4abe-98a5-6bcc1ee6880f">
       <secret-storage>master_key</secret-storage>
       <user-name>sa</user-name>
       <schema-pattern>DB.PUBLIC</schema-pattern>

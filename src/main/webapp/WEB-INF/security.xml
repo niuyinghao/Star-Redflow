@@ -11,17 +11,16 @@
     <http pattern="/assets/**" security="none"/>
     <http pattern="/javax.faces.resource/**" security="none"/>
     <beans:bean id="myAuthenticationSuccessHandler" class="my.service.impl.AuthenticationSucessHandlerImpl">
-
     </beans:bean>
 
-    <http auto-config="true">
-        <intercept-url pattern="/logout.jsp" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN"/>
-        <intercept-url pattern="/login*" access="ROLE_ANONYMOUS"/>
-        <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/passwordHint*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
-        <intercept-url pattern="/signup*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
-        <intercept-url pattern="/**/*.xhtml" access="ROLE_ADMIN,ROLE_USER"/>
-        <intercept-url pattern="/**/*" access="ROLE_ADMIN,ROLE_USER"/>
+    <http auto-config="true" use-expressions="true" >
+        <!--<intercept-url pattern="/logout.jsp" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN"/>-->
+        <!--<intercept-url pattern="/login*" access="ROLE_ANONYMOUS"/>-->
+        <!--<intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>-->
+        <!--<intercept-url pattern="/passwordHint*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>-->
+        <!--<intercept-url pattern="/signup*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>-->
+        <!--<intercept-url pattern="/**/*.xhtml" access="ROLE_ADMIN,ROLE_USER"/>-->
+        <intercept-url pattern="/**/**" access="hasRole('ROLE_USER')"  />
         <form-login login-page="/login" authentication-failure-url="/login?error=true" login-processing-url="/j_security_check"
         authentication-success-handler-ref="myAuthenticationSuccessHandler" />
         <remember-me user-service-ref="userDaoMb" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>

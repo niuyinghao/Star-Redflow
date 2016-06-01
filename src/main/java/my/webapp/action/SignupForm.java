@@ -6,6 +6,7 @@ import my.service.RoleManager;
 import my.service.UserExistsException;
 import my.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ import java.util.UUID;
  * @author mraible
  */
 @Component
+@Scope("request")
 public class SignupForm extends BasePage implements Serializable {
     User user;
     @Autowired
