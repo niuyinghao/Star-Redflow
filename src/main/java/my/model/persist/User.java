@@ -172,6 +172,9 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Transient
     public Set<GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new LinkedHashSet<>();
+        Role role = new Role();
+        role.setName("ROLE_USER");
+        roles.add(role);
         authorities.addAll(roles);
         return authorities;
     }
