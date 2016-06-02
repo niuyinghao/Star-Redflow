@@ -1,5 +1,5 @@
 import my.dao.mybatis.mi.WaveMapper;
-import my.model.persist.place.Wave;
+import my.model.persist.spirit.Wave;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

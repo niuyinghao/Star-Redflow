@@ -13,7 +13,6 @@ import java.util.Set;
 /**
  * Created by yinghao_niu on 2015/12/5 0005 for Project.
  */
-@Repository("roleDao")
 public class RoleDaoMybatisImpl extends GenericDaoMybatisImpl<Role, Long> implements RoleDao {
 
 	//constructs

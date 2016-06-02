@@ -1,7 +1,7 @@
 package my.dao.hibernate;
 
 import my.dao.FlowerDao;
-import my.model.persist.place.Flower;
+import my.model.persist.spirit.Flower;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -1,7 +1,7 @@
 package my.dao.hibernate;
 
 import my.dao.StoneDao;
-import my.model.persist.place.Stone;
+import my.model.persist.spirit.Stone;
 import org.springframework.stereotype.Repository;
 
 /**

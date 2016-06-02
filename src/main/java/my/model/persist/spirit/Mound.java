@@ -1,4 +1,4 @@
-package my.model.persist.place;
+package my.model.persist.spirit;
 
 
 import my.model.persist.BaseLog;

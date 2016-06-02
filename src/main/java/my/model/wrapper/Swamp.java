@@ -1,7 +1,7 @@
 package my.model.wrapper;
 
 
-import my.model.persist.place.Flower;
+import my.model.persist.spirit.Flower;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

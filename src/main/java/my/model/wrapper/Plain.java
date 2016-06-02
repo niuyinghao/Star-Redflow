@@ -1,7 +1,7 @@
 package my.model.wrapper;
 
 
-import my.model.persist.place.Mound;
+import my.model.persist.spirit.Mound;
 import org.primefaces.model.SortOrder;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package my.model.wrapper;
 
 
-import my.model.persist.place.Wave;
+import my.model.persist.spirit.Wave;
 import org.primefaces.model.SortOrder;
 import org.springframework.stereotype.Component;
 

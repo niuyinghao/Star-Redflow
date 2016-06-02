@@ -2,7 +2,7 @@ package my.dao.mybatis.mi;
 
 import my.dao.mybatis.Mapper;
 import my.model.b_example.MoundExample;
-import my.model.persist.place.Mound;
+import my.model.persist.spirit.Mound;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

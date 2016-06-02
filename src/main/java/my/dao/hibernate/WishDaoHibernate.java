@@ -2,8 +2,8 @@ package my.dao.hibernate;
 
 import my.dao.WishDao;
 import my.model.persist.User;
-import my.model.persist.place.Stone;
-import my.model.persist.place.Wish;
+import my.model.persist.spirit.Stone;
+import my.model.persist.spirit.Wish;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

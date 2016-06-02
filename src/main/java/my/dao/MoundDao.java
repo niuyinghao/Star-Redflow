@@ -1,6 +1,6 @@
 package my.dao;
 
-import my.model.persist.place.Mound;
+import my.model.persist.spirit.Mound;
 
 import java.util.List;
 

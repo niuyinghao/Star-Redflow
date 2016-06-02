@@ -3,7 +3,7 @@ package my.service.impl;
 import my.dao.*;
 import my.model.persist.BaseLog;
 import my.model.persist.BaseObj;
-import my.model.persist.place.*;
+import my.model.persist.spirit.*;
 import my.service.AreaManager;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;

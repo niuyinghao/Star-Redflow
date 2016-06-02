@@ -2,8 +2,8 @@ package my.service.impl;
 
 import my.dao.WishDao;
 import my.model.persist.User;
-import my.model.persist.place.Stone;
-import my.model.persist.place.Wish;
+import my.model.persist.spirit.Stone;
+import my.model.persist.spirit.Wish;
 import my.service.WishManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

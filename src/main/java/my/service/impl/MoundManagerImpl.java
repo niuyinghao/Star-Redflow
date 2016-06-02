@@ -1,7 +1,7 @@
 package my.service.impl;
 
 import my.dao.MoundDao;
-import my.model.persist.place.Mound;
+import my.model.persist.spirit.Mound;
 import my.service.MoundManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

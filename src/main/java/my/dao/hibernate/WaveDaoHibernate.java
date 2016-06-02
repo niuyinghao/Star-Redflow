@@ -1,7 +1,7 @@
 package my.dao.hibernate;
 
 import my.dao.WaveDao;
-import my.model.persist.place.Wave;
+import my.model.persist.spirit.Wave;
 import org.springframework.stereotype.Repository;
 
 /**

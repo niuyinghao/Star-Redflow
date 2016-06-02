@@ -1,7 +1,7 @@
 package my.service.impl;
 
 import my.dao.WaveDao;
-import my.model.persist.place.Wave;
+import my.model.persist.spirit.Wave;
 import my.service.WaveManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

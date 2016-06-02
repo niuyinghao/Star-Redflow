@@ -1,7 +1,7 @@
 package my.service.impl;
 
 import my.dao.FlowerDao;
-import my.model.persist.place.Flower;
+import my.model.persist.spirit.Flower;
 import my.service.FlowerManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

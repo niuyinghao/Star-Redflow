@@ -1,6 +1,6 @@
 package my.service;
 
-import my.model.persist.place.Flower;
+import my.model.persist.spirit.Flower;
 
 /**
  * Created by niuyinghao on 2016/4/16 for project.

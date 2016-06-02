@@ -4,7 +4,7 @@ import my.model.persist.*;
 import my.model.persist.board.Article;
 import my.model.persist.board.Dislike;
 import my.model.persist.board.Favour;
-import my.model.persist.place.*;
+import my.model.persist.spirit.*;
 import my.model.persist.project.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;

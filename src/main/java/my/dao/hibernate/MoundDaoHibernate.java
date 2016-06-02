@@ -1,7 +1,7 @@
 package my.dao.hibernate;
 
 import my.dao.MoundDao;
-import my.model.persist.place.Mound;
+import my.model.persist.spirit.Mound;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

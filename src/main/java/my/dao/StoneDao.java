@@ -1,6 +1,6 @@
 package my.dao;
 
-import my.model.persist.place.Stone;
+import my.model.persist.spirit.Stone;
 
 /**
  * Created by niuyinghao on 2016/4/16 for project.

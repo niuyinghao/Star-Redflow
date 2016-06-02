@@ -3,7 +3,7 @@ package my.webapp.action;
 import my.Constants;
 import my.model.persist.BaseLog;
 import my.model.persist.User;
-import my.model.persist.place.*;
+import my.model.persist.spirit.*;
 import my.model.persist.project.Pray;
 import my.model.wrapper.*;
 import my.service.*;

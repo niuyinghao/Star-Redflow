@@ -1,6 +1,6 @@
 package my.service;
 
-import my.model.persist.place.Mound;
+import my.model.persist.spirit.Mound;
 
 import java.io.Serializable;
 import java.util.List;

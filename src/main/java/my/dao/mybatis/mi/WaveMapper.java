@@ -2,7 +2,7 @@ package my.dao.mybatis.mi;
 
 import my.dao.mybatis.Mapper;
 import my.model.b_example.WaveExample;
-import my.model.persist.place.Wave;
+import my.model.persist.spirit.Wave;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

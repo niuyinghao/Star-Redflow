@@ -4,6 +4,7 @@ import my.dao.RoleDao;
 import my.model.persist.project.Role;
 import my.service.RoleManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class RoleManagerImpl  extends GenericManagerImpl<Role,Long> implements R
 
 
     @Autowired
-    RoleManagerImpl(RoleDao dao) {
+    RoleManagerImpl(@Qualifier("roleDao") RoleDao dao) {
         super(dao);
     }
 

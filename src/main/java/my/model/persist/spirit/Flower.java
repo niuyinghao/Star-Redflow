@@ -1,11 +1,13 @@
-package my.model.persist.place;
+package my.model.persist.spirit;
 
 
 import my.model.persist.BaseLog;
+import my.model.persist.project.HeartSymbol;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +20,18 @@ public class Flower extends BaseLog {
 	List<Wish> wishes;
 	Mound mound;
 	Date moundTime;
+    HeartSymbol heartSymbol;
 
-//getter and setter
+    @OneToOne
+    public HeartSymbol getHeartSymbol() {
+        return heartSymbol;
+    }
+
+    public void setHeartSymbol(HeartSymbol heartSymbol) {
+        this.heartSymbol = heartSymbol;
+    }
+
+    //getter and setter
 	@ManyToOne
 	public Mound getMound() {
 		return mound;

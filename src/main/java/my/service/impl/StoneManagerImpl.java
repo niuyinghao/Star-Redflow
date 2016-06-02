@@ -1,7 +1,7 @@
 package my.service.impl;
 
 import my.dao.StoneDao;
-import my.model.persist.place.Stone;
+import my.model.persist.spirit.Stone;
 import my.service.StoneManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

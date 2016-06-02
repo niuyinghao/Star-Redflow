@@ -1,10 +1,9 @@
 package my.webapp.action;
 
-import my.model.persist.place.Stone;
-import my.model.persist.place.Wish;
+import my.model.persist.spirit.Stone;
+import my.model.persist.spirit.Wish;
 import my.model.wrapper.MoundTarget;
 import my.service.WishManager;
-import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.tree.Tree;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
