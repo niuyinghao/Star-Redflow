@@ -40,11 +40,11 @@ import java.util.List;
 @Lazy
 public class AreaPage extends BasePage implements Serializable {
     // members
-    Wave wave;
-    Flower flower;
-    Mound mound;
-    Stone stone;
-    Wish wish;
+    Wave newWave;
+    Flower newFlower;
+    Mound newMound;
+    Stone newStone;
+    Wish newWish;
     Mound currentMound = null;
     @Autowired
     private WaveManager waveManager;
@@ -89,20 +89,22 @@ public class AreaPage extends BasePage implements Serializable {
     }
 
     private void persistHeartSymbol(HeartSymbol symbol) {
-        areaManager._getSession().saveOrUpdate(symbol);
+// todo recover
+//        areaManager._getSession().saveOrUpdate(symbol);
     }
 
     public String getHeartSymbolStyle(HeartSymbol symbol) throws Exception {
+
         return HeartSymbolResolver.resolveStyle(symbol);
     }
 
     public void editStone(Stone stone) {
-        this.stone = stone;
+        this.newStone = stone;
         enterEditMode(hillock);
     }
 
     public void enterEditMode(Place wrapper) {
-        this.stone = new Stone();
+        this.newStone = new Stone();
         wrapper.setEditMode(true);
     }
 
@@ -282,33 +284,37 @@ public class AreaPage extends BasePage implements Serializable {
         plainBoard.addColumn(column);
 
 // value
-        if (wave == null) {
-            wave = new Wave();
+        if (newWave == null) {
+            newWave = new Wave();
         }
 
-        if (flower == null) {
-            flower = new Flower();
+        if (newFlower == null) {
+            newFlower = new Flower();
         }
 
-        if (stone == null) {
-            stone = new Stone();
+        if (newStone == null) {
+            newStone = new Stone();
         }
-        if (mound == null) {
-            mound = new Mound();
+        if (newMound == null) {
+            newMound = new Mound();
         }
 
-        if (wave.getHeartSymbol() == null) {
+        if (newWave.getHeartSymbol() == null) {
             HeartSymbol heartSymbol = new HeartSymbol();
-            wave.setHeartSymbol(heartSymbol);
+            heartSymbol.setKind(HeartSymbol.Kind.wave);
+            heartSymbol.setAge(0);
+            newWave.setHeartSymbol(heartSymbol);
         }
 
-        if (flower.getHeartSymbol() == null) {
+        if (newFlower.getHeartSymbol() == null) {
             HeartSymbol heartSymbol = new HeartSymbol();
-            flower.setHeartSymbol(heartSymbol);
+            heartSymbol.setKind(HeartSymbol.Kind.flower);
+            heartSymbol.setAge(0);
+            newFlower.setHeartSymbol(heartSymbol);
         }
-        if (stone.getHeartSymbol() == null) {
+        if (newStone.getHeartSymbol() == null) {
             HeartSymbol heartSymbol = new HeartSymbol();
-            stone.setHeartSymbol(heartSymbol);
+            newStone.setHeartSymbol(heartSymbol);
         }
 
         // context
@@ -371,7 +377,7 @@ public class AreaPage extends BasePage implements Serializable {
             wish.setBelongFlower(null);
         }
         genericSave(wish, wishManager, grail);
-        this.wish = new Wish();
+        this.newWish = new Wish();
     }
 
     public void addWish(Flower belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
@@ -444,12 +450,12 @@ public class AreaPage extends BasePage implements Serializable {
         return plainBoard;
     }
 
-    public Wish getWish() {
-        return wish;
+    public Wish getNewWish() {
+        return newWish;
     }
 
-    public void setWish(Wish wish) {
-        this.wish = wish;
+    public void setNewWish(Wish newWish) {
+        this.newWish = newWish;
     }
 
     public Swamp getSwamp() {
@@ -484,28 +490,28 @@ public class AreaPage extends BasePage implements Serializable {
         this.grail = grail;
     }
 
-    public Flower getFlower() {
-        return flower;
+    public Flower getNewFlower() {
+        return newFlower;
     }
 
-    public void setFlower(Flower flower) {
-        this.flower = flower;
+    public void setNewFlower(Flower newFlower) {
+        this.newFlower = newFlower;
     }
 
-    public Mound getMound() {
-        return mound;
+    public Mound getNewMound() {
+        return newMound;
     }
 
-    public void setMound(Mound mound) {
-        this.mound = mound;
+    public void setNewMound(Mound newMound) {
+        this.newMound = newMound;
     }
 
-    public Stone getStone() {
-        return stone;
+    public Stone getNewStone() {
+        return newStone;
     }
 
-    public void setStone(Stone stone) {
-        this.stone = stone;
+    public void setNewStone(Stone newStone) {
+        this.newStone = newStone;
     }
 
     public BaseLog getWishBelong() {
@@ -516,12 +522,12 @@ public class AreaPage extends BasePage implements Serializable {
         this.wishBelong = wishBelong;
     }
 
-    public Wave getWave() {
-        return wave;
+    public Wave getNewWave() {
+        return newWave;
     }
 
-    public void setWave(Wave wave) {
-        this.wave = wave;
+    public void setNewWave(Wave newWave) {
+        this.newWave = newWave;
     }
 
     public Sea getSea() {

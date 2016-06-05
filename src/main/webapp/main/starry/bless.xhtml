@@ -29,7 +29,7 @@
 
             <h:panelGroup rendered="#{areaPage.grail.editMode}">
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                 action="#{areaPage.addWish(areaPage.wishBelong,areaPage.wish)}"
+                                 action="#{areaPage.addWish(areaPage.wishBelong,areaPage.newWish)}"
                                  update="toolbar,viewEditContent"/>
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                  action="#{areaPage.backToViewMode(areaPage.grail)}" update="toolbar,viewEditContent"/>
@@ -69,7 +69,7 @@
 
                 <h:form rendered="#{areaPage.grail.editMode}">
                     <p:editor style="width:80%;" height="80" widgetVar="_editor"
-                              value="#{areaPage.wish.content}"></p:editor>
+                              value="#{areaPage.newWish.content}"></p:editor>
                 </h:form>
             </h:panelGroup>
         </h:panelGroup>

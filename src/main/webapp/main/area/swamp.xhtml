@@ -5,7 +5,7 @@
       xmlns:pe="http://primefaces.org/ui/extensions" xmlns:ccc="http://java.sun.com/jsf/composite/ccc"
 >
 
-<ui:composition template="/layouts/area.xhtml">
+<ui:composition template="/layouts/areaWithForm.xhtml">
     <ui:define name="title">star</ui:define>
     <ui:param name="bg" value="purple"/>
     <ui:define name="head">
@@ -35,7 +35,7 @@
 
             <h:panelGroup rendered="#{areaPage.swamp.editMode}" >
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                 action="#{areaPage.addFlower(areaPage.flower)}" update="toolbar,viewEditContent"/>
+                                 action="#{areaPage.addFlower(areaPage.newFlower)}" update="toolbar,viewEditContent"/>
                  <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                   actionListener="#{areaPage.backToViewMode(areaPage.swamp)}" update="toolbar,viewEditContent"/>
 
@@ -70,7 +70,7 @@
             </p:dataTable>
 
             <h:form rendered="#{areaPage.swamp.editMode}">
-                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.flower.content}"></p:editor>
+                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.newFlower.content}"></p:editor>
             </h:form>
         </h:panelGroup>
 

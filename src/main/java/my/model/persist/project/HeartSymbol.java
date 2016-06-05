@@ -3,6 +3,7 @@ package my.model.persist.project;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -15,6 +16,7 @@ public class HeartSymbol {
     Kind kind;
 
     @Id
+    @GeneratedValue
     public Long getId() {
         return id;
     }

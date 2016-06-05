@@ -1,11 +1,13 @@
 package my.webapp.util;
 
 import my.model.persist.User;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.security.Principal;
 
 /**
  * Created by yinghao_niu on 8/1 for project.
@@ -20,11 +22,11 @@ public class WebUtil {
 		return false;
 	}
 	public static User getCurrentUser(HttpServletRequest request) {
-		UsernamePasswordAuthenticationToken principal = (UsernamePasswordAuthenticationToken) request.getUserPrincipal();
+		 AbstractAuthenticationToken principal = (AbstractAuthenticationToken) request.getUserPrincipal();
 		if (principal == null) {
 			return null;
 		}
-		return (User) (principal.getPrincipal());
+		return (User) (principal.getPrincipal()  );
 	}
 
 	public boolean isLogin(HttpServletRequest request) {

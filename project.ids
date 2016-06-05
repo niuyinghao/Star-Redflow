@@ -106,10 +106,10 @@
       <index name="FK_Q8VHCTBCSPTE8RL9G3NUPHLFR_INDEX_4" unique="false" columns="MOUND"/>
     </table>
     <table name="HEART_SYMBOL" schema="PUBLIC" catalog="DB" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="AGE" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="KIND" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="CONSTRAINT_1A" columns="ID"/>
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="HEART_SYMBOL_ID_PK" columns="ID"/>
     </table>
     <table name="MOUND" schema="PUBLIC" catalog="DB" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNTQ2RkM4MEVfMzM2OV80NzdEXzk3OTdfQkQyQkRERTlDQzE3KQ==" autoIncrement="true"/>

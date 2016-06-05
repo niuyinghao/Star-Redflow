@@ -11,9 +11,10 @@ public class HeartSymbolResolver {
         String style = null;
         int age = symbol.getAge();
         if (symbol.getKind() == HeartSymbol.Kind.wave) {
+            style = "color:darkred;";
             if (age <= 3) { // mature age;
-                float opacity = age / 3f;
-                style = " filter:alpha(Opacity=80);-moz-opacity:" +
+                float opacity = (age+1) / 3f;
+                style += " filter:alpha(Opacity=80);-moz-opacity:" +
                         opacity +
                         ";opacity: " +
                         opacity +
@@ -21,16 +22,17 @@ public class HeartSymbolResolver {
             }
             else {    // inflation age ;
                 int base = 18;  // 基量
-                int increment = age; // 增量
-                style = " font-size:" +
+                int increment = age * 10; // 增量
+                style += " font-size:" +
                         (base + increment)
                         + "px;";
             }
         }
         else if (symbol.getKind() == HeartSymbol.Kind.flower) {
+            style = " color:pink;";
             if (age <= 3) { // mature age;
-                float opacity = age / 3f;
-                style = " filter:alpha(Opacity=80);-moz-opacity:" +
+                float opacity = (age+1) / 3f;
+                style += " filter:alpha(Opacity=80);-moz-opacity:" +
                         opacity +
                         ";opacity: " +
                         opacity +

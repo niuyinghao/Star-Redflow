@@ -45,7 +45,7 @@
 
                 <h:panelGroup rendered="#{areaPage.hillock.editMode}" >
                     <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                     action="#{areaPage.addOrUpdateStone(areaPage.stone)}" update="outerForm"/>
+                                     action="#{areaPage.addOrUpdateStone(areaPage.newStone)}" update="outerForm"/>
                     <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                      actionListener="#{areaPage.backToViewMode(areaPage.hillock)}" update="viewEditContent,toolbar"/>
 
@@ -73,7 +73,7 @@
                     </p:column>
                 </p:dataTable>
                 <h:panelGroup rendered="#{areaPage.hillock.editMode}">
-                    <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.stone.content}"></p:editor>
+                    <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.newStone.content}"></p:editor>
                 </h:panelGroup>
             </h:panelGroup>
 

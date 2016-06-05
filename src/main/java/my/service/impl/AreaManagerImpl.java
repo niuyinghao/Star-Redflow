@@ -10,13 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by yinghao_niu on 2016/4/24 for Project.
  */
 @Service("areaManager")
-public class AreaManagerImpl implements AreaManager {
+public class AreaManagerImpl implements AreaManager ,Serializable{
 	@Autowired
 	@Qualifier("userDao")
 	private UserDao userDao;

@@ -69,6 +69,15 @@
        border-bottom: white solid 1px !important;
         background-color: black !important;
     }
+
+    .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem{
+        float:none;
+        display: inline-block;
+    }
+
+    .ui-tabmenu-nav{
+        text-align: center;
+    }
 </style>
 
 <h:body>
@@ -79,9 +88,20 @@
     <div class="clearfix"/>
 
     <!--@elvariable id="bg" -->
-    <div id='main' style="height:74%;background-color: #{bg}">
-        <div class="col-sm-12" style="padding-top: 1em">
-            <div class="col-sm-5 btn-group">
+    <div id='main' style="height:74%;background-color: #{bg};padding-top:1em">
+        <div class="col-sm-12">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-2">
+            <span class="fa fa-star-o" style="border: 1px solid black;padding: 2px; font-style: italic;">
+            <p:link value="STAR" outcome="/main/starry/bless.xhtml"></p:link>
+            </span>
+            </div>
+            <div class="col-sm-5"></div>
+        </div>
+
+        <div class="col-sm-12" style="padding-top: .3em">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 btn-group" style="align-content: center;text-align: center">
                 <p:tabMenu activeIndex="#{param.i}">
                     <p:menuitem value="汹海" outcome="/main/area/sea.xhtml" >
                         <f:param name="i" value="0"/>
@@ -99,12 +119,9 @@
                 </p:tabMenu>
 
             </div>
-            <div class="col-sm-2">
-                <span class="fa fa-star-o" style="border: 1px solid black;padding: 2px; font-style: italic;">
-                <p:link value="STAR" outcome="/main/starry/bless.xhtml"></p:link>
-                </span>
-            </div>
-            <div class="col-sm-5"></div>
+
+
+            <div class="col-sm-4"></div>
 
         </div>
 

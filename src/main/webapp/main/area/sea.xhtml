@@ -5,7 +5,7 @@
       xmlns:pe="http://primefaces.org/ui/extensions" xmlns:ccc="http://java.sun.com/jsf/composite/ccc"
 >
 
-<ui:composition template="/layouts/area.xhtml">
+<ui:composition template="/layouts/areaWithForm.xhtml">
     <ui:define name="title">star</ui:define>
     <ui:param name="bg" value="darkred"/>
     <ui:define name="head">
@@ -15,7 +15,7 @@
     <ui:define name="toolbar">
         <c:set var="cid" value="waveList"></c:set>
         <f:facet name="left">
-            <h:form><p:remoteCommand update="navTools" name="updateNav"/></h:form>
+            <p:remoteCommand update="navTools" name="updateNav"/>
             <h:panelGroup id="navTools" rendered="#{!areaPage.sea.editMode}">
                 <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
                                  disabled="#{areaPage.hasNoPrevPage(areaViewScopeSea.waveDataTable)}"
@@ -35,7 +35,7 @@
 
             <h:panelGroup rendered="#{areaPage.sea.editMode}" >
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                 action="#{areaPage.addWave(areaPage.wave)}" update="toolbar,viewEditContent"/>
+                                 action="#{areaPage.addWave(areaPage.newWave)}" update="toolbar,viewEditContent"/>
                  <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                   actionListener="#{areaPage.backToViewMode(areaPage.sea)}" update="toolbar,viewEditContent"/>
 
@@ -51,17 +51,18 @@
                          paginator="true" paginatorPosition="bottom" rows="1"
                          first="#{areaPage.sea.currentIndex}" paginatorTemplate=""
                          binding="#{areaViewScopeSea.waveDataTable}"
-                         lazy="true" id='#{cid}' value="#{value}" var="wish" style="list-style:none" type="none"
+                         lazy="true" id='#{cid}' value="#{value}" var="wave" style="list-style:none" type="none"
                          xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                 <p:column>
 
-                    <p:commandButton style="#{areaPage.getHeartSymbolStyle(areaPage.wave.heartSymbol)}" icon="fa fa-heart-o"
-                                     action="#{areaPage.addSymbolAge(areaPage.wave.heartSymbol)}" update="@this"/>
-                    WAVE#{'#'}#{wish.id}
+                    <p:commandLink style="#{areaPage.getHeartSymbolStyle(areaPage.newWave.heartSymbol)}"
+                                   action="#{areaPage.addSymbolAge(wave.heartSymbol)}" update="@this">
+                                            <i class="fa fa-heart"> </i>
+                            </p:commandLink>
+                    WAVE#{'#'}#{wave.id}
                     <br/>
-                    <h:outputText escape="false" value="#{wish.content}"> </h:outputText>
-                    <h:form>
-                        <p:commandButton icon="fa fa-heart-o" action="#{areaPage.fireWish(wish)}" value="wish">
+                    <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
+                        <p:commandButton icon="fa fa-heart-o" action="#{areaPage.fireWish(wave)}" value="wish">
                         </p:commandButton>
 
                         <ccc:activeWish value="#{areaPage.grail}" index="#{areaPage.grail.currentIndex}"
@@ -75,14 +76,13 @@
                         </p:dataList>
                         </ui:remove>
 
-                    </h:form>
 
                 </p:column>
             </p:dataTable>
 
-            <h:form rendered="#{areaPage.sea.editMode}">
-                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.wave.content}"></p:editor>
-            </h:form>
+            <h:panelGroup rendered="#{areaPage.sea.editMode}">
+                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.newWave.content}"></p:editor>
+            </h:panelGroup>
         </h:panelGroup>
 
     </ui:define>
