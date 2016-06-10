@@ -93,9 +93,14 @@ public class AreaPage extends BasePage implements Serializable {
 //        areaManager._getSession().saveOrUpdate(symbol);
     }
 
-    public String getHeartSymbolStyle(HeartSymbol symbol) throws Exception {
-
-        return HeartSymbolResolver.resolveStyle(symbol);
+    public String getHeartSymbolStyle(Wave wave) throws Exception {
+        HeartSymbol heartSymbol = wave.getHeartSymbol();
+        if (heartSymbol == null) {
+            heartSymbol = new HeartSymbol();
+            wave.setHeartSymbol(heartSymbol);
+            waveManager.saveOrUpdate(wave);
+        }
+        return HeartSymbolResolver.resolveStyle(heartSymbol);
     }
 
     public void editStone(Stone stone) {
