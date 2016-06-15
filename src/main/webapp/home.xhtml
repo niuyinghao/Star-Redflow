@@ -1,9 +1,90 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:pe="http://primefaces.org/ui/extensions" xmlns:ccc="http://java.sun.com/jsf/composite/ccc"
+>
 
-<ui:composition>
+<ui:composition template="/layouts/area.xhtml">
     <ui:define name="title">star</ui:define>
-    <ui:include src="/main/area/sea.xhtml"></ui:include>
+    <ui:param name="bg" value="darkred"/>
+    <ui:define name="head">
+        <style></style>
+    </ui:define>
+
+    <ui:define name="toolbar">
+        <c:set var="cid" value="waveList"></c:set>
+        <f:facet name="left">
+            <h:form><p:remoteCommand update="navTools" name="updateNav"/></h:form>
+            <h:panelGroup id="navTools" rendered="#{!areaPage.sea.editMode}">
+                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
+                                 disabled="#{areaPage.hasNoPrevPage(areaViewScopeSea.waveDataTable)}"
+                                 onclick="PF('#{cid}').getPaginator().prev();updateNav()"/>
+                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
+                                 disabled="#{areaPage.hasNoNextPage(areaViewScopeSea.waveDataTable)}"
+                                 onclick="PF('#{cid}').getPaginator().next();updateNav()"
+
+                />
+
+                <p:commandButton style="font-size: 1.3em;width:1.5em"
+                                 action="#{areaPage.enterEditMode(areaPage.sea)}"
+                                 icon="fa fa-plus"
+                                 update="toolbar,viewEditContent"
+                ></p:commandButton>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{areaPage.sea.editMode}" >
+                <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
+                                 action="#{areaPage.addWave(areaPage.wave)}" update="toolbar,viewEditContent"/>
+                <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
+                                 actionListener="#{areaPage.backToViewMode(areaPage.sea)}" update="toolbar,viewEditContent"/>
+
+            </h:panelGroup>
+        </f:facet>
+    </ui:define>
+
+    <ui:define name="body">
+        <c:set var="cid" value="waveList"></c:set>
+        <c:set var="value" value="#{areaPage.sea}"></c:set>
+        <h:panelGroup id="viewEditContent">
+            <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.sea.editMode}"
+                         paginator="true" paginatorPosition="bottom" rows="1"
+                         first="#{areaPage.sea.currentIndex}" paginatorTemplate=""
+                         binding="#{areaViewScopeSea.waveDataTable}"
+                         lazy="true" id='#{cid}' value="#{value}" var="wish" style="list-style:none" type="none"
+                         xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+                <p:column>
+
+                    <p:commandButton style="#{areaPage.getHeartSymbolStyle(areaPage.wave.heartSymbol)}" icon="fa fa-heart-o"
+                                     action="#{areaPage.addSymbolAge(areaPage.wave.heartSymbol)}" update="@this"/>
+                    WAVE#{'#'}#{wish.id}
+                    <br/>
+                    <h:outputText escape="false" value="#{wish.content}"> </h:outputText>
+                    <h:form>
+                        <p:commandButton icon="fa fa-heart-o" action="#{areaPage.fireWish(wish)}" value="wish">
+                        </p:commandButton>
+
+                        <ccc:activeWish value="#{areaPage.grail}" index="#{areaPage.grail.currentIndex}"
+                                        rendered="#{!areaPage.grail.editMode}" cid="currentWish"></ccc:activeWish>
+                        <ui:remove>
+                            <p:dataList value="#{wish.wishes}" style="border: none;display: inline-block" var="wish" emptyMessage="">
+                                <p:column>
+                                    * #{wish.sign}  | #{wish.content}
+                                    <ccc:prayList wish="wish" />
+                                </p:column>
+                            </p:dataList>
+                        </ui:remove>
+
+                    </h:form>
+
+                </p:column>
+            </p:dataTable>
+
+            <h:form rendered="#{areaPage.sea.editMode}">
+                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.wave.content}"></p:editor>
+            </h:form>
+        </h:panelGroup>
+
+    </ui:define>
 </ui:composition>
 </html>
