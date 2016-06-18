@@ -3,6 +3,7 @@
   <data-source name="PostgreSQL - star@localhost" uuid="541b1c0e-098b-4a54-95be-f6fa7c207360">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
+<<<<<<< HEAD
   <data-source name="H2 - jdbc:h2:tcp://127.0.0.1:8043/./src/test/data/db" uuid="b614168a-b9e1-4abe-98a5-6bcc1ee6880f">
     <database-info product="H2" version="1.4.191 (2016-01-21)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.4.191 (2016-01-21)">
       <identifier-quote-string>&quot;</identifier-quote-string>
@@ -195,5 +196,9 @@
       <foreign-key name="FK_12AVEXS5QOYEYQHO6YM4GXD05" columns="ID" ref-table="WISH" ref-schema="PUBLIC" ref-catalog="DB" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <index name="FK_62A6AI9SWCALCONVM8CSR5LC0_INDEX_A" unique="false" columns="BELONG_WAVE"/>
     </table>
+=======
+  <data-source name="H2 - jdbc:h2:tcp://192.168.223.143:8043/./src/test/data/db" uuid="b614168a-b9e1-4abe-98a5-6bcc1ee6880f">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+>>>>>>> b430047ff4bb2f5a2eb0e396977a9cb3c953d90b
   </data-source>
 </component>
