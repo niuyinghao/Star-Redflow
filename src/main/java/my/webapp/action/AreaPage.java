@@ -43,7 +43,7 @@ public class AreaPage extends BasePage implements Serializable {
     Wave newWave;
     Flower newFlower;
     Mound newMound;
-    Stone newStone;
+    Stone currentEditStone;
     Wish newWish;
     Mound currentMound = null;
     @Autowired
@@ -89,28 +89,43 @@ public class AreaPage extends BasePage implements Serializable {
     }
 
     private void persistHeartSymbol(HeartSymbol symbol) {
-// todo recover
-//        areaManager._getSession().saveOrUpdate(symbol);
+        areaManager._getSession().saveOrUpdate(symbol);
     }
 
-    public String getHeartSymbolStyle(Wave wave) throws Exception {
+    public String getHeartSymbolStyleJson(Wave wave) throws Exception {
         HeartSymbol heartSymbol = wave.getHeartSymbol();
         if (heartSymbol == null) {
             heartSymbol = new HeartSymbol();
+            heartSymbol.setBelong(wave);
             wave.setHeartSymbol(heartSymbol);
             waveManager.saveOrUpdate(wave);
         }
-        return HeartSymbolResolver.resolveStyle(heartSymbol);
+        return HeartSymbolResolver.resolveStyleJson(heartSymbol, wave);
+    }
+
+    public String getHeartSymbolStyleStyle(Wave wave) throws Exception {
+        HeartSymbol heartSymbol = wave.getHeartSymbol();
+        if (heartSymbol == null) {
+            heartSymbol = new HeartSymbol();
+            heartSymbol.setBelong(wave);
+            wave.setHeartSymbol(heartSymbol);
+            waveManager.saveOrUpdate(wave);
+        }
+        return HeartSymbolResolver.resolveStyleStyle(heartSymbol, wave);
     }
 
     public void editStone(Stone stone) {
-        this.newStone = stone;
+        this.currentEditStone = stone;
         enterEditMode(hillock);
     }
 
     public void enterEditMode(Place wrapper) {
-        this.newStone = new Stone();
         wrapper.setEditMode(true);
+    }
+
+    public void nextStoneThenEnterEditMode(Place wrapper) {
+        this.currentEditStone = new Stone();
+        enterEditMode(wrapper);
     }
 
     public void deleteStone(Stone stone) {
@@ -170,7 +185,7 @@ public class AreaPage extends BasePage implements Serializable {
 
     public void backToViewMode(Place wrapper) throws IOException {
         wrapper.setEditMode(false);
-        handleRedirHistory();
+//        handleRedirHistory();
     }
 
     private void handleRedirHistory() throws IOException {
@@ -297,8 +312,8 @@ public class AreaPage extends BasePage implements Serializable {
             newFlower = new Flower();
         }
 
-        if (newStone == null) {
-            newStone = new Stone();
+        if (currentEditStone == null) {
+            currentEditStone = new Stone();
         }
         if (newMound == null) {
             newMound = new Mound();
@@ -306,20 +321,18 @@ public class AreaPage extends BasePage implements Serializable {
 
         if (newWave.getHeartSymbol() == null) {
             HeartSymbol heartSymbol = new HeartSymbol();
-            heartSymbol.setKind(HeartSymbol.Kind.wave);
             heartSymbol.setAge(0);
             newWave.setHeartSymbol(heartSymbol);
         }
 
         if (newFlower.getHeartSymbol() == null) {
             HeartSymbol heartSymbol = new HeartSymbol();
-            heartSymbol.setKind(HeartSymbol.Kind.flower);
             heartSymbol.setAge(0);
             newFlower.setHeartSymbol(heartSymbol);
         }
-        if (newStone.getHeartSymbol() == null) {
+        if (currentEditStone.getHeartSymbol() == null) {
             HeartSymbol heartSymbol = new HeartSymbol();
-            newStone.setHeartSymbol(heartSymbol);
+            currentEditStone.setHeartSymbol(heartSymbol);
         }
 
         // context
@@ -511,12 +524,12 @@ public class AreaPage extends BasePage implements Serializable {
         this.newMound = newMound;
     }
 
-    public Stone getNewStone() {
-        return newStone;
+    public Stone getCurrentEditStone() {
+        return currentEditStone;
     }
 
-    public void setNewStone(Stone newStone) {
-        this.newStone = newStone;
+    public void setCurrentEditStone(Stone currentEditStone) {
+        this.currentEditStone = currentEditStone;
     }
 
     public BaseLog getWishBelong() {

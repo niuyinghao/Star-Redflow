@@ -49,7 +49,7 @@ public class Wave extends BaseLog {
         this.mound = bury;
     }
 
-    @OneToOne
+    @OneToOne(mappedBy = "belong")
     public HeartSymbol getHeartSymbol() {
         return heartSymbol;
     }

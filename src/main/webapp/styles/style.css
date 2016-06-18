@@ -345,3 +345,7 @@ a{
     user-drag: none;
 }
 
+#content{
+    padding-left: 7em;
+    padding-right:7em
+}

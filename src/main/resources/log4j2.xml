@@ -9,7 +9,7 @@
     <Loggers>
         <Logger name="net.sf.ehcache" level="error"/>
         <!-- Suppress success logging from InteractiveAuthenticationSuccessEvent -->
-        <Logger name="org.springframework.security" level="debug"/>
+        <Logger name="org.springframework.security" level="info"/>
         <Logger name="org.apache" level="error"/>
         <Logger name="org.apache.velocity" level="fatal"/>
         <!-- Suppress invalid warning messages from JSF -->

@@ -5,7 +5,7 @@
       xmlns:pe="http://primefaces.org/ui/extensions" xmlns:ccc="http://java.sun.com/jsf/composite/ccc"
 >
 
-<ui:composition template="/layouts/areaWithForm.xhtml">
+<ui:composition template="/layouts/place.xhtml">
     <ui:define name="title">star</ui:define>
     <ui:param name="bg" value="purple"/>
     <ui:define name="head">
@@ -70,7 +70,7 @@
             </p:dataTable>
 
             <h:form rendered="#{areaPage.swamp.editMode}">
-                <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.newFlower.content}"></p:editor>
+                <p:editor  style="" height="80" widgetVar="_editor" value="#{areaPage.newFlower.content}"></p:editor>
             </h:form>
         </h:panelGroup>
 

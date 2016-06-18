@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="project" >
+    <target name="_scp" >
+        <scp file="D:\my\p1628\target\red\home.xhtml" todir="vagrant:vagrant@192.168.33.10:/tmp/cmd.txt"  trust="true"/>
+    </target>
+</project>

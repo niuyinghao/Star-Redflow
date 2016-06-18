@@ -1,10 +1,13 @@
 package my.model.persist.project;
 
+import my.model.persist.BaseLog;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * Created by niuyinghao on 2016/6/2 for project.
@@ -13,7 +16,17 @@ import javax.persistence.Id;
 public class HeartSymbol {
     private Long id;
     int age;
-    Kind kind;
+
+    BaseLog belong;
+
+    @OneToOne()
+    public BaseLog getBelong() {
+        return belong;
+    }
+
+    public void setBelong(BaseLog belong) {
+        this.belong = belong;
+    }
 
     @Id
     @GeneratedValue
@@ -23,15 +36,6 @@ public class HeartSymbol {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Enumerated(EnumType.ORDINAL)
-    public Kind getKind() {
-        return kind;
-    }
-
-    public void setKind(Kind kind) {
-        this.kind = kind;
     }
 
     public int getAge() {

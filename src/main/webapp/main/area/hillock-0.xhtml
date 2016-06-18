@@ -5,7 +5,7 @@
       xmlns:ccc="http://java.sun.com/jsf/composite/ccc"
 >
 
-<ui:composition template="/layouts/areaWithForm.xhtml">
+<ui:composition template="/layouts/place.xhtml">
     <ui:define name="title">star</ui:define>
     <ui:param name="bg" value="green"/>
     <ui:define name="divA">
@@ -45,7 +45,7 @@
 
                 <h:panelGroup rendered="#{areaPage.hillock.editMode}" >
                     <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                     action="#{areaPage.addOrUpdateStone(areaPage.newStone)}" update="outerForm"/>
+                                     action="#{areaPage.addOrUpdateStone(areaPage.currentEditStone)}" update="outerForm"/>
                     <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                      actionListener="#{areaPage.backToViewMode(areaPage.hillock)}" update="viewEditContent,toolbar"/>
 
@@ -66,14 +66,14 @@
                              xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                     <p:column>
                         STONE#{'#'}#{s.id}   &#160;
-                        <p:commandLink value="edit" action="#{areaPage.editStone(s)}" update="viewEditContent,toolbar"></p:commandLink> &#160;
+                        <p:commandLink value="edit" action="#{areaPage.currentEditStone(s)}" update="viewEditContent,toolbar"></p:commandLink> &#160;
                         <p:commandLink value="delete" action="#{areaPage.deleteStone(s)}" update="outerForm"></p:commandLink>
                         <hr/>
                         <h:outputText escape="false" value="#{s.content}"> </h:outputText>
                     </p:column>
                 </p:dataTable>
                 <h:panelGroup rendered="#{areaPage.hillock.editMode}">
-                    <p:editor  style="width:80%;" height="80" widgetVar="_editor" value="#{areaPage.newStone.content}"></p:editor>
+                    <p:editor  style="" height="80" widgetVar="_editor" value="#{areaPage.currentEditStone.content}"></p:editor>
                 </h:panelGroup>
             </h:panelGroup>
 

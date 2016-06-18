@@ -22,7 +22,7 @@ public class Flower extends BaseLog {
 	Date moundTime;
     HeartSymbol heartSymbol;
 
-    @OneToOne
+    @OneToOne(mappedBy = "belong")
     public HeartSymbol getHeartSymbol() {
         return heartSymbol;
     }
