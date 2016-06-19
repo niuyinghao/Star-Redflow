@@ -23,8 +23,13 @@ public class BaseObj {
      * 创建人
      */
     User creator;
+
+
+    @Deprecated
     int buryDepth;
 
+    @Transient
+    @Deprecated
     @Column(columnDefinition = " number(2,0) default 0")
     public int getBuryDepth() {
         return buryDepth;

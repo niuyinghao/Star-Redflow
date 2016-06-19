@@ -31,6 +31,17 @@ public class BaseLog extends BaseObj implements Serializable {
      */
     String flag;
 
+    boolean buried;
+
+    @Basic
+    public boolean isBuried() {
+        return buried;
+    }
+
+    public void setBuried(boolean buried) {
+        this.buried = buried;
+    }
+
     //getter and setter
     @Column(columnDefinition = " INT DEFAULT 0 ")
     public String getFlag() {

@@ -28,7 +28,9 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yinghao_niu on 2016/4/2 for Project.
@@ -78,6 +80,9 @@ public class AreaPage extends BasePage implements Serializable {
     private AreaManager areaManager;
     private Wish currentWish;
     List hillockMenuWishes;
+    @Autowired
+    private MoundTargetLazyModel moundTargetLazyModel;
+
 
     public void addSymbolAge(HeartSymbol symbol) {
         if (symbol == null) {
@@ -232,6 +237,13 @@ public class AreaPage extends BasePage implements Serializable {
 
     public void alterMoundToolIndex(Mound mound, int toolIndex) {
         mound.setToolIndex(toolIndex);
+    }
+
+
+    public void openChooseMoundTargetDialog() {
+        Map options = new HashMap<>();
+        options.put("modal", true);
+        RequestContext.getCurrentInstance().openDialog("/main/misc/plain/chooseMoundTarget.xhtml",options,null);
     }
 
     public void addMinusBuryCountOrChooseTarget(Mound mound) {
@@ -434,6 +446,10 @@ public class AreaPage extends BasePage implements Serializable {
     //getter and setter
     public Wish getCurrentWish() {
         return currentWish;
+    }
+
+    public MoundTargetLazyModel getMoundTargetLazyModel() {
+        return moundTargetLazyModel;
     }
 
     public void setCurrentWish(Wish currentWish) {

@@ -11,26 +11,19 @@
     <ui:define name="head">
         <style>
             .mound {
-                width: 200px;
                 padding: 0;
                 margin: 0;
-                /*border:none;*/
+                height:100%;
             }
 
-            .mound .ui-panel-titlebar {
-                padding: .4em 2px .1em 0 !important;
+            #content{
+                height:80%;
             }
-
-            .mound table {
-                width: 100%;
+            #content form{
+                height:inherit;
             }
-
-            .mound table button {
-                width: 100%;
-            }
-
-            .mound .ui-panel-content {
-                padding: 0;
+            #content .mound{
+                border:none;
             }
 
             button {
@@ -45,49 +38,13 @@
     <ui:define name="toolbar">
         <c:set var="cid" value="#moundList"></c:set>
         <f:facet name="left">
-            <h:panelGroup>
-                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
-                                 onclick="PF('#{cid}').getPaginator().next()"/>
-                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
-                                 onclick="PF('#{cid}').getPaginator().prev()"/>
-            </h:panelGroup>
         </f:facet>
     </ui:define>
 
     <ui:define name="body" >
         <script>
-            function alterCursor(target, url) {
-                var cursor = "url(" + url + "),default";
-                if (url == null) {
-//                    target.css('cursor', 'default');
-                    target.find('.outer_container').css('cursor', 'default');
-                    return false;
-                }
-//                target.css('cursor',cursor);
-                target.find('.outer_container').css('cursor', cursor);
-                return false;
-            }
 
 
-            $(function() {
-                $(".mound").each(function () {
-                    var toolIndex=$(this).find(".loadedToolIndex");
-                    debugger;
-                    if(toolIndex==null) {
-                        alterCursor($(this));
-                    }   else{
-                        var value = toolIndex.val();
-                        if(value==2) {
-                            alterCursor($(this),'/styles/cursor/sholveRight.ico')
-                        }else if(value==1) {
-                            alterCursor($(this),'/styles/cursor/sholveLeft.ico')
-                        }
-                        else{
-                            alterCursor($(this));
-                        }
-                    }
-                })
-            });
         </script>
         <style>
             .plain .ui-grid-row{
@@ -97,65 +54,23 @@
             .mound {
                 display: block;
                 margin:auto;
+                cursor: pointer;
+                background: black;
             }
+            .mound:hover{
+                background-color: rgba(0,0,0,0.6);
+            }
+
+
         </style>
         <h:panelGroup class="plain">
             <!--<input type="button" class="shovelLeft"  ></input>-->
-            <p:dataGrid value="#{areaPage.plain}"
-                        binding="#{areaViewScopePlain.dataGridUI}"
-                        lazy="true" var="m" emptyMessage="" rows="3" columns="3"
-                        layout="grid">
-                <h:form>
-                    <p:panel styleClass="mound" header="" id="bornMound">
-                        <input type="hidden" class="loadedToolIndex" value="#{m.toolIndex}"/>
-                        <h:panelGroup class="outer_container">
-                            <h:panelGroup id="container">
-                                <c:set value="#{p:component('divClick')}" var="clientId"></c:set>
-                                <div class='buryArea'
-                                     style="height:100px;background-color: #{areaPage.getBuryColor(m.buryDepth)}"
-                                     onclick=";var targetId='#'+'#{clientId}'.replace(/:/g,'\\:');$(targetId).trigger('click')"
-                                >
-                                    <h:outputText value="#{areaPage.genMoundContent(m)}" escape="false"></h:outputText>
-                                </div>
-                            </h:panelGroup>
-                        </h:panelGroup>
-                        <p:commandLink name="divClick" id='divClick' immediate="true" value=""
-                                       style="display: none;"
-                                       action="#{areaPage.addMinusBuryCountOrChooseTarget(m)}"
-                                       update="container">
-                            <p:ajax event="dialogReturn" update="bornMound"></p:ajax>
-                        </p:commandLink>
-                        <f:facet name="actions" >
-                            <!--bury 1 unbury 2-->
-                            <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
-                                           actionListener="#{areaPage.alterToChooseTargetThenInvoke(m)}"
-                                           style=" #{areaPage.getToolHighlightStyle(m,3)}"
-                                           update="bornMound"
-                                           oncomplete=";alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq)"
-                            >
-                                <h:outputText style="font-size: 1.5em" styleClass="fa fa-list-alt"/>
-                               <p:ajax event="dialogReturn" update="bornMound"></p:ajax>
-                            </p:commandLink>
-                            <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
-                                           style=" #{areaPage.getToolHighlightStyle(m,2)}"
-                                           update="bornMound"
-                                           actionListener="#{areaPage.alterMoundToolIndex(m,2)}"
-                                           oncomplete="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq,'/styles/cursor/sholveRight.ico')"
-                            >
-                                <h:outputText style="font-size: 1.5em" styleClass="fa icon-bi11-01"/>
-                            </p:commandLink>
-                            <p:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"
-                                           style=" #{areaPage.getToolHighlightStyle(m,1)}"
-                                           update="bornMound"
-                                           actionListener="#{areaPage.alterMoundToolIndex(m,1)}"
-                                           oncomplete="alterCursor(PF('widget_' + '#{p:component('bornMound')}'.replace(/:/g,'_')).jq,'/styles/cursor/sholveLeft.ico')"
-                            >
-                                <h:outputText style="font-size: 1.5em" styleClass="fa icon-bi11-012"/>
-                            </p:commandLink>
-                        </f:facet>
-                    </p:panel>
-            </h:form>
-                </p:dataGrid>
+            <h:panelGroup >
+                <p:commandButton style="width:100%;height:100%;;border:none" styleClass="mound"
+                value=""
+                action="#{areaPage.openChooseMoundTargetDialog()}"
+                />
+            </h:panelGroup>
         </h:panelGroup>
     </ui:define>
 </ui:composition>

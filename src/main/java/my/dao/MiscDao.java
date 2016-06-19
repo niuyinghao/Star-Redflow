@@ -15,7 +15,9 @@ public interface MiscDao  {
 
     void update(Object baseLog);
 
-	Session getSession();
+    List getNotBuriedTarget();
+
+    Session getSession();
 
 	List getAllWaveOrFlowerNotMound();
 

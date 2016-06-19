@@ -12,3 +12,6 @@
 /project.iml
 /star.iml
 /project.iws
+.log
+src/main/resources/packaged/
+target/

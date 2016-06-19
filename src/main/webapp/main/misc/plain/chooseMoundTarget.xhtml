@@ -10,24 +10,11 @@
         <ui:define name="head"></ui:define>
         <ui:define name="body">
             <h:form>
-                <p:tree value="#{areaViewScopePlain.moundTargetTreeRoot}"
-                        binding="#{areaViewScopePlain.moundSelectTargetTree}"
-                        selection="#{areaViewScopePlain.selectedMoundTargetNodes}"
-                        selectionMode="checkbox"
-                        var="data"
-                        id="tree"
-                        dynamic="true"
-                        nodeVar="node"
-                >
-                    <p:ajax id='expandEvent' event="expand" listener="#{areaViewScopePlain.onMoundSelectTreeExpand}"
-                            update="@this"/>
-                    <p:treeNode id="treeNode"  expandedIcon="ui-icon-folder-open"
-                                collapsedIcon="ui-icon-folder-collapsed">
-                        <h:outputText value="#{data.id}" />
-                    </p:treeNode>
-                </p:tree>
-                <p:commandButton value="ok"
-                                 action="#{areaPage.doDialogChooseMoundTargetClose(areaViewScopePlain.selectedMoundTargetNodes)}"></p:commandButton>
+                <p:dataList value="#{areaPage.moundTargetLazyModel}" lazy="true"
+                            paginator="true" rows="10"
+                            var="target">
+
+                </p:dataList>
             </h:form>
         </ui:define>
     </ui:composition>

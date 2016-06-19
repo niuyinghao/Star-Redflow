@@ -84,10 +84,11 @@
                 <ui:remove>
                     <p:commandButton icon="fa fa-heart-o" action="#{areaPage.fireWish(wave)}" value="wish">
                     </p:commandButton>
+                    <ccc:activeWish value="#{areaPage.grail}" index="#{areaPage.grail.currentIndex}"
+                                    cid="currentWish"></ccc:activeWish>
                 </ui:remove>
 
-                <ccc:activeWish value="#{areaPage.grail}" index="#{areaPage.grail.currentIndex}"
-                                 cid="currentWish"></ccc:activeWish>
+
 
             </h:panelGroup>
 
