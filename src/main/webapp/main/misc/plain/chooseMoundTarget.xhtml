@@ -7,14 +7,31 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 <f:view>
     <ui:composition template="/layouts/default.xhtml">
-        <ui:define name="head"></ui:define>
+        <ui:define name="head">
+
+            <style type="text/css">
+                .moundTarget{
+                    background-color: yellow;
+                    border-radius: 3%;
+                }
+
+                .moundTarget:hover{
+                    background-color: darkkhaki;
+                }
+
+            </style>
+        </ui:define>
         <ui:define name="body">
             <h:form>
                 <p:dataList value="#{areaPage.moundTargetLazyModel}" lazy="true"
                             paginator="true" rows="10"
                             var="target">
 
+                    <div class="moundTarget" onclick="doMound([{name:'id',value:'#{target.id}'}])">
+                        #{target.id} #{target.content}
+                    </div>
                 </p:dataList>
+                <p:remoteCommand name="doMound" action="#{areaPage.doMound()}" />
             </h:form>
         </ui:define>
     </ui:composition>

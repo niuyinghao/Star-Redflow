@@ -91,7 +91,12 @@ public class AreaManagerImpl implements AreaManager ,Serializable{
 		return miscDao.getSession();
 	}
 
-	@Override
+    @Override
+    public void doMound(String id) {
+        miscDao.doMound(id);
+    }
+
+    @Override
     public List getAllWaveOrFlowerNotMound() {
         return miscDao.getAllWaveOrFlowerNotMound();
     }

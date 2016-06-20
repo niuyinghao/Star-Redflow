@@ -20,7 +20,9 @@ public interface AreaManager {
 
 	Session _getSession();
 
-	List getAllWaveOrFlowerNotMound();
+    void doMound(String id);
+
+    List getAllWaveOrFlowerNotMound();
 
     List getMoundTarget();
 }

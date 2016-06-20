@@ -1,6 +1,7 @@
 package my.webapp.action;
 
 import my.Constants;
+import my.dao.MiscDao;
 import my.model.persist.BaseLog;
 import my.model.persist.User;
 import my.model.persist.project.HeartSymbol;
@@ -83,6 +84,11 @@ public class AreaPage extends BasePage implements Serializable {
     @Autowired
     private MoundTargetLazyModel moundTargetLazyModel;
 
+    public void doMound() {
+        String id = getRequest().getParameter("id");
+        areaManager.doMound(id);
+        RequestContext.getCurrentInstance().closeDialog(null);
+    }
 
     public void addSymbolAge(HeartSymbol symbol) {
         if (symbol == null) {
@@ -193,13 +199,6 @@ public class AreaPage extends BasePage implements Serializable {
 //        handleRedirHistory();
     }
 
-    private void handleRedirHistory() throws IOException {
-        if (needBackToHistory) {
-            needBackToHistory = !needBackToHistory;
-            FacesContext.getCurrentInstance().getExternalContext().redirect(mostRecentHistory);
-        }
-    }
-
     public String getBuryColor(int depth) {
         int value = (int) (((float) depth / Constants.MOUND_BURIED_BOUND) * 255);
         String hex = Integer.toHexString(255 - value).toUpperCase();
@@ -237,13 +236,6 @@ public class AreaPage extends BasePage implements Serializable {
 
     public void alterMoundToolIndex(Mound mound, int toolIndex) {
         mound.setToolIndex(toolIndex);
-    }
-
-
-    public void openChooseMoundTargetDialog() {
-        Map options = new HashMap<>();
-        options.put("modal", true);
-        RequestContext.getCurrentInstance().openDialog("/main/misc/plain/chooseMoundTarget.xhtml",options,null);
     }
 
     public void addMinusBuryCountOrChooseTarget(Mound mound) {
@@ -287,6 +279,12 @@ public class AreaPage extends BasePage implements Serializable {
             }
         }
         areaManager.updateBaseObj(mound);
+    }
+
+    public void openChooseMoundTargetDialog() {
+        Map options = new HashMap<>();
+        options.put("modal", true);
+        RequestContext.getCurrentInstance().openDialog("/main/misc/plain/chooseMoundTarget.xhtml", options, null);
     }
 
     public boolean hasNoNextPage(UIData uidata) {
@@ -373,6 +371,13 @@ public class AreaPage extends BasePage implements Serializable {
         }
     }
 
+    private void handleRedirHistory() throws IOException {
+        if (needBackToHistory) {
+            needBackToHistory = !needBackToHistory;
+            FacesContext.getCurrentInstance().getExternalContext().redirect(mostRecentHistory);
+        }
+    }
+
     public void addFlower(Flower flower) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         genericSave(flower, flowerManager, swamp);
     }
@@ -448,12 +453,12 @@ public class AreaPage extends BasePage implements Serializable {
         return currentWish;
     }
 
-    public MoundTargetLazyModel getMoundTargetLazyModel() {
-        return moundTargetLazyModel;
-    }
-
     public void setCurrentWish(Wish currentWish) {
         this.currentWish = currentWish;
+    }
+
+    public MoundTargetLazyModel getMoundTargetLazyModel() {
+        return moundTargetLazyModel;
     }
 
     public List<SelectItem> getHillockMenuWishes() {

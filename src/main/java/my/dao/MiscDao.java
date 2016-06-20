@@ -15,6 +15,8 @@ public interface MiscDao  {
 
     void update(Object baseLog);
 
+    void doMound(String id);
+
     List getNotBuriedTarget();
 
     Session getSession();

@@ -49,8 +49,13 @@ public class BaseObj {
     }
 
     @Id
-    @GeneratedValue(generator = "g")
-    @GenericGenerator(name = "g", strategy = "identity")
+    // @issue strategy
+    // identity when table per class cause :
+//    Cannot use identity column key generation with <union-subclass> ( TABLE_PER_CLASS )
+//    @GeneratedValue(generator = "g")
+//    @GenericGenerator(name = "g", strategy = "identity")
+
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public Long getId() {
         return id;
     }

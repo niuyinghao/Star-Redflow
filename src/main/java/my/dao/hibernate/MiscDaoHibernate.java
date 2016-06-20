@@ -35,6 +35,13 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
     }
 
     @Override
+    public void doMound(String id) {
+        getSession().createQuery("update BaseLog set buried=true where id=:id")
+                .setLong("id", Long.parseLong(id))
+                .executeUpdate();
+    }
+
+    @Override
     public List getNotBuriedTarget() {
         return getSession().createQuery(" from BaseLog  where buried=false order by  createTime desc ").list();
     }
