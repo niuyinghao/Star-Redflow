@@ -24,5 +24,7 @@ public interface MiscDao  {
 	List getAllWaveOrFlowerNotMound();
 
     List getMoundTarget();
+
+    Long getUserSequence();
 }
 

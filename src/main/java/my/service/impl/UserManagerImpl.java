@@ -1,5 +1,6 @@
 package my.service.impl;
 
+import my.dao.MiscDao;
 import my.dao.UserDao;
 import my.model.persist.User;
 import my.service.UserExistsException;
@@ -24,8 +25,10 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
 
 	// members
 	UserDao userDao;
+    @Autowired
+    private MiscDao miscDao;
 
-	//constructs
+    //constructs
 	@Autowired
 	UserManagerImpl(@Qualifier("userDao") UserDao userDao) {
         super(userDao);
@@ -62,7 +65,24 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
 
 	}
 
-	@Override
+    @Override
+    public String getUserSequence() {
+        Long userSequence = miscDao.getUserSequence();
+        String hexString = Long.toHexString(userSequence);
+        int blankCounter=hexString.length() % 4;
+        int blank = 4 - blankCounter;
+        return repeatString(blank,"0") + hexString.toUpperCase();
+    }
+
+    private String repeatString(int blank, String s) {
+        String ret = "";
+        for (int i = 0; i < blank; i++) {
+            ret += s;
+        }
+        return ret;
+    }
+
+    @Override
 	public List<User> getAll() {
 		return null;
 	}

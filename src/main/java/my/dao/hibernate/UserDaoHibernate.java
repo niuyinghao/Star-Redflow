@@ -3,9 +3,12 @@ package my.dao.hibernate;
 import my.dao.UserDao;
 import my.model.persist.User;
 import my.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
@@ -20,7 +23,10 @@ import java.util.List;
 public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements UserService, UserDao,UserDetailsService {
 
 
-	public UserDaoHibernate() {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public UserDaoHibernate() {
 		super(User.class);
 	}
 
@@ -45,7 +51,9 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
 
 	@Override
 	public void saveUser(User user) {
-		Serializable id = getSession().save(user);
+        String encode = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encode);
+        Serializable id = getSession().save(user);
 		user.setId((Long) id);
 	}
 

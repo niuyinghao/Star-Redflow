@@ -74,6 +74,13 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
 
     }
 
+    @Override
+    public Long getUserSequence() {
+        BigInteger seq = (BigInteger) getSession().createSQLQuery(" SELECT nextval('register_sequence')").uniqueResult();
+        Long registerSeq =  seq.longValue();
+        return registerSeq;
+    }
+
     //methods
     public List x_getMoundTarget() {
         String columns = "create_time as createTime,id as id , sign as sign";

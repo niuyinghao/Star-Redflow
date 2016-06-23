@@ -20,7 +20,7 @@ import java.net.URL;
 @ContextConfiguration({
         "classpath:applicationContext-resources.xml",
         "classpath:applicationContext-service.xml",
-        "classpath:/**/applicationContext.xml"
+        "classpath:/**/applicationContext.xml*"
 })
 
 @WebAppConfiguration
