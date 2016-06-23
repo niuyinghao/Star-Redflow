@@ -5,6 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+<!--
     <bean id = "org.h2.tools.Server"
           class="org.h2.tools.Server"
           factory-method="createTcpServer"
@@ -12,13 +13,14 @@
           destroy-method="stop" >
         <constructor-arg value="-tcp,-tcpAllowOthers,-tcpPort,8043" />
     </bean>
+-->
 
     <!-- For mail settings and future properties files -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="locations">
             <list>
-                <value>classpath:jdbc.dev.properties</value>
+                <value>classpath:jdbc.properties</value>
                 <value>classpath:mail.properties</value>
             </list>
         </property>

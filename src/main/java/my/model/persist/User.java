@@ -79,7 +79,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 	}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
 //	@NotNull(applyIf = "this.carrier EQUALS 'GlobalCrossing'")
     public Long getId() {
         return id;

@@ -56,8 +56,8 @@ public class UserDaoMybatisImpl extends GenericDaoMybatisImpl<User, Long> implem
 			return null;
 		}
 		User user = users.get(0);
-		Set<Role> roles = ((AppUserMapper) mapper).selectRoles(user.getId());
-		user.setRoles(roles);
+//		Set<Role> roles = ((AppUserMapper) mapper).selectRoles(user.getId());
+//		user.setRoles(roles);
 		return user;
 	}
 

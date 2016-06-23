@@ -35,12 +35,13 @@ public class HibernateDDLGenerator {
 			Context.class,
 			Music.class,
 			Wish.class ,
+            HeartSymbol.class
 	};
 
 	@Test
 	public void doCreate() {
 		new HibernateDDLGenerator().create(
-				Dialect.MYSQL,
+				Dialect.POSTGRES,
 				classes
 		);
 	}
@@ -53,9 +54,9 @@ public class HibernateDDLGenerator {
 
 	private Configuration getConfiguration(Dialect dialect, Class<?>[] classes) {
 		Configuration configuration = new Configuration();
-		configuration.setProperty("hibernate.connection.url", "jdbc:h2:tcp://127.0.0.1:8043/./src/test/data/db");
-		configuration.setProperty("hibernate.connection.username", "sa");
-		configuration.setProperty("hibernate.connection.password", "");
+		configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/star");
+		configuration.setProperty("hibernate.connection.username", "star");
+		configuration.setProperty("hibernate.connection.password", "star");
 		configuration.setProperty(Environment.DIALECT, dialect.getClassName());
 		configuration.setNamingStrategy(new ImprovedNamingStrategy());
 		for (Class<?> entityClass : classes) {
@@ -70,7 +71,7 @@ public class HibernateDDLGenerator {
 		schemaExport.setDelimiter(";");
 //		schemaExport.setOutputFile(String.format("%s_%s.%s ", new Object[]{"ddl", dialect.name().toLowerCase(), "sql"}));
 		boolean consolePrint = true;
-		boolean exportInDatabase = false;
+		boolean exportInDatabase = true;
 		schemaExport.create(consolePrint, exportInDatabase);
 	}
 

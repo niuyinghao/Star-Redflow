@@ -3,9 +3,11 @@ package my.model.persist;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 
@@ -21,6 +23,7 @@ public class Context implements Serializable {
     @GeneratedValue
     Long id;
     @OneToOne
+    @JoinColumn(name = "userx")
     User user;
 
 
