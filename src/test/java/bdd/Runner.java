@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 @CucumberOptions(
         features = {"src\\test\\java\\bdd\\feature"},
         glue = {"com.cdi.igs.adapter.cucumber", "cucumber.api.spring", "bdd.steps"},
-        tags = {"@smoke"},
+        tags = {"@test"},
         format = {"json:target/integration_cucumber.json"}
 )
 public class Runner {
