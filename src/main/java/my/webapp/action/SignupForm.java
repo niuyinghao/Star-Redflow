@@ -58,6 +58,7 @@ public class SignupForm extends BasePage implements Serializable {
 	}
 
     public String save() throws InvocationTargetException, NoSuchMethodException, UserExistsException, IllegalAccessException {
+
         userManager.saveUser(user);
         final UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                 user.getUsername(), user.getPassword(), user.getAuthorities());

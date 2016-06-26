@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +48,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String username;                    // required
     private String password;                    // required
     private String confirmPassword;
-    private String email;                       // required; unique
+    private String email;
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
     private boolean enabled;
@@ -107,7 +108,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
 
 
-    @Column(nullable = false, unique = true)
+    @Basic
     public String getEmail() {
         return email;
     }

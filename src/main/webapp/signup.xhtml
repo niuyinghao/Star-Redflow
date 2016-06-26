@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
 
 <ui:composition template="/layouts/default.xhtml">
     <ui:define name="title">#{text['signup.title']}</ui:define>
@@ -23,14 +24,16 @@
                         <div class="col-sm-6 form-group">
                             <h:outputLabel styleClass="control-label" for="password" value="#{text['user.password']}"/>
                             <h:inputSecret styleClass="form-control" value="#{signupForm.user.password}" id="password"
-                                           redisplay="true" required="true"/>
+                                           redisplay="true" required="true" requiredMessage="请输入密码">
+                            </h:inputSecret>
                             <p:message for="password"/>
                         </div>
                         <div class="col-sm-6 form-group">
                             <h:outputLabel styleClass="control-label" for="confirmPassword"
                                            value="#{text['user.confirmPassword']}"/>
                             <h:inputSecret styleClass="form-control" value="#{signupForm.user.confirmPassword}" id="confirmPassword"
-                                           redisplay="true" required="true">
+                                requiredMessage="请输入确认密码"           redisplay="true" required="true">
+
                             <!--p:validateEqual for="password"/-->
                             </h:inputSecret>
                             <p:message for="confirmPassword"/>
@@ -38,20 +41,19 @@
                     </div>
 
 
-
+                    <o:validateEqual components="confirmPassword password" message="两次输入密码不一致" showMessageFor="password"/>
 
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <h:outputLabel styleClass="control-label" for="email" value="#{text['user.email']}"/>
-                            <h:inputText styleClass="form-control" value="#{signupForm.user.email}" id="email" required="true"/>
+                            <h:inputText styleClass="form-control" value="#{signupForm.user.email}" id="email"
+                                         validator="#{webUtil.validateEmail}"
+                                          validatorMessage="邮箱格式不正确"
+                            />
                             <p:message for="email"/>
                         </div>
 
                     </div>
-
-
-
-
 
                     <div class="form-group form-actions">
                         <h:commandButton value="#{text['button.register']}" action="#{signupForm.save}" id="save"
