@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +50,8 @@ public class Flower extends BaseLog {
 		this.moundTime = moundTime;
 	}
 
-	@OneToMany(mappedBy = "belongFlower")
+//	@OneToMany(mappedBy = "belongFlower")
+    @Transient
 	public List<Wish> getWishes() {
 		return wishes;
 	}

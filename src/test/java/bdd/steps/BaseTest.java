@@ -11,6 +11,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -36,19 +38,25 @@ public class BaseTest extends TestCase {
 //
 //        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 //        driver = new ChromeDriver(capabilities);
-        driver = new FirefoxDriver();
+
+        FirefoxProfile firefoxProfile = new ProfilesIni().getProfile("default");
+        driver = new FirefoxDriver(firefoxProfile);
 
         baseUrl = "http://127.0.0.1:1234";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     public void afterStep(Scenario scenario) throws Exception {
+        boolean failed = scenario.isFailed();
+
         File screenshotAs = ((FirefoxDriver) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenshotAs, new File("target\\test\\screenshot\\" +
                 this.getTemplateId() + ";" + scenario.getName() + ";" +
                 scenario.getSourceTagNames() + ";" +
                 scenario.getStatus() + ".jpg"));
-        driver.quit();
+        if (!failed) {
+            driver.quit();
+        }
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);

@@ -22,8 +22,6 @@ public class MyStepdefs extends BaseTest{
     }
 
 
-
-
     @Then("^the account register, user got login$")
     public void theAccountRegisterUserGotLogin() throws Throwable {
     }
@@ -45,9 +43,20 @@ public class MyStepdefs extends BaseTest{
 
 
     @Given("^user has login with \"([^\"]*)\" and \"([^\"]*)\"$")
-    public void userHasLoginWithAnd(String arg0, String arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void userHasLoginWithAnd(String arg0, String arg1,DataTable data) throws Throwable {
+
+        arg0 = data.getGherkinRows().get(0).getCells().get(0);
+        arg1 = data.getGherkinRows().get(0).getCells().get(1);
+        driver.get(baseUrl + "/login");
+        assertEquals("Star redflow", driver.getTitle());
+        driver.findElement(By.id("j_username")).clear();
+        driver.findElement(By.id("j_username")).sendKeys(arg0);
+        driver.findElement(By.id("j_password")).clear();
+        driver.findElement(By.id("j_password")).sendKeys(arg1);
+        driver.findElement(By.id("rememberMe")).click();
+
+        driver.findElement(By.name("login")).click();
+        assertEquals("Star redflow", driver.getTitle());
     }
 
     @Given("^in the sea page$")

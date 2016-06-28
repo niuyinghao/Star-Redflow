@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,8 @@ public class Wave extends BaseLog {
     Date moundTime;
     HeartSymbol heartSymbol;
 
-    @OneToMany(mappedBy = "belongWave", fetch = FetchType.EAGER)
+//    @OneToMany(mappedBy = "belongWave", fetch = FetchType.EAGER)
+    @Transient
     public List<Wish> getWishes() {
         return wishes;
     }

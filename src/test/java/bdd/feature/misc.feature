@@ -15,9 +15,9 @@ Feature: system misc
     Then the account register, user got login
     Examples:
       | id | passwrod | confirmPasswd | email           |
-#      | 1  | welcome  | welcome       | email           |
-#      | 2  | welcome  | welcome       | email@email.com |
-#      | 3  | welcome  | welcome       |                 |
+      | 1  | welcome  | welcome       | email           |
+      | 2  | welcome  | welcome       | email@email.com |
+      | 3  | welcome  | welcome       |                 |
       | 4  | welcome  |               |                 |
       | 5  |          | welcome       |                 |
-#      | 6  | welcome2 | welcome       |                 |
+      | 6  | welcome2 | welcome       |                 |

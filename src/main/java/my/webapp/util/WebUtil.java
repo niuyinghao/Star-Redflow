@@ -2,11 +2,7 @@ package my.webapp.util;
 
 import my.model.persist.User;
 import my.service.UserManager;
-import my.service.impl.UserManagerImpl;
-import org.apache.xerces.impl.xpath.regex.Match;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -17,7 +13,6 @@ import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.security.Principal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -77,7 +72,7 @@ public class WebUtil {
             return userManager.getUserByUsername((String) principal);
         }
 
-        return (User) (((AbstractAuthenticationToken) principal).getDetails());
+        return (User) (((AbstractAuthenticationToken) principal).getPrincipal());
     }
 }
 

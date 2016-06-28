@@ -27,8 +27,9 @@ public class Wish extends BaseLog {
         this.prays = prays;
     }
 
-    @ManyToOne
-    @JoinTable(name = "wish_flower")
+//    @ManyToOne
+//    @JoinTable(name = "wish_flower")
+    @Transient
     public Flower getBelongFlower() {
         return belongFlower;
     }
@@ -37,8 +38,9 @@ public class Wish extends BaseLog {
         this.belongFlower = belongFlower;
     }
 
-    @ManyToOne
-    @JoinTable(name = "wish_wave")
+//    @ManyToOne
+//    @JoinTable(name = "wish_wave")
+    @Transient
     public Wave getBelongWave() {
         return belongWave;
     }
