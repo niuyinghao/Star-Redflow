@@ -9,6 +9,7 @@ import my.model.persist.spirit.*;
 import my.model.persist.project.Pray;
 import my.model.wrapper.*;
 import my.service.*;
+import my.service.impl.MiscManagerImpl;
 import my.util.HeartSymbolResolver;
 import my.webapp.util.WebUtil;
 import org.primefaces.component.api.UIData;
@@ -83,6 +84,8 @@ public class AreaPage extends BasePage implements Serializable {
     List hillockMenuWishes;
     @Autowired
     private MoundTargetLazyModel moundTargetLazyModel;
+    @Autowired
+    private MiscManager miscManager;
 
     public void doMound() {
         String id = getRequest().getParameter("id");
@@ -90,7 +93,7 @@ public class AreaPage extends BasePage implements Serializable {
         RequestContext.getCurrentInstance().closeDialog(null);
     }
 
-    public void addSymbolAge(HeartSymbol symbol) {
+    public void addSymbolAge(HeartSymbol symbol) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         if (symbol == null) {
             return;
         }
@@ -99,8 +102,8 @@ public class AreaPage extends BasePage implements Serializable {
         persistHeartSymbol(symbol);
     }
 
-    private void persistHeartSymbol(HeartSymbol symbol) {
-        areaManager._getSession().saveOrUpdate(symbol);
+    private void persistHeartSymbol(HeartSymbol symbol) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        miscManager.saveOrUpdate(symbol);
     }
 
     public String getHeartSymbolStyleJson(Wave wave) throws Exception {

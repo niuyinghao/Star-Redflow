@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by yinghao_niu on 2016/4/2 for Project.
  */
-public interface MiscDao  {
+public interface MiscDao extends GenericDao {
 
 	BaseLog getBaseLogById(Serializable id);
 

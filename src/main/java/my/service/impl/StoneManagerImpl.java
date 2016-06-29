@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service("stoneManager")
-public class StoneManagerImpl extends GenericManagerImpl<Stone,Long> implements StoneManager {
+public class StoneManagerImpl extends GenericManagerImpl<Stone, Long> implements StoneManager {
 
     @Autowired
     public StoneManagerImpl(StoneDao dao) {
