@@ -63,6 +63,8 @@
                         <input type="hidden" value="#{areaPage.getHeartSymbolStyleJson(wave)}" id="updateStyleHidden"></input>
                     </h:panelGroup>
 
+                    <div class="col-sm-12">
+                   <div  class="col-sm-1" style="width:12%;height: 100%">
                     <p:commandLink
                                    action="#{areaPage.addSymbolAge(wave.heartSymbol)}"
                                    style="#{areaPage.getHeartSymbolStyleStyle(wave)}"
@@ -71,9 +73,14 @@
                     >
                                             <i class="fa fa-heart"> </i>
                             </p:commandLink>
-                    WAVE#{'#'}#{wave.id}
-                    <br/>
-                    <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
+                   </div>
+                        <div class=" ">
+                            <div class="numBlock">WAVE#{'#'}#{wave.id}</div>
+                            <br/>
+                            <br/>
+                            <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
+                        </div>
+                    </div>
 
 
 

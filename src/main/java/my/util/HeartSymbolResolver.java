@@ -15,21 +15,12 @@ import java.util.Map;
  * Created by niuyinghao on 2016/6/2 for project.
  */
 public class HeartSymbolResolver {
+
+    public static final int INCREATEMENT_STEP = 40;
+
     public static String resolveStyleJson(HeartSymbol symbol, Object belong) throws Exception {
         Map styleMap = resolveStyleMap(symbol, belong);
         return JSONObject.valueToString(styleMap);
-    }
-
-    public static String resolveStyleStyle(HeartSymbol symbol, Object belong) {
-        Map<String,Object> styleMap = resolveStyleMap(symbol, belong);
-        StringBuffer sb = new StringBuffer();
-        for (Map.Entry<String,Object> entry : styleMap.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            sb.append(key + ":" + value + ";");
-        }
-        return sb.toString();
-
     }
 
     private static Map resolveStyleMap(HeartSymbol symbol, Object belong) {
@@ -38,22 +29,34 @@ public class HeartSymbolResolver {
         if (belong.getClass() == Wave.class) {
             styleMap.put("color", "#8B0000");
             if (age <= 3) { // mature age;
-                float opacity = (age+1) / 3f;
+                float opacity = (age + 1) / 3f;
                 styleMap.put("filter", "alpha(Opacity=80)");
                 styleMap.put("-moz-opacity", opacity);
                 styleMap.put("opacity", opacity);
             }
-            else {    // inflation age ;
+            else if (3 < age && age <= 7) {    // inflation age ;
                 int base = 18;  // 基量
-                int increment = age * 10; // 增量
+                int increment = (age - 3) * INCREATEMENT_STEP; // 增量
                 styleMap.put("font-size", (base + increment)
                         + "px");
             }
+            else if (7 < age && age <= 11) {  // aging and dying age
+                int base = 18;
+                int increment = (7 - 3) * INCREATEMENT_STEP;
+                styleMap.put("font-size", (base + increment) + "px");
+
+
+            }
+            else {
+                int base = 18;
+                int increment = (7 - 3) * INCREATEMENT_STEP;
+                styleMap.put("font-size", (base + increment) + "px");
+            }
         }
-        else if (belong.getClass()== Flower.class) {
+        else if (belong.getClass() == Flower.class) {
             styleMap.put("color", "pink");
             if (age <= 3) { // mature age;
-                float opacity = (age+1) / 3f;
+                float opacity = (age + 1) / 3f;
                 styleMap.put("filter", "alpha(Opacity=80)");
                 styleMap.put("-moz-opacity", opacity);
                 styleMap.put("opacity", opacity);
@@ -64,8 +67,8 @@ public class HeartSymbolResolver {
                 int increment = age > threadHold ? threadHold : age; // 增量
                 int i = base + increment;
                 int blue = i / 10;
-                styleMap.put("-webkit-filter","blur(10px)")
-                        ;
+                styleMap.put("-webkit-filter", "blur(10px)")
+                ;
                 styleMap.put("-moz-filter", "blur(10px)");
                 styleMap.put("-ms-filter", "blur(10px)");
                 styleMap.put("filter", "blur(10px)");
@@ -74,10 +77,22 @@ public class HeartSymbolResolver {
 
             }
         }
-        else if (belong.getClass()==Stone.class) {
+        else if (belong.getClass() == Stone.class) {
         }
         else {
         }
         return styleMap;
+    }
+
+    public static String resolveStyleStyle(HeartSymbol symbol, Object belong) {
+        Map<String, Object> styleMap = resolveStyleMap(symbol, belong);
+        StringBuffer sb = new StringBuffer();
+        for (Map.Entry<String, Object> entry : styleMap.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            sb.append(key + ":" + value + ";");
+        }
+        return sb.toString();
+
     }
 }
