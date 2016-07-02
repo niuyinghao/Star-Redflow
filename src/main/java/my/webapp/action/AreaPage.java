@@ -233,11 +233,16 @@ public class AreaPage extends BasePage implements Serializable {
 
     public void firePray(Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Pray pray = new Pray();
-//        List<Pray> prays = wish.getPrays();
-//        prays.add(pray);
-//        wishManager.saveOrUpdate(wish);
+        List<Pray> prays = wish.getPrays();
+        if (prays == null) {
+            prays = new ArrayList<>();
+        }
+        prays.add(pray);
+        pray.setCreateTime(new Date());
         pray.setWish(wish);
-        wishManager.saveOrUpdate(wish);
+        miscManager.save(pray);
+//        wishManager.saveOrUpdate(wish);
+
     }
 
     public String genMoundContent(Mound mound) {
@@ -482,14 +487,9 @@ public class AreaPage extends BasePage implements Serializable {
         }
     }
 
-    public void addWish(Wish wish,AreaViewScopeBless areaViewScopeBless) {
+    public void addWish(Wish wish, AreaViewScopeBless areaViewScopeBless) {
         saveWish(wish);
         areaViewScopeBless.getWishDataList().setFirst(0);
-    }
-
-    public void addWish(Wave belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        wish.setBelongWave(belong);
-        saveWish(wish);
     }
 
     private void saveWish(Wish wish) {
@@ -506,6 +506,11 @@ public class AreaPage extends BasePage implements Serializable {
         }
         genericSave(wish, wishManager, grail);
         this.newWish = new Wish();
+    }
+
+    public void addWish(Wave belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        wish.setBelongWave(belong);
+        saveWish(wish);
     }
 
     public void addWish(Flower belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {

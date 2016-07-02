@@ -14,11 +14,12 @@ import java.util.Date;
  * Created by yinghao_niu on 2016/3/23 for Project.
  */
 @Entity
-public class Pray implements Serializable{
+public class Pray implements Serializable {
     // members
-    @Id
-    @GeneratedValue
+
     Long id;
+    Date createTime;
+    Wish wish;
 
     public Date getCreateTime() {
         return createTime;
@@ -28,12 +29,8 @@ public class Pray implements Serializable{
         this.createTime = createTime;
     }
 
-    Date createTime;
-
-    Wish wish;
-
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "wish")
     public Wish getWish() {
         return wish;
     }
@@ -41,7 +38,6 @@ public class Pray implements Serializable{
     public void setWish(Wish wish) {
         this.wish = wish;
     }
-
 
 
 //    Wish wish;
@@ -57,6 +53,9 @@ public class Pray implements Serializable{
 //    }
 
     //getter and setter
+
+    @Id
+    @GeneratedValue
     public Long getId() {
         return id;
     }
