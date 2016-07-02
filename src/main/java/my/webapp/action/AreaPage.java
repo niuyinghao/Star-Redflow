@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package my.webapp.action;
 
 import my.Constants;
@@ -11,6 +14,7 @@ import my.service.*;
 import my.util.HeartSymbolResolver;
 import my.webapp.util.WebUtil;
 import org.primefaces.component.api.UIData;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.*;
@@ -85,8 +89,10 @@ public class AreaPage extends BasePage implements Serializable {
     private MoundTargetLazyModel moundTargetLazyModel;
     @Autowired
     private MiscManager miscManager;
+    Map hearSymbolStyleMap;
+    public static final int WAVE_HEART_MAX_AGE = 11;
 
-
+    DataTable waveDataTable;
 
     public String getHeartSymbolStyleStyleDispatch(Map map, int dispatch) throws Exception {
         Map retMap;
@@ -110,7 +116,6 @@ public class AreaPage extends BasePage implements Serializable {
         return HeartSymbolResolver.convertMapToString(retMap);
     }
 
-
     public void doMound() {
         String id = getRequest().getParameter("id");
         areaManager.doMound(id);
@@ -121,6 +126,18 @@ public class AreaPage extends BasePage implements Serializable {
         if (symbol == null) {
             return;
         }
+
+        if (symbol.getBelong() == null) {
+            return;
+        }
+        else {
+            if (symbol.getBelong().getClass() == Wave.class) {
+                if (symbol.getAge() > WAVE_HEART_MAX_AGE) {
+                    return;
+                }
+            }
+        }
+
         int age = symbol.getAge();
         symbol.setAge(age + 1);
         persistHeartSymbol(symbol);
@@ -131,12 +148,19 @@ public class AreaPage extends BasePage implements Serializable {
     }
 
     public String getHeartSymbolStyleJson(Wave wave) throws Exception {
-        HeartSymbol heartSymbol = wave.getHeartSymbol();
-        heartSymbol = preGetStyle(wave, heartSymbol);
+        HeartSymbol heartSymbol = preGetHeartSymbol(wave, waveManager);
         return HeartSymbolResolver.resolveStyleJson(heartSymbol, wave);
     }
 
-    private HeartSymbol preGetStyle(Wave wave, HeartSymbol heartSymbol) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+
+    public String getHeartSymbolStyleJsonFlower(Flower flower) throws Exception {
+        HeartSymbol heartSymbol = preGetHeartSymbol(flower, flowerManager);
+        return HeartSymbolResolver.resolveStyleJson(heartSymbol, flower);
+    }
+
+    @SuppressWarnings("Duplicates")
+    private HeartSymbol preGetHeartSymbol(Wave wave, WaveManager waveManager) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        HeartSymbol heartSymbol = wave.getHeartSymbol();
         if (heartSymbol == null) {
             heartSymbol = new HeartSymbol();
             heartSymbol.setBelong(wave);
@@ -146,25 +170,32 @@ public class AreaPage extends BasePage implements Serializable {
         return heartSymbol;
     }
 
+    @SuppressWarnings("Duplicates")
+    private HeartSymbol preGetHeartSymbol(Flower flower, FlowerManager flowerManager) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        HeartSymbol heartSymbol = flower.getHeartSymbol();
+        if (heartSymbol == null) {
+            heartSymbol = new HeartSymbol();
+            heartSymbol.setBelong(flower);
+            flower.setHeartSymbol(heartSymbol);
+            flowerManager.saveOrUpdate(flower);
+        }
+        return heartSymbol;
+    }
+
+
+    public String getHeartSymbolStyleStyle(Flower flower) throws Exception {
+        HeartSymbol heartSymbol = preGetHeartSymbol(flower, flowerManager);
+        return HeartSymbolResolver.resolveStyleStyle(heartSymbol, flower);
+    }
+
+
     public String getHeartSymbolStyleStyle(Wave wave) throws Exception {
-        HeartSymbol heartSymbol = wave.getHeartSymbol();
-        heartSymbol = preGetStyle(wave, heartSymbol);
+        HeartSymbol heartSymbol = preGetHeartSymbol(wave, waveManager);
         return HeartSymbolResolver.resolveStyleStyle(heartSymbol, wave);
     }
 
-    Map hearSymbolStyleMap;
-
-    public Map getHeartSymbolStyleMap() {
-        return hearSymbolStyleMap;
-    }
-
-    public void setHeartSymbolStyleMap(Map heartSymbolStyleMap) {
-        this.hearSymbolStyleMap = heartSymbolStyleMap;
-    }
-
     public Map getHeartSymbolStyleStyleMap(Wave wave) throws Exception {
-        HeartSymbol heartSymbol = wave.getHeartSymbol();
-        heartSymbol = preGetStyle(wave, heartSymbol);
+        HeartSymbol heartSymbol = preGetHeartSymbol(wave, waveManager);
         return HeartSymbolResolver.resolveStyleMap(heartSymbol, wave);
     }
 
@@ -397,15 +428,16 @@ public class AreaPage extends BasePage implements Serializable {
         areaContext.setCreator(user);
     }
 
-    public void addWave(Wave wave) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void addWave(Wave wave, AreaViewScopeSea viewScopeSea) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         genericSave(wave, waveManager, sea);
+        newWave = new Wave();
+        viewScopeSea.getWaveDataTable().setFirst(0);
     }
 
     private void genericSave(BaseLog base, GenericManager manager, Place place) {
         base.setCreator(areaContext.getCreator());
         base.setCreateTime(new Date());
         Serializable id = manager.save(base);
-        place.setCurrentIndex(0);
         place.setEditMode(false);
         try {
             handleRedirHistory();
@@ -421,8 +453,10 @@ public class AreaPage extends BasePage implements Serializable {
         }
     }
 
-    public void addFlower(Flower flower) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void addFlower(Flower flower, AreaViewScopeSwamp viewScopeSwamp) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         genericSave(flower, flowerManager, swamp);
+        newFlower = new Flower();
+        viewScopeSwamp.getFlowDataTable().setFirst(0);
     }
 
     public void addOrUpdateStone(Stone stone) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
@@ -433,7 +467,6 @@ public class AreaPage extends BasePage implements Serializable {
         base.setCreator(areaContext.getCreator());
         base.setCreateTime(new Date());
         manager.saveOrUpdate(base);
-        place.setCurrentIndex(0);
         place.setEditMode(false);
         try {
             handleRedirHistory();
@@ -489,6 +522,22 @@ public class AreaPage extends BasePage implements Serializable {
 //		}
 //		hillockMenuWishes=arrayList ;
 
+    }
+
+    public DataTable getWaveDataTable() {
+        return waveDataTable;
+    }
+
+    public void setWaveDataTable(DataTable waveDataTable) {
+        this.waveDataTable = waveDataTable;
+    }
+
+    public Map getHeartSymbolStyleMap() {
+        return hearSymbolStyleMap;
+    }
+
+    public void setHeartSymbolStyleMap(Map heartSymbolStyleMap) {
+        this.hearSymbolStyleMap = heartSymbolStyleMap;
     }
 
     //getter and setter

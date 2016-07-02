@@ -35,7 +35,7 @@
 
             <h:panelGroup rendered="#{areaPage.swamp.editMode}" >
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                 action="#{areaPage.addFlower(areaPage.newFlower)}" update="toolbar,viewEditContent"/>
+                                 action="#{areaPage.addFlower(areaPage.newFlower,areaViewScopeSwamp)}" update="toolbar,viewEditContent"/>
                  <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                   actionListener="#{areaPage.backToViewMode(areaPage.swamp)}" update="toolbar,viewEditContent"/>
 
@@ -46,25 +46,44 @@
     <ui:define name="body">
         <c:set var="cid" value="flowerList"></c:set>
         <c:set var="value" value="#{areaPage.swamp}"></c:set>
-        <h:panelGroup id="viewEditContent">
+        <h:panelGroup id="viewEditContent" style="overflow-y: auto;">
             <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.swamp.editMode}"
                          paginator="true" paginatorPosition="bottom" rows="1"
                          first="#{areaPage.swamp.currentIndex}" paginatorTemplate=""
                          binding="#{areaViewScopeSwamp.flowDataTable}"
-                         lazy="true" id='#{cid}' value="#{value}" var="f" style="list-style:none" type="none"
+                         lazy="true" id='#{cid}' value="#{value}" var="f"
+                         style="list-style:none;padding-bottom: 1em"
+                         type="none"
                          xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                 <p:column>
-                    FLOWER#{'#'}#{f.id}
-                    <br/>
-                    <h:outputText escape="false" value="#{f.content}"> </h:outputText>
-                    <h:form>
-                        <p:commandButton icon="fa fa-heart-o" action="#{areaPage.fireWish(f)}" value="wish">
-                        </p:commandButton>
 
-                        <ccc:activeWish value="#{areaPage.grail}" index="#{areaPage.grail.currentIndex}"
-                                        rendered="#{!areaPage.grail.editMode}" cid="currentWish"></ccc:activeWish>
 
-                    </h:form>
+                    <h:panelGroup id="updateStyle">
+                        <input type="hidden" value="#{areaPage.getHeartSymbolStyleJsonFlower(f)}"
+                               id="updateStyleHidden"></input>
+                    </h:panelGroup>
+
+                    <div class="col-sm-12">
+                        <div class="col-sm-2" style="height: 100%">
+                            <p:commandLink
+                                    action="#{areaPage.addSymbolAge(f.heartSymbol)}"
+                                    update="updateStyle"
+                                    oncomplete="onAgeChange(this)"
+                                    style="#{areaPage.getHeartSymbolStyleStyle(f)}"
+                            >
+                                <i class="fa fa-heart"> </i>
+                            </p:commandLink>
+                        </div>
+                        <div class="col-sm-10 ">
+                            <div class="numBlock">FLOWER#{'#'}#{f.id}</div>
+                            <br/>
+                            <div style="padding: .5em 1.5em ;margin-top:1em;margin-bottom:1em;background: lightgray;border-radius:.3em">
+                                <h:outputText escape="false" value="#{f.content}"> </h:outputText>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                 </p:column>
             </p:dataTable>
@@ -73,7 +92,36 @@
                 <p:editor  style="" height="80" widgetVar="_editor" value="#{areaPage.newFlower.content}"></p:editor>
             </h:form>
         </h:panelGroup>
+        <script type="text/javascript">
 
+            //<![CDATA[
+
+            function onAgeChange(xhr, style) {
+
+                style = $("#" + "updateStyleHidden").val();
+                var target = $('#' + xhr.source.replace(/:/g, '\\:'));
+                console.log(style);
+                var styleObj = eval('(' + style + ')');
+
+                $(target).animate(styleObj, 500, null, function () {
+
+                    if(styleObj['_age']>7) {
+                        $(target).css("filter", styleObj['filter']);
+                        $(target).css("-webkit-filter", styleObj['-webkit-filter']);
+                        $(target).css("-ms-filter", styleObj['-ms-filter']);
+                        $(target).css("-moz-filter", styleObj['-moz-filter']);
+                    }  else{
+                        $(target).css("filter", "");
+                        $(target).css("-webkit-filter", "");
+                        $(target).css("-ms-filter", "");
+                        $(target).css("-moz-filter", "");
+                    }
+                });
+            }
+
+            //]]>
+
+        </script>
     </ui:define>
 </ui:composition>
 </html>

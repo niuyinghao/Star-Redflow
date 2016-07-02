@@ -35,7 +35,8 @@
 
             <h:panelGroup rendered="#{areaPage.sea.editMode}">
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                 action="#{areaPage.addWave(areaPage.newWave)}" update="toolbar,viewEditContent"/>
+                                 action="#{areaPage.addWave(areaPage.newWave,areaViewScopeSea)}"
+                                 update="toolbar,viewEditContent"/>
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                  actionListener="#{areaPage.backToViewMode(areaPage.sea)}"
                                  update="toolbar,viewEditContent"/>
@@ -66,7 +67,7 @@
                         </h:panelGroup>
 
                         <div class="col-sm-12">
-                            <div class="col-sm-1" style="width:12%;height: 100%">
+                            <div class="col-sm-2" style="height: 100%">
                                 #{areaPage.setHeartSymbolStyleMap(areaPage.getHeartSymbolStyleStyleMap(wave))}
                                 <p:commandLink
                                         action="#{areaPage.addSymbolAge(wave.heartSymbol)}"
@@ -78,11 +79,12 @@
                                        style="#{areaPage.getHeartSymbolStyleStyleDispatch(areaPage.heartSymbolStyleMap,0)}"> </i>
                                 </p:commandLink>
                             </div>
-                            <div class=" ">
+                            <div class="col-sm-10 ">
                                 <div class="numBlock">WAVE#{'#'}#{wave.id}</div>
                                 <br/>
-                                <br/>
-                                <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
+                                <div style="padding: .5em 1.5em ;margin-top:1em;margin-bottom:1em;background: lightgray;border-radius:.3em">
+                                    <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
+                                </div>
                             </div>
                         </div>
 
@@ -106,7 +108,7 @@
         </h:panelGroup>
         <script type="text/javascript">
 
-//<![CDATA[
+            //<![CDATA[
 
             function onAgeChange(xhr, style) {
 
@@ -131,7 +133,7 @@
                 }
             }
 
-        //]]>
+            //]]>
 
         </script>
 

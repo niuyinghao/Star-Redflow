@@ -16,8 +16,7 @@ import java.util.Map;
 /**
  * Created by yinghao_niu on 2016/4/7 for Project.
  */
-@Component
-public class AreaLazyModel extends LazyDataModel {
+public abstract class AreaLazyModel extends LazyDataModel {
 
 // members
 	Class targetClass;

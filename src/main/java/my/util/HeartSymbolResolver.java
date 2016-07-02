@@ -17,6 +17,7 @@ import java.util.Map;
 public class HeartSymbolResolver {
 
     public static final int INCREATEMENT_STEP = 40;
+    public static final int FLOWER_INCREATEMENT_STEP = 10;
 
     public static String resolveStyleJson(HeartSymbol symbol, Object belong) throws Exception {
         Map styleMap = resolveStyleMap(symbol, belong);
@@ -27,66 +28,113 @@ public class HeartSymbolResolver {
         Map styleMap = new HashMap();
         int age = symbol.getAge();
         if (belong.getClass() == Wave.class) {
-            styleMap.put("color", "#8B0000");
-            if (age <= 3) { // mature age;
-                float opacity = (age + 1) / 3f;
-                styleMap.put("filter", "alpha(Opacity=80)");
-                styleMap.put("-moz-opacity", opacity);
-                styleMap.put("opacity", opacity);
-            }
-            else if (3 < age && age <= 7) {    // inflation age ;
-                int base = 18;  // 基量
-                int increment = (age - 3) * INCREATEMENT_STEP; // 增量
-                styleMap.put("font-size", (base + increment)
-                        + "px");
-            }
-            else if (7 < age && age <= 11) {  // aging and dying age
-                int base = 18;
-                int increment = (7 - 3) * INCREATEMENT_STEP;
-                styleMap.put("font-size", (base + increment) + "px");
-                styleMap.put("transform-origin", "0px");
+            resolveWaveAge(styleMap, age);
 
-
-                waveAgingPhase(styleMap, age);
-            }
-            else {
-                int base = 18;
-                int increment = (7 - 3) * INCREATEMENT_STEP;
-                styleMap.put("font-size", (base + increment) + "px");
-                waveAgingPhase(styleMap, 11);
-
-            }
         }
         else if (belong.getClass() == Flower.class) {
-            styleMap.put("color", "pink");
-            if (age <= 3) { // mature age;
-                float opacity = (age + 1) / 3f;
-                styleMap.put("filter", "alpha(Opacity=80)");
-                styleMap.put("-moz-opacity", opacity);
-                styleMap.put("opacity", opacity);
-            }
-            else {    // inflation age ;
-                int base = 0;  // 基量
-                int threadHold = 5; // 域值
-                int increment = age > threadHold ? threadHold : age; // 增量
-                int i = base + increment;
-                int blue = i / 10;
-                styleMap.put("-webkit-filter", "blur(10px)")
-                ;
-                styleMap.put("-moz-filter", "blur(10px)");
-                styleMap.put("-ms-filter", "blur(10px)");
-                styleMap.put("filter", "blur(10px)");
-                styleMap.put("filter", "progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */");
+            resolveFlowerAge(styleMap, age);
 
-            }
         }
         else if (belong.getClass() == Stone.class) {
         }
         else {
         }
 
-        styleMap.put("_age", age);
         return styleMap;
+    }
+
+    private static void resolveWaveAge(Map styleMap, int age) {
+        styleMap.put("color", "#8B0000");
+        if (age <= 3) { // mature age;
+            float opacity = (age + 1) / 3f;
+            styleMap.put("filter", "alpha(Opacity=80)");
+            styleMap.put("-moz-opacity", opacity);
+            styleMap.put("opacity", opacity);
+        }
+        else if (3 < age && age <= 7) {    // inflation age ;
+            int base = 18;  // 基量
+            int increment = (age - 3) * INCREATEMENT_STEP; // 增量
+            styleMap.put("font-size", (base + increment)
+                    + "px");
+        }
+        else if (7 < age && age <= 11) {  // aging and dying age
+            int base = 18;
+            int increment = (7 - 3) * INCREATEMENT_STEP;
+            styleMap.put("font-size", (base + increment) + "px");
+
+
+            waveAgingPhase(styleMap, age);
+        }
+        else {
+            int base = 18;
+            int increment = (7 - 3) * INCREATEMENT_STEP;
+            styleMap.put("font-size", (base + increment) + "px");
+            waveAgingPhase(styleMap, 11);
+
+        }
+
+        styleMap.put("_age", age);
+    }
+
+    private static void resolveFlowerAge(Map styleMap, int age) {
+        age = age + 1; // correct base 0;
+
+        int ageMod = age % 12;
+
+        styleMap.put("color", "#800080"); // purple
+        if (ageMod <= 3) { // mature age;
+            float opacity = (ageMod + 1) / 3f;
+            styleMap.put("filter", "alpha(Opacity=80)");
+            styleMap.put("-moz-opacity", opacity);
+            styleMap.put("opacity", opacity);
+
+            styleMap.put("font-size", FLOWER_INCREATEMENT_STEP
+                    + "px");
+
+        }
+        else if (ageMod > 3 && ageMod <= 7) {    // inflation age ;
+            int base = FLOWER_INCREATEMENT_STEP;  // 基量
+            int increment = ageMod * FLOWER_INCREATEMENT_STEP; // 增量
+            int i = base + increment;
+
+            styleMap.put("font-size", (base + increment)
+                    + "px");
+            int blur = (ageMod + (10-7)) / 10;
+            styleMap.put("-webkit-filter", "blur(" +
+                    blur + "px)");
+            styleMap.put("-moz-filter", "blur(" +
+                    blur + "px)");
+            styleMap.put("-ms-filter", "blur(" +
+                    blur + "px)");
+            styleMap.put("filter", "blur(" +
+                    blur + "px)");
+            styleMap.put("filter", "progid:DXImageTransform.Microsoft.Blur(PixelRadius=" +
+                    blur +
+                    ", MakeShadow=false); /* IE6~IE9 */");
+
+        }
+        else if (ageMod > 7 && ageMod <= 11) {  // shrink age
+            int base=FLOWER_INCREATEMENT_STEP + 7 * FLOWER_INCREATEMENT_STEP;
+            int increment = - (ageMod - 7) * FLOWER_INCREATEMENT_STEP;
+            styleMap.put("font-size", (base + increment)
+                    + "px");
+
+            int blur=10;
+
+            styleMap.put("-webkit-filter", "blur(" +
+                    blur + "px)");
+            styleMap.put("-moz-filter", "blur(" +
+                    blur + "px)");
+            styleMap.put("-ms-filter", "blur(" +
+                    blur + "px)");
+            styleMap.put("filter", "blur(" +
+                    blur + "px)");
+            styleMap.put("filter", "progid:DXImageTransform.Microsoft.Blur(PixelRadius=" +
+                    blur +
+                    ", MakeShadow=false); /* IE6~IE9 */");
+
+        }
+        styleMap.put("_age", ageMod);
     }
 
     private static void waveAgingPhase(Map styleMap, int age) {
@@ -116,6 +164,8 @@ public class HeartSymbolResolver {
             styleMap.put("color", "#000000"); // black
 
         }
+        styleMap.put("transform-origin", "0");
+
     }
 
     public static String resolveStyleStyle(HeartSymbol symbol, Object belong) {
