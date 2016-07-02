@@ -24,8 +24,16 @@
 
         <ui:define name="body">
             #{areaPage.backToViewMode(areaPage.hillock)}
+
             <c:set var="cid" value="stoneList"></c:set>
             <c:set var="value" value="#{areaPage.hillock}"></c:set>
+
+            <style>
+                .cbutton:hover{
+                    background-color: darkcyan;
+                }
+            </style>
+
             <h:panelGroup id="viewEditContent">
                 <p:dataTable widgetVar="#{cid}" rendered="#{!areaPage.hillock.editMode}"
                              paginator="true" paginatorPosition="bottom" rows="1"
@@ -36,15 +44,27 @@
                     <p:column>
 
                         <div id="left" class="col-sm-10" >
-                            <p:commandLink value="edit" action="#{areaPage.editStone(s)}" update="toolbar,viewEditContent"></p:commandLink> &#160;
-                            <p:commandLink value="delete" action="#{areaPage.deleteStone(s)}" update="outerForm"></p:commandLink>
-                            <hr/>
-                            <h:outputText escape="false" value="#{s.content}"> </h:outputText>
-                            STONE#{'#'}#{s.id}   &#160;
+
+                            <div class="col-sm-12" style="padding-bottom: 1em;padding-left: 0">
+                                <div class="col-sm-2" style="padding-left: 0%">
+                                    <div class="numBlock " style="margin-left: 0" >STONE#{'#'}#{s.id}</div>
+                                </div>
+
+                                <div class="col-sm-10" style="margin-top: 1em">
+                                    <p:commandButton icon="fa fa-pencil " styleClass="cbutton" action="#{areaPage.editStone(s)}" update="toolbar,viewEditContent"></p:commandButton> &#160;
+                                    <p:commandButton icon="fa fa-remove " styleClass="cbutton" action="#{areaPage.deleteStone(s)}" update="outerForm"></p:commandButton>
+                                </div>
+                            </div>
+
+                            <div class="contentBlock">
+                                <div style="font-weight: bold">#{webUtil.formatTime(s.createTime)}</div>
+                                <hr style="margin: .5em 0"></hr>
+                                <h:outputText escape="false" value="#{s.content}"> </h:outputText>
+                            </div>
                         </div>
 
                         <div class="col-sm-2">
-                            <i class="fa fa-5x fa-caret-right command" style="zoom: 2" onclick="nextStone()"></i>
+                            <i class="fa fa-5x fa-caret-right command" style="zoom: 4;padding-top: .1em" onclick="nextStone()"></i>
 
                             <p:remoteCommand action="#{areaPage.nextStoneThenEnterEditMode(areaPage.hillock)}" update="toolbar,viewEditContent"
                                              name="nextStone"

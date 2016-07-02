@@ -61,7 +61,7 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
 
     @Override
     public List getNotBuriedTarget(int first, int pageSize, String sortField, SortOrder sortOrder, User creator) {
-        String hqlBase = " from BaseLog b where buried=false and creator=:creator";
+        String hqlBase = " from BaseLog b where buried=false and creator=:creator and b.class=Wave or b.class=Flower ";
         String hql = hqlBase + "  order by  " + sortField;
         if (sortOrder == SortOrder.ASCENDING) {
             hql += " asc ";

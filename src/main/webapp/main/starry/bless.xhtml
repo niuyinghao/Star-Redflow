@@ -13,23 +13,25 @@
     <ui:define name="toolbar">
         <c:set var="cid" value="wishList"></c:set>
         <f:facet name="left">
+            <p:remoteCommand update="toolbar" name="updateNav"/>
             <h:panelGroup rendered="#{!areaPage.grail.editMode}">
-                <h:form>
                     <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
-                                     onclick="PF('#{cid}').getPaginator().next()"/>
+                                     disabled="#{areaPage.hasNoPrevPage(areaViewScopeBless.wishDataList)}"
+                                     onclick="PF('#{cid}').getPaginator().prev();updateNav()"/>
                     <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
-                                     onclick="PF('#{cid}').getPaginator().prev()"/>
+                                     disabled="#{areaPage.hasNoNextPage(areaViewScopeBless.wishDataList)}"
+                                     onclick="PF('#{cid}').getPaginator().next();updateNav()"/>
                     <p:commandButton style="font-size: 1.3em;width:1.5em"
                                      action="#{areaPage.enterEditMode(areaPage.grail)}"
-                                     icon="fa fa-plus"
-                                     update="toolbar,viewEditContent"
-                    ></p:commandButton>
-                </h:form>
+                                     icon="fa fa-edit"
+                                     update="toolbar,viewEditContent">
+
+                    </p:commandButton>
             </h:panelGroup>
 
             <h:panelGroup rendered="#{areaPage.grail.editMode}">
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
-                                 action="#{areaPage.addWish(areaPage.wishBelong,areaPage.newWish)}"
+                                 action="#{areaPage.addWish(areaPage.newWish,areaViewScopeBless)}"
                                  update="toolbar,viewEditContent"/>
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                  action="#{areaPage.backToViewMode(areaPage.grail)}" update="toolbar,viewEditContent"/>
@@ -49,28 +51,32 @@
 
         <h:panelGroup id="wishArea">
             <h:panelGroup id="viewEditContent">
-                <h:form>
                 <p:dataList widgetVar="#{cid}" rendered="#{!areaPage.grail.editMode}"
                             paginator="true" paginatorPosition="bottom" paginatorTemplate="" rows="1"
                             first="#{areaPage.grail.currentIndex}"
-                            lazy="true" id='#{cid}' value="#{value}" var="wish" style="list-style:none" type="none"
+                            binding="#{areaViewScopeBless.wishDataList}"
+                            lazy="true" id='#{cid}' value="#{value}" var="wish"
+                            style="list-style:none"
+                            type="none"
+                            emptyMessage=""
                             xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                     <p:column>
-                        WISH#{'#'}#{wish.id}
+                        <div class="numBlock">WISH#{'#'}#{wish.id}</div>
                         <br/>
-                        <h:outputText escape="false" value="#{wish.content}"></h:outputText>
-                        <br/>
-                        <hr/>
+                        <div class="contentBlock">
+                            <h:outputText escape="false" value="#{wish.content}"></h:outputText>
+                        </div>
+
+                        <hr />
                         <ccc:prayList wish="w"/>
                     </p:column>
                     <br/>
                 </p:dataList>
-                </h:form>
 
-                <h:form rendered="#{areaPage.grail.editMode}">
+                <h:panelGroup rendered="#{areaPage.grail.editMode}">
                     <p:editor style="" height="80" widgetVar="_editor"
                               value="#{areaPage.newWish.content}"></p:editor>
-                </h:form>
+                </h:panelGroup>
             </h:panelGroup>
         </h:panelGroup>
 

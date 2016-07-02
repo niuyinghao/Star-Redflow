@@ -24,26 +24,36 @@ import java.util.regex.Pattern;
  * Created by yinghao_niu on 8/1 for project.
  */
 public class WebUtil {
-    SimpleDateFormat dateFormat =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public String formatTime(Date date) {
         return dateFormat.format(date);
     }
 
     public String getClassSign(Object o) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("<span class='");
         if (o instanceof Wave) {
-            return "WAVE";
+            stringBuffer.append("wave'> ");
+            stringBuffer.append("WAVE");
+            stringBuffer.append("#");
+            stringBuffer.append(((Wave) o).getId());
         }
         else if (o instanceof Flower) {
-            return "FLOWER";
+            stringBuffer.append("flower'> ");
+            stringBuffer.append("FLOWER");
+            stringBuffer.append("#");
+            stringBuffer.append(((Flower) o).getId());
         }
-        else return "";
+        stringBuffer.append("</span>");
+        return stringBuffer.toString();
     }
 
     public boolean isBlank(String s) {
         return s == null ? true : s.equals("") ? true : false;
     }
-    public void validateEmail(FacesContext context, UIComponent component,Object value) throws ValidatorException {
+
+    public void validateEmail(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         Pattern p = Pattern.compile("[a-zA-z0-9_-]+@[.a-zA-Z0-9_-]+");
         Matcher matcher = p.matcher((CharSequence) value);
         if (matcher.matches()) {

@@ -13,14 +13,15 @@
             .mound {
                 padding: 0;
                 margin: 0;
-                height:100%;
+                height: 100%;
             }
 
-            #content form{
-                height:inherit;
+            #content form {
+                height: inherit;
             }
-            #content .mound{
-                border:none;
+
+            #content .mound {
+                border: none;
             }
 
             button {
@@ -38,34 +39,37 @@
         </f:facet>
     </ui:define>
 
-    <ui:define name="body" >
+    <ui:define name="body">
         <script>
 
 
         </script>
         <style>
-            .plain .ui-grid-row{
+            .plain .ui-grid-row {
                 padding-top: 1em;
                 padding-bottom: .5em;
             }
+
             .mound {
                 display: block;
-                margin:auto;
+                margin: auto;
                 cursor: pointer;
                 background: black;
             }
-            .mound:hover{
-                background-color: rgba(0,0,0,0.6);
+
+            .mound:hover {
+                background-color: rgba(0, 0, 0, 0.6);
             }
+
 
 
         </style>
         <h:panelGroup class="plain">
             <!--<input type="button" class="shovelLeft"  ></input>-->
-            <h:panelGroup >
+            <h:panelGroup>
                 <p:commandButton style="width:100%;height:22em;;border:none" styleClass="mound"
-                value=""
-                action="#{areaPage.openChooseMoundTargetDialog()}"
+                                 value=""
+                                 action="#{areaPage.openChooseMoundTargetDialog()}"
                 />
             </h:panelGroup>
         </h:panelGroup>

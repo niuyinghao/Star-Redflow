@@ -121,7 +121,7 @@ public class AreaPage extends BasePage implements Serializable {
     public void doMound() {
         String id = getRequest().getParameter("id");
         String entity = getRequest().getParameter("class");
-        areaManager.doMound(id,entity);
+        areaManager.doMound(id, entity);
         RequestContext.getCurrentInstance().closeDialog(null);
     }
 
@@ -155,12 +155,6 @@ public class AreaPage extends BasePage implements Serializable {
         return HeartSymbolResolver.resolveStyleJson(heartSymbol, wave);
     }
 
-
-    public String getHeartSymbolStyleJsonFlower(Flower flower) throws Exception {
-        HeartSymbol heartSymbol = preGetHeartSymbol(flower, flowerManager);
-        return HeartSymbolResolver.resolveStyleJson(heartSymbol, flower);
-    }
-
     @SuppressWarnings("Duplicates")
     private HeartSymbol preGetHeartSymbol(Wave wave, WaveManager waveManager) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HeartSymbol heartSymbol = wave.getHeartSymbol();
@@ -171,6 +165,11 @@ public class AreaPage extends BasePage implements Serializable {
             waveManager.saveOrUpdate(wave);
         }
         return heartSymbol;
+    }
+
+    public String getHeartSymbolStyleJsonFlower(Flower flower) throws Exception {
+        HeartSymbol heartSymbol = preGetHeartSymbol(flower, flowerManager);
+        return HeartSymbolResolver.resolveStyleJson(heartSymbol, flower);
     }
 
     @SuppressWarnings("Duplicates")
@@ -233,10 +232,11 @@ public class AreaPage extends BasePage implements Serializable {
     }
 
     public void firePray(Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        List<Pray> prays = wish.getPrays();
         Pray pray = new Pray();
-        prays.add(pray);
-        areaManager._getSession().save(pray);
+//        List<Pray> prays = wish.getPrays();
+//        prays.add(pray);
+//        wishManager.saveOrUpdate(wish);
+        pray.setWish(wish);
         wishManager.saveOrUpdate(wish);
     }
 
@@ -406,6 +406,10 @@ public class AreaPage extends BasePage implements Serializable {
             newMound = new Mound();
         }
 
+        if (newWish == null) {
+            newWish = new Wish();
+        }
+
         if (newWave.getHeartSymbol() == null) {
             HeartSymbol heartSymbol = new HeartSymbol();
             heartSymbol.setAge(0);
@@ -478,17 +482,27 @@ public class AreaPage extends BasePage implements Serializable {
         }
     }
 
+    public void addWish(Wish wish,AreaViewScopeBless areaViewScopeBless) {
+        saveWish(wish);
+        areaViewScopeBless.getWishDataList().setFirst(0);
+    }
+
     public void addWish(Wave belong, Wish wish) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         wish.setBelongWave(belong);
         saveWish(wish);
     }
 
     private void saveWish(Wish wish) {
+        /*
         if (wish.getBelongWave() != null && wish.getBelongWave().getId() == null) {
             wish.setBelongWave(null);
         }
         if (wish.getBelongFlower() != null && wish.getBelongFlower().getId() == null) {
             wish.setBelongFlower(null);
+        }
+        */
+        if (wish == null) {
+            wish = new Wish();
         }
         genericSave(wish, wishManager, grail);
         this.newWish = new Wish();

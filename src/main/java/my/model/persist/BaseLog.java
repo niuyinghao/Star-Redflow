@@ -16,7 +16,7 @@ import java.io.Serializable;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn(name = "DISCRIMINATOR_COLUMN")
+//@DiscriminatorColumn(name = "DISCRIMINATOR_COLUMN")
 public class BaseLog extends BaseObj implements Serializable {
 // members
 

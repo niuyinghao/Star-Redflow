@@ -18,7 +18,7 @@ public class Wish extends BaseLog {
     public List<Stone> stoneList;
     List<Pray> prays;
 
-    @OneToMany  (cascade = CascadeType.ALL)
+    @OneToMany  (mappedBy = "wish",cascade = CascadeType.ALL)
     public List<Pray> getPrays() {
         return prays;
     }
@@ -49,7 +49,8 @@ public class Wish extends BaseLog {
         this.belongWave = belong;
     }
 
-    @OneToMany
+//    @OneToMany
+    @Transient
     public List<Stone> getStoneList() {
         return stoneList;
     }

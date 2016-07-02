@@ -3,9 +3,11 @@ package my.model.persist.spirit;
 
 import my.model.persist.BaseLog;
 import my.model.persist.BaseObj;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import java.util.List;
 
 /**
@@ -27,7 +29,8 @@ public class Mound extends BaseObj{
     }
 
     //getter and setter
-	@OneToMany
+//	@OneToMany
+    @Transient
 	public List<BaseLog> getTargets() {
 		return targets;
 	}

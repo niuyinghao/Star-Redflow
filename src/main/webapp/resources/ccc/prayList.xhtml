@@ -10,15 +10,17 @@
 
     <c:set var="wish" value="#{cc.attrs.wish}"/>
     <composite:implementation>
-      <p:fragment id="prayList">
+      <p:fragment id="prayList" >
+          <div style="margin-left: 2em">
                             <ui:repeat value="#{wish.prays}" var="pray">
                                 <ui:fragment rendered="#{!(pray.id==null)}">
-                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-heart" style="color:blue"></i>
                                 </ui:fragment>
                             </ui:repeat>
                             <p:commandButton rendered="#{pray.id==null}" style="font-size: 1.3em;width:1.5em"
                                              icon="fa fa-heart"
                                              action="#{areaPage.firePray(wish)}" update="prayList"/>
+          </div>
                         </p:fragment>
     </composite:implementation>
 

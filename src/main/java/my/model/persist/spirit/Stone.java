@@ -8,6 +8,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 /**
  * Created by yinghao_niu on 2016/3/23 for Project.
@@ -17,7 +18,8 @@ public class Stone extends BaseLog {
 //    boolean isPlaceHolder;
     HeartSymbol heartSymbol;
 
-    @OneToOne
+//    @OneToOne
+    @Transient
     public HeartSymbol getHeartSymbol() {
         return heartSymbol;
     }

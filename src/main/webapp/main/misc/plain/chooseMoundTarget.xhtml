@@ -27,6 +27,14 @@
                     background-color: darkkhaki;
                 }
 
+                .wave {
+                    color:darkred;
+                }
+
+                .flower {
+                    color: purple;
+                }
+
             </style>
         </ui:define>
         <ui:define name="body">
@@ -40,7 +48,7 @@
                     <div class="moundTarget"
                          onclick="doMound([{name:'id',value:'#{target.id}'},{name:'class',value:'#{target.getClass()}'}])">
                         <dl>
-                            <dt>#{webUtil.getClassSign(target)}#{'#'}#{target.id}   (#{webUtil.formatTime(target.createTime)})</dt>
+                            <dt> <h:outputText value="#{webUtil.getClassSign(target)}" escape="false"></h:outputText>    (#{webUtil.formatTime(target.createTime)})</dt>
                             <dd>
                             <h:outputText escape="false" value="#{target.content}">
 
