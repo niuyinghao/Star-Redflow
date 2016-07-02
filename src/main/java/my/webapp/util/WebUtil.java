@@ -1,6 +1,7 @@
 package my.webapp.util;
 
 import my.model.persist.User;
+import my.model.persist.spirit.Wave;
 import my.service.UserManager;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.web.context.WebApplicationContext;
@@ -21,6 +22,9 @@ import java.util.regex.Pattern;
  */
 public class WebUtil {
 
+    public boolean isBlank(String s) {
+        return s == null ? true : s.equals("") ? true : false;
+    }
     public void validateEmail(FacesContext context, UIComponent component,Object value) throws ValidatorException {
         Pattern p = Pattern.compile("[a-zA-z0-9_-]+@[.a-zA-Z0-9_-]+");
         Matcher matcher = p.matcher((CharSequence) value);

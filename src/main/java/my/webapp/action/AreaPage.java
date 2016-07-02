@@ -100,6 +100,7 @@ public class AreaPage extends BasePage implements Serializable {
             map.remove("color");
             map.remove("filter");
             map.remove("opacity");
+            map.remove("font-size");
             retMap = map;
         }
 
@@ -108,6 +109,7 @@ public class AreaPage extends BasePage implements Serializable {
             retMap.put("color", map.get("color"));
             retMap.put("filter", map.get("filter"));
             retMap.put("opacity", map.get("opacity"));
+            retMap.put("font-size", map.get("font-size"));
         }
         else {
             return null;

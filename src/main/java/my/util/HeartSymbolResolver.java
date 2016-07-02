@@ -1,6 +1,5 @@
 package my.util;
 
-import com.google.gson.JsonObject;
 import my.model.persist.project.HeartSymbol;
 import my.model.persist.spirit.Flower;
 import my.model.persist.spirit.Stone;
@@ -16,8 +15,9 @@ import java.util.Map;
  */
 public class HeartSymbolResolver {
 
-    public static final int INCREATEMENT_STEP = 40;
-    public static final int FLOWER_INCREATEMENT_STEP = 10;
+    public static final int WAVE_INCREMENT_STEP = 50;
+    public static final int FLOWER_INCREMENT_STEP = 30;
+    public static final int HEART_BASE_SIZE = 20;
 
     public static String resolveStyleJson(HeartSymbol symbol, Object belong) throws Exception {
         Map styleMap = resolveStyleMap(symbol, belong);
@@ -43,23 +43,25 @@ public class HeartSymbolResolver {
         return styleMap;
     }
 
+    @SuppressWarnings("Duplicates")
     private static void resolveWaveAge(Map styleMap, int age) {
         styleMap.put("color", "#8B0000");
         if (age <= 3) { // mature age;
-            float opacity = (age + 1) / 3f;
+            float opacity = (age + 1) / 4f;
             styleMap.put("filter", "alpha(Opacity=80)");
             styleMap.put("-moz-opacity", opacity);
             styleMap.put("opacity", opacity);
+            styleMap.put("font-size", HEART_BASE_SIZE + "px");
         }
         else if (3 < age && age <= 7) {    // inflation age ;
             int base = 18;  // 基量
-            int increment = (age - 3) * INCREATEMENT_STEP; // 增量
+            int increment = (age - 3) * WAVE_INCREMENT_STEP; // 增量
             styleMap.put("font-size", (base + increment)
                     + "px");
         }
         else if (7 < age && age <= 11) {  // aging and dying age
             int base = 18;
-            int increment = (7 - 3) * INCREATEMENT_STEP;
+            int increment = (7 - 3) * WAVE_INCREMENT_STEP;
             styleMap.put("font-size", (base + increment) + "px");
 
 
@@ -67,7 +69,7 @@ public class HeartSymbolResolver {
         }
         else {
             int base = 18;
-            int increment = (7 - 3) * INCREATEMENT_STEP;
+            int increment = (7 - 3) * WAVE_INCREMENT_STEP;
             styleMap.put("font-size", (base + increment) + "px");
             waveAgingPhase(styleMap, 11);
 
@@ -76,6 +78,7 @@ public class HeartSymbolResolver {
         styleMap.put("_age", age);
     }
 
+    @SuppressWarnings("Duplicates")
     private static void resolveFlowerAge(Map styleMap, int age) {
         age = age + 1; // correct base 0;
 
@@ -83,23 +86,23 @@ public class HeartSymbolResolver {
 
         styleMap.put("color", "#800080"); // purple
         if (ageMod <= 3) { // mature age;
-            float opacity = (ageMod + 1) / 3f;
+            float opacity = (ageMod + 1) / 4f;
             styleMap.put("filter", "alpha(Opacity=80)");
             styleMap.put("-moz-opacity", opacity);
             styleMap.put("opacity", opacity);
 
-            styleMap.put("font-size", FLOWER_INCREATEMENT_STEP
+            styleMap.put("font-size", HEART_BASE_SIZE
                     + "px");
 
         }
         else if (ageMod > 3 && ageMod <= 7) {    // inflation age ;
-            int base = FLOWER_INCREATEMENT_STEP;  // 基量
-            int increment = ageMod * FLOWER_INCREATEMENT_STEP; // 增量
+            int base = FLOWER_INCREMENT_STEP;  // 基量
+            int increment = ageMod * FLOWER_INCREMENT_STEP; // 增量
             int i = base + increment;
 
             styleMap.put("font-size", (base + increment)
                     + "px");
-            int blur = (ageMod + (10-7)) / 10;
+            int blur = (ageMod + (ageMod - 4));
             styleMap.put("-webkit-filter", "blur(" +
                     blur + "px)");
             styleMap.put("-moz-filter", "blur(" +
@@ -114,12 +117,12 @@ public class HeartSymbolResolver {
 
         }
         else if (ageMod > 7 && ageMod <= 11) {  // shrink age
-            int base=FLOWER_INCREATEMENT_STEP + 7 * FLOWER_INCREATEMENT_STEP;
-            int increment = - (ageMod - 7) * FLOWER_INCREATEMENT_STEP;
+            int base = FLOWER_INCREMENT_STEP + 7 * FLOWER_INCREMENT_STEP;
+            int increment = -(ageMod - 7) * FLOWER_INCREMENT_STEP;
             styleMap.put("font-size", (base + increment)
                     + "px");
 
-            int blur=10;
+            int blur = 10;
 
             styleMap.put("-webkit-filter", "blur(" +
                     blur + "px)");

@@ -42,6 +42,7 @@ h1, h2 {
 }
 
 .fa-heart{
+    z-index: 10000000000;
     /*-webkit-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
     /*-moz-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
     /*-ms-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
