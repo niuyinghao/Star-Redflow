@@ -33,11 +33,12 @@
                 ></p:commandButton>
             </h:panelGroup>
 
-            <h:panelGroup rendered="#{areaPage.sea.editMode}" >
+            <h:panelGroup rendered="#{areaPage.sea.editMode}">
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
                                  action="#{areaPage.addWave(areaPage.newWave)}" update="toolbar,viewEditContent"/>
-                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
-                                  actionListener="#{areaPage.backToViewMode(areaPage.sea)}" update="toolbar,viewEditContent"/>
+                <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
+                                 actionListener="#{areaPage.backToViewMode(areaPage.sea)}"
+                                 update="toolbar,viewEditContent"/>
 
             </h:panelGroup>
         </f:facet>
@@ -47,46 +48,47 @@
         <c:set var="cid" value="waveList"></c:set>
         <c:set var="value" value="#{areaPage.sea}"></c:set>
         <h:panelGroup id="viewEditContent" style="overflow-y: auto;">
-            <h:panelGroup rendered="#{!areaPage.sea.editMode}" >
-            <p:dataTable widgetVar="#{cid}"
-                         paginator="true" paginatorPosition="bottom" rows="1"
-                         first="#{areaPage.sea.currentIndex}" paginatorTemplate=""
-                         binding="#{areaViewScopeSea.waveDataTable}"
-                         lazy="true" id='#{cid}' value="#{value}" var="wave"
-                         style="list-style:none;padding-bottom: 1em"
-                         type="none"
-                         xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html"
-            >
-                <p:column>
+            <h:panelGroup rendered="#{!areaPage.sea.editMode}">
+                <p:dataTable widgetVar="#{cid}"
+                             paginator="true" paginatorPosition="bottom" rows="1"
+                             first="#{areaPage.sea.currentIndex}" paginatorTemplate=""
+                             binding="#{areaViewScopeSea.waveDataTable}"
+                             lazy="true" id='#{cid}' value="#{value}" var="wave"
+                             style="list-style:none;padding-bottom: 1em"
+                             type="none"
+                             xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                >
+                    <p:column>
 
-                    <h:panelGroup id="updateStyle">
-                        <input type="hidden" value="#{areaPage.getHeartSymbolStyleJson(wave)}" id="updateStyleHidden"></input>
-                    </h:panelGroup>
+                        <h:panelGroup id="updateStyle">
+                            <input type="hidden" value="#{areaPage.getHeartSymbolStyleJson(wave)}"
+                                   id="updateStyleHidden"></input>
+                        </h:panelGroup>
 
-                    <div class="col-sm-12">
-                   <div  class="col-sm-1" style="width:12%;height: 100%">
-                    <p:commandLink
-                                   action="#{areaPage.addSymbolAge(wave.heartSymbol)}"
-                                   style="#{areaPage.getHeartSymbolStyleStyle(wave)}"
-                                   update="updateStyle"
-                      oncomplete="onAgeChange(this)"
-                    >
-                                            <i class="fa fa-heart"> </i>
-                            </p:commandLink>
-                   </div>
-                        <div class=" ">
-                            <div class="numBlock">WAVE#{'#'}#{wave.id}</div>
-                            <br/>
-                            <br/>
-                            <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
+                        <div class="col-sm-12">
+                            <div class="col-sm-1" style="width:12%;height: 100%">
+                                #{areaPage.setHeartSymbolStyleMap(areaPage.getHeartSymbolStyleStyleMap(wave))}
+                                <p:commandLink
+                                        action="#{areaPage.addSymbolAge(wave.heartSymbol)}"
+                                        update="updateStyle"
+                                        oncomplete="onAgeChange(this)"
+                                        style="#{areaPage.getHeartSymbolStyleStyleDispatch(areaPage.heartSymbolStyleMap,1)}"
+                                >
+                                    <i class="fa fa-heart"
+                                       style="#{areaPage.getHeartSymbolStyleStyleDispatch(areaPage.heartSymbolStyleMap,0)}"> </i>
+                                </p:commandLink>
+                            </div>
+                            <div class=" ">
+                                <div class="numBlock">WAVE#{'#'}#{wave.id}</div>
+                                <br/>
+                                <br/>
+                                <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
+                            </div>
                         </div>
-                    </div>
 
 
-
-
-                </p:column>
-            </p:dataTable >
+                    </p:column>
+                </p:dataTable>
 
                 <ui:remove>
                     <p:commandButton icon="fa fa-heart-o" action="#{areaPage.fireWish(wave)}" value="wish">
@@ -96,26 +98,43 @@
                 </ui:remove>
 
 
-
             </h:panelGroup>
 
             <h:panelGroup rendered="#{areaPage.sea.editMode}">
-                <p:editor  style=";" height="80" widgetVar="_editor" value="#{areaPage.newWave.content}"></p:editor>
+                <p:editor style=";" height="80" widgetVar="_editor" value="#{areaPage.newWave.content}"></p:editor>
             </h:panelGroup>
         </h:panelGroup>
-
-
         <script type="text/javascript">
-            function onAgeChange(xhr,style) {
 
-                style=$("#" + "updateStyleHidden").val();
+//<![CDATA[
+
+            function onAgeChange(xhr, style) {
+
+                style = $("#" + "updateStyleHidden").val();
+                var target = $('#' + xhr.source.replace(/:/g, '\\:'));
+                console.log(style);
+                var styleObj = eval('(' + style + ')');
+
                 debugger;
-                var target=$('#' + xhr.source.replace(/:/g,'\\:'));
-                $(target).animate(eval('(' + style + ')'));
-
+                if (styleObj['_age'] <= 7) {
+                    $(target).animate(styleObj, 500, null, function () {
+                    });
+                }
+                else {
+                    if (styleObj.transform) {
+                        $(target).find('i').css("-webkit-transition", " all .8s ease-in-out")
+                        $(target).find('i').css('transform-origin', "0");
+                        $(target).find('i').css('color', styleObj.color);
+                        $(target).find('i').css('transform', styleObj.transform);
+                    }
+                    $(target).css('color', styleObj.color);
+                }
             }
 
+        //]]>
+
         </script>
+
     </ui:define>
 </ui:composition>
 </html>

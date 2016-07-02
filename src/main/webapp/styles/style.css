@@ -25,8 +25,8 @@
 }
 
 /* Fix for dropdowns not working in IE: APF-1448 */
-.navbar { 
-    filter:none !important; 
+.navbar {
+    filter:none !important;
 }
 
 #switchLocale {
@@ -39,6 +39,14 @@ h1, h2 {
 }
 
 #content {
+}
+
+.fa-heart{
+    /*-webkit-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
+    /*-moz-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
+    /*-ms-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
+    /*-o-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
+    /*transform: translateX(1em) perspective(600px) rotateY(20deg);*/
 }
 
 .row h2 {

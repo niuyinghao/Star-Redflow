@@ -23,7 +23,7 @@ public class HeartSymbolResolver {
         return JSONObject.valueToString(styleMap);
     }
 
-    private static Map resolveStyleMap(HeartSymbol symbol, Object belong) {
+    public static Map resolveStyleMap(HeartSymbol symbol, Object belong) {
         Map styleMap = new HashMap();
         int age = symbol.getAge();
         if (belong.getClass() == Wave.class) {
@@ -44,13 +44,17 @@ public class HeartSymbolResolver {
                 int base = 18;
                 int increment = (7 - 3) * INCREATEMENT_STEP;
                 styleMap.put("font-size", (base + increment) + "px");
+                styleMap.put("transform-origin", "0px");
 
 
+                waveAgingPhase(styleMap, age);
             }
             else {
                 int base = 18;
                 int increment = (7 - 3) * INCREATEMENT_STEP;
                 styleMap.put("font-size", (base + increment) + "px");
+                waveAgingPhase(styleMap, 11);
+
             }
         }
         else if (belong.getClass() == Flower.class) {
@@ -74,18 +78,56 @@ public class HeartSymbolResolver {
                 styleMap.put("filter", "blur(10px)");
                 styleMap.put("filter", "progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */");
 
-
             }
         }
         else if (belong.getClass() == Stone.class) {
         }
         else {
         }
+
+        styleMap.put("_age", age);
         return styleMap;
+    }
+
+    private static void waveAgingPhase(Map styleMap, int age) {
+        int mod = age % 4;
+        mod = mod + 1;
+        styleMap.put("transform", "skew(" +
+                (mod * 10) +
+                "deg,0deg) rotate(" +
+                (mod * 22.5) +
+                "deg) scale(" +
+                (0.8 - 0.1 * mod) +
+                "," +
+                (1.1 + 0.1 * mod) +
+                ")");
+        if (mod == 1) {
+            styleMap.put("color", "#CD5C5C"); // indianred
+        }
+        else if (mod == 2) {
+            styleMap.put("color", "#808080"); // grey
+
+        }
+        else if (mod == 3) {
+            styleMap.put("color", "#696969"); //dimgrey
+
+        }
+        else if (mod == 4) {
+            styleMap.put("color", "#000000"); // black
+
+        }
     }
 
     public static String resolveStyleStyle(HeartSymbol symbol, Object belong) {
         Map<String, Object> styleMap = resolveStyleMap(symbol, belong);
+        return convertMapToString(styleMap);
+
+    }
+
+    public static String convertMapToString(Map<String, Object> styleMap) {
+        if (styleMap == null) {
+            return "";
+        }
         StringBuffer sb = new StringBuffer();
         for (Map.Entry<String, Object> entry : styleMap.entrySet()) {
             String key = entry.getKey();
@@ -93,6 +135,5 @@ public class HeartSymbolResolver {
             sb.append(key + ":" + value + ";");
         }
         return sb.toString();
-
     }
 }

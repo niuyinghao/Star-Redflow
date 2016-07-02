@@ -1,7 +1,6 @@
 package my.webapp.action;
 
 import my.Constants;
-import my.dao.MiscDao;
 import my.model.persist.BaseLog;
 import my.model.persist.User;
 import my.model.persist.project.HeartSymbol;
@@ -9,7 +8,6 @@ import my.model.persist.spirit.*;
 import my.model.persist.project.Pray;
 import my.model.wrapper.*;
 import my.service.*;
-import my.service.impl.MiscManagerImpl;
 import my.util.HeartSymbolResolver;
 import my.webapp.util.WebUtil;
 import org.primefaces.component.api.UIData;
@@ -43,6 +41,7 @@ import java.util.Map;
 @Scope("session")
 @Lazy
 public class AreaPage extends BasePage implements Serializable {
+
     // members
     Wave newWave;
     Flower newFlower;
@@ -87,6 +86,31 @@ public class AreaPage extends BasePage implements Serializable {
     @Autowired
     private MiscManager miscManager;
 
+
+
+    public String getHeartSymbolStyleStyleDispatch(Map map, int dispatch) throws Exception {
+        Map retMap;
+        if (dispatch == 0) {
+            map.remove("color");
+            map.remove("filter");
+            map.remove("opacity");
+            retMap = map;
+        }
+
+        else if (dispatch == 1) {
+            retMap = new HashMap();
+            retMap.put("color", map.get("color"));
+            retMap.put("filter", map.get("filter"));
+            retMap.put("opacity", map.get("opacity"));
+        }
+        else {
+            return null;
+        }
+
+        return HeartSymbolResolver.convertMapToString(retMap);
+    }
+
+
     public void doMound() {
         String id = getRequest().getParameter("id");
         areaManager.doMound(id);
@@ -108,24 +132,40 @@ public class AreaPage extends BasePage implements Serializable {
 
     public String getHeartSymbolStyleJson(Wave wave) throws Exception {
         HeartSymbol heartSymbol = wave.getHeartSymbol();
+        heartSymbol = preGetStyle(wave, heartSymbol);
+        return HeartSymbolResolver.resolveStyleJson(heartSymbol, wave);
+    }
+
+    private HeartSymbol preGetStyle(Wave wave, HeartSymbol heartSymbol) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         if (heartSymbol == null) {
             heartSymbol = new HeartSymbol();
             heartSymbol.setBelong(wave);
             wave.setHeartSymbol(heartSymbol);
             waveManager.saveOrUpdate(wave);
         }
-        return HeartSymbolResolver.resolveStyleJson(heartSymbol, wave);
+        return heartSymbol;
     }
 
     public String getHeartSymbolStyleStyle(Wave wave) throws Exception {
         HeartSymbol heartSymbol = wave.getHeartSymbol();
-        if (heartSymbol == null) {
-            heartSymbol = new HeartSymbol();
-            heartSymbol.setBelong(wave);
-            wave.setHeartSymbol(heartSymbol);
-            waveManager.saveOrUpdate(wave);
-        }
+        heartSymbol = preGetStyle(wave, heartSymbol);
         return HeartSymbolResolver.resolveStyleStyle(heartSymbol, wave);
+    }
+
+    Map hearSymbolStyleMap;
+
+    public Map getHeartSymbolStyleMap() {
+        return hearSymbolStyleMap;
+    }
+
+    public void setHeartSymbolStyleMap(Map heartSymbolStyleMap) {
+        this.hearSymbolStyleMap = heartSymbolStyleMap;
+    }
+
+    public Map getHeartSymbolStyleStyleMap(Wave wave) throws Exception {
+        HeartSymbol heartSymbol = wave.getHeartSymbol();
+        heartSymbol = preGetStyle(wave, heartSymbol);
+        return HeartSymbolResolver.resolveStyleMap(heartSymbol, wave);
     }
 
     public void editStone(Stone stone) {
