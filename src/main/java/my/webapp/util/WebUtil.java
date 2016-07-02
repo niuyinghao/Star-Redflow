@@ -1,6 +1,7 @@
 package my.webapp.util;
 
 import my.model.persist.User;
+import my.model.persist.spirit.Flower;
 import my.model.persist.spirit.Wave;
 import my.service.UserManager;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -14,6 +15,8 @@ import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +24,21 @@ import java.util.regex.Pattern;
  * Created by yinghao_niu on 8/1 for project.
  */
 public class WebUtil {
+    SimpleDateFormat dateFormat =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+
+    public String formatTime(Date date) {
+        return dateFormat.format(date);
+    }
+
+    public String getClassSign(Object o) {
+        if (o instanceof Wave) {
+            return "WAVE";
+        }
+        else if (o instanceof Flower) {
+            return "FLOWER";
+        }
+        else return "";
+    }
 
     public boolean isBlank(String s) {
         return s == null ? true : s.equals("") ? true : false;

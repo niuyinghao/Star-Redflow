@@ -2,10 +2,13 @@ package my.dao.hibernate;
 
 import my.dao.MiscDao;
 import my.model.persist.BaseLog;
+import my.model.persist.User;
+import my.model.wrapper.MoundTargetLazyModel;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.StandardBasicTypes;
+import org.primefaces.model.SortOrder;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
@@ -35,15 +38,53 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
     }
 
     @Override
-    public void doMound(String id) {
-        getSession().createQuery("update BaseLog set buried=true where id=:id")
-                .setLong("id", Long.parseLong(id))
-                .executeUpdate();
+    public void doMound(String id, String entity) {
+        /**
+         * update BaseLog :
+         *  org.postgresql.util.PSQLException: 错误: 关系 "ht_base_log" 不存在
+         */
+
+        if ("class my.model.persist.spirit.Flower".equals(entity)) {
+            getSession().createQuery("update Flower set buried=true where id=:id")
+                    .setLong("id", Long.parseLong(id))
+                    .executeUpdate();
+        }
+        else if ("class my.model.persist.spirit.Wave".equals(entity)) {
+            getSession().createQuery("update Wave set buried=true where id=:id")
+                    .setLong("id", Long.parseLong(id))
+                    .executeUpdate();
+        }
+        else {
+            return;
+        }
     }
 
     @Override
-    public List getNotBuriedTarget() {
-        return getSession().createQuery(" from BaseLog  where buried=false order by  createTime desc ").list();
+    public List getNotBuriedTarget(int first, int pageSize, String sortField, SortOrder sortOrder, User creator) {
+        String hqlBase = " from BaseLog b where buried=false and creator=:creator";
+        String hql = hqlBase + "  order by  " + sortField;
+        if (sortOrder == SortOrder.ASCENDING) {
+            hql += " asc ";
+        }
+        else if (sortOrder == SortOrder.DESCENDING) {
+            hql +=  " desc ";
+        }
+        else {
+        }
+
+        Query query = getSession().createQuery(hql);
+        query.setFirstResult(first);
+        query.setMaxResults(pageSize);
+        query.setParameter("creator", creator);
+
+        String hql4Count = "select count(b)  " + hqlBase;
+
+        Query queryCount = getSession().createQuery(hql4Count).setParameter("creator", creator);
+
+
+        MoundTargetLazyModel.setCount((Long) queryCount.uniqueResult());
+
+        return query.list();
     }
 
     @Override
@@ -77,7 +118,7 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
     @Override
     public Long getUserSequence() {
         BigInteger seq = (BigInteger) getSession().createSQLQuery(" SELECT nextval('register_sequence')").uniqueResult();
-        Long registerSeq =  seq.longValue();
+        Long registerSeq = seq.longValue();
         return registerSeq;
     }
 

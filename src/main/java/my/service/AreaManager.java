@@ -20,7 +20,7 @@ public interface AreaManager {
 
 	Session _getSession();
 
-    void doMound(String id);
+    void doMound(String id, String entity);
 
     List getAllWaveOrFlowerNotMound();
 

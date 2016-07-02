@@ -120,7 +120,8 @@ public class AreaPage extends BasePage implements Serializable {
 
     public void doMound() {
         String id = getRequest().getParameter("id");
-        areaManager.doMound(id);
+        String entity = getRequest().getParameter("class");
+        areaManager.doMound(id,entity);
         RequestContext.getCurrentInstance().closeDialog(null);
     }
 

@@ -1,6 +1,7 @@
 package my.model.wrapper;
 
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
 import org.primefaces.model.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,7 +23,9 @@ public abstract class Place<T> extends AreaLazyModel {
 	@Override
 	public List load(int first, int pageSize, String sortField, SortOrder sortOrder, Map filters) {
 
-        this.setCriterion(Restrictions.eq("creator", ctx.getCreator()));
+        SimpleExpression creator = Restrictions.eq("creator", ctx.getCreator());
+        SimpleExpression notBuried = Restrictions.eq("buried", false);
+        this.setCriterion(Restrictions.and(creator,notBuried));
 		sortField = "createTime";
 		sortOrder = SortOrder.DESCENDING;
 		List loaded = super.load(first, pageSize, sortField, sortOrder, filters);

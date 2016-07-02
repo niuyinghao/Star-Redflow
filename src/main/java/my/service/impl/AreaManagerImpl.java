@@ -92,8 +92,8 @@ public class AreaManagerImpl implements AreaManager ,Serializable{
 	}
 
     @Override
-    public void doMound(String id) {
-        miscDao.doMound(id);
+    public void doMound(String id, String entity) {
+        miscDao.doMound(id,entity);
     }
 
     @Override

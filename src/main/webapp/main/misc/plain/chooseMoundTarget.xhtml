@@ -10,12 +10,20 @@
         <ui:define name="head">
 
             <style type="text/css">
-                .moundTarget{
-                    background-color: yellow;
+                #content{
+                    padding: 0;
+                }
+                dl{
+                    padding-bottom: 0;
+                    margin-bottom: 0.2em;
+                }
+                .moundTarget {
+                    /*background-color: yellow;*/
                     border-radius: 3%;
+                    cursor: pointer;
                 }
 
-                .moundTarget:hover{
+                .moundTarget:hover {
                     background-color: darkkhaki;
                 }
 
@@ -24,14 +32,24 @@
         <ui:define name="body">
             <h:form>
                 <p:dataList value="#{areaPage.moundTargetLazyModel}" lazy="true"
-                            paginator="true" rows="10"
-                            var="target">
+                            paginator="true" rows="10" paginatorPosition="top"
+                            var="target"
+                            style="width: 100%"
+                >
 
-                    <div class="moundTarget" onclick="doMound([{name:'id',value:'#{target.id}'}])">
-                        #{target.id} #{target.content}
+                    <div class="moundTarget"
+                         onclick="doMound([{name:'id',value:'#{target.id}'},{name:'class',value:'#{target.getClass()}'}])">
+                        <dl>
+                            <dt>#{webUtil.getClassSign(target)}#{'#'}#{target.id}   (#{webUtil.formatTime(target.createTime)})</dt>
+                            <dd>
+                            <h:outputText escape="false" value="#{target.content}">
+
+                            </h:outputText>
+                            </dd>
+                        </dl>
                     </div>
                 </p:dataList>
-                <p:remoteCommand name="doMound" action="#{areaPage.doMound()}" />
+                <p:remoteCommand name="doMound" action="#{areaPage.doMound()}"/>
             </h:form>
         </ui:define>
     </ui:composition>
