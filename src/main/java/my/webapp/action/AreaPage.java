@@ -185,7 +185,7 @@ public class AreaPage extends BasePage implements Serializable {
     }
 
 
-    public String getHeartSymbolStyleStyle(Flower flower) throws Exception {
+    public String getHeartSymbolStyleStyleFlower(Flower flower) throws Exception {
         HeartSymbol heartSymbol = preGetHeartSymbol(flower, flowerManager);
         return HeartSymbolResolver.resolveStyleStyle(heartSymbol, flower);
     }
