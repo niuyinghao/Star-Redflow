@@ -43,33 +43,36 @@
                              xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                     <p:column>
 
-                        <div id="left" class="col-sm-10" >
 
                             <div class="col-sm-12" style="padding-bottom: 1em;padding-left: 0">
-                                <div class="col-sm-2" style="padding-left: 0%">
+                                <div class="col-sm-1" style="padding-left: 0%">
                                     <div class="numBlock " style="margin-left: 0" >STONE#{'#'}#{s.id}</div>
                                 </div>
 
-                                <div class="col-sm-10" style="margin-top: 1em">
+                                <div class="col-sm-11" style="margin-top: 1.3em">
                                     <p:commandButton icon="fa fa-pencil " styleClass="cbutton" action="#{areaPage.editStone(s)}" update="toolbar,viewEditContent"></p:commandButton> &#160;
                                     <p:commandButton icon="fa fa-remove " styleClass="cbutton" action="#{areaPage.deleteStone(s)}" update="outerForm"></p:commandButton>
                                 </div>
                             </div>
 
-                            <div class="contentBlock">
-                                <div style="font-weight: bold">#{webUtil.formatTime(s.createTime)}</div>
-                                <hr style="margin: .5em 0"></hr>
-                                <h:outputText escape="false" value="#{s.content}"> </h:outputText>
+                            <div class="col-sm-12">
+                                <div class="col-sm-11">
+                                    <div class="contentBlock">
+                                        <div style="font-weight: bold">#{webUtil.formatTime(s.createTime)}</div>
+                                        <hr style="margin: .5em 0"></hr>
+                                        <h:outputText escape="false" value="#{s.content}"> </h:outputText>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <i class="fa fa-5x fa-caret-right command" style="zoom: 4;;-moz-transform:scale(4);-moz-transform-origin :top left;cursor: auto" onclick="nextStone()"></i>
+
+                                    <p:remoteCommand action="#{areaPage.nextStoneThenEnterEditMode(areaPage.hillock)}" update="toolbar,viewEditContent"
+                                                     name="nextStone"
+                                    ></p:remoteCommand>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-2">
-                            <i class="fa fa-5x fa-caret-right command" style="zoom: 4;padding-top: .1em" onclick="nextStone()"></i>
 
-                            <p:remoteCommand action="#{areaPage.nextStoneThenEnterEditMode(areaPage.hillock)}" update="toolbar,viewEditContent"
-                                             name="nextStone"
-                            ></p:remoteCommand>
-                        </div>
 
 
                     </p:column>
