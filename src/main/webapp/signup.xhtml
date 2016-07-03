@@ -7,10 +7,14 @@
     <ui:define name="title">#{text['signup.title']}</ui:define>
     <body id="signup">
         <ui:define name="body">
+
+            <o:resourceInclude path="/common/messages.jsp"/>
+
             <div class="col-sm-2">
                 <h2>#{text['signup.heading']}</h2>
                 #{text['signup.message']}
             </div>
+
             <div class="col-sm-7">
                 <h:form id="signupForm" styleClass="well" autocomplete="off">
                     <div class="form-group">
@@ -63,6 +67,18 @@
                     </div>
                 </h:form>
             </div>
+
+
+            <script>
+                //<![CDATA[
+                $(function() {
+                    $('.close').click(function () {
+                        $(this).parent().remove();
+                    })
+                });
+                // ]]>
+            </script>
+
         </ui:define>
     </body>
 </ui:composition>

@@ -6,6 +6,7 @@ import my.model.persist.spirit.Flower;
 import my.model.persist.spirit.Wave;
 import my.service.UserManager;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.core.token.Token;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -55,7 +56,7 @@ public class WebUtil {
                 else if (age <= 7) {
                     stringBuffer.append(" [Inflating Age]");
                 }
-                else  if(age<=10){
+                else if (age <= 10) {
                     stringBuffer.append(" [Dying Age]");
                 }
                 else {
@@ -75,21 +76,21 @@ public class WebUtil {
 
             else {
                 int age = heartSymbol.getAge();
-                int ageMod = (age ) % 12;
+                int ageMod = (age) % 12;
                 int round = (age) / 12;
                 if (ageMod <= 3) {
                     stringBuffer.append(" [Maturing Age|" +
-                            (round +1 ) +
+                            (round + 1) +
                             "]");
                 }
                 else if (ageMod <= 7) {
                     stringBuffer.append(" [Inflating Age|" +
-                            (round +1 ) +
+                            (round + 1) +
                             "]");
                 }
                 else if (ageMod <= 11) {
                     stringBuffer.append(" [Shrinking Age|" +
-                            (round +1 ) +
+                            (round + 1) +
                             "]");
                 }
             }
@@ -142,18 +143,30 @@ public class WebUtil {
     }
 
     public static User getCurrentUser(HttpServletRequest request) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Object principal = request.getUserPrincipal();
-        if (principal == null) {
+        Object token = request.getUserPrincipal();
+        if (token == null) {
             return null;
         }
 
-        if (principal instanceof String) {
+        if (token instanceof String) {
             WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
-            UserManager userManager = (UserManager) ctx.getBean("userManager");
-            return userManager.getUserByUsername((String) principal);
+            UserManager userManager = (UserManager) ctx.getBean("userMgr");
+            return userManager.getUserByUsername((String) token);
         }
 
-        return (User) (((AbstractAuthenticationToken) principal).getPrincipal());
+        Object principal = ((AbstractAuthenticationToken) token).getPrincipal();
+        if (principal instanceof User) {
+            return (User) principal;
+        }
+        else if (principal instanceof String) {
+            WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
+            UserManager userManager = (UserManager) ctx.getBean("userMgr");
+            return userManager.getUserByUsername((String) principal);
+        }
+        else {
+            return null;
+        }
     }
+
 }
 
