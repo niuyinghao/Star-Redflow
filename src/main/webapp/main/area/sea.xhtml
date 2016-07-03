@@ -36,7 +36,7 @@
             <h:panelGroup rendered="#{areaPage.sea.editMode}">
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-save"
                                  action="#{areaPage.addWave(areaPage.newWave,areaViewScopeSea)}"
-                                 update="toolbar,viewEditContent"/>
+                                 update="toolbar,viewEditContent,navTools"/>
                 <p:commandButton style="font-size: 1.3em;width:1.5em" icon="fa fa-undo"
                                  actionListener="#{areaPage.backToViewMode(areaPage.sea)}"
                                  update="toolbar,viewEditContent"/>

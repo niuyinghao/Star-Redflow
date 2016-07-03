@@ -269,6 +269,7 @@ public class AreaPage extends BasePage implements Serializable {
         List<Pray> prays = wish.getPrays();
         if (prays == null) {
             prays = new ArrayList<>();
+            wish.setPrays(prays);
         }
         prays.add(pray);
         pray.setCreateTime(new Date());
