@@ -9,7 +9,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <title>ground</title>
     <ui:include src="/common/assets.xhtml"/>
     <ui:insert name="head"/>
 </h:head>
@@ -94,7 +93,9 @@
 
     .bless{
         color: #ffffff;
-        text-shadow: 1px 1px 0px #212121;
+        /*text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1),0 1px 3px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2),0 5px 10px rgba(0,0,0,0.25);*/
+        /*text-shadow:0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px #095816, 0 0 25px #095816, 0 0 30px #095816, 0 0 50px #095816, 0 0 80px #095816, 0 0 100px #095816, 0 0 150px #095816*/
+        text-shadow: -1px -1px #fff, 1px 1px #333; color: #CCC; ;
         font-family:'SansSerif';
     }
 </style>
@@ -114,15 +115,7 @@
     </div>
     <div class="clearfix"/>
     <div id='main' style="padding-top: 6em;height:79%;background-color: #{bg}">
-        <div class="col-sm-12">
-            <div class="col-sm-5 btn-group"></div>
-            <div class="col-sm-2">
-                <span class="fa fa-star-o" style="border: 1px solid black;padding: 2px; font-style: italic;">
-                <p:link value="PLACE" onclick="history.back()"></p:link>
-                </span>
-            </div>
-            <div class="col-sm-5 "></div>
-        </div>
+
         <div id="content" class="col-sm-12">
             <h:form prependId="false" id="outerForm">
                 <p:toolbar style="height:2.1em;border-radius: 0" id="toolbar">

@@ -9,7 +9,11 @@
       xmlns:ccc="http://java.sun.com/jsf/composite/ccc">
 <ui:composition template="/layouts/grail.xhtml">
 
+
     <ui:param name="bg" value="darkblue"></ui:param>
+    <ui:define name="head">
+        <title>Star - bless</title>
+    </ui:define>
     <ui:define name="toolbar">
         <c:set var="cid" value="wishList"></c:set>
         <f:facet name="left">
@@ -25,8 +29,13 @@
                                      action="#{areaPage.enterEditMode(areaPage.grail)}"
                                      icon="fa fa-edit"
                                      update="toolbar,viewEditContent">
-
                     </p:commandButton>
+                    <p:commandButton style="font-size: 1.3em;width:1.5em"
+                                     onclick="history.back();return false"
+                                     type="button"
+                                     icon="fa fa-home"
+                                     update="toolbar,viewEditContent"/>
+
             </h:panelGroup>
 
             <h:panelGroup rendered="#{areaPage.grail.editMode}">
