@@ -99,6 +99,8 @@
             //<![CDATA[
 
             function onAgeChange(xhr, style) {
+                console.log("age change return");
+
 
                 style = $("#" + "updateStyleHidden").val();
                 var target = $('#' + xhr.source.replace(/:/g, '\\:'));

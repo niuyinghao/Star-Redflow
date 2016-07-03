@@ -387,3 +387,7 @@ a{
     color: green;
     cursor: default;
 }
+
+.fa-spinner{
+    overflow: hidden;
+}
