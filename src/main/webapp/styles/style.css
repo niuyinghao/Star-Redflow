@@ -340,6 +340,24 @@ div{
     background-color: darkcyan;
 }
 
+/*<feColorMatrix in=\"SourceGraphic\" type=\"hueRotate\" values=\"0\" result=\"A\"/>*/
+/*in=\"A\"*/
+
+.bb7{
+    filter: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><filter id=\"myfilter\" x=\"-.1\" y=\"0\"><feGaussianBlur  stdDeviation=\"4\"/></filter></svg>#myfilter');
+}
+
+.bb8{
+    filter: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><filter id=\"myfilter\" x=\"-.1\" y=\"0\"><feGaussianBlur  stdDeviation=\"6\"/></filter></svg>#myfilter');
+}
+
+.bb9{
+    filter: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><filter id=\"myfilter\" x=\"-.1\" y=\"0\"><feGaussianBlur  stdDeviation=\"8\"/></filter></svg>#myfilter');
+}
+
+.bb10{
+    filter: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><filter id=\"myfilter\" x=\"-.1\" y=\"0\"><feGaussianBlur  stdDeviation=\"10\"/></filter></svg>#myfilter');
+}
 
 .ui-autocomplete-dropdown .ui-icon {
     zoom:1.5

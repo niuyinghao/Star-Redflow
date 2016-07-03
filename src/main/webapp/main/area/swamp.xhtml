@@ -70,6 +70,7 @@
                                     update="updateStyle"
                                     oncomplete="onAgeChange(this)"
                                     style="#{areaPage.getHeartSymbolStyleStyleFlower(f)}"
+                                    styleClass="#{areaPage.getHeartSymbolStyleStyleFlowerClass(f)}"
                             >
                                 <i class="fa fa-heart"> </i>
                             </p:commandLink>
@@ -105,16 +106,36 @@
 
                 $(target).animate(styleObj, 500, null, function () {
 
-                    if(styleObj['_age']>3) {
+                    var _age = styleObj['_age'];
+                    if(_age>3) {
                         $(target).css("filter", styleObj['filter']);
                         $(target).css("-webkit-filter", styleObj['-webkit-filter']);
                         $(target).css("-ms-filter", styleObj['-ms-filter']);
                         $(target).css("-moz-filter", styleObj['-moz-filter']);
+
+                        if(_age==4) {
+                            $(target).addClass("bb7");
+                        }
+                        else if(_age==5) {
+                            $(target).addClass("bb8");
+                        }
+                        else if(_age==6) {
+                            $(target).addClass("bb9");
+                        }
+                        else {
+                            $(target).addClass("bb10");
+                        }
+
                     }  else{
                         $(target).css("filter", "");
                         $(target).css("-webkit-filter", "");
                         $(target).css("-ms-filter", "");
                         $(target).css("-moz-filter", "");
+
+                        $(target).removeClass("bb10");
+                        $(target).removeClass("bb9");
+                        $(target).removeClass("bb8");
+                        $(target).removeClass("bb7");
                     }
                 });
             }
