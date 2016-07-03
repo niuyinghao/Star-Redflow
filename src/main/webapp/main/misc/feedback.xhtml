@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <ui:composition template="/layouts/default.xhtml">
+        <ui:define name="body">
+            <div class="clearfix"/>
+            <div id="simbol" class="col-sm-12 center-block" style="background-color:black;margin:auto">
+                <div id="star-deco" class="center-block" style="max-width:330px;text-align:justify">
+                    <img class="center-block" style="display:inline-block" src="/images/star.png" height="30" width="30"
+                         alt="SYMBOL"/>
+                    &#160;
+                    <img class="center-block" style="display:inline-block" src="/images/star.png" height="30" width="30"
+                         alt="SYMBOL"/>
+                    &#160;
+                    <img class="center-block" style="display:inline-block" src="/images/star.png" height="30" width="30"
+                         alt="SYMBOL"/>
+                    &#160;
+                    <img class="center-block" style="display:inline-block" src="/images/star.png" height="30" width="30"
+                         alt="SYMBOL"/>
+                    &#160;
+                    <img class="center-block" style="display:inline-block" src="/images/star.png" height="30" width="30"
+                         alt="SYMBOL"/>
+                    &#160;
+                    <img class="center-block" style="display:inline-block" src="/images/star.png" height="30" width="30"
+                         alt="SYMBOL"/>
+                    &#160;
+                    <img class="center-block" style="display:inline-block" src="/images/star.png" height="30" width="30"
+                         alt="SYMBOL"/>
+                    &#160;
+                    <img class="center-block" style="display:inline-block" src="/images/star.png" height="30" width="30"
+                         alt="SYMBOL"/>
+                    <!--&#160;-->
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+
+            <h:form prependId="false">
+                <div class="col-sm-8" style="margin-top: 5em">
+                    <p:outputLabel value="反馈内容：" for="feedContent"></p:outputLabel>
+                    <p:inputTextarea style=";width: 100%" rows="6" id='feedContent' widgetVar="_editor"
+                                     value="#{feedBackPage.feedback.content}"></p:inputTextarea>
+
+                    <br></br>
+
+                    <p:outputLabel value="联系方式（选填）：" for="contactInfo"></p:outputLabel>
+                    <p:inputText style="width:100%;margin-top: 1em" value="#{feedBackPage.feedback.contactInfo}"
+                                 id="contactInfo"></p:inputText>
+                    <br></br>
+
+                    <div style="margin-top: 1em">
+                        <p:commandButton value="确定" action="#{feedBackPage.saveFeedBack(feedBackPage.feedback)}"
+                                         oncomplete="onFeedbackComplete(xhr,args)"
+                                         ajax="true" update="returnCode" process=""
+                        > </p:commandButton>
+                        <p:commandButton style="margin-left: 1em;" value="返回" type="button"
+                                         onclick="window.close()"></p:commandButton>
+                        <h:inputHidden id="returnCode" value="#{feedBackPage.retCode}"></h:inputHidden>
+                    </div>
+                </div>
+            </h:form>
+
+            <div class="col-sm-2"></div>
+
+
+            <script type="text/javascript">
+                // <![CDATA[
+                function onFeedbackComplete(x, a) {
+                    var retCode = $('#returnCode').val();
+                    console.log("retCode" + retCode);
+                    if (retCode == '0' || retCode == '1') {
+                        alert("反馈成功，谢谢您的反馈");
+                    }
+                    else if (retCode == '-1') {
+                        alert('谢谢您的反馈，报歉反馈遇到问题，请邮件信息到star_redflow@126.com，再次感谢您的反馈');
+                    }
+                    else {
+                        alert('谢谢您的反馈，报歉反馈遇到问题，请邮件信息到star_redflow@126.com，再次感谢您的反馈');
+                    }
+
+                }
+                // ]]>
+            </script>
+        </ui:define>
+
+
+    </ui:composition>
+</f:view>
+</html>

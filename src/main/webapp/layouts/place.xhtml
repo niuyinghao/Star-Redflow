@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -132,22 +130,20 @@
                     <p:menuitem value="青岗" outcome="/main/area/hillock.xhtml">
                         <f:param name="i" value="3"/>
                     </p:menuitem>
-
                 </p:tabMenu>
 
             </div>
 
 
             <div class="col-sm-4">
-                <div class="col-sm-12">
-                    <div class="col-sm-5"></div>
-                    <div class="col-sm-2">
-            <span class="fa fa-star-o" style="border: 1px solid black;padding: 2px; font-style: italic;">
-            <p:link value="STAR" outcome="/main/starry/bless.xhtml"></p:link>
-            </span>
-                    </div>
-                    <div class="col-sm-5"></div>
-                </div>
+                <h:form style="padding-top: .5em;margin-left: 2em">
+                    <p:menuButton value="Star" >
+                        <p:menuitem value="Star"  icon="fa fa-star" outcome="/main/starry/bless.xhtml"/>
+                        <p:menuitem value="意见反馈" target="_blank" outcome="/main/misc/feedback.xhtml" icon="ui-icon-extlink"/>
+                        <p:separator />
+                        <p:menuitem value="注销"   icon="fa fa-user-times" onclick="location.href='/logout.jsp'" />
+                    </p:menuButton>
+                </h:form>
             </div>
 
         </div>

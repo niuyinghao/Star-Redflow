@@ -10,4 +10,13 @@ import javax.persistence.Entity;
 
 @Entity
 public class Feedback extends BaseLog {
+    String contactInfo;
+
+    public String getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
+    }
 }

@@ -6,6 +6,7 @@ package my.webapp.action;
 import my.Constants;
 import my.model.persist.BaseLog;
 import my.model.persist.User;
+import my.model.persist.board.Feedback;
 import my.model.persist.project.HeartSymbol;
 import my.model.persist.spirit.*;
 import my.model.persist.project.Pray;
@@ -45,40 +46,6 @@ import java.util.Map;
 @Scope("session")
 @Lazy
 public class AreaPage extends BasePage implements Serializable {
-    public String getHeartSymbolStyleStyleFlowerClass(Flower flower) {
-        if (flower == null) {
-            return "";
-        }
-
-        HeartSymbol heartSymbol = flower.getHeartSymbol();
-        if (heartSymbol == null) {
-            return "";
-        }
-
-        int age = heartSymbol.getAge();
-
-        int ageMod = (age + 1) % 12;
-
-        if (ageMod < 4) {
-            return "";
-        }
-
-        if (ageMod == 4) {
-            return "bb7";
-        }
-        else if (ageMod == 5) {
-            return "bb8";
-        }
-        else if (ageMod == 6) {
-            return "bb9";
-        }
-        else {
-            return "bb10";
-        }
-
-
-    }
-
     // members
     Wave newWave;
     Flower newFlower;
@@ -124,8 +91,41 @@ public class AreaPage extends BasePage implements Serializable {
     private MiscManager miscManager;
     Map hearSymbolStyleMap;
     public static final int WAVE_HEART_MAX_AGE = 11;
-
     DataTable waveDataTable;
+
+    public String getHeartSymbolStyleStyleFlowerClass(Flower flower) {
+        if (flower == null) {
+            return "";
+        }
+
+        HeartSymbol heartSymbol = flower.getHeartSymbol();
+        if (heartSymbol == null) {
+            return "";
+        }
+
+        int age = heartSymbol.getAge();
+
+        int ageMod = (age + 1) % 12;
+
+        if (ageMod < 4) {
+            return "";
+        }
+
+        if (ageMod == 4) {
+            return "bb7";
+        }
+        else if (ageMod == 5) {
+            return "bb8";
+        }
+        else if (ageMod == 6) {
+            return "bb9";
+        }
+        else {
+            return "bb10";
+        }
+
+
+    }
 
     public String getHeartSymbolStyleStyleDispatch(Map map, int dispatch) throws Exception {
         Map retMap;

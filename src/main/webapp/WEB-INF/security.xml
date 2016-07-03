@@ -19,6 +19,7 @@
         <intercept-url pattern="/signup*" access="hasRole('ROLE_ANONYMOUS')"/>
         <!--<intercept-url pattern="/admin/**" access=""/>-->
         <intercept-url pattern="/passwordHint*" access="permitAll()"/>
+        <intercept-url pattern="/**/feedback.xhtml" access="permitAll()"/>
         <!--<intercept-url pattern="/**/*.xhtml" access="ROLE_ADMIN,ROLE_USER"/>-->
         <intercept-url pattern="/**/*.xhtml" access="hasRole('ROLE_USER')"  />
         <intercept-url pattern="/**/*" access="hasRole('ROLE_USER')"  />
