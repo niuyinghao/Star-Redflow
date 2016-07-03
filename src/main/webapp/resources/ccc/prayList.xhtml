@@ -17,9 +17,12 @@
                                     <i class="fa fa-heart" style="color:blue"></i>
                                 </ui:fragment>
                             </ui:repeat>
-                            <p:commandButton rendered="#{pray.id==null}" style="font-size: 1.3em;width:1.5em"
-                                             icon="fa fa-heart"
-                                             action="#{areaPage.firePray(wish)}" update="prayList"/>
+                            <p:commandButton rendered="#{pray.id==null}" style="margin-left: 1em;font-size: 1.3em;"
+                                             icon="fa fa-heart"   value="pray"
+                                             action="#{areaPage.firePray(wish)}"
+                                             update="prayList"
+                                              styleClass="command"
+                            />
           </div>
                         </p:fragment>
     </composite:implementation>

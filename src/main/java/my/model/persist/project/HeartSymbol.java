@@ -20,7 +20,7 @@ public class HeartSymbol {
 
     BaseLog belong;
 
-    @OneToOne()
+    @OneToOne
     public BaseLog getBelong() {
         return belong;
     }

@@ -1,10 +1,12 @@
 package my.webapp.util;
 
 import my.model.persist.User;
+import my.model.persist.project.HeartSymbol;
 import my.model.persist.spirit.Flower;
 import my.model.persist.spirit.Wave;
 import my.service.UserManager;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -27,6 +29,9 @@ public class WebUtil {
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public String formatTime(Date date) {
+        if (date == null) {
+            return "";
+        }
         return dateFormat.format(date);
     }
 
@@ -38,12 +43,56 @@ public class WebUtil {
             stringBuffer.append("WAVE");
             stringBuffer.append("#");
             stringBuffer.append(((Wave) o).getId());
+            HeartSymbol heartSymbol = ((Wave) o).getHeartSymbol();
+            if (heartSymbol == null) {
+                stringBuffer.append("[Maturing Age]");
+            }
+            else {
+                int age = heartSymbol.getAge();
+                if (age <= 3) {
+                    stringBuffer.append(" [Maturing Age]");
+                }
+                else if (age <= 7) {
+                    stringBuffer.append(" [Inflating Age]");
+                }
+                else  if(age<=10){
+                    stringBuffer.append(" [Dying Age]");
+                }
+                else {
+                    stringBuffer.append(" [Dead]");
+                }
+            }
         }
         else if (o instanceof Flower) {
             stringBuffer.append("flower'> ");
             stringBuffer.append("FLOWER");
             stringBuffer.append("#");
             stringBuffer.append(((Flower) o).getId());
+            HeartSymbol heartSymbol = ((Flower) o).getHeartSymbol();
+            if (heartSymbol == null) {
+                stringBuffer.append(" [Maturing Age|0]");
+            }
+
+            else {
+                int age = heartSymbol.getAge();
+                int ageMod = (age ) % 12;
+                int round = (age) / 12;
+                if (ageMod <= 3) {
+                    stringBuffer.append(" [Maturing Age|" +
+                            (round +1 ) +
+                            "]");
+                }
+                else if (ageMod <= 7) {
+                    stringBuffer.append(" [Inflating Age|" +
+                            (round +1 ) +
+                            "]");
+                }
+                else if (ageMod <= 11) {
+                    stringBuffer.append(" [Shrinking Age|" +
+                            (round +1 ) +
+                            "]");
+                }
+            }
         }
         stringBuffer.append("</span>");
         return stringBuffer.toString();

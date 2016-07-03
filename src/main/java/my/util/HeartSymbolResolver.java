@@ -80,7 +80,6 @@ public class HeartSymbolResolver {
 
     @SuppressWarnings("Duplicates")
     private static void resolveFlowerAge(Map styleMap, int age) {
-        age = age + 1; // correct base 0;
 
         int ageMod = age % 12;
 

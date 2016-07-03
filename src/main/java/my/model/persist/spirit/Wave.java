@@ -3,8 +3,11 @@ package my.model.persist.spirit;
 
 import my.model.persist.BaseLog;
 import my.model.persist.project.HeartSymbol;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -49,7 +52,8 @@ public class Wave extends BaseLog {
         this.mound = bury;
     }
 
-    @OneToOne(mappedBy = "belong")
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "belong")
+    @Fetch(FetchMode.JOIN)
     public HeartSymbol getHeartSymbol() {
         return heartSymbol;
     }

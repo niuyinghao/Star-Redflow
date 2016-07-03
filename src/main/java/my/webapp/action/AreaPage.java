@@ -168,7 +168,7 @@ public class AreaPage extends BasePage implements Serializable {
         }
         else {
             if (symbol.getBelong().getClass() == Wave.class) {
-                if (symbol.getAge() > WAVE_HEART_MAX_AGE) {
+                if (symbol.getAge() >= WAVE_HEART_MAX_AGE) {
                     return;
                 }
             }
@@ -399,6 +399,7 @@ public class AreaPage extends BasePage implements Serializable {
     public void openChooseMoundTargetDialog() {
         Map options = new HashMap<>();
         options.put("modal", true);
+        options.put("height", "30em");
         RequestContext.getCurrentInstance().openDialog("/main/misc/plain/chooseMoundTarget.xhtml", options, null);
     }
 

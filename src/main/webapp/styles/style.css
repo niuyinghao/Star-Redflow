@@ -379,3 +379,11 @@ a{
 
 
 
+* {
+    cursor:default;
+}
+
+.command:hover {
+    color: green;
+    cursor: default;
+}

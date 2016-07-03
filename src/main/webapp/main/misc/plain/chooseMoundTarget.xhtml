@@ -10,13 +10,15 @@
         <ui:define name="head">
 
             <style type="text/css">
-                #content{
+                #content {
                     padding: 0;
                 }
-                dl{
+
+                dl {
                     padding-bottom: 0;
                     margin-bottom: 0.2em;
                 }
+
                 .moundTarget {
                     /*background-color: yellow;*/
                     border-radius: 3%;
@@ -28,13 +30,22 @@
                 }
 
                 .wave {
-                    color:darkred;
+                    color: darkred;
+                    width:15em;
+                    display: inline-block;
                 }
 
                 .flower {
                     color: purple;
+                    width:15em;
+                    display: inline-block;
                 }
 
+                .ui-datalist-content {
+                    width: 100%;
+                    height: 25em;
+                    overflow: auto;
+                }
             </style>
         </ui:define>
         <ui:define name="body">
@@ -42,17 +53,18 @@
                 <p:dataList value="#{areaPage.moundTargetLazyModel}" lazy="true"
                             paginator="true" rows="10" paginatorPosition="top"
                             var="target"
-                            style="width: 100%"
                 >
 
                     <div class="moundTarget"
                          onclick="doMound([{name:'id',value:'#{target.id}'},{name:'class',value:'#{target.getClass()}'}])">
                         <dl>
-                            <dt> <h:outputText value="#{webUtil.getClassSign(target)}" escape="false"></h:outputText>    (#{webUtil.formatTime(target.createTime)})</dt>
+                            <dt><h:outputText value="#{webUtil.getClassSign(target)}"
+                                              escape="false"></h:outputText> (#{webUtil.formatTime(target.createTime)})
+                            </dt>
                             <dd>
-                            <h:outputText escape="false" value="#{target.content}">
+                                <h:outputText escape="false" value="#{target.content}">
 
-                            </h:outputText>
+                                </h:outputText>
                             </dd>
                         </dl>
                     </div>
