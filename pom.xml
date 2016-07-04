@@ -163,6 +163,7 @@
                         <artifactId>maven-war-plugin</artifactId>
                         <version>2.1.1</version>
                         <configuration>
+<!--
                             <webResources>
                                 <resource>
                                     <directory>lib</directory>
@@ -173,6 +174,7 @@
                                     </includes>
                                 </resource>
                             </webResources>
+-->
                         </configuration>
                     </plugin>
 
@@ -389,6 +391,7 @@
             <artifactId>h2</artifactId>
             <version>1.4.191</version>
         </dependency>
+<!--
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -397,7 +400,12 @@
             <systemPath>${project.basedir}/lib/postgresql-9.4.1208.jar</systemPath>
             <type>jar</type>
         </dependency>
-
+-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.3-1100-jdbc41</version>
+        </dependency>
     </dependencies>
 
     <properties>
