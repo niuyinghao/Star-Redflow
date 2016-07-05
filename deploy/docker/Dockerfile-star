@@ -1,0 +1,5 @@
+FROM tomcat
+ADD  project-1.0-SNAPSHOT.war /opt/tomcat/webapps/ROOT/project-1.0-SNAPSHOT.war
+RUN  cd /opt/tomcat/webapps/ROOT && jar xvf /opt/tomcat/webapps/ROOT/project-1.0-SNAPSHOT.war
+RUN rm -rfv /opt/tomcat/webapps/ROOT/project-1.0-SNAPSHOT.war
+ADD jdbc.properties /opt/tomcat/webapps/ROOT/WEB-INF/classes/jdbc.properties
