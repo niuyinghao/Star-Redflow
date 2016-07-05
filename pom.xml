@@ -27,6 +27,7 @@
             </snapshots>
         </repository>
 
+<!--
         <repository>
             <id>nexus</id>
             <name>local private nexus</name>
@@ -38,6 +39,7 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+-->
 
         <repository>
             <id>primeface</id>
