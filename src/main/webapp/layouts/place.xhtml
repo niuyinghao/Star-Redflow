@@ -101,6 +101,17 @@
         border-radius: .3em
     }
 
+    .placeTab .ui-tabmenuitem{
+        width:24%;
+        padding:0;
+    }
+    .placeTab .ui-menuitem-link{
+        width:100%
+    }
+    .placeTab .ui-menuitem-text{
+        font-size:24px;
+    }
+
 </style>
 
 <h:body>
@@ -116,7 +127,7 @@
 
         <div class="col-sm-12" style="padding-top: .3em">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4 btn-group" style="align-content: center;text-align: center">
+            <div class="col-sm-4 btn-group placeTab" style="align-content: center;text-align: center">
                 <p:tabMenu activeIndex="#{param.i}">
                     <p:menuitem value="汹海" outcome="/main/area/sea.xhtml">
                         <f:param name="i" value="0"/>
