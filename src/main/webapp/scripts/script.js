@@ -1,11 +1,14 @@
-var isShowSimbol=true;
+var isSimbolShown = true;
 $(function () {
-   setInterval(function () {
-       if(isShowSimbol==true) {
-           $('#simbol').attr('display', 'none');
-       }
-       else {
-           $('#simbol').removeAttribute("display");
-       }
-   },1000)
+    var symbol = $('#simbol').find("img");
+    setInterval(function () {
+        debugger;
+        if (isSimbolShown == true) {
+            symbol.fadeOut(3000);
+        }
+        else {
+            symbol.fadeIn(500);
+        }
+        isSimbolShown = !isSimbolShown;
+    }, 10)
 });
