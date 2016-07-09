@@ -1,60 +1,6 @@
-/** {font-family: "Microsoft YaHei","iconfont","FontAwesome"  !important;}*/
-
-.navbar-brand {
-    color: #000000;
-    font-weight: bold;
-    margin-left: 0;
-    margin-right: 20px;
-    padding-right: 0;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
-}
-
-.nav-stacked .nav-header {
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-
-.navbar .brand:hover {
-    color: #0099ff;
-}
-
-/* Fix for non-clickable dropdown nested menus on mobile browsers: APF-1384 */
-.navbar .dropdown-backdrop {
-    position: static;
-}
-
-/* Fix for dropdowns not working in IE: APF-1448 */
-.navbar {
-    filter:none !important;
-}
-
-#switchLocale {
-    position: absolute;
-    right: 10px;
-}
-
-h1, h2 {
-    margin-bottom: 10px;
-}
-
-#content {
-}
-
-.fa-heart{
+.fa-heart {
     z-index: 10000000000;
-    /*-webkit-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
-    /*-moz-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
-    /*-ms-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
-    /*-o-transform: translateX(1em) perspective(600px) rotateY(20deg);*/
-    /*transform: translateX(1em) perspective(600px) rotateY(20deg);*/
 }
-
-.row h2 {
-    margin-top: 0;
-}
-
-/* FORMS */
 
 ul.feedbackPanel {
     list-style: none;
@@ -87,8 +33,6 @@ ul.feedbackPanel {
     display: inline-block;
 }
 
-
-
 /* TABLES */
 
 th.sorted a, th.sortable a {
@@ -109,86 +53,6 @@ th.sorted a, th.sortable a {
     display: block;
 }
 
-div.exportlinks a {
-    text-decoration: none;
-}
-
-div.exportlinks span {
-    background-repeat: no-repeat;
-    background-position: 1px 2px;
-}
-
-
-span.excel {
-    background-image: url(../images/ico_file_excel.png);
-}
-
-span.pdf {
-    background-image: url(../images/ico_file_pdf.png);
-}
-
-span.xml {
-    background-image: url(../images/ico_file_xml.png);
-}
-
-span.export {
-    cursor: pointer;
-    display: inline-block;
-    padding: 0 4px 1px 20px;
-}
-
-span.pagebanner {
-    display: block;
-    margin: 0 0 0 10px;
-    padding: 2px 4px 2px 0;
-}
-
-span.pagelinks {
-    display: block;
-    font-size: .95em;
-    margin-bottom: 5px;
-    margin-top: -18px;
-    padding: 2px 0 2px 0;
-    text-align: right;
-    width: 80%;
-}
-
-/* Set the fixed height of the footer here */
-#footer {
-    background-color: #f5f5f5;
-}
-
-/* FOOTER */
-#footer {
-    clear: both;
-    margin: 0 auto;
-    padding: 10px 0 20px 0;
-    border-top: 4px solid #f0f0f0;
-    text-align: center;
-    background-color: white;
-    color: #808080;
-    font-size: 0.9em;
-}
-
-#footer a {
-    color: #808080;
-    text-decoration: none;
-    margin-left: 5px;
-}
-
-#footer a:hover {
-    text-decoration: underline;
-}
-
-#footer p {
-    margin: 0;
-}
-
-/* Responsive
--------------------------------------------------- */
-
-/* Desktop large
-------------------------- */
 @media (min-width: 1200px) {
 
 }
@@ -218,82 +82,15 @@ span.pagelinks {
     }
 }
 
-/* Wicket */
-.table thead tr th.wicket_orderDown a {
-    background-image: url(../images/arrow_down.png) !important;
-    background-position: right center;
-    background-repeat: no-repeat;
-    display: block;
-    /*padding-right: 15px;*/
-}
-
-.table thead tr th.wicket_orderUp a {
-    background-image: url(../images/arrow_up.png) !important;
-    background-position: right center;
-    background-repeat: no-repeat;
-    display: block;
-}
-
-/* Fix for Bootstrap theme errors in PrimeFaces: http://forum.primefaces.org/viewtopic.php?f=9&t=19250&start=10 */
-/*.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {*/
-/*background: url("") repeat-x scroll 50% 50% #CD0A0A;*/
-/*border: 1px solid #CD0A0A;*/
-/*color: #FFFFFF;*/
-/*}*/
-
-
-.navbar{
-    background-image: none !important;
-    background-color: #ecf2ec;
-}
-
-/*add*/
-.navbar-nav>li>a:hover   {
-    background-color: rgb(176, 245, 217) !important;
-}
-
-.form-control{
-    border-radius: 0px ;
-}
-
-
-
-/*.btn{*/
-/*border-radius: 0px !important;*/
-/*border:1px solid blue;*/
-/*}*/
-
 .well {
-    border-radius: 0px !important;
     background-color: #F4FEF7;
 }
 
-.ui-state-default{
+.ui-state-default {
     background-image: none !important;
 }
 
-
-.ui-datatable thead th{
-    background: #d1dda2;
-    border-radius: 0px !important;
-    border-bottom: none !important;
-}
-
-
-
-.btn-group>.btn:last-child:not(:first-child):not(.handleScript) {
-    border-bottom-left-radius:0px !important;
-    border-top-left-radius :0px !important;
-}
-
-.handleScript{
-    border-radius:inherit !important;
-    background-color: #975300;
-    background-image: none;
-}
-
-
-div{
+div {
     user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -304,8 +101,8 @@ div{
 /*icomoon E*/
 @font-face {
     font-family: 'icomoon';
-    src:    url('fonts/icomoon.eot?jkuh0c');
-    src:    url('fonts/icomoon.eot?jkuh0c#iefix') format('embedded-opentype'),
+    src: url('fonts/icomoon.eot?jkuh0c');
+    src: url('fonts/icomoon.eot?jkuh0c#iefix') format('embedded-opentype'),
     url('fonts/icomoon.ttf?jkuh0c') format('truetype'),
     url('fonts/icomoon.woff?jkuh0c') format('woff'),
     url('fonts/icomoon.svg?jkuh0c#icomoon') format('svg');
@@ -331,40 +128,39 @@ div{
 .icon-bi11-012:before {
     content: "\e901";
 }
+
 .icon-bi11-01:before {
     content: "\e900";
 }
-/*E*/
 
-#toolbar  button:hover{
+#toolbar button:hover {
     background-color: darkcyan;
 }
 
 /*<feColorMatrix in=\"SourceGraphic\" type=\"hueRotate\" values=\"0\" result=\"A\"/>*/
 /*in=\"A\"*/
 
-.bb7{
+.bb7 {
     filter: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><filter id=\"myfilter\" x=\"-.1\" y=\"0\"><feGaussianBlur  stdDeviation=\"4\"/></filter></svg>#myfilter');
 }
 
-.bb8{
+.bb8 {
     filter: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><filter id=\"myfilter\" x=\"-.1\" y=\"0\"><feGaussianBlur  stdDeviation=\"6\"/></filter></svg>#myfilter');
 }
 
-.bb9{
+.bb9 {
     filter: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><filter id=\"myfilter\" x=\"-.1\" y=\"0\"><feGaussianBlur  stdDeviation=\"8\"/></filter></svg>#myfilter');
 }
 
-.bb10{
+.bb10 {
     filter: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><filter id=\"myfilter\" x=\"-.1\" y=\"0\"><feGaussianBlur  stdDeviation=\"10\"/></filter></svg>#myfilter');
 }
 
 .ui-autocomplete-dropdown .ui-icon {
-    zoom:1.5
+    zoom: 1.5
 }
 
-
-a{
+a {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
@@ -372,15 +168,13 @@ a{
     user-drag: none;
 }
 
-#content{
+#content {
     padding-left: 7em;
-    padding-right:7em
+    padding-right: 7em
 }
 
-
-
 * {
-    cursor:default;
+    cursor: default;
 }
 
 .command:hover {
@@ -388,11 +182,23 @@ a{
     cursor: default;
 }
 
-.fa-spinner{
+.fa-spinner {
     overflow: hidden;
 }
 
+.btn {
+    display: inline-block;
+    padding: 0.2em .8em 0.2em .8em;
+    border-radius: 5px;
+    background-image: none;
+}
 
+.btn:hover {
+    background-image: none;
+}
+
+
+/*Font display*/
 @font-face {
     font-family: FontAwesome;
     font-weight: normal;
@@ -403,10 +209,13 @@ a{
 
 .fa {
     display: inline-block;
-    font-family: FontAwesome!important;
+    font-family: FontAwesome !important;
     font-style: normal;
     font-weight: normal;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+/** {*/
+    /*font-family: "Microsoft YaHei", "iconfont", "FontAwesome" !important;*/
+/*}*/
