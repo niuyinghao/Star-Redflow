@@ -3,12 +3,12 @@ $(function () {
     var symbol = $('#simbol').find("img");
 
     // for firefox blink
-    symbol.css('display','none');
+    symbol.hide();
     setTimeout(function () {
-        symbol.css('display','');
+        symbol.show();
     }, 500);
 
-    //
+
     setInterval(function () {
         debugger;
         if (isSimbolShown == true) {

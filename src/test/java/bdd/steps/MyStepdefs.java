@@ -13,17 +13,22 @@ import org.openqa.selenium.By;
 /**
  * Created by yinghao_niu on 2016/6/23 for project.
  */
-public class MyStepdefs extends BaseTest{
+public class MyStepdefs extends BaseTest {
 
+
+    String account;
 
     @After
     public void after(Scenario scenario) throws Exception {
         super.afterStep(scenario);
     }
 
-
     @Then("^the account register, user got login$")
     public void theAccountRegisterUserGotLogin() throws Throwable {
+        assertFalse(equals("Star redflow", driver.getTitle()));
+        System.out.println("account:");
+        System.out.println(account);
+
     }
 
     @And("^usename is auto generated$")
@@ -39,11 +44,8 @@ public class MyStepdefs extends BaseTest{
         assertEquals("Star redflow", driver.getTitle());
     }
 
-
-
-
     @Given("^user has login with \"([^\"]*)\" and \"([^\"]*)\"$")
-    public void userHasLoginWithAnd(String arg0, String arg1,DataTable data) throws Throwable {
+    public void userHasLoginWithAnd(String arg0, String arg1, DataTable data) throws Throwable {
 
         arg0 = data.getGherkinRows().get(0).getCells().get(0);
         arg1 = data.getGherkinRows().get(0).getCells().get(1);
@@ -56,7 +58,6 @@ public class MyStepdefs extends BaseTest{
         driver.findElement(By.id("rememberMe")).click();
 
         driver.findElement(By.name("login")).click();
-        assertEquals("Star redflow", driver.getTitle());
     }
 
     @Given("^in the sea page$")
@@ -86,7 +87,21 @@ public class MyStepdefs extends BaseTest{
         driver.findElement(By.id("signupForm:confirmPassword")).sendKeys(arg1);
         driver.findElement(By.id("signupForm:email")).clear();
         driver.findElement(By.id("signupForm:email")).sendKeys(arg2);
+        account = driver.findElement(By.id("signupForm:username")).getAttribute("value");
         driver.findElement(By.id("signupForm:save")).click();
-        assertFalse(equals("Star redflow",driver.getTitle()));
     }
+
+    @Given("^in sea page and add a wave$")
+    public void inSeaPageAndAddAWave() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        driver.get(baseUrl + "/home");
+        driver.findElement(By.id("j_idt32")).click();
+        driver.findElement(By.id("j_idt34")).click();
+
+        ;
+    }
+
+    @Then("^even first add , should see next link$")
+    public void evenFirstAddShouldSeeNextLink() throws Throwable {
+        assertEquals("false", driver.findElement(By.id("j_idt31")).getAttribute("aria-disabled"));    }
 }

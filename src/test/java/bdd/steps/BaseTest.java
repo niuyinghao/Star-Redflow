@@ -3,16 +3,19 @@ package bdd.steps;
 import cucumber.api.Scenario;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
-import org.aspectj.lang.annotation.After;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -31,16 +34,16 @@ public class BaseTest extends TestCase {
 //        driver = new FirefoxDriver();
 
 
-//        ChromeOptions options = new ChromeOptions();
-//        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-//        capabilities.setCapability("chrome.binary", "C:\\Users\\yinghao_niu\\AppData\\Local\\360Chrome\\Chrome\\Application\\360chrome.exe");
-//        options.addArguments("window-size=1024,768");
-//
-//        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-//        driver = new ChromeDriver(capabilities);
+        ChromeOptions options = new ChromeOptions();
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//        capabilities.setCapability("chrome.binary", "");
+        options.addArguments("window-size=1024,768");
 
-        FirefoxProfile firefoxProfile = new ProfilesIni().getProfile("default");
-        driver = new FirefoxDriver(firefoxProfile);
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        driver = new ChromeDriver(capabilities);
+
+//        FirefoxProfile firefoxProfile = new ProfilesIni().getProfile("default");
+//        driver = new FirefoxDriver(firefoxProfile);
 
         baseUrl = "http://127.0.0.1:1234";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -49,7 +52,7 @@ public class BaseTest extends TestCase {
     public void afterStep(Scenario scenario) throws Exception {
         boolean failed = scenario.isFailed();
 
-        File screenshotAs = ((FirefoxDriver) driver).getScreenshotAs(OutputType.FILE);
+        File screenshotAs = ((RemoteWebDriver) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenshotAs, new File("target\\test\\screenshot\\" +
                 this.getTemplateId() + ";" + scenario.getName() + ";" +
                 scenario.getSourceTagNames() + ";" +
