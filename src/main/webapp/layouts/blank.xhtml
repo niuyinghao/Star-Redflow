@@ -1,0 +1,33 @@
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:head>
+    <title>Star redflow</title>
+    <ui:include src="/common/assets.xhtml"/>
+    <ui:insert name="head"/>
+</h:head>
+<style type="text/css">
+    html, body {
+        height: 100%;
+    }
+</style>
+
+<h:body>
+    <div style="height: 1%;background-color: whitesmoke;"></div>
+    <div class="clearfix"/>
+
+    <div id='main'>
+        <div id="content" class="col-sm-12">
+            <ui:insert name="body"/>
+        </div>
+    </div>
+</h:body>
+<ui:insert name="script"/>
+</html>
+
