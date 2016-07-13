@@ -203,8 +203,16 @@ a {
     font-family: FontAwesome;
     font-weight: normal;
     font-style: normal;
-    src: url("/javax.faces.resource/fa/fontawesome-webfont.eot.xhtml?ln=primefaces&v=5.3?v=4.3.0");
-    src: url("/javax.faces.resource/fa/fontawesome-webfont.eot.xhtml?ln=primefaces&v=5.3&#iefix&v=4.3.0") format('embedded-opentype'), url("/javax.faces.resource/fa/fontawesome-webfont.woff2.xhtml?ln=primefaces&v=5.3?v=4.3.0") format('woff2'), url("/javax.faces.resource/fa/fontawesome-webfont.woff.xhtml?ln=primefaces&v=5.3?v=4.3.0") format('woff'), url("/javax.faces.resource/fa/fontawesome-webfont.ttf.xhtml?ln=primefaces&v=5.3?v=4.3.0") format('truetype'), url("/javax.faces.resource/fa/fontawesome-webfont.svg.xhtml?ln=primefaces&v=5.3?v=4.3.0#fontawesomeregular") format('svg');
+    src: url("/javax.faces.resource/fa/fontawesome-webfont.eot.xhtml?ln=primefaces&v=5.3&#iefix&v=4.3.0") format('embedded-opentype'),
+    url("/javax.faces.resource/fa/fontawesome-webfont.woff2.xhtml?ln=primefaces&v=5.3?v=4.3.0") format('woff2'),
+    url("/javax.faces.resource/fa/fontawesome-webfont.woff.xhtml?ln=primefaces&v=5.3?v=4.3.0") format('woff'),
+    url("/javax.faces.resource/fa/fontawesome-webfont.ttf.xhtml?ln=primefaces&v=5.3?v=4.3.0") format('truetype'),
+    url("/javax.faces.resource/fa/fontawesome-webfont.svg.xhtml?ln=primefaces&v=5.3?v=4.3.0#fontawesomeregular") format('svg');
+}
+
+
+body{
+    overflow: hidden;
 }
 
 .fa {

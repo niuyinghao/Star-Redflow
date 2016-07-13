@@ -7,8 +7,10 @@ And reflect wave heartSymbol age change
 #       | STAR-00F0 | welcome |
 #      | STAR-0176 | welcome |
 #      | STAR-0174 | welcome |
-      | STAR-0178 | welcome |
-      | STAR-017A | welcome |
+#      | STAR-0178 | welcome |
+#      | STAR-017A | welcome |
+      | STAR-017C | welcome |
+      | STAR-017E | welcome |
 
   @wave  @test
   Scenario: add wave

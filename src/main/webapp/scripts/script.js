@@ -10,7 +10,6 @@ $(function () {
 
 
     setInterval(function () {
-        debugger;
         if (isSimbolShown == true) {
             symbol.fadeOut(3000);
         }
