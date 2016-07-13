@@ -11,9 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration("classpath:**/applicationContext.xml")
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src\\test\\java\\bdd\\feature\\place.feature"},
+        features = {"src\\test\\java\\bdd\\feature"},
         glue = {"com.cdi.igs.adapter.cucumber", "cucumber.api.spring", "bdd.steps"},
-//        tags = {"@test"},
+        tags = {"@wave"},
         format = {"json:target/integration_cucumber.json"}
 )
 public class Runner {

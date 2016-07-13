@@ -101,6 +101,17 @@
         border-radius: .3em
     }
 
+    .placeTab .ui-tabmenuitem{
+        width:24%;
+        padding:0;
+    }
+    .placeTab .ui-menuitem-link{
+        width:100%
+    }
+    .placeTab .ui-menuitem-text{
+        font-size:24px;
+    }
+
 </style>
 
 <h:body>
@@ -116,7 +127,7 @@
 
         <div class="col-sm-12" style="padding-top: .3em">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4 btn-group" style="align-content: center;text-align: center">
+            <div class="col-sm-4 btn-group placeTab" style="align-content: center;text-align: center">
                 <p:tabMenu activeIndex="#{param.i}">
                     <p:menuitem value="汹海" outcome="/main/area/sea.xhtml">
                         <f:param name="i" value="0"/>
@@ -153,14 +164,35 @@
 
         <div id="content" class="col-sm-12">
             <ui:insert name="divA"/>
-            <h:form prependId="false" id="outerForm">
-                <p:toolbar style="height:2.1em;border-radius: 0" id="toolbar">
-                    <ui:insert name="toolbar"></ui:insert>
-                </p:toolbar>
+            <h:form prependId="false" id="outerForm" >
+                <!--fix toolbar render before datatable-->
+                <div id="toolbarLocator"  ></div>
                 <ui:insert name="body"/>
+                <div id="toolbarW1" style="display: none">
+                    <p:toolbar style="height:2.1em;border-radius: 0" id="toolbar" >
+                        <ui:insert name="toolbar"></ui:insert>
+                    </p:toolbar>
+                </div>
             </h:form>
         </div>
     </div>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function () {
+//            $("#toolbarW1").offset( $("#toolbarLocator").offset());
+            var t=$("#toolbarW1").html();
+            if(t.length==0) {
+                return;
+            }
+            $('#toolbarLocator').html(t);
+            $('#toolbarW1').remove();
+
+        });
+        // ]]>
+
+    </script>
+
 </h:body>
 <ui:include src="common.xhtml"></ui:include>
 <ui:insert name="script"/>

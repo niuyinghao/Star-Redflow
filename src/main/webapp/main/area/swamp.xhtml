@@ -15,7 +15,7 @@
     <ui:define name="toolbar">
         <c:set var="cid" value="flowerList"></c:set>
         <f:facet name="left">
-            <h:form><p:remoteCommand update="navTools" name="updateNav"/></h:form>
+            <p:remoteCommand update="navTools" name="updateNav"/>
             <h:panelGroup id="navTools" rendered="#{!areaPage.swamp.editMode}">
                 <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
                                  disabled="#{areaPage.hasNoPrevPage(areaViewScopeSwamp.flowDataTable)}"
@@ -90,9 +90,9 @@
                 </p:column>
             </p:dataTable>
 
-            <h:form rendered="#{areaPage.swamp.editMode}">
+            <h:panelGroup rendered="#{areaPage.swamp.editMode}">
                 <p:editor  style="" height="80" widgetVar="_editor" value="#{areaPage.newFlower.content}"></p:editor>
-            </h:form>
+            </h:panelGroup>
         </h:panelGroup>
         <script type="text/javascript">
 

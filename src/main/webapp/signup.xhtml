@@ -3,19 +3,31 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
       xmlns:o="http://omnifaces.org/ui">
 
-<ui:composition template="/layouts/default.xhtml">
+<ui:composition template="/layouts/account.xhtml">
     <ui:define name="title">#{text['signup.title']}</ui:define>
     <body id="signup">
         <ui:define name="body">
+            <style>
+
+                body{
+                    background: black;
+                }
+                .well {
+                  border-radius: 4px ;
+                }
+            </style>
 
             <o:resourceInclude path="/common/messages.jsp"/>
 
+<!--
             <div class="col-sm-2">
                 <h2>#{text['signup.heading']}</h2>
                 #{text['signup.message']}
             </div>
+-->
 
-            <div class="col-sm-7">
+            <div class="col-sm-2"/>
+            <div class="col-sm-8">
                 <h:form id="signupForm" styleClass="well" autocomplete="off">
                     <div class="form-group">
                         <h:outputLabel styleClass="control-label" for="username" value="#{text['user.username']}"/>

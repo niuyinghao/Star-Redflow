@@ -89,12 +89,13 @@
         margin: .5em 1em;
     }
 
-    .bless{
+    .bless {
         color: #ffffff;
         /*text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1),0 1px 3px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2),0 5px 10px rgba(0,0,0,0.25);*/
         /*text-shadow:0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px #095816, 0 0 25px #095816, 0 0 30px #095816, 0 0 50px #095816, 0 0 80px #095816, 0 0 100px #095816, 0 0 150px #095816*/
-        text-shadow: -1px -1px #fff, 1px 1px #333; color: #CCC; ;
-        font-family:'SansSerif';
+        text-shadow: -1px -1px #fff, 1px 1px #333;
+        color: #CCC;;
+        font-family: 'SansSerif';
     }
 </style>
 
@@ -102,7 +103,7 @@
 <h:body>
     <div style="height: 1%;background-color: whitesmoke;"></div>
     <!--@elvariable id="bg" type=""-->
-    <div id="simbol" class="col-sm-12 center-block"
+    <div id="simbolBless" class="col-sm-12 center-block"
          style="padding-top:2em;;height:20%;background-color:#{bg};margin:auto">
         <img class="center-block" style="height:100px" src="/images/flybullStar.png" alt="SYMBOL"/>
         <div class="col-sm-12" style="margin-top: 0;text-align: center">
@@ -116,11 +117,30 @@
 
         <div id="content" class="col-sm-12">
             <h:form prependId="false" id="outerForm">
-                <p:toolbar style="height:2.1em;border-radius: 0" id="toolbar">
-                    <ui:insert name="toolbar"></ui:insert>
-                </p:toolbar>
+
+                <div id="toolbarLocator">
+
+                </div>
                 <ui:insert name="body"/>
+                <div id="toolbarW1" style="display: none">
+                    <p:toolbar style="height:2.1em;border-radius: 0" id="toolbar">
+                        <ui:insert name="toolbar"></ui:insert>
+                    </p:toolbar>
+                </div>
             </h:form>
+
+            <script type="text/javascript">
+                //<![CDATA[
+                $(function () {
+                    var t = $('#toolbarW1').html();
+                    if(t.length==0) {
+                        return;
+                    }
+                    $('#toolbarLocator').html(t);
+                    $('#toolbarW1').remove();
+                })
+                // ]]>
+            </script>
         </div>
     </div>
 </h:body>

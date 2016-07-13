@@ -1,0 +1,47 @@
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:my="http://myTag" xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<h:head>
+    <title>Star redflow</title>
+    <ui:include src="/common/assets.xhtml"/>
+    <ui:insert name="head"/>
+</h:head>
+<style type="text/css">
+    ._area {
+        color: black;;
+        font-size: 30px;
+        padding: 0 .7em 0 .5em;
+    }
+
+    ._area_first {
+        padding-left: .5em;
+    }
+
+    ._area_last {
+        padding-right: .5em;
+    }
+
+    html, body {
+        height: 100%;
+    }
+</style>
+
+<h:body>
+    <div style="height: 1%;background-color: whitesmoke;"></div>
+    <div class="clearfix"/>
+
+    <div id='main'>
+        <div id="content" style="margin-top: 4em" class="col-sm-12">
+            <ui:insert name="body"/>
+        </div>
+    </div>
+</h:body>
+<ui:insert name="script"/>
+</html>
