@@ -1,10 +1,13 @@
 package my.webapp.action;
 
+import com.google.gson.JsonObject;
 import my.Constants;
+import org.primefaces.json.JSONObject;
 import org.primefaces.model.UploadedFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.util.HashMap;
 
 public class FileUpload extends BasePage implements Serializable {
     private static final long serialVersionUID = 6932775516007291334L;
@@ -47,8 +50,9 @@ public class FileUpload extends BasePage implements Serializable {
         }
 
         //retrieve the file data
-        InputStream stream = file.getInputstream();
-        String filename = file.getFileName();
+        InputStream stream = request.getInputStream();
+        // todo @bc file name
+        String filename = System.currentTimeMillis()+"";
 
         // APF-946: Canoo Web Tests R_1702 sets full path as name instead of only file name
         if (filename.contains("/")) {
@@ -90,13 +94,15 @@ public class FileUpload extends BasePage implements Serializable {
         // place the data into the request for retrieval on next page
         request.setAttribute("friendlyName", name);
         request.setAttribute("fileName", filename);
-        request.setAttribute("contentType", file.getContentType());
-        request.setAttribute("size", file.getSize() + " bytes");
-        request.setAttribute("location", dirPath.getAbsolutePath() + Constants.FILE_SEP + filename);
+//        request.setAttribute("contentType", file.getContentType());
+//        request.setAttribute("size", file.getSize() + " bytes");
+//        request.setAttribute("location", dirPath.getAbsolutePath() + Constants.FILE_SEP + filename);
+//
+//        String link = request.getContextPath() + "/resources" + "/" + request.getRemoteUser() + "/";
+//        request.setAttribute("link", link + filename);
 
-        String link = request.getContextPath() + "/resources" + "/" + request.getRemoteUser() + "/";
-        request.setAttribute("link", link + filename);
-
-        return "success";
+        HashMap<Object, Object> info = new HashMap<>();
+        info.put("location", dirPath.getAbsolutePath() + Constants.FILE_SEP + filename);
+        return JSONObject.valueToString(info);
     }
 }

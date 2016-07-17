@@ -54,8 +54,7 @@ $(function () {
 
                 var request = new XMLHttpRequest();
                 request.onreadystatechange = function () {
-                    debugger;
-                    if (4 == 4) {
+                    if (request.readyState == 4) {
                         try {
                             var resp = JSON.parse(request.response);
                             editor.execCommand(data.command, html, null, data.button);
@@ -77,7 +76,7 @@ $(function () {
                     console.log(Math.ceil(e.loaded / e.total) * 100 + '%');
                 }, false);
 
-                request.open('POST', 'upload.php');
+                request.open('POST', '/uploadFile.xhtml');
                 request.send(data);
             }
 
