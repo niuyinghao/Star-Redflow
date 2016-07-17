@@ -200,7 +200,7 @@ a {
 
 /*Font display*/
 @font-face {
-    font-family: FontAwesome;
+    font-family: FontAwesomex;
     font-weight: normal;
     font-style: normal;
     src: url("/javax.faces.resource/fa/fontawesome-webfont.eot.xhtml?ln=primefaces&v=5.3&#iefix&v=4.3.0") format('embedded-opentype'),
@@ -217,7 +217,7 @@ body{
 
 .fa {
     display: inline-block;
-    font-family: FontAwesome !important;
+    font-family: FontAwesomex !important;
     font-style: normal;
     font-weight: normal;
     line-height: 1;
