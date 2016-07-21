@@ -20,7 +20,7 @@ $(function () {
     }, 10)
 });
 
-
+var loadE=true;
 (function ($) {
     var URL = "/javax.faces.resource/editor/images/buttons.gif.xhtml?ln=primefaces&v=5.3";
     // Define the images button
@@ -49,15 +49,17 @@ $(function () {
                     return;
                 }
 
-                var data = new FormData();
-                data.append('SelectedFile', _file.files[0]);
+                var formData = new FormData();
+                formData.append('SelectedFile', _file.files[0]);
 
                 var request = new XMLHttpRequest();
                 request.onreadystatechange = function () {
                     if (request.readyState == 4) {
                         try {
+                            debugger;
                             var resp = JSON.parse(request.response);
-                            editor.execCommand(data.command, html, null, data.button);
+                            var editor = data.editor;
+                            editor.execCommand(data.command,  resp.link,null, data.button);
                             // Hide the popup and set focus back to the editor
                             editor.hidePopups();
                             editor.focus();
@@ -66,8 +68,9 @@ $(function () {
                                 status: 'error',
                                 data: 'Unknown error occurred: [' + request.responseText + ']'
                             };
+                            console.log(resp.status + ': ' + resp.data);
+                            console.log(e);
                         }
-                        console.log(resp.status + ': ' + resp.data);
                     }
                 };
 
@@ -77,11 +80,13 @@ $(function () {
                 }, false);
 
                 request.open('POST', '/uploadFile.xhtml');
-                request.send(data);
+                request.send(formData);
             }
 
-            _file.addEventListener('change', upload);
-
+            if(loadE) {
+                _file.addEventListener('change', upload);
+                loadE = !loadE;
+            }
             _file.click();
 
             return false;

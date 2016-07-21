@@ -5,32 +5,19 @@ import my.Constants;
 import org.primefaces.json.JSONObject;
 import org.primefaces.model.UploadedFile;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.io.*;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 public class FileUpload extends BasePage implements Serializable {
     private static final long serialVersionUID = 6932775516007291334L;
     private UploadedFile file;
     private String name;
 
-    public UploadedFile getFile() {
-        return file;
-    }
-
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String upload() throws IOException {
+    public String upload() throws IOException, ServletException {
         HttpServletRequest request = getRequest();
 
         // write the file to the filesystem
@@ -49,33 +36,13 @@ public class FileUpload extends BasePage implements Serializable {
             dirPath.mkdirs();
         }
 
+        Part selectedFile = request.getPart("SelectedFile");
+
         //retrieve the file data
-        InputStream stream = request.getInputStream();
+        InputStream stream = selectedFile.getInputStream();
         // todo @bc file name
-        String filename = System.currentTimeMillis()+"";
+        String filename = System.currentTimeMillis() + "-" + getFileName(selectedFile);
 
-        // APF-946: Canoo Web Tests R_1702 sets full path as name instead of only file name
-        if (filename.contains("/")) {
-            filename = filename.substring(filename.lastIndexOf("/") + 1);
-        }
-
-        // APF-758: Fix for Internet Explorer's shortcomings
-        if (filename.contains("\\")) {
-            int slash = filename.lastIndexOf("\\");
-            if (slash != -1) {
-                filename = filename.substring(slash + 1);
-            }
-            // Windows doesn't like /'s either
-            int slash2 = filename.lastIndexOf("/");
-            if (slash2 != -1) {
-                filename = filename.substring(slash2 + 1);
-            }
-            // In case the name is C:foo.txt
-            int slash3 = filename.lastIndexOf(":");
-            if (slash3 != -1) {
-                filename = filename.substring(slash3 + 1);
-            }
-        }
 
         //write the file to the file specified
         OutputStream bos = new FileOutputStream(uploadDir + filename);
@@ -98,11 +65,37 @@ public class FileUpload extends BasePage implements Serializable {
 //        request.setAttribute("size", file.getSize() + " bytes");
 //        request.setAttribute("location", dirPath.getAbsolutePath() + Constants.FILE_SEP + filename);
 //
-//        String link = request.getContextPath() + "/resources" + "/" + request.getRemoteUser() + "/";
-//        request.setAttribute("link", link + filename);
+        String linkDir = request.getContextPath() + "/resources" + "/" + request.getRemoteUser() + "/";
+        String linkPath = linkDir + filename;
 
         HashMap<Object, Object> info = new HashMap<>();
-        info.put("location", dirPath.getAbsolutePath() + Constants.FILE_SEP + filename);
+        info.put("link", linkPath);
         return JSONObject.valueToString(info);
+    }
+
+    private String getFileName(final Part part) {
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(
+                        content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
