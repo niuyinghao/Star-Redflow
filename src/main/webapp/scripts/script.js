@@ -79,7 +79,7 @@ var loadE=true;
                     console.log(Math.ceil(e.loaded / e.total) * 100 + '%');
                 }, false);
 
-                request.open('POST', '/uploadFile.xhtml');
+                request.open('POST', '/uploadFile');
                 request.send(formData);
             }
 
