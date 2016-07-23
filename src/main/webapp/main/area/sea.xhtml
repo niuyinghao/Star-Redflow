@@ -30,6 +30,7 @@
                                  action="#{areaPage.enterEditMode(areaPage.sea)}"
                                  icon="fa fa-edit"
                                  update="toolbar,viewEditContent"
+                                 oncomplete="editCallback()"
                 ></p:commandButton>
             </h:panelGroup>
 
@@ -134,6 +135,10 @@
                 }
             }
 
+
+            function editCallback() {
+                $.getScript('/scripts/script.js');
+            }
             //]]>
 
         </script>

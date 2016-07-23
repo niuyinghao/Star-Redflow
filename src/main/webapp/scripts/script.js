@@ -63,6 +63,7 @@ var loadE=true;
                             // Hide the popup and set focus back to the editor
                             editor.hidePopups();
                             editor.focus();
+                            $(_file).val('');
                         } catch (e) {
                             var resp = {
                                 status: 'error',
@@ -70,6 +71,7 @@ var loadE=true;
                             };
                             console.log(resp.status + ': ' + resp.data);
                             console.log(e);
+                            return false;
                         }
                     }
                 };

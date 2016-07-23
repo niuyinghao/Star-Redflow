@@ -30,6 +30,7 @@
                                  action="#{areaPage.enterEditMode(areaPage.swamp)}"
                                  icon="fa fa-edit"
                                  update="toolbar,viewEditContent"
+                                 oncomplete="editCallback()"
                 ></p:commandButton>
             </h:panelGroup>
 
@@ -141,6 +142,10 @@
                         $(target).removeClass("bb7");
                     }
                 });
+            }
+
+            function editCallback() {
+                $.getScript('/scripts/script.js');
             }
 
             //]]>

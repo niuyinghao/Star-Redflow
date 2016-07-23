@@ -27,7 +27,9 @@
                     <p:commandButton style="font-size: 1.3em;width:1.5em"
                                      action="#{areaPage.enterEditMode(areaPage.grail)}"
                                      icon="fa fa-edit"
-                                     update="toolbar,viewEditContent">
+                                     update="toolbar,viewEditContent"
+                                     oncomplete="editCallback()"
+                    >
                     </p:commandButton>
                     <p:commandButton style="font-size: 1.3em;width:1.5em"
                                      onclick="history.back();return false"
@@ -88,6 +90,15 @@
             </h:panelGroup>
         </h:panelGroup>
 
+        <script type="text/javascript">
+
+            //<![CDATA[
+            function editCallback() {
+                $.getScript('/scripts/script.js');
+            }
+            //]]>
+
+        </script>
 
     </ui:define>
 

@@ -52,7 +52,9 @@
 
                         <div class="col-sm-11" style="margin-top: 1.3em">
                             <p:commandButton icon="fa fa-pencil " styleClass="command" action="#{areaPage.editStone(s)}"
-                                             update="toolbar,viewEditContent"></p:commandButton> &#160;
+                                             update="toolbar,viewEditContent"
+                                             oncomplete="editCallback()"
+                            ></p:commandButton> &#160;
                             <p:commandButton icon="fa fa-remove " styleClass="command"
                                              action="#{areaPage.deleteStone(s)}" update="toolbar,viewEditContent"></p:commandButton>
                         </div>
@@ -74,6 +76,7 @@
                             <p:remoteCommand action="#{areaPage.nextStoneThenEnterEditMode(areaPage.hillock)}"
                                              update="toolbar,viewEditContent"
                                              name="nextStone"
+                                             oncomplete="editCallback()"
                             ></p:remoteCommand>
                         </div>
                     </div>
@@ -87,6 +90,16 @@
             </h:panelGroup>
         </h:panelGroup>
 
+        <script type="text/javascript">
+
+            //<![CDATA[
+
+            function editCallback() {
+                $.getScript('/scripts/script.js');
+            }
+            //]]>
+
+        </script>
         <style>
         </style>
     </ui:define>

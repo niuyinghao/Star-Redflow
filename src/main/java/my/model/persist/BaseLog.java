@@ -1,5 +1,7 @@
 package my.model.persist;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -52,7 +54,8 @@ public class BaseLog extends BaseObj implements Serializable {
         this.flag = flag;
     }
 
-    @Basic
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     public String getContent() {
         return content;
     }
