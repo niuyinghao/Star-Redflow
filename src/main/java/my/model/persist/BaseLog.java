@@ -29,7 +29,7 @@ public class BaseLog extends BaseObj implements Serializable {
 
     /**
      * 标识符
-     * 0 系统创建
+     * 1 系统创建
      */
     int flag;
 

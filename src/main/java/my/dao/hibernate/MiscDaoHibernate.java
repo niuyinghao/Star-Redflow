@@ -61,7 +61,7 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
 
     @Override
     public List getNotBuriedTarget(int first, int pageSize, String sortField, SortOrder sortOrder, User creator) {
-        String hqlBase = " from BaseLog b where buried=false and creator=:creator and (b.class=Wave or b.class=Flower) ";
+        String hqlBase = " from BaseLog b where buried=false and creator=:creator and (b.class=Wave or b.class=Flower) and flag!=1 ";
         String hql = hqlBase + "  order by  " + sortField;
         if (sortOrder == SortOrder.ASCENDING) {
             hql += " asc ";
@@ -109,8 +109,10 @@ public class MiscDaoHibernate extends GenericDaoHibernate implements MiscDao {
 
     @Override
     public List getMoundTarget() {
-        Query query = getSession().createQuery("from BaseLog where id in (select id from Wave w where w.mound is null )" +
-                " or id in (select id from Flower f where f.mound is null)");
+        Query query = getSession().createQuery("from BaseLog b where (b.class=Wave or b.class=Flower) " +
+                "and (id in (select id from Wave w where w.mound is null ) " +
+                " or id in (select id from Flower f where f.mound is null))" +
+                " and flag!=1");
         return query.list();
 
     }

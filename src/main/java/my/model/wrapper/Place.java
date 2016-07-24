@@ -1,5 +1,6 @@
 package my.model.wrapper;
 
+import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 import org.primefaces.model.SortOrder;
@@ -25,7 +26,8 @@ public abstract class Place<T> extends AreaLazyModel {
 
         SimpleExpression creator = Restrictions.eq("creator", ctx.getCreator());
         SimpleExpression notBuried = Restrictions.eq("buried", false);
-        this.setCriterion(Restrictions.and(creator,notBuried));
+        LogicalExpression expression = Restrictions.or(Restrictions.and(creator, notBuried),Restrictions.eq("flag",1));
+        this.setCriterion(expression);
 		sortField = "createTime";
 		sortOrder = SortOrder.DESCENDING;
 		List loaded = super.load(first, pageSize, sortField, sortOrder, filters);
