@@ -1,3 +1,7 @@
+DELETE FROM heart_symbol
+WHERE id IN (-5, -6);
+DELETE FROM pray
+WHERE id IN (-7, -8, -9, -10);
 DELETE from wave WHERE id=-1;
 INSERT INTO public.wave (id, create_time, buried, content, flag, sign, creator, mound_time, mound)
 VALUES (-1, to_timestamp('2016-01-01','yyyy-mm-dd') , false, '<span class=\"Apple-tab-span\" style=\"white-space: pre;\">	<span style=\"font-size: large;\">	</span></span><span
