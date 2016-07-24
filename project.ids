@@ -5,11 +5,14 @@
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
-    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.5">
-      <database id="1" name="star"/>
+    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+      <database id="1" name="star">
+        <visible>1</visible>
+      </database>
       <schema id="2" parent="1" name="public">
         <object-id>2200</object-id>
         <comment>standard public schema</comment>
+        <visible>1</visible>
         <introspection-state-number>888</introspection-state-number>
         <introspection-timestamp>2016-07-24.15:38:48.616</introspection-timestamp>
       </schema>
@@ -105,33 +108,33 @@
       <column id="25" parent="5" name="id">
         <state-number>852</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="26" parent="5" name="create_time">
         <state-number>852</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="27" parent="5" name="buried">
         <state-number>852</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="28" parent="5" name="content">
         <state-number>852</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="29" parent="5" name="flag">
         <state-number>852</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="30" parent="5" name="sign">
         <state-number>852</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="31" parent="5" name="creator">
         <state-number>852</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="32" parent="5" name="achievement_pkey">
         <object-id>16589</object-id>
@@ -153,48 +156,48 @@
       <column id="35" parent="6" name="id">
         <state-number>853</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="36" parent="6" name="account_expired">
         <state-number>853</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="37" parent="6" name="account_locked">
         <state-number>853</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="38" parent="6" name="account_type">
         <state-number>853</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="39" parent="6" name="credentials_expired">
         <state-number>853</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="40" parent="6" name="email">
         <state-number>853</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="41" parent="6" name="account_enabled">
         <state-number>853</state-number>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="42" parent="6" name="password">
         <state-number>853</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="43" parent="6" name="username">
         <state-number>853</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
+        <data-type>varchar(50)|0</data-type>
       </column>
       <column id="44" parent="6" name="version">
         <state-number>853</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <index id="45" parent="6" name="app_user_pkey">
         <object-id>16594</object-id>
@@ -220,33 +223,33 @@
       <column id="49" parent="7" name="id">
         <state-number>854</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="50" parent="7" name="create_time">
         <state-number>854</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="51" parent="7" name="buried">
         <state-number>854</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="52" parent="7" name="content">
         <state-number>854</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="53" parent="7" name="flag">
         <state-number>854</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="54" parent="7" name="sign">
         <state-number>854</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="55" parent="7" name="creator">
         <state-number>854</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="56" parent="7" name="article_pkey">
         <object-id>16603</object-id>
@@ -268,33 +271,33 @@
       <column id="59" parent="8" name="id">
         <state-number>855</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="60" parent="8" name="create_time">
         <state-number>855</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="61" parent="8" name="buried">
         <state-number>855</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="62" parent="8" name="content">
         <state-number>855</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="63" parent="8" name="flag">
         <state-number>855</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="64" parent="8" name="sign">
         <state-number>855</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="65" parent="8" name="creator">
         <state-number>855</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="66" parent="8" name="base_log_pkey">
         <object-id>16612</object-id>
@@ -316,11 +319,11 @@
       <column id="69" parent="9" name="id">
         <state-number>856</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="70" parent="9" name="userx">
         <state-number>856</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="71" parent="9" name="context_pkey">
         <object-id>16617</object-id>
@@ -342,33 +345,33 @@
       <column id="74" parent="10" name="id">
         <state-number>857</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="75" parent="10" name="create_time">
         <state-number>857</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="76" parent="10" name="buried">
         <state-number>857</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="77" parent="10" name="content">
         <state-number>857</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="78" parent="10" name="flag">
         <state-number>857</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="79" parent="10" name="sign">
         <state-number>857</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="80" parent="10" name="creator">
         <state-number>857</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="81" parent="10" name="dislike_pkey">
         <object-id>16626</object-id>
@@ -390,33 +393,33 @@
       <column id="84" parent="11" name="id">
         <state-number>858</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="85" parent="11" name="create_time">
         <state-number>858</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="86" parent="11" name="buried">
         <state-number>858</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="87" parent="11" name="content">
         <state-number>858</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="88" parent="11" name="flag">
         <state-number>858</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="89" parent="11" name="sign">
         <state-number>858</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="90" parent="11" name="creator">
         <state-number>858</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="91" parent="11" name="favour_pkey">
         <object-id>16635</object-id>
@@ -438,37 +441,37 @@
       <column id="94" parent="12" name="id">
         <state-number>859</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="95" parent="12" name="create_time">
         <state-number>859</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="96" parent="12" name="buried">
         <state-number>859</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="97" parent="12" name="content">
         <state-number>859</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="98" parent="12" name="flag">
         <state-number>859</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="99" parent="12" name="sign">
         <state-number>859</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="100" parent="12" name="creator">
         <state-number>859</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="101" parent="12" name="contact_info">
         <state-number>859</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="102" parent="12" name="feedback_pkey">
         <object-id>16644</object-id>
@@ -490,41 +493,41 @@
       <column id="105" parent="13" name="id">
         <state-number>860</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="106" parent="13" name="create_time">
         <state-number>860</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="107" parent="13" name="buried">
         <state-number>860</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="108" parent="13" name="content">
         <state-number>860</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="109" parent="13" name="flag">
         <state-number>860</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="110" parent="13" name="sign">
         <state-number>860</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="111" parent="13" name="creator">
         <state-number>860</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="112" parent="13" name="mound_time">
         <state-number>860</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="113" parent="13" name="mound">
         <state-number>860</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="114" parent="13" name="flower_pkey">
         <object-id>16653</object-id>
@@ -552,16 +555,16 @@
       <column id="118" parent="14" name="id">
         <state-number>861</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="119" parent="14" name="age">
         <state-number>861</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="120" parent="14" name="belong">
         <state-number>861</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="121" parent="14" name="heart_symbol_pkey">
         <object-id>16658</object-id>
@@ -576,29 +579,29 @@
       </key>
       <column id="123" parent="15" name="sequence_name">
         <state-number>888</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="124" parent="15" name="sequence_next_hi_value">
         <state-number>888</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="125" parent="16" name="id">
         <state-number>862</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="126" parent="16" name="create_time">
         <state-number>862</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="127" parent="16" name="tool_index">
         <state-number>862</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="128" parent="16" name="creator">
         <state-number>862</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="129" parent="16" name="mound_pkey">
         <object-id>16663</object-id>
@@ -620,7 +623,7 @@
       <column id="132" parent="17" name="id">
         <state-number>863</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="133" parent="17" name="music_pkey">
         <object-id>16668</object-id>
@@ -636,15 +639,15 @@
       <column id="135" parent="18" name="id">
         <state-number>864</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="136" parent="18" name="create_time">
         <state-number>864</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="137" parent="18" name="wish">
         <state-number>864</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="138" parent="18" name="pray_pkey">
         <object-id>16673</object-id>
@@ -666,33 +669,33 @@
       <column id="141" parent="19" name="id">
         <state-number>865</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="142" parent="19" name="create_time">
         <state-number>865</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="143" parent="19" name="buried">
         <state-number>865</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="144" parent="19" name="content">
         <state-number>865</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="145" parent="19" name="flag">
         <state-number>865</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="146" parent="19" name="sign">
         <state-number>865</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="147" parent="19" name="creator">
         <state-number>865</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="148" parent="19" name="punishment_pkey">
         <object-id>16682</object-id>
@@ -714,15 +717,15 @@
       <column id="151" parent="20" name="id">
         <state-number>866</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="152" parent="20" name="description">
         <state-number>866</state-number>
-        <data-type>varchar(64)</data-type>
+        <data-type>varchar(64)|0</data-type>
       </column>
       <column id="153" parent="20" name="name">
         <state-number>866</state-number>
-        <data-type>varchar(20)</data-type>
+        <data-type>varchar(20)|0</data-type>
       </column>
       <index id="154" parent="20" name="role_pkey">
         <object-id>16687</object-id>
@@ -738,11 +741,11 @@
       <column id="156" parent="21" name="id">
         <state-number>867</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="157" parent="21" name="notice">
         <state-number>867</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="158" parent="21" name="star_pkey">
         <object-id>16692</object-id>
@@ -758,33 +761,33 @@
       <column id="160" parent="22" name="id">
         <state-number>868</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="161" parent="22" name="create_time">
         <state-number>868</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="162" parent="22" name="buried">
         <state-number>868</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="163" parent="22" name="content">
         <state-number>868</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="164" parent="22" name="flag">
         <state-number>868</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="165" parent="22" name="sign">
         <state-number>868</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="166" parent="22" name="creator">
         <state-number>868</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="167" parent="22" name="stone_pkey">
         <object-id>16701</object-id>
@@ -806,41 +809,41 @@
       <column id="170" parent="23" name="id">
         <state-number>869</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="171" parent="23" name="create_time">
         <state-number>869</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="172" parent="23" name="buried">
         <state-number>869</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="173" parent="23" name="content">
         <state-number>869</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="174" parent="23" name="flag">
         <state-number>869</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="175" parent="23" name="sign">
         <state-number>869</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="176" parent="23" name="creator">
         <state-number>869</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="177" parent="23" name="mound_time">
         <state-number>869</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="178" parent="23" name="mound">
         <state-number>869</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="179" parent="23" name="wave_pkey">
         <object-id>16710</object-id>
@@ -868,33 +871,33 @@
       <column id="183" parent="24" name="id">
         <state-number>870</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="184" parent="24" name="create_time">
         <state-number>870</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="185" parent="24" name="buried">
         <state-number>870</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="186" parent="24" name="content">
         <state-number>870</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="187" parent="24" name="flag">
         <state-number>870</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="188" parent="24" name="sign">
         <state-number>870</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="189" parent="24" name="creator">
         <state-number>870</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="190" parent="24" name="wish_pkey">
         <object-id>16719</object-id>
@@ -920,11 +923,14 @@
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
-    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.5">
-      <database id="1" name="star"/>
+    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+      <database id="1" name="star">
+        <visible>1</visible>
+      </database>
       <schema id="2" parent="1" name="public">
         <object-id>2200</object-id>
         <comment>standard public schema</comment>
+        <visible>1</visible>
         <introspection-state-number>4157</introspection-state-number>
         <introspection-timestamp>2016-07-23.23:45:31.043</introspection-timestamp>
       </schema>
@@ -1020,33 +1026,33 @@
       <column id="25" parent="5" name="id">
         <state-number>4121</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="26" parent="5" name="create_time">
         <state-number>4121</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="27" parent="5" name="buried">
         <state-number>4121</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="28" parent="5" name="content">
         <state-number>4121</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="29" parent="5" name="flag">
         <state-number>4121</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="30" parent="5" name="sign">
         <state-number>4121</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="31" parent="5" name="creator">
         <state-number>4121</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="32" parent="5" name="achievement_pkey">
         <object-id>65986</object-id>
@@ -1068,48 +1074,48 @@
       <column id="35" parent="6" name="id">
         <state-number>4122</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="36" parent="6" name="account_expired">
         <state-number>4122</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="37" parent="6" name="account_locked">
         <state-number>4122</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="38" parent="6" name="account_type">
         <state-number>4122</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="39" parent="6" name="credentials_expired">
         <state-number>4122</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="40" parent="6" name="email">
         <state-number>4122</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="41" parent="6" name="account_enabled">
         <state-number>4122</state-number>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="42" parent="6" name="password">
         <state-number>4122</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="43" parent="6" name="username">
         <state-number>4122</state-number>
         <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
+        <data-type>varchar(50)|0</data-type>
       </column>
       <column id="44" parent="6" name="version">
         <state-number>4122</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <index id="45" parent="6" name="app_user_pkey">
         <object-id>65994</object-id>
@@ -1135,33 +1141,33 @@
       <column id="49" parent="7" name="id">
         <state-number>4123</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="50" parent="7" name="create_time">
         <state-number>4123</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="51" parent="7" name="buried">
         <state-number>4123</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="52" parent="7" name="content">
         <state-number>4123</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="53" parent="7" name="flag">
         <state-number>4123</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="54" parent="7" name="sign">
         <state-number>4123</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="55" parent="7" name="creator">
         <state-number>4123</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="56" parent="7" name="article_pkey">
         <object-id>66003</object-id>
@@ -1183,33 +1189,33 @@
       <column id="59" parent="8" name="id">
         <state-number>4124</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="60" parent="8" name="create_time">
         <state-number>4124</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="61" parent="8" name="buried">
         <state-number>4124</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="62" parent="8" name="content">
         <state-number>4124</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="63" parent="8" name="flag">
         <state-number>4124</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="64" parent="8" name="sign">
         <state-number>4124</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="65" parent="8" name="creator">
         <state-number>4124</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="66" parent="8" name="base_log_pkey">
         <object-id>66012</object-id>
@@ -1231,11 +1237,11 @@
       <column id="69" parent="9" name="id">
         <state-number>4125</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="70" parent="9" name="userx">
         <state-number>4125</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="71" parent="9" name="context_pkey">
         <object-id>66017</object-id>
@@ -1257,33 +1263,33 @@
       <column id="74" parent="10" name="id">
         <state-number>4126</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="75" parent="10" name="create_time">
         <state-number>4126</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="76" parent="10" name="buried">
         <state-number>4126</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="77" parent="10" name="content">
         <state-number>4126</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="78" parent="10" name="flag">
         <state-number>4126</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="79" parent="10" name="sign">
         <state-number>4126</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="80" parent="10" name="creator">
         <state-number>4126</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="81" parent="10" name="dislike_pkey">
         <object-id>66026</object-id>
@@ -1305,33 +1311,33 @@
       <column id="84" parent="11" name="id">
         <state-number>4127</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="85" parent="11" name="create_time">
         <state-number>4127</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="86" parent="11" name="buried">
         <state-number>4127</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="87" parent="11" name="content">
         <state-number>4127</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="88" parent="11" name="flag">
         <state-number>4127</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="89" parent="11" name="sign">
         <state-number>4127</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="90" parent="11" name="creator">
         <state-number>4127</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="91" parent="11" name="favour_pkey">
         <object-id>66035</object-id>
@@ -1353,37 +1359,37 @@
       <column id="94" parent="12" name="id">
         <state-number>4128</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="95" parent="12" name="create_time">
         <state-number>4128</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="96" parent="12" name="buried">
         <state-number>4128</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="97" parent="12" name="content">
         <state-number>4128</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="98" parent="12" name="flag">
         <state-number>4128</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="99" parent="12" name="sign">
         <state-number>4128</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="100" parent="12" name="creator">
         <state-number>4128</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="101" parent="12" name="contact_info">
         <state-number>4128</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="102" parent="12" name="feedback_pkey">
         <object-id>66044</object-id>
@@ -1405,41 +1411,41 @@
       <column id="105" parent="13" name="id">
         <state-number>4129</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="106" parent="13" name="create_time">
         <state-number>4129</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="107" parent="13" name="buried">
         <state-number>4129</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="108" parent="13" name="content">
         <state-number>4129</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="109" parent="13" name="flag">
         <state-number>4129</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="110" parent="13" name="sign">
         <state-number>4129</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="111" parent="13" name="creator">
         <state-number>4129</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="112" parent="13" name="mound_time">
         <state-number>4129</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="113" parent="13" name="mound">
         <state-number>4129</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="114" parent="13" name="flower_pkey">
         <object-id>66053</object-id>
@@ -1467,16 +1473,16 @@
       <column id="118" parent="14" name="id">
         <state-number>4130</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="119" parent="14" name="age">
         <state-number>4130</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="120" parent="14" name="belong">
         <state-number>4130</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="121" parent="14" name="heart_symbol_pkey">
         <object-id>66058</object-id>
@@ -1491,29 +1497,29 @@
       </key>
       <column id="123" parent="15" name="sequence_name">
         <state-number>4157</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="124" parent="15" name="sequence_next_hi_value">
         <state-number>4157</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="125" parent="16" name="id">
         <state-number>4131</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="126" parent="16" name="create_time">
         <state-number>4131</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="127" parent="16" name="tool_index">
         <state-number>4131</state-number>
         <mandatory>1</mandatory>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
       </column>
       <column id="128" parent="16" name="creator">
         <state-number>4131</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="129" parent="16" name="mound_pkey">
         <object-id>66063</object-id>
@@ -1535,7 +1541,7 @@
       <column id="132" parent="17" name="id">
         <state-number>4132</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="133" parent="17" name="music_pkey">
         <object-id>66068</object-id>
@@ -1551,15 +1557,15 @@
       <column id="135" parent="18" name="id">
         <state-number>4133</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="136" parent="18" name="create_time">
         <state-number>4133</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="137" parent="18" name="wish">
         <state-number>4133</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="138" parent="18" name="pray_pkey">
         <object-id>66073</object-id>
@@ -1581,33 +1587,33 @@
       <column id="141" parent="19" name="id">
         <state-number>4134</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="142" parent="19" name="create_time">
         <state-number>4134</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="143" parent="19" name="buried">
         <state-number>4134</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="144" parent="19" name="content">
         <state-number>4134</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="145" parent="19" name="flag">
         <state-number>4134</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="146" parent="19" name="sign">
         <state-number>4134</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="147" parent="19" name="creator">
         <state-number>4134</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="148" parent="19" name="punishment_pkey">
         <object-id>66082</object-id>
@@ -1629,15 +1635,15 @@
       <column id="151" parent="20" name="id">
         <state-number>4135</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="152" parent="20" name="description">
         <state-number>4135</state-number>
-        <data-type>varchar(64)</data-type>
+        <data-type>varchar(64)|0</data-type>
       </column>
       <column id="153" parent="20" name="name">
         <state-number>4135</state-number>
-        <data-type>varchar(20)</data-type>
+        <data-type>varchar(20)|0</data-type>
       </column>
       <index id="154" parent="20" name="role_pkey">
         <object-id>66087</object-id>
@@ -1653,11 +1659,11 @@
       <column id="156" parent="21" name="id">
         <state-number>4136</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="157" parent="21" name="notice">
         <state-number>4136</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <index id="158" parent="21" name="star_pkey">
         <object-id>66092</object-id>
@@ -1673,33 +1679,33 @@
       <column id="160" parent="22" name="id">
         <state-number>4137</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="161" parent="22" name="create_time">
         <state-number>4137</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="162" parent="22" name="buried">
         <state-number>4137</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="163" parent="22" name="content">
         <state-number>4137</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="164" parent="22" name="flag">
         <state-number>4137</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="165" parent="22" name="sign">
         <state-number>4137</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="166" parent="22" name="creator">
         <state-number>4137</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="167" parent="22" name="stone_pkey">
         <object-id>66101</object-id>
@@ -1721,41 +1727,41 @@
       <column id="170" parent="23" name="id">
         <state-number>4138</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="171" parent="23" name="create_time">
         <state-number>4138</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="172" parent="23" name="buried">
         <state-number>4138</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="173" parent="23" name="content">
         <state-number>4138</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="174" parent="23" name="flag">
         <state-number>4138</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="175" parent="23" name="sign">
         <state-number>4138</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="176" parent="23" name="creator">
         <state-number>4138</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="177" parent="23" name="mound_time">
         <state-number>4138</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="178" parent="23" name="mound">
         <state-number>4138</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="179" parent="23" name="wave_pkey">
         <object-id>66110</object-id>
@@ -1783,33 +1789,33 @@
       <column id="183" parent="24" name="id">
         <state-number>4139</state-number>
         <mandatory>1</mandatory>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <column id="184" parent="24" name="create_time">
         <state-number>4139</state-number>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
       </column>
       <column id="185" parent="24" name="buried">
         <state-number>4139</state-number>
         <mandatory>1</mandatory>
-        <data-type>boolean</data-type>
+        <data-type>boolean|0</data-type>
       </column>
       <column id="186" parent="24" name="content">
         <state-number>4139</state-number>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="187" parent="24" name="flag">
         <state-number>4139</state-number>
-        <data-type>integer</data-type>
+        <data-type>integer|0</data-type>
         <default-expression>0</default-expression>
       </column>
       <column id="188" parent="24" name="sign">
         <state-number>4139</state-number>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="189" parent="24" name="creator">
         <state-number>4139</state-number>
-        <data-type>bigint</data-type>
+        <data-type>bigint|0</data-type>
       </column>
       <index id="190" parent="24" name="wish_pkey">
         <object-id>66119</object-id>

@@ -40,7 +40,7 @@
                         <div class="col-sm-6 form-group">
                             <h:outputLabel styleClass="control-label" for="password" value="#{text['user.password']}"/>
                             <h:inputSecret styleClass="form-control" value="#{signupForm.user.password}" id="password"
-                                           redisplay="true" required="true" requiredMessage="请输入密码">
+                                           redisplay="true" required="true" requiredMessage="#{text['required.password']}">
                             </h:inputSecret>
                             <p:message for="password"/>
                         </div>
@@ -48,7 +48,7 @@
                             <h:outputLabel styleClass="control-label" for="confirmPassword"
                                            value="#{text['user.confirmPassword']}"/>
                             <h:inputSecret styleClass="form-control" value="#{signupForm.user.confirmPassword}" id="confirmPassword"
-                                requiredMessage="请输入确认密码"           redisplay="true" required="true">
+                                requiredMessage="#{text['required.confirmPassword']}"           redisplay="true" required="true">
 
                             <!--p:validateEqual for="password"/-->
                             </h:inputSecret>
@@ -57,14 +57,14 @@
                     </div>
 
 
-                    <o:validateEqual components="confirmPassword password" message="两次输入密码不一致" showMessageFor="password"/>
+                    <o:validateEqual components="confirmPassword password" message="#{text['error.passwordMismatch']}" showMessageFor="password"/>
 
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <h:outputLabel styleClass="control-label" for="email" value="#{text['user.email']}"/>
                             <h:inputText styleClass="form-control" value="#{signupForm.user.email}" id="email"
                                          validator="#{webUtil.validateEmail}"
-                                          validatorMessage="邮箱格式不正确"
+                                          validatorMessage="#{text['error.email.format']}"
                             />
                             <p:message for="email"/>
                         </div>
