@@ -118,7 +118,7 @@
 <h:body>
     <div style="height: 1%;background-color: whitesmoke;"></div>
     <div id="simbol" class="col-sm-12 center-block" style="height:25%;background-color:black;margin:auto">
-        <img class="center-block" src="/images/star.png" width="150" alt="SYMBOL"/>
+        <img class="center-block" src="/images/star.png" height="100%" alt="SYMBOL"/>
     </div>
     <div class="clearfix"/>
 
@@ -128,7 +128,8 @@
 
         <div class="col-sm-12" style="padding-top: .3em">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4 btn-group placeTab" style="align-content: center;text-align: center">
+            <div class="col-sm-4" style="width:33%">
+            <div class=" btn-group placeTab" style="width:100%;align-content: center;text-align: center">
                 <p:tabMenu activeIndex="#{param.i}">
                     <p:menuitem value="汹海" outcome="/main/area/sea.xhtml">
                         <f:param name="i" value="0"/>
@@ -144,6 +145,7 @@
                     </p:menuitem>
                 </p:tabMenu>
 
+            </div>
             </div>
 
 

@@ -45,7 +45,7 @@ public class BaseTest extends TestCase {
 //        FirefoxProfile firefoxProfile = new ProfilesIni().getProfile("default");
 //        driver = new FirefoxDriver(firefoxProfile);
 
-        baseUrl = "http://127.0.0.1:1234";
+        baseUrl = "http://www.star-redflow.com";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 

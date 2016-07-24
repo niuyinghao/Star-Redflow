@@ -227,3 +227,10 @@ body{
 /** {*/
     /*font-family: "Microsoft YaHei", "iconfont", "FontAwesome" !important;*/
 /*}*/
+
+body{
+    width:100%;
+}
+#content{
+    width:100%
+}

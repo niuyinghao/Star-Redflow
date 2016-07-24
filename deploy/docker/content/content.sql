@@ -27,7 +27,6 @@ INSERT INTO public.wish (id, create_time, buried, content, flag, sign, creator) 
 INSERT INTO public.heart_symbol (id, age, belong) VALUES (-5, 11, -1);
 INSERT INTO public.heart_symbol (id, age, belong) VALUES (-6, 18, -2);
 
-
 INSERT INTO public.pray (id, create_time, wish) VALUES (-7, NULL , -4);
 INSERT INTO public.pray (id, create_time, wish) VALUES (-8, NULL , -4);
 INSERT INTO public.pray (id, create_time, wish) VALUES (-9, NULL , -4);
