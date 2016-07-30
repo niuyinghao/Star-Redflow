@@ -40,13 +40,13 @@
 
             <h:form prependId="false">
                 <div class="col-sm-8" style="margin-top: 5em">
-                    <p:outputLabel value="反馈内容：" for="feedContent"></p:outputLabel>
+                    <p:outputLabel value="#{text['feedback.content']}" for="feedContent"></p:outputLabel>
                     <p:inputTextarea style=";width: 100%" rows="6" id='feedContent' widgetVar="_editor"
                                      value="#{feedBackPage.feedback.content}"></p:inputTextarea>
 
                     <br></br>
 
-                    <p:outputLabel value="联系方式（选填）：" for="contactInfo"></p:outputLabel>
+                    <p:outputLabel value="#{text['feedback.contact']}" for="contactInfo"></p:outputLabel>
                     <p:inputText style="width:100%;margin-top: 1em" value="#{feedBackPage.feedback.contactInfo}"
                                  id="contactInfo"></p:inputText>
                     <br></br>
@@ -56,7 +56,7 @@
                                          oncomplete="onFeedbackComplete(xhr,args)"
                                          ajax="true" update="returnCode" process=""
                         > </p:commandButton>
-                        <p:commandButton style="margin-left: 1em;" value="返回" type="button"
+                        <p:commandButton style="margin-left: 1em;" value="#{text['button.back']}" type="button"
                                          onclick="window.close()"></p:commandButton>
                         <h:inputHidden id="returnCode" value="#{feedBackPage.retCode}"></h:inputHidden>
                     </div>
@@ -72,13 +72,13 @@
                     var retCode = $('#returnCode').val();
                     console.log("retCode" + retCode);
                     if (retCode == '0' || retCode == '1') {
-                        alert("反馈成功，谢谢您的反馈");
+                        alert("#{text['feedback.success']}");
                     }
                     else if (retCode == '-1') {
-                        alert('谢谢您的反馈，报歉反馈遇到问题，请邮件信息到star_redflow@126.com，再次感谢您的反馈');
+                        alert("#{text['feedback.failed']}");
                     }
                     else {
-                        alert('谢谢您的反馈，报歉反馈遇到问题，请邮件信息到star_redflow@126.com，再次感谢您的反馈');
+                        alert("#{text['feedback.failed']}");
                     }
 
                 }

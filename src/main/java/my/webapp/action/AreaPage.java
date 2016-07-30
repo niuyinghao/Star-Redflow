@@ -495,6 +495,7 @@ public class AreaPage extends BasePage implements Serializable {
         hillock.setTargetClass(Stone.class);
         grail.setTargetClass(Wish.class);
         areaContext.setCreator(user);
+        areaContext.setLocale(getRequest().getLocale().toString());
     }
 
     public void addWave(Wave wave, AreaViewScopeSea viewScopeSea) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {

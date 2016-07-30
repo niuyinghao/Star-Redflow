@@ -68,7 +68,7 @@
                                    id="updateStyleHidden"></input>
                         </h:panelGroup>
 
-                        <div class="col-sm-12" >
+                        <div class="col-sm-12">
                             <div class="col-sm-2" style="height: 22em;z-index: 10000">
                                 #{areaPage.setHeartSymbolStyleMap(areaPage.getHeartSymbolStyleStyleMap(wave))}
                                 <p:commandLink
@@ -82,11 +82,11 @@
                                 </p:commandLink>
                             </div>
                             <div class="col-sm-10 ">
-                                <div class="numBlock">WAVE#{'#'}#{wave.id}</div>
+                                <div class="numBlock">#{wave.flag==0?'WAVE#' .concat( wave.id ):'WAVE'}</div>
                                 <br/>
-                                    <div class="contentBlock">
-                                        <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
-                                    </div>
+                                <div class="contentBlock">
+                                    <h:outputText escape="false" value="#{wave.content}"> </h:outputText>
+                                </div>
                             </div>
                         </div>
 
@@ -105,7 +105,8 @@
             </h:panelGroup>
 
             <h:panelGroup rendered="#{areaPage.sea.editMode}">
-                <p:editor style=";" height="#{editorHight}" widgetVar="_editor" value="#{areaPage.newWave.content}" ></p:editor>
+                <p:editor style=";" height="#{editorHight}" widgetVar="_editor"
+                          value="#{areaPage.newWave.content}"></p:editor>
             </h:panelGroup>
         </h:panelGroup>
         <script type="text/javascript">

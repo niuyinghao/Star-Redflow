@@ -18,24 +18,24 @@
         <f:facet name="left">
             <p:remoteCommand update="toolbar" name="updateNav"/>
             <h:panelGroup rendered="#{!areaPage.grail.editMode}">
-                    <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
-                                     disabled="#{areaPage.hasNoPrevPage(areaViewScopeBless.wishDataList)}"
-                                     onclick="PF('#{cid}').getPaginator().prev();updateNav()"/>
-                    <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
-                                     disabled="#{areaPage.hasNoNextPage(areaViewScopeBless.wishDataList)}"
-                                     onclick="PF('#{cid}').getPaginator().next();updateNav()"/>
-                    <p:commandButton style="font-size: 1.3em;width:1.5em"
-                                     action="#{areaPage.enterEditMode(areaPage.grail)}"
-                                     icon="fa fa-edit"
-                                     update="toolbar,viewEditContent"
-                                     oncomplete="editCallback()"
-                    >
-                    </p:commandButton>
-                    <p:commandButton style="font-size: 1.3em;width:1.5em"
-                                     onclick="history.back();return false"
-                                     type="button"
-                                     icon="fa fa-home"
-                                     update="toolbar,viewEditContent"/>
+                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-up"
+                                 disabled="#{areaPage.hasNoPrevPage(areaViewScopeBless.wishDataList)}"
+                                 onclick="PF('#{cid}').getPaginator().prev();updateNav()"/>
+                <p:commandButton type="button" style="font-size: 1.3em;width:1.5em" icon="fa fa-arrow-down"
+                                 disabled="#{areaPage.hasNoNextPage(areaViewScopeBless.wishDataList)}"
+                                 onclick="PF('#{cid}').getPaginator().next();updateNav()"/>
+                <p:commandButton style="font-size: 1.3em;width:1.5em"
+                                 action="#{areaPage.enterEditMode(areaPage.grail)}"
+                                 icon="fa fa-edit"
+                                 update="toolbar,viewEditContent"
+                                 oncomplete="editCallback()"
+                >
+                </p:commandButton>
+                <p:commandButton style="font-size: 1.3em;width:1.5em"
+                                 onclick="history.back();return false"
+                                 type="button"
+                                 icon="fa fa-home"
+                                 update="toolbar,viewEditContent"/>
 
             </h:panelGroup>
 
@@ -71,13 +71,13 @@
                             emptyMessage=""
                             xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                     <p:column>
-                        <div class="numBlock">WISH#{'#'}#{wish.id}</div>
+                        <div class="numBlock">#{wisth.flag==0?'WISH#' .concat( wish.id ):'WISH'}</div>
                         <br/>
                         <div class="contentBlock">
                             <h:outputText escape="false" value="#{wish.content}"></h:outputText>
                         </div>
 
-                        <hr />
+                        <hr/>
                         <ccc:prayList wish="w"/>
                     </p:column>
                     <br/>

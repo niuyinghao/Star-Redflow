@@ -103,9 +103,13 @@
     }
 
     .placeTab .ui-tabmenuitem{
-        width:24%;
         padding:0;
     }
+
+    .ui-tabmenu{
+        display:inline-block;
+    }
+
     .placeTab .ui-menuitem-link{
         width:100%
     }
@@ -127,43 +131,40 @@
 
 
         <div class="col-sm-12" style="padding-top: .3em">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4" style="width:33%">
             <div class=" btn-group placeTab" style="width:100%;align-content: center;text-align: center">
                 <p:tabMenu activeIndex="#{param.i}">
-                    <p:menuitem value="汹海" outcome="/main/area/sea.xhtml">
+                    <p:menuitem value="#{text['sea']}" outcome="/main/area/sea.xhtml">
                         <f:param name="i" value="0"/>
                     </p:menuitem>
-                    <p:menuitem value="花沼" outcome="/main/area/swamp.xhtml">
+                    <p:menuitem value="#{text['swamp']}" outcome="/main/area/swamp.xhtml">
                         <f:param name="i" value="1"/>
                     </p:menuitem>
-                    <p:menuitem value="荒原" outcome="/main/area/plain.xhtml">
+                    <p:menuitem value="#{text['plain']}" outcome="/main/area/plain.xhtml">
                         <f:param name="i" value="2"/>
                     </p:menuitem>
-                    <p:menuitem value="青岗" outcome="/main/area/hillock.xhtml">
+                    <p:menuitem value="#{text['hillock']}" outcome="/main/area/hillock.xhtml">
                         <f:param name="i" value="3"/>
                     </p:menuitem>
                 </p:tabMenu>
-
-            </div>
-            </div>
-
-
-            <div class="col-sm-4">
-                <h:form style="padding-top: .5em;margin-left: 2em">
-                    <p:menuButton value="Star" >
+                <div  style="display: inline-block;position: absolute;margin-top:1em;">
+                <h:form style="display: inline-block;;margin-left: 2em;margin-top:-2em">
+                    <p:menuButton value="#{request.getRemoteUser()}" >
                         <p:menuitem value="Star"  icon="fa fa-star" outcome="/main/starry/bless.xhtml"/>
-                        <p:menuitem value="意见反馈" target="_blank" outcome="/main/misc/feedback.xhtml" icon="ui-icon-extlink"/>
+                        <p:menuitem value="#{text['feedback']}" target="_blank" outcome="/main/misc/feedback.xhtml" icon="ui-icon-extlink"/>
                         <p:separator />
-                        <p:menuitem value="注销"   icon="fa fa-user-times" onclick="location.href='/logout.jsp'" />
+                        <p:menuitem value="#{text['logout']}"   icon="fa fa-user-times" onclick="location.href='/logout.jsp'" />
                     </p:menuButton>
                 </h:form>
+                </div>
             </div>
+
+
+
 
         </div>
 
         <div class="clearfix"/>
-        <hr/>
+        <hr style="margin:.8em;"/>
 
         <div id="content" class="col-sm-12">
             <ui:insert name="divA"/>

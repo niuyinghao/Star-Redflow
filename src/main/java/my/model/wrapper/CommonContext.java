@@ -10,14 +10,25 @@ import java.io.Serializable;
  */
 
 @Component
-public class CommonContext  implements Serializable{
-	User creator; // members
+public class CommonContext implements Serializable {
+    User creator; // members
+    String locale;
 
-	public User getCreator() {
-		return creator;
-	}
+    public String getLocale() {
+        return locale;
+    }
 
-	public void setCreator(User creator) {
-		this.creator = creator;
-	}
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+
 }

@@ -20,10 +20,13 @@ $(function () {
     }, 10)
 });
 
-var loadE=true;
+var loadE = true;
 (function ($) {
     var URL = "/javax.faces.resource/editor/images/buttons.gif.xhtml?ln=primefaces&v=5.3";
     // Define the images button
+    if (typeof ($.cleditor) == 'undefined' || typeof ($.cleditor.buttons) == 'undefined') {
+        return
+    }
     $.cleditor.buttons.Iimg = {
         name: "Iimg",
         css: {
@@ -59,7 +62,7 @@ var loadE=true;
                             debugger;
                             var resp = JSON.parse(request.response);
                             var editor = data.editor;
-                            editor.execCommand(data.command,  resp.link,null, data.button);
+                            editor.execCommand(data.command, resp.link, null, data.button);
                             // Hide the popup and set focus back to the editor
                             editor.hidePopups();
                             editor.focus();
@@ -85,7 +88,7 @@ var loadE=true;
                 request.send(formData);
             }
 
-            if(loadE) {
+            if (loadE) {
                 _file.addEventListener('change', upload);
                 loadE = !loadE;
             }
