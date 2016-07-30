@@ -71,13 +71,12 @@
                             emptyMessage=""
                             xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
                     <p:column>
-                        <div class="numBlock">#{wisth.flag==0?'WISH#' .concat( wish.id ):'WISH'}</div>
+                        <div class="numBlock">#{wish.flag==0?'WISH#' .concat( wish.id ):'WISH'}</div>
                         <br/>
                         <div class="contentBlock">
                             <h:outputText escape="false" value="#{wish.content}"></h:outputText>
                         </div>
-
-                        <hr/>
+                        <hr style="margin: 1em;border-top: #dddddd 1px solid;;"/>
                         <ccc:prayList wish="w"/>
                     </p:column>
                     <br/>

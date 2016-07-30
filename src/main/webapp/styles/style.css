@@ -16,7 +16,6 @@ ul.feedbackPanel {
 }
 
 .btn-group {
-    margin-bottom: 10px;
 }
 
 .btn-group .btn, .form-group .btn {
@@ -233,4 +232,14 @@ body{
 }
 #content{
     width:100%
+}
+
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem a{
+    padding: 0 1em;
+}
+
+#toolbar{
+    padding-left: 1em;
+    padding-top:.5em;
+    padding-bottom:2.3em;
 }

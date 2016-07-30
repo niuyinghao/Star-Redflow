@@ -11,7 +11,7 @@
     <c:set var="wish" value="#{cc.attrs.wish}"/>
     <composite:implementation>
       <p:fragment id="prayList" >
-          <div style="margin-left: 2em">
+          <div style="margin-left: 4em">
                             <ui:repeat value="#{wish.prays}" var="pray">
                                 <ui:fragment rendered="#{!(pray.id==null)}">
                                     <i class="fa fa-heart" style="color:blue"></i>

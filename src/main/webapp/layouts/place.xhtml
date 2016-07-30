@@ -93,7 +93,7 @@
     }
 
     .contentBlock {
-        height: 20em;
+        height: 24em;
         overflow-y: auto;
         padding: .5em 1.5em;
         margin-top: 1em;
@@ -115,6 +115,7 @@
     }
     .placeTab .ui-menuitem-text{
         font-size:24px;
+        font-weight: normal;
     }
 
 </style>
@@ -127,11 +128,11 @@
     <div class="clearfix"/>
 
     <!--@elvariable id="bg" -->
-    <div id='main' style="height:74%;background-color: #{bg};padding-top:1em">
+    <div id='main' style="height:74%;background-color: #{bg};padding-top:0.3em">
 
 
-        <div class="col-sm-12" style="padding-top: .3em">
-            <div class=" btn-group placeTab" style="width:100%;align-content: center;text-align: center">
+        <div class="col-sm-12" style="padding-top: .3em;padding-bottom: 0">
+            <div class=" btn-group placeTab" style="width:100%;padding-bottom: 0;align-content: center;text-align: center">
                 <p:tabMenu activeIndex="#{param.i}">
                     <p:menuitem value="#{text['sea']}" outcome="/main/area/sea.xhtml">
                         <f:param name="i" value="0"/>
@@ -157,14 +158,10 @@
                 </h:form>
                 </div>
             </div>
-
-
-
-
         </div>
 
         <div class="clearfix"/>
-        <hr style="margin:.8em;"/>
+        <hr style="margin-bottom:.8em;margin-top:0"/>
 
         <div id="content" class="col-sm-12">
             <ui:insert name="divA"/>
