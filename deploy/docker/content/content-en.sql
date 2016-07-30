@@ -26,7 +26,7 @@ INSERT INTO public.stone (id, create_time, buried, content, flag, sign, creator)
 VALUES (-3, to_timestamp('2016-01-01','yyyy-mm-dd') , false, '<span style=\"font-size: large;\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>青山脚下抬头望去，山岗上丛林繁密，道路错综弯延，峰顶上山鹰腾翔。</span>
 <div><span style=\"font-size: large;\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>欲攀登到山顶，一览风景，徒步从这里开始。</span>
 </div>
-<div style=\"font-size: 10pt; text-align: center;\"><img src=\"/resources/STAR-000/hillock.jpg\"></div>', 1, null, NULL);
+<div style=\"font-size: 10pt; text-align: center;\"><img src=\"/resources/STAR-0000/hillock.jpg\"></div>', 1, null, NULL);
 
 DELETE from wish WHERE id=-4;
 INSERT INTO public.wish (id, create_time, buried, content, flag, sign, creator)
