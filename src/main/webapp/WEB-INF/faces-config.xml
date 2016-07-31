@@ -173,6 +173,33 @@
     <!-- Add additional rules here -->
 
     <managed-bean>
+        <managed-bean-name>passwordHint</managed-bean-name>
+        <managed-bean-class>my.webapp.action.PasswordHint</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>username</property-name>
+            <value>#{param.username}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>userManager</property-name>
+            <value>#{userMgr}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>mailEngine</property-name>
+            <value>#{mailEngine}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>message</property-name>
+            <value>#{mailMessage}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>templateName</property-name>
+            <value>accountCreated.vm</value>
+        </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
         <managed-bean-name>basePage</managed-bean-name>
         <managed-bean-class>my.webapp.action.BasePage</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>

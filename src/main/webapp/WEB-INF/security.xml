@@ -9,6 +9,7 @@
     <http pattern="/styles/**" security="none"/>
     <http pattern="/scripts/**" security="none"/>
     <http pattern="/assets/**" security="none"/>
+    <http pattern="/webjars/**" security="none"/>
     <http pattern="/javax.faces.resource/**" security="none"/>
     <beans:bean id="myAuthenticationSuccessHandler" class="my.service.impl.AuthenticationSucessHandlerImpl">
     </beans:bean>

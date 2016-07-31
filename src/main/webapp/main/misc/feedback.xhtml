@@ -52,7 +52,7 @@
                     <br></br>
 
                     <div style="margin-top: 1em">
-                        <p:commandButton value="确定" action="#{feedBackPage.saveFeedBack(feedBackPage.feedback)}"
+                        <p:commandButton value="#{text['button.save']}" action="#{feedBackPage.saveFeedBack(feedBackPage.feedback)}"
                                          oncomplete="onFeedbackComplete(xhr,args)"
                                          ajax="true" update="returnCode" process=""
                         > </p:commandButton>

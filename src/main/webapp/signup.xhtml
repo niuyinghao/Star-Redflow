@@ -30,7 +30,7 @@
             <div class="col-sm-8">
                 <h:form id="signupForm" styleClass="well" autocomplete="off">
                     <div class="form-group">
-                        <h:outputLabel styleClass="control-label" for="username" value="#{text['user.username']}"/>
+                        <h:outputLabel styleClass="control-label required-label generated-label" for="username" value="#{text['user.username']}"/>
                         <h:inputText styleClass="form-control" value="#{signupForm.user.username}" id="username"
                                      required="true" autofocus="true"/>
                         <p:message for="username"/>
@@ -38,14 +38,14 @@
 
                     <div class="row">
                         <div class="col-sm-6 form-group">
-                            <h:outputLabel styleClass="control-label" for="password" value="#{text['user.password']}"/>
+                            <h:outputLabel styleClass="control-label required-label" for="password" value="#{text['user.password']}"/>
                             <h:inputSecret styleClass="form-control" value="#{signupForm.user.password}" id="password"
                                            redisplay="true" required="true" requiredMessage="#{text['required.password']}">
                             </h:inputSecret>
                             <p:message for="password"/>
                         </div>
                         <div class="col-sm-6 form-group">
-                            <h:outputLabel styleClass="control-label" for="confirmPassword"
+                            <h:outputLabel styleClass="control-label required-label" for="confirmPassword"
                                            value="#{text['user.confirmPassword']}"/>
                             <h:inputSecret styleClass="form-control" value="#{signupForm.user.confirmPassword}" id="confirmPassword"
                                 requiredMessage="#{text['required.confirmPassword']}"           redisplay="true" required="true">
