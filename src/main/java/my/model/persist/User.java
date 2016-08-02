@@ -43,7 +43,7 @@ import java.util.Set;
 public class User extends BaseObject implements Serializable, UserDetails {
     private static final long serialVersionUID = 3832626162173359411L;
 
-	@MyBatisColumn(isID = true)
+    @MyBatisColumn(isID = true)
     private Long id;
     private String username;                    // required
     private String password;                    // required
@@ -55,76 +55,16 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
+    private boolean createTime;
+    private String accountType;
+    private String PasswordConfirm;
 
-
-	/**
+    /**
      * Default constructor - creates a new instance with no values set.
      */
     public User() {
-		System.out.print(this.getRoles());
+        System.out.print(this.getRoles());
     }
-
-	@PostConstruct
-	public void init() {
-		System.out.print("p" + this.getRoles());
-
-	}
-
-	/**
-     * Create a new instance and set the username.
-     *
-     * @param username login name for user.
-     */
-    public User(final String username) {
-		this.username = username;
-	}
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-//	@NotNull(applyIf = "this.carrier EQUALS 'GlobalCrossing'")
-    public Long getId() {
-        return id;
-    }
-
-    @Column(nullable = false, length = 50, unique = true)
-    public String getUsername() {
-        return username;
-    }
-
-    @Column(nullable = false)
-    @XmlTransient
-    public String getPassword() {
-        return password;
-    }
-
-    @Transient
-    @XmlTransient
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-
-
-
-
-
-    @Basic
-    public String getEmail() {
-        return email;
-    }
-
-
-    /**
-     * Returns the full name.
-     *
-     * @return firstName + ' ' + lastName
-     */
-    @Transient
-    public String getFullName() {
-//        return firstName + ' ' + lastName;
-		return getUsername();
-	}
-
 
     /*@ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
@@ -136,6 +76,113 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Transient
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    /**
+     * Create a new instance and set the username.
+     *
+     * @param username login name for user.
+     */
+    public User(final String username) {
+        this.username = username;
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.print("p" + this.getRoles());
+
+    }
+
+    /**
+     * Adds a role for the user
+     *
+     * @param role the fully instantiated role
+     */
+    public void addRole(Role role) {
+        getRoles().add(role);
+    }
+
+    public boolean hasRole(String roleName) {
+        for (Role eachRole : getRoles()) {
+            if (StringUtils.equals(roleName, eachRole.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "" + id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return id.equals(user.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    public boolean isCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(boolean createTime) {
+        this.createTime = createTime;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+//	@NotNull(applyIf = "this.carrier EQUALS 'GlobalCrossing'")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Transient
+    @XmlTransient
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    @Basic
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Returns the full name.
+     *
+     * @return firstName + ' ' + lastName
+     */
+    @Transient
+    public String getFullName() {
+//        return firstName + ' ' + lastName;
+        return getUsername();
     }
 
     /**
@@ -158,15 +205,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
 
     /**
-     * Adds a role for the user
-     *
-     * @param role the fully instantiated role
-     */
-    public void addRole(Role role) {
-        getRoles().add(role);
-    }
-
-    /**
      * @return GrantedAuthority[] an array of roles.
      * @see UserDetails#getAuthorities()
      */
@@ -180,14 +218,24 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return authorities;
     }
 
-    @Version
-    public Integer getVersion() {
-        return version;
+    @Column(nullable = false)
+    @XmlTransient
+    public String getPassword() {
+        return password;
     }
 
-    @Column(name = "account_enabled")
-    public boolean isEnabled() {
-        return enabled;
+    @Column(nullable = false, length = 50, unique = true)
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @return true if account is still active
+     * @see UserDetails#isAccountNonExpired()
+     */
+    @Transient
+    public boolean isAccountNonExpired() {
+        return !isAccountExpired();
     }
 
     @Column(name = "account_expired", nullable = false)
@@ -195,20 +243,17 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return accountExpired;
     }
 
+    public void setAccountExpired(boolean accountExpired) {
+        this.accountExpired = accountExpired;
+    }
 
-
-
-
-
-
-
-	/**
-     * @see UserDetails#isAccountNonExpired()
-     * @return true if account is still active
+    /**
+     * @return false if account is locked
+     * @see UserDetails#isAccountNonLocked()
      */
     @Transient
-    public boolean isAccountNonExpired() {
-        return !isAccountExpired();
+    public boolean isAccountNonLocked() {
+        return !isAccountLocked();
     }
 
     @Column(name = "account_locked", nullable = false)
@@ -216,31 +261,26 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return accountLocked;
     }
 
-    /**
-     * @see UserDetails#isAccountNonLocked()
-     * @return false if account is locked
-     */
-    @Transient
-    public boolean isAccountNonLocked() {
-        return !isAccountLocked();
-    }
-
-    @Column(name = "credentials_expired", nullable = false)
-    public boolean isCredentialsExpired() {
-        return credentialsExpired;
+    public void setAccountLocked(boolean accountLocked) {
+        this.accountLocked = accountLocked;
     }
 
     /**
-     * @see UserDetails#isCredentialsNonExpired()
      * @return true if credentials haven't expired
+     * @see UserDetails#isCredentialsNonExpired()
      */
     @Transient
     public boolean isCredentialsNonExpired() {
         return !credentialsExpired;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Column(name = "account_enabled")
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public void setUsername(String username) {
@@ -251,64 +291,25 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.password = password;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    @Version
+    public Integer getVersion() {
+        return version;
     }
 
     public void setVersion(Integer version) {
         this.version = version;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public void setAccountExpired(boolean accountExpired) {
-        this.accountExpired = accountExpired;
-    }
-
-    public void setAccountLocked(boolean accountLocked) {
-        this.accountLocked = accountLocked;
+    @Column(name = "credentials_expired", nullable = false)
+    public boolean isCredentialsExpired() {
+        return credentialsExpired;
     }
 
     public void setCredentialsExpired(boolean credentialsExpired) {
         this.credentialsExpired = credentialsExpired;
     }
 
-
-
-	private String accountType;
-
-	public String getAccountType() {
-		return accountType;
-	}
-
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
-
-	private String PasswordConfirm;
-
-	@Transient
-	public String getPasswordConfirm() {
-		return PasswordConfirm;
-	}
-
-	public void setPasswordConfirm(String passwordConfirm) {
-		PasswordConfirm = passwordConfirm;
-	}
-
-	//	private String mobile;
+    //	private String mobile;
 
 //	@Basic
 //	public String getMobile() {
@@ -319,37 +320,20 @@ public class User extends BaseObject implements Serializable, UserDetails {
 //		this.mobile = mobile;
 //	}
 
+    public String getAccountType() {
+        return accountType;
+    }
 
-	public boolean hasRole(String roleName) {
-		for (Role eachRole : getRoles()) {
-			if (StringUtils.equals(roleName, eachRole.getName())) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
 
+    @Transient
+    public String getPasswordConfirm() {
+        return PasswordConfirm;
+    }
 
-
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		User user = (User) o;
-
-		return id.equals(user.id);
-
-	}
-
-	@Override
-	public int hashCode() {
-		return id.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return  "" + id;
-	}
+    public void setPasswordConfirm(String passwordConfirm) {
+        PasswordConfirm = passwordConfirm;
+    }
 }
