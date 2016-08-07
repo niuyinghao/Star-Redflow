@@ -141,6 +141,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return createTime;
     }
 
+    @Basic
     public Date getCreateTime() {
         return createTime;
     }
