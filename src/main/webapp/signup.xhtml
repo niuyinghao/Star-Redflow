@@ -6,8 +6,10 @@
 <ui:composition template="/layouts/account.xhtml">
     <ui:define name="title">#{text['signup.title']}</ui:define>
     <body id="signup">
-        <ui:define name="body">
-            <style>
+    <ui:define name="body">
+        #{signupForm.assignName()}
+
+        <style>
 
                 body{
                     background: black;

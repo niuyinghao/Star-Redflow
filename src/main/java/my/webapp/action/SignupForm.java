@@ -33,11 +33,11 @@ public class SignupForm extends BasePage implements Serializable {
     public static final String ROLE_USER = "ROLE_USER";
 
 
+    // this is executed severial times
     @PostConstruct
     public void init() {
         if (user == null) {
             user = new User();
-            user.setUsername("STAR-" + userManager.getUserSequence());
 //        user.setUsername("STAR-" + DateFormatUtils.format(new Date(), "yyMMdd-hhmmss-") + UUID.randomUUID());
             user.setEnabled(true);
             user.setAccountExpired(false);
@@ -57,7 +57,11 @@ public class SignupForm extends BasePage implements Serializable {
 
 		*/
         }
+    }
 
+
+    public void assignName() {
+        user.setUsername("STAR-" + userManager.getUserSequence());
     }
 
     public String save() throws InvocationTargetException, NoSuchMethodException, UserExistsException, IllegalAccessException {
