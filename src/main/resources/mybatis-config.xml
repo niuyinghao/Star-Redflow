@@ -43,10 +43,10 @@
 
 
     <mappers>
-        <mapper resource="mapper/AppUserMapper.xml"/>
-        <mapper resource="mapper/RoleMapper.xml"/>
-        <mapper resource="mapper/UserRoleMapper.xml"/>
-        <package name="my.dao.mybatis.mapper"/>
+        <!--<mapper resource="mapper/AppUserMapper.xml"/>-->
+        <!--<mapper resource="mapper/RoleMapper.xml"/>-->
+        <!--<mapper resource="mapper/UserRoleMapper.xml"/>-->
+        <!--<package name="my.dao.mybatis.mapper"/>-->
     </mappers>
 
 </configuration>
