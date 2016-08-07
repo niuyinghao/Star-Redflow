@@ -26,8 +26,8 @@ public class SignupForm extends BasePage implements Serializable {
     User user;
     @Autowired
     private UserManager userManager;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private RoleManager roleManager;
     public static final String ROLE_USER = "ROLE_USER";
@@ -35,13 +35,14 @@ public class SignupForm extends BasePage implements Serializable {
 
     @PostConstruct
     public void init() {
-        user = new User();
-        user.setUsername("STAR-" +  userManager.getUserSequence() );
+        if (user == null) {
+            user = new User();
+            user.setUsername("STAR-" + userManager.getUserSequence());
 //        user.setUsername("STAR-" + DateFormatUtils.format(new Date(), "yyMMdd-hhmmss-") + UUID.randomUUID());
-        user.setEnabled(true);
-        user.setAccountExpired(false);
-        user.setAccountLocked(false);
-        user.setCredentialsExpired(false);
+            user.setEnabled(true);
+            user.setAccountExpired(false);
+            user.setAccountLocked(false);
+            user.setCredentialsExpired(false);
 
 		/*  @deprecated No need;
 
@@ -55,7 +56,9 @@ public class SignupForm extends BasePage implements Serializable {
 		user.setRoles(roles);
 
 		*/
-	}
+        }
+
+    }
 
     public String save() throws InvocationTargetException, NoSuchMethodException, UserExistsException, IllegalAccessException {
         User userByUsername = userManager.getUserByUsername(user.getUsername());
