@@ -53,7 +53,7 @@ public class BaseObj {
     // identity when table per class cause :
 //    Cannot use identity column key generation with <union-subclass> ( TABLE_PER_CLASS )
     @GeneratedValue(generator = "g")
-    @GenericGenerator(name = "g", strategy = "sequence")
+    @SequenceGenerator(name = "g",allocationSize = 1)
 
     // @work in mysql
 //    @GeneratedValue(strategy = GenerationType.TABLE)

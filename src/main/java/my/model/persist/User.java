@@ -13,8 +13,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -55,7 +56,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
-    private boolean createTime;
+    private Date createTime;
     private String accountType;
     private String PasswordConfirm;
 
@@ -67,12 +68,12 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
 
     /*@ManyToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )*/
+        @Fetch(FetchMode.SELECT)
+        @JoinTable(
+                name = "user_role",
+                joinColumns = { @JoinColumn(name = "user_id") },
+                inverseJoinColumns = @JoinColumn(name = "role_id")
+        )*/
     @Transient
     public Set<Role> getRoles() {
         return roles;
@@ -136,16 +137,21 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return id.hashCode();
     }
 
-    public boolean isCreateTime() {
+    public Date isCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(boolean createTime) {
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(generator = "u")
+    @SequenceGenerator(name="u",allocationSize = 1,sequenceName = "register_sequence")
 //	@NotNull(applyIf = "this.carrier EQUALS 'GlobalCrossing'")
     public Long getId() {
         return id;

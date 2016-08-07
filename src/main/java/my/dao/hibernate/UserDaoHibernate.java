@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,6 +54,7 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
 	public void saveUser(User user) {
         String encode = passwordEncoder.encode(user.getPassword());
         user.setPassword(encode);
+        user.setCreateTime(new Date());
         Serializable id = getSession().save(user);
 		user.setId((Long) id);
 	}
